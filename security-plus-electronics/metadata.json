@@ -1,0 +1,6 @@
+{
+  "name": "Security Plus Electronics / CCTV Mall",
+  "description": "Central India's premier destination for enterprise security, CCTV, and AI-driven technology infrastructure.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

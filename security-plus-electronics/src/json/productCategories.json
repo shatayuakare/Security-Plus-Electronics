@@ -1,0 +1,115 @@
+[
+    {
+        "id": "cctv-cameras",
+        "title": "CCTV Cameras",
+        "filterValue": "CCTV Cameras",
+        "image": "cctvCategoryImg",
+        "description": "4K UHD cameras with Starlight low-light capturing, full color in 0 Lux, smart AI patrol, and intrusion detection tracking.",
+        "features": [
+            "Aperture F1.0 ColorVu",
+            "4MP & 4K Resolution",
+            "EXIR Smart IR Technology",
+            "Vandal-Resistant Housing"
+        ],
+        "stats": "2,500+ INSTALLED",
+        "highlights": [
+            "Hikvision",
+            "Dahua",
+            "CP Plus"
+        ]
+    },
+    {
+        "id": "biometric-access",
+        "title": "Biometric Access",
+        "filterValue": "Biometric Access",
+        "image": "biometricCategoryImg",
+        "description": "Facial recognition access controls, high-speed fingerprint scanners, electromagnetic door latch integration, and software SDK logs.",
+        "features": [
+            "<0.2s Sensing Speed",
+            "1,500+ Face Capacity",
+            "USB/TCP-IP Reports Export",
+            "WiFi Connectivity Control"
+        ],
+        "stats": "800+ SYSTEM GRIDS",
+        "highlights": [
+            "Realtime",
+            "Matrix",
+            "eSSL"
+        ]
+    },
+    {
+        "id": "nvr-storage",
+        "title": "NVR Storage",
+        "filterValue": "NVR Storage",
+        "image": "nvrCategoryImg",
+        "description": "Enterprise multi-channel network video recorders with H.265+ high encoding compression, RAID support, and secure remote cloud streaming.",
+        "features": [
+            "4K Real-time Sync Playback",
+            "SATA Storage slots up to 20TB",
+            "RAID 0/1/5 Redundancy",
+            "H.265+ High Compression"
+        ],
+        "stats": "1,200+ DEPLOYED",
+        "highlights": [
+            "Seagate SkyHawk",
+            "Western Digital"
+        ]
+    },
+    {
+        "id": "networking-backbone",
+        "title": "Networking Backbone",
+        "filterValue": "Networking Backbone",
+        "image": "networkCategoryImg",
+        "description": "Industrial-grade PoE network switches with gigabit fiber uplinks, 250m long-distance cabling, and auto-rebooting camera watchdogs.",
+        "features": [
+            "250m Long-Distance Link",
+            "One-key Port Isolation VLAN",
+            "6KV Lighting Surge Shield",
+            "Intelligent PoE Budget"
+        ],
+        "stats": "3,100+ NODES SECURED",
+        "highlights": [
+            "D-Link",
+            "TP-Link",
+            "Cisco"
+        ]
+    },
+    {
+        "id": "video-door-phones",
+        "title": "Video Door Phones",
+        "filterValue": "Biometric Access",
+        "image": "vdpCategoryImg",
+        "description": "High-fidelity digital video door phones with 7-inch inside monitors, two-way hands-free audio, snapshot visitor log memory, and smart door release.",
+        "features": [
+            "7-inch TFT LCD Display",
+            "120° Wide Field of View",
+            "Snapshot Memory Slot",
+            "Electromagnetic Lock Relay"
+        ],
+        "stats": "950+ UNITS ACTIVE",
+        "highlights": [
+            "Panasonic",
+            "Honeywell",
+            "Commax"
+        ]
+    },
+    {
+        "id": "cables-power",
+        "title": "Power Backup & Cables",
+        "filterValue": "Power Backup",
+        "image": "powerCategoryImg",
+        "description": "99.99% pure solid copper 3+1 coaxial cables and central multi-channel power distribution boxes with PTC glass fuse protection boards.",
+        "features": [
+            "99.99% Oxygen-Free Copper",
+            "Regulated 12V DC Supply Box",
+            "PTC Glass Fuses Protection",
+            "95% Coverage Coax Braiding"
+        ],
+        "stats": "450KM+ LINE TOTAL",
+        "highlights": [
+            "Finolex",
+            "D-Link Coaxial",
+            "SPE Custom"
+        ]
+    }
+]
