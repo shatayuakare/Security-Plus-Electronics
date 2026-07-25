@@ -1,0 +1,50 @@
+[
+    {
+        "id": "reel-1",
+        "title": "AI Security CCTV Camera Patrol",
+        "videoUrl": "../../assets/reels/1.mp4",
+        "category": "CCTV Cameras",
+        "views": "12.5K",
+        "likes": 1420
+    },
+    {
+        "id": "reel-2",
+        "title": "Next-Gen Fingerprint Biometrics",
+        "videoUrl": "../../assets/reels/2.mp4",
+        "category": "Biometric Access",
+        "views": "8.1K",
+        "likes": 932
+    },
+    {
+        "id": "reel-3",
+        "title": "Installing Professional 4K CCTV",
+        "videoUrl": "../../assets/reels/3.mp4",
+        "category": "CCTV Cameras",
+        "views": "15.9K",
+        "likes": 2110
+    },
+    {
+        "id": "reel-4",
+        "title": "Smart Door Lock Integration",
+        "videoUrl": "../../assets/reels/4.mp4",
+        "category": "Biometric Access",
+        "views": "6.5K",
+        "likes": 804
+    },
+    {
+        "id": "reel-5",
+        "title": "Smart Door Lock Integration",
+        "videoUrl": "../../assets/reels/5.mp4",
+        "category": "Biometric Access",
+        "views": "6.5K",
+        "likes": 804
+    },
+    {
+        "id": "reel-6",
+        "title": "Smart Door Lock Integration",
+        "videoUrl": "../../assets/reels/6.mp4",
+        "category": "Biometric Access",
+        "views": "6.5K",
+        "likes": 804
+    }
+]
