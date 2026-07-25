@@ -3,7 +3,7 @@
         "id": "cctv-cameras",
         "title": "CCTV Cameras",
         "filterValue": "CCTV Cameras",
-        "image": "cctvCategoryImg",
+        "image": "cctv_category_1782647476026.jpg",
         "description": "4K UHD cameras with Starlight low-light capturing, full color in 0 Lux, smart AI patrol, and intrusion detection tracking.",
         "features": [
             "Aperture F1.0 ColorVu",
@@ -13,8 +13,8 @@
         ],
         "stats": "2,500+ INSTALLED",
         "highlights": [
-            "Hikvision",
-            "Dahua",
+            "woston",
+            "Daichi",
             "CP Plus"
         ]
     },
@@ -22,7 +22,7 @@
         "id": "biometric-access",
         "title": "Biometric Access",
         "filterValue": "Biometric Access",
-        "image": "biometricCategoryImg",
+        "image": "biometric_category_1782647490902.jpg",
         "description": "Facial recognition access controls, high-speed fingerprint scanners, electromagnetic door latch integration, and software SDK logs.",
         "features": [
             "<0.2s Sensing Speed",
@@ -32,16 +32,16 @@
         ],
         "stats": "800+ SYSTEM GRIDS",
         "highlights": [
-            "Realtime",
             "Matrix",
-            "eSSL"
+            "eSSL",
+            "Secureye"
         ]
     },
     {
         "id": "nvr-storage",
         "title": "NVR Storage",
         "filterValue": "NVR Storage",
-        "image": "nvrCategoryImg",
+        "image": "nvr_category_1782647503434.jpg",
         "description": "Enterprise multi-channel network video recorders with H.265+ high encoding compression, RAID support, and secure remote cloud streaming.",
         "features": [
             "4K Real-time Sync Playback",
@@ -51,15 +51,17 @@
         ],
         "stats": "1,200+ DEPLOYED",
         "highlights": [
-            "Seagate SkyHawk",
-            "Western Digital"
+            "Daichi",
+            "Toshiba",
+            "Seagate",
+            "WD"
         ]
     },
     {
         "id": "networking-backbone",
         "title": "Networking Backbone",
         "filterValue": "Networking Backbone",
-        "image": "networkCategoryImg",
+        "image": "network_category_1782647515140.jpg",
         "description": "Industrial-grade PoE network switches with gigabit fiber uplinks, 250m long-distance cabling, and auto-rebooting camera watchdogs.",
         "features": [
             "250m Long-Distance Link",
@@ -71,14 +73,14 @@
         "highlights": [
             "D-Link",
             "TP-Link",
-            "Cisco"
+            "Woston"
         ]
     },
     {
         "id": "video-door-phones",
         "title": "Video Door Phones",
         "filterValue": "Biometric Access",
-        "image": "vdpCategoryImg",
+        "image": "vdp_category_1782647530140.jpg",
         "description": "High-fidelity digital video door phones with 7-inch inside monitors, two-way hands-free audio, snapshot visitor log memory, and smart door release.",
         "features": [
             "7-inch TFT LCD Display",
@@ -88,16 +90,16 @@
         ],
         "stats": "950+ UNITS ACTIVE",
         "highlights": [
-            "Panasonic",
-            "Honeywell",
-            "Commax"
+            "Morx",
+            "Cp Plus",
+            "Dahua"
         ]
     },
     {
         "id": "cables-power",
         "title": "Power Backup & Cables",
         "filterValue": "Power Backup",
-        "image": "powerCategoryImg",
+        "image": "power_category_1782647544185.jpg",
         "description": "99.99% pure solid copper 3+1 coaxial cables and central multi-channel power distribution boxes with PTC glass fuse protection boards.",
         "features": [
             "99.99% Oxygen-Free Copper",
@@ -107,9 +109,11 @@
         ],
         "stats": "450KM+ LINE TOTAL",
         "highlights": [
-            "Finolex",
-            "D-Link Coaxial",
-            "SPE Custom"
+            "Woston",
+            "Cp Plus",
+            "Secureye",
+            "Daichi",
+            "D-Link"
         ]
     }
 ]

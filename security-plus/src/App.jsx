@@ -14,7 +14,7 @@ import { getProductImageUrls } from "./components/BlurUpImage";
 import BrandCarousel from "./components/BrandCarousel";
 import { Header } from "./components/Header";
 import Hero from "./components/Hero";
-import { ProductCategories } from "./components/ProductCategories";
+import { ProductCategories } from "./components/section/ProductCategories";
 import { VirtualShowroom } from "./components/VirtualShowroom";
 import { SectorsWeProtect } from "./components/SectorsWeProtect";
 import { SurveillancePlanner } from "./components/SurveillancePlanner";
@@ -40,7 +40,7 @@ import ReelSection from "./components/section/ReelSection";
 // import networkCategoryImg from "./assets/images/network_category_1782647515140.jpg";
 // import vdpCategoryImg from "./assets/images/vdp_category_1782647530140.jpg";
 // import powerCategoryImg from "./assets/images/power_category_1782647544185.jpg";
-// import { ScrollableTestimonials, OurThought, OurBlogs, Careers, FAQSection, CorporateContactForm, OurLocation } from "./components/HomeSections";
+import { ScrollableTestimonials, OurThought, OurBlogs, Careers, FAQSection, CorporateContactForm, OurLocation } from "./components/HomeSections";
 
 
 
@@ -158,13 +158,12 @@ function App() {
     "System booted.",
     "Optical feeds synchronized on Layer 3 network."
   ]);
-  // Power Backup Simulator State
+
   const [powerCamCount, setPowerCamCount] = useState(8);
   const [powerBackupHours, setPowerBackupHours] = useState(4);
-  // Smart Lock Biometric simulator state
   const [lockStatus, setLockStatus] = useState("idle");
   const [selectedLockMethod, setSelectedLockMethod] = useState("fingerprint");
-  // Showroom Booking state
+
   const [bookingForm, setBookingForm] = useState({
     name: "",
     phone: "",
@@ -173,12 +172,11 @@ function App() {
     time: "",
     sector: "residential"
   });
+
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [bookingTicket, setBookingTicket] = useState(null);
-  // Showroom interactive tour state
   const [activeShowroomHotspot, setActiveShowroomHotspot] = useState(null);
   const [showroomScanStatus, setShowroomScanStatus] = useState("idle");
-  // Main Sizing Calculator State
   const [calcInput, setCalcInput] = useState({
     premisesType: "home",
     areaSizeSqFt: 1500,
@@ -203,6 +201,7 @@ function App() {
       { name: "Security Manager", email: "info@securityplus.in", phone: "08048102415", password: "customer123" }
     ];
   });
+
   useEffect(() => {
     if (customerUser) {
       localStorage.setItem("spe_customer_user", JSON.stringify(customerUser));
@@ -211,10 +210,10 @@ function App() {
       localStorage.removeItem("spe_customer_user");
     }
   }, [customerUser]);
+
   useEffect(() => {
     localStorage.setItem("spe_registered_customers", JSON.stringify(registeredCustomers));
   }, [registeredCustomers]);
-  // Wishlist State (holds product IDs of wishlisted items for the logged-in customer)
   const [wishlist, setWishlist] = useState(() => {
     const savedUser = localStorage.getItem("spe_customer_user");
     const user = savedUser ? JSON.parse(savedUser) : null;
@@ -271,6 +270,7 @@ function App() {
       return JSON.parse(saved);
     return ["CCTV Cameras", "Biometric Access", "NVR Storage", "Networking Backbone", "Power Backup"];
   });
+
   const [products, setProducts] = useState(() => {
     const saved = localStorage.getItem("spe_products_catalog");
     if (saved)
@@ -288,6 +288,7 @@ function App() {
       return { ...p, category: mappedCat };
     });
   });
+
   const [contactData, setContactData] = useState(() => {
     const saved = localStorage.getItem("spe_contact_data");
     const defaults = {
@@ -315,6 +316,7 @@ function App() {
     }
     return defaults;
   });
+
   const [logoData, setLogoData] = useState(() => {
     const saved = localStorage.getItem("spe_logo_data");
     if (saved) {
@@ -339,6 +341,7 @@ function App() {
       companySuffix: "CCTV Mall"
     };
   });
+
   const [inquiryList, setInquiryList] = useState(() => {
     const saved = localStorage.getItem("spe_inquiry_list");
     if (saved) {
@@ -351,12 +354,12 @@ function App() {
     }
     return [];
   });
+
   useEffect(() => {
     localStorage.setItem("spe_inquiry_list", JSON.stringify(inquiryList));
   }, [inquiryList]);
   const [selectedProductForQuickView, setSelectedProductForQuickView] = useState(null);
   const [isInquiryDrawerOpen, setIsInquiryDrawerOpen] = useState(false);
-  // Performance-optimized lazy loading states
   const [loadedImages, setLoadedImages] = useState({});
   const [socialLinks, setSocialLinks] = useState(() => {
     const saved = localStorage.getItem("spe_social_links");
@@ -369,11 +372,9 @@ function App() {
     };
   });
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
-  // Woston Store Redirect states
   const [wostonModalOpen, setWostonModalOpen] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [redirectProgress, setRedirectProgress] = useState(0);
-  // Dynamic state list for user-submitted reviews / testimonials
   const [testimonials, setTestimonials] = useState(TESTIMONIALS_DATA);
   const [newFeedback, setNewFeedback] = useState({
     clientName: "",
@@ -385,9 +386,7 @@ function App() {
     systemInstalled: ""
   });
   const [feedbackSuccess, setFeedbackSuccess] = useState(false);
-  // Gallery image lightbox state
   const [lightboxIndex, setLightboxIndex] = useState(null);
-  // Admin Mode state variables
   const [adminEmails, setAdminEmails] = useState(() => {
     const saved = localStorage.getItem("spe_admin_emails");
     if (saved)
@@ -436,6 +435,7 @@ function App() {
       setDropdownSubView("main");
     }
   }, [accountDropdownOpen]);
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (accountRef.current && !accountRef.current.contains(event.target)) {
@@ -451,6 +451,7 @@ function App() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
   const handleShareProduct = async (product) => {
     const shareData = {
       title: product.name,
@@ -655,6 +656,7 @@ function App() {
   useEffect(() => {
     handleRunCalculator();
   }, [calcInput]);
+
   const triggerAiScan = (type) => {
     setAiActiveScan(type);
     let logMsg = "";
@@ -671,7 +673,7 @@ function App() {
       setAiActiveScan(null);
     }, 4000);
   };
-  // Chat message submit
+
   const handleSendMessage = async (textToSend) => {
     const input = textToSend || userInput;
     if (!input.trim())
@@ -703,7 +705,7 @@ function App() {
       setChatLoading(false);
     }
   };
-  // Run Sizing Planner Calculations
+
   const handleRunCalculator = () => {
     const cams = calcInput.indoorCams + calcInput.outdoorCams;
     if (cams <= 0) {
@@ -750,6 +752,7 @@ function App() {
       recommendedSpecs: specs
     });
   };
+
   const runSmartLockAuth = () => {
     setLockStatus("scanning");
     setTimeout(() => {
@@ -757,6 +760,7 @@ function App() {
       setLockStatus(success ? "granted" : "denied");
     }, 1800);
   };
+
   const handleBookShowroom = (e) => {
     e.preventDefault();
     if (!bookingForm.name || !bookingForm.phone || !bookingForm.date)
@@ -779,6 +783,7 @@ function App() {
     });
     setBookingConfirmed(true);
   };
+
   // Submit new feedback dynamically
   const handleSubmitFeedback = (e) => {
     e.preventDefault();
@@ -817,6 +822,7 @@ function App() {
       return;
     const randomTicketId = `SPE-TKT-${Math.floor(100000 + Math.random() * 900000)}`;
     const randomEngineer = ["Sandeep Agnihotri", "Manoj Kulkarni", "Prateek Deshpande", "Amrita Rao"][Math.floor(Math.random() * 4)];
+
     const newTicket = {
       id: randomTicketId,
       name: contactForm.name,
@@ -830,6 +836,7 @@ function App() {
       assignedTo: randomEngineer,
       notes: ["Ticket generated automatically on customer inquiry submission."]
     };
+
     setSupportTickets(prev => [newTicket, ...prev]);
     setContactTicket({
       ticketId: randomTicketId,
@@ -837,6 +844,7 @@ function App() {
       estimatedResponse: "2 Hours SLA Guarantee",
       ...contactForm
     });
+
     setContactForm({
       name: "",
       company: "",
@@ -846,34 +854,8 @@ function App() {
       message: ""
     });
   };
-  // Network ping simulator for custom contact tools
-  const runNetworkPingTest = () => {
-    setPinging(true);
-    setPingResults([]);
-    const hosts = [
-      { ip: "nagpur-hq.spe-grid.in", status: "resolving" },
-      { ip: "dharampeth-switch-3.spe-grid.in", status: "resolving" },
-      { ip: "optical-ring-primary.spe-grid.in", status: "resolving" }
-    ];
-    let current = 0;
-    const interval = setInterval(() => {
-      if (current < hosts.length) {
-        const h = hosts[current];
-        const res = {
-          ip: h.ip,
-          status: Math.random() > 0.05 ? "ONLINE" : "UNREACHABLE",
-          latency: Math.floor(4 + Math.random() * 24)
-        };
-        setPingResults(prev => [...prev, res]);
-        current++;
-      }
-      else {
-        clearInterval(interval);
-        setPinging(false);
-      }
-    }, 1000);
-  };
-  // Get Lucide Icon dynamically
+
+
   const getIcon = (name, className = "h-6 w-6 text-primary") => {
     switch (name) {
       case "Video": return <Video className={className} />;
@@ -901,16 +883,14 @@ function App() {
   return (<div className="bg-white text-slate-900 antialiased overflow-x-hidden selection:bg-sky-600 selection:text-white min-h-screen font-sans relative border-t-4 border-sky-600">
     <SEOManager activeTab={activeTab} />
 
-    {/* Crisp Wireframe Grid Lines */}
     <div className="absolute inset-0 pointer-events-none z-0 border-x border-slate-100 max-w-7xl mx-auto"></div>
 
-    {/* Cyber Security System Intelligence notification Toast */}
     <AnimatePresence>
-      {toastMessage && (<motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:right-auto z-50 w-auto md:w-[480px] bg-slate-900/95 backdrop-blur-md text-white p-3.5 rounded-xl border border-slate-800 flex items-start gap-3 shadow-2xl">
+      {toastMessage && (<motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:right-auto z-50 w-auto md:w-120 bg-slate-900/95 backdrop-blur-md text-white p-3.5 rounded-xl border border-slate-800 flex items-start gap-3 shadow-2xl">
         <Sparkles className="h-4 w-4 text-sky-400 shrink-0 mt-0.5 animate-pulse" />
         <div className="flex-1 min-w-0">
           <span className="font-mono font-bold text-[9px] tracking-widest text-sky-400 uppercase block">[ SYSTEM SENTINEL GUARD ]</span>
-          <p className="text-[11px] text-slate-300 leading-normal mt-0.5 break-words">{toastMessage}</p>
+          <p className="text-[11px] text-slate-300 leading-normal mt-0.5 wrap-break-wordbreak">{toastMessage}</p>
         </div>
         <button onClick={() => setToastMessage(null)} className="text-slate-400 hover:text-white shrink-0 cursor-pointer p-0.5">
           <X className="h-3.5 w-3.5" />
@@ -931,7 +911,6 @@ function App() {
       {activeTab === "home" && (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
         <Hero heroSlideIndex={heroSlideIndex} setHeroSlideIndex={setHeroSlideIndex} setActiveTab={setActiveTab} setBookingConfirmed={setBookingConfirmed} setBookingForm={setBookingForm} setShowroomModalOpen={setShowroomModalOpen} />
 
-        {/* BRAND PARTNERS CAROUSEL */}
         <BrandCarousel />
 
         <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} setBlogCategoryFilter={setBlogCategoryFilter} setActiveTab={setActiveTab} />
@@ -953,11 +932,11 @@ function App() {
           </div>
         </motion.section>
 
-        {/* <ScrollableTestimonials /> */}
-        {/* <OurThought /> */}
+        <ScrollableTestimonials />
+        <OurThought />
         {/* <OurBlogs /> */}
         {/* <OurLocation contactData={contactData} /> */}
-        {/* <FAQSection /> */}
+        <FAQSection />
       </motion.div>)}
       {activeTab === "ecosystem" && (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
         {/* ECOSYSTEM / SOLUTIONS GRID SECTION */}
@@ -1092,7 +1071,6 @@ function App() {
 
       {activeTab === "contact" && (<ContactUs logoData={logoData} setSupportTickets={setSupportTickets} setToastMessage={setToastMessage} />)}
 
-      {/* CUSTOMER LOGIN & SIGNUP PAGES */}
       {(activeTab === "login" || activeTab === "signup") && (<AuthSection activeTab={activeTab} setActiveTab={setActiveTab} registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />)}
     </div>
 

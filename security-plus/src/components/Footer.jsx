@@ -45,7 +45,7 @@ const Footer = ({ logoData }) => {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-[#2A2A2A] flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-on-surface-variant">
+            <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant">
                 <p onClick={() => {
                     const now = Date.now();
                     const isAuthAdmin = customerUser && adminEmails.map(e => e.toLowerCase()).includes(customerUser.email.toLowerCase());
@@ -69,9 +69,6 @@ const Footer = ({ logoData }) => {
                 }} className="opacity-70 text-center md:text-left font-mono text-[10px] cursor-pointer select-none hover:text-white transition-all duration-300">
                     © 2026 {(logoData.companyName && logoData.companySuffix ? `${logoData.companyName} ${logoData.companySuffix}` : "SECURITY PLUS ELECTRONICS")?.toUpperCase()}. ALL RIGHTS RESERVED. POWERED BY SYSTEM INTEGRITY.
                 </p>
-                <div className="flex gap-4">
-                    <Globe className="h-4 w-4 hover:text-[#FF5A00] cursor-pointer transition-colors" />
-                </div>
             </div>
         </footer >
     )
