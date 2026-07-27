@@ -11,7 +11,25 @@ const navigationMenu = [
   {
     id: "home",
     title: "Home",
-  }
+  },
+  {
+    id: "products",
+    title: "Products",
+  },
+  {
+    id: "blogs",
+    title: "Blogs"
+  },
+  {
+    id: "contact",
+    title: "Contact Us",
+  },
+  {
+    id: "about",
+    title: "About Us",
+  },
+
+
 ]
 
 
