@@ -1,4 +1,3 @@
-import React from "react";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import PRODUCT_CATEGORIES from "../../json/productCategories.json"
@@ -46,11 +45,11 @@ export const ProductCategories = ({ loadedImages, setLoadedImages, setBlogCatego
           y: -8,
           borderColor: "#0284C7",
           boxShadow: "0 20px 40px -15px rgba(2, 132, 199, 0.15)"
-        }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="bg-white border border-slate-200 flex flex-col justify-between p-0 relative rounded-2xl group transition-all duration-300 overflow-hidden shadow-sm">
-          <div className="absolute top-0 left-0 right-0 h-0.5 bg-transparent group-hover:bg-sky-600 transition-all duration-300 z-30"></div>
+        }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="bg-white border border-slate-200 flex flex-col justify-between p-0 relative rounded-2xl group transition-all duration-100 overflow-hidden shadow-sm ">
+          <div className="absolute rounded-t-2xl top-0 left-0 right-0 h-6 group-hover:border-t-6 bg-transparent group-hover:border-sky-600 transition-all duration-200 z-30"></div>
 
-          <div className="relative h-56 overflow-hidden border-b border-slate-100">
-            <div className="absolute inset-0 bg-linear-to-t from-white/90 via-transparent to-black/20 z-10"></div>
+          <div className="relative h-64 overflow-hidden border-b border-slate-100">
+            <div className="absolute inset-0 bg-linear-to-t from-white/0 via-transparent  bg-black/20 z-10"></div>
 
             <span className="absolute top-4 left-4 z-20 font-sans text-[9px] bg-sky-50 text-sky-700 border border-sky-100 px-2.5 py-1 rounded-lg tracking-wider uppercase font-bold">
               {category.stats}
@@ -58,7 +57,7 @@ export const ProductCategories = ({ loadedImages, setLoadedImages, setBlogCatego
             {!loadedImages[category.id] && (<div className="absolute inset-0 flex items-center justify-center bg-slate-50 z-0">
               <div className="w-8 h-8 border-2 border-sky-600 border-t-transparent rounded-full animate-spin"></div>
             </div>)}
-            <img src={new URL(`../../assets/images/${category.image}`, import.meta.url).href} alt={category.title} loading="lazy" onLoad={() => setLoadedImages(prev => ({ ...prev, [category.id]: true }))} className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${loadedImages[category.id] ? "opacity-100 scale-100" : "opacity-0 scale-95"}`} referrerPolicy="no-referrer" />
+            <img src={new URL(`../../assets/images/categories/${category.image}`, import.meta.url).href} alt={category.title} loading="lazy" onLoad={() => setLoadedImages(prev => ({ ...prev, [category.id]: true }))} className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${loadedImages[category.id] ? "opacity-100 scale-100" : "opacity-0 scale-95"}`} referrerPolicy="no-referrer" />
           </div>
 
           <div className="p-6 flex-1 flex flex-col justify-between">

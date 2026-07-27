@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { ChevronDown, Send, CheckCircle2, MapPin, Phone, Mail, Clock, Star, ArrowRight, ArrowLeft, Landmark, ShieldAlert, Award, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { TESTIMONIALS_DATA, BLOGS_DATA } from "../data";
+import TESTIMONIALS_DATA from "../json/testimonials.json";
+import BLOGS_DATA from "../json/blogs.json";
 
 
 export const ScrollableTestimonials = () => {
@@ -37,11 +38,7 @@ export const ScrollableTestimonials = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          {!isPaused ? (<span className="hidden sm:inline-block text-[9px] font-mono text-emerald-600 font-bold tracking-wider animate-pulse uppercase bg-emerald-50 px-2 py-1 rounded border border-emerald-100">
-            ● AUTOPLAY ACTIVE
-          </span>) : (<span className="hidden sm:inline-block text-[9px] font-mono text-amber-600 font-bold tracking-wider uppercase bg-amber-50 px-2 py-1 rounded border border-amber-100">
-            ■ AUTOPLAY PAUSED
-          </span>)}
+
           <div className="flex gap-3">
             <button onClick={prevSlide} className="p-3 border border-slate-200 text-slate-600 hover:text-sky-600 hover:border-sky-600 transition-all rounded-full bg-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Previous Testimonial">
               <ArrowLeft className="h-4 w-4" />
@@ -93,7 +90,7 @@ export const ScrollableTestimonials = () => {
 
       {/* Indicator dots */}
       <div className="flex justify-center gap-2 mt-8">
-        {TESTIMONIALS_DATA.map((_, idx) => (<button key={idx} onClick={() => setScrollIndex(idx)} className={`h-2 transition-all rounded-full cursor-pointer ${idx === scrollIndex ? "w-6 bg-sky-600" : "w-2 bg-slate-200"}`} aria-label={`Go to slide ${idx + 1}`} />))}
+        {TESTIMONIALS_DATA.map((_, idx) => (<button key={idx} onClick={() => setScrollIndex(idx)} className={`h-2 transition-all rounded-full cursor-pointer ${idx === scrollIndex ? "w-6 bg-sky-600" : "w-2 bg-slate-300"}`} aria-label={`Go to slide ${idx + 1}`} />))}
       </div>
     </div>
   </section>);
@@ -217,10 +214,10 @@ export const OurBlogs = () => {
               <div className="text-xs font-bold text-slate-900">{blog.author}</div>
               <div className="text-[10px] text-slate-400">{blog.authorRole}</div>
             </div>
-            <span className="text-xs font-mono font-bold text-sky-600 hover:text-sky-700 flex items-center gap-1 cursor-pointer">
+            <button className="text-xs btn btn-link font-mono font-bold text-sky-600 hover:text-sky-700 flex items-center gap-1 cursor-pointer">
               <span>READ</span>
               <ArrowRight className="h-3 w-3" />
-            </span>
+            </button>
           </div>
         </div>))}
       </div>
@@ -625,11 +622,12 @@ export const CorporateContactForm = () => {
 };
 
 export const OurLocation = ({ contactData }) => {
-  const displayPhone = contactData?.phone || "+91 98230 40500 / +91 712 2544100";
-  const displayEmail = contactData?.email || "inquiries@spe-security.in";
-  const displayAddress = contactData?.address || "SPE CCTV Mall, West High Court Road, Opposite Dharampeth Metro Station, Dharampeth, Nagpur, Maharashtra - 440010";
+  // const displayPhone = contactData?.phone || "08048102415";
+  const displayEmail = contactData?.email || "info@securityplus.in";
+  const displayAddress = contactData?.address || "Sitabuldi, Nagpur, Maharashtra 440012";
   const displayHours = contactData?.officeHours || "Monday — Saturday: 10:00 AM — 8:30 PM\nSunday: Closed (Available for emergency SLA supports)";
-  const mapQuery = contactData?.mapAddress || "West High Court Road, Dharampeth, Nagpur";
+  const mapAddress = contactData?.mapAddress || "SECURITY PLUS ELECTRONICS (CCTV MALL) NAGPUR";
+  const mapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2593.55808883996!2d79.08766245280425!3d21.14463636083844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c11c7803d3b5%3A0xa9e24cf23ec1d907!2sSECURITY%20PLUS%20ELECTRONICS%20(CCTV%20MALL)!5e0!3m2!1sen!2sin!4v1785138807628!5m2!1sen!2sin";
   return (<section className="py-24 px-6 md:px-12 bg-slate-50 relative border-b border-slate-100">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
@@ -645,12 +643,10 @@ export const OurLocation = ({ contactData }) => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-        {/* Map display */}
         <div className="lg:col-span-2 h-[450px] border border-slate-200 rounded-3xl overflow-hidden shadow-sm bg-white relative">
-          <iframe title="SPE CCTV Mall Nagpur Location Map" src={`https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&t=&z=16&ie=UTF8&iwloc=&output=embed`} className="w-full h-full border-0" allowFullScreen={false} loading="lazy" referrerPolicy="no-referrer" />
+          <iframe title={mapAddress} src={mapSrc} className="w-full h-full border-0" allowFullScreen={false} loading="lazy" referrerPolicy="no-referrer" />
         </div>
 
-        {/* Contact Cards Info */}
         <div className="bg-white border border-slate-200 p-8 rounded-3xl shadow-sm flex flex-col justify-between">
           <div className="space-y-8">
             <h3 className="font-sans font-bold text-slate-900 text-lg border-b border-slate-100 pb-3">
@@ -749,12 +745,18 @@ export const OurLocation = ({ contactData }) => {
           </div>
 
           <button onClick={() => {
-            document.getElementById("contact-form-section")?.scrollIntoView({ behavior: "smooth" });
+            alert("This function is underprocess")
           }} className="w-full mt-8 py-3 bg-sky-600 hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-widest uppercase rounded-xl transition-all cursor-pointer text-center">
             BOOK TECHNICAL APPOINTMENT
           </button>
+          {/* <button onClick={() => {
+            document.getElementById("contact-form-section")?.scrollIntoView({ behavior: "smooth" });
+          }} className="w-full mt-8 py-3 bg-sky-600 hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-widest uppercase rounded-xl transition-all cursor-pointer text-center">
+            BOOK TECHNICAL APPOINTMENT
+          </button> */}
         </div>
       </div>
     </div>
+    {/* <CorporateContactForm/> */}
   </section>);
 };

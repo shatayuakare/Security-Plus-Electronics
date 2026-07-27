@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
 import { Video, Cpu, Router, BatteryCharging, LockKeyhole, Home, Building, HeartPulse, Briefcase, Factory, ChevronRight, X, Send, Sparkles, Calculator, Calendar, ArrowRight, ShieldCheck, Check, Loader2, Menu, MapPin, Globe, User, HardDrive, Terminal, Zap, Fingerprint, Scan, Key, AlertTriangle, Play, Pause, Eye, Network, RefreshCw, CheckCircle2, Ticket, ShoppingBag, ExternalLink, Printer, Twitter, Linkedin, Facebook, Share2, Link, Volume2, VolumeX, Heart, Plus, Trash2, ClipboardList, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { SOLUTIONS_DATA, SECTORS_DATA, QUICK_QUESTIONS, TESTIMONIALS_DATA, PRODUCTS_DATA } from "./data";
+import { SOLUTIONS_DATA, SECTORS_DATA, QUICK_QUESTIONS, PRODUCTS_DATA } from "./data";
 import logo from "./assets/images/logo.png";
 import speShowroomTour from "./assets/images/spe_showroom_tour_1782789590181.jpg";
 import speCultureCollab from "./assets/images/spe_culture_collab_1782789609536.jpg";
@@ -33,13 +33,8 @@ import Footer from "./components/Footer";
 import ReelSection from "./components/section/ReelSection";
 
 
-// import cctvHeroBg from "./assets/images/sky_blue_hero_bg_1782755439624.jpg";
-// import cctvCategoryImg from "./assets/images/cctv_category_1782647476026.jpg";
-// import biometricCategoryImg from "./assets/images/biometric_category_1782647490902.jpg";
-// import nvrCategoryImg from "./assets/images/nvr_category_1782647503434.jpg";
-// import networkCategoryImg from "./assets/images/network_category_1782647515140.jpg";
-// import vdpCategoryImg from "./assets/images/vdp_category_1782647530140.jpg";
-// import powerCategoryImg from "./assets/images/power_category_1782647544185.jpg";
+import TESTIMONIALS_DATA from "./json/testimonials.json"
+
 import { ScrollableTestimonials, OurThought, OurBlogs, Careers, FAQSection, CorporateContactForm, OurLocation } from "./components/HomeSections";
 
 

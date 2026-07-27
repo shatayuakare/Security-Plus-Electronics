@@ -219,68 +219,69 @@ export const QUICK_QUESTIONS = [
     "Where is your CCTV Mall located in Nagpur?",
     "Can you help me plan a banking vault security architecture?"
 ];
-export const TESTIMONIALS_DATA = [
-    {
-        id: "t1",
-        clientName: "Ramesh Deshmukh",
-        designation: "Chief Infrastructure Officer",
-        organization: "Nagpur Metro Rail Corporation",
-        category: "commercial",
-        rating: 5,
-        content: "We partnered with Security Plus Electronics to secure our main metro depot and admin centers in Nagpur. Their expertise in single-mode optical fiber backplanes and Hikvision high-density PTZ tracking cameras is unmatched. Absolutely flawless installation and prompt critical support.",
-        systemInstalled: "128-Channel Fiber Optic PTZ CCTV Network Grid",
-        date: "2026-03-12",
-        verified: true
-    },
-    {
-        id: "t2",
-        clientName: "Ananya Agrawal",
-        designation: "Director of Retail Ops",
-        organization: "Dharampeth Jewellers",
-        category: "banking",
-        rating: 5,
-        content: "In jewelry retail, zero blind-spots is a life-and-death requirement. SPE custom-built an overlapping 4K network dome camera array with biometric vault doors and high-tension electromagnetic lockouts. The system integrated perfectly with our local police alerts. Outstanding craft!",
-        systemInstalled: "Overlapping 4K Cash-Zone Dome & Biometric Vault grid",
-        date: "2026-05-18",
-        verified: true
-    },
-    {
-        id: "t3",
-        clientName: "Dr. Sudhir Phadke",
-        designation: "Chief of Staff & Managing Director",
-        organization: "Orange City Hospital Nagpur",
-        category: "healthcare",
-        rating: 5,
-        content: "Patient safety and restricted drug storage locks were our primary headache. SPE designed a department-restricted RFID access control grid and configured precise perimeter optical beam sensors. Their double online UPS backplane keeps our entire cameras and locks online through long Nagpur summer load-shedding.",
-        systemInstalled: "RFID Ward Locks, Perimeter Beam Sensors, and 3000VA UPS backup",
-        date: "2026-04-05",
-        verified: true
-    },
-    {
-        id: "t4",
-        clientName: "Rajesh Joshi",
-        designation: "HOD Computer Science Dept",
-        organization: "VNIT Nagpur",
-        category: "industrial",
-        rating: 5,
-        content: "SPE deployed a high-speed campus-wide wireless networking bridge connecting remote laboratory blocks back to our central NVR unit. Their knowledge of managed Layer 3 network switches and Surveillance VLAN segregation is of true academic and engineering standards.",
-        systemInstalled: "Long-range Wireless Bridge, 24-Port Managed PoE Switch Grid",
-        date: "2026-01-20",
-        verified: true
-    },
-    {
-        id: "t5",
-        clientName: "Abhishek Singhania",
-        designation: "Estate Owner",
-        organization: "Civil Lines Luxury Estates",
-        category: "residential",
-        rating: 5,
-        content: "I wanted a highly discreet but highly powerful perimeter security shield for my family residence in Nagpur. SPE set up sleek 4MP ColorVu cameras matching my eave colors, and deadbolt biometric entry locks. The custom mobile application setup provides instant and flawless remote control.",
-        systemInstalled: "Residential Dome Shield & Smart Biometric Fingerprint Deadbolts",
-        date: "2026-06-01",
-        verified: true
-    }
-];
+// export const TESTIMONIALS_DATA = [
+//     {
+//         id: "t1",
+//         clientName: "Ramesh Deshmukh",
+//         designation: "Chief Infrastructure Officer",
+//         organization: "Nagpur Metro Rail Corporation",
+//         category: "commercial",
+//         rating: 5,
+//         content: "We partnered with Security Plus Electronics to secure our main metro depot and admin centers in Nagpur. Their expertise in single-mode optical fiber backplanes and Hikvision high-density PTZ tracking cameras is unmatched. Absolutely flawless installation and prompt critical support.",
+//         systemInstalled: "128-Channel Fiber Optic PTZ CCTV Network Grid",
+//         date: "2026-03-12",
+//         verified: true
+//     },
+//     {
+//         id: "t2",
+//         clientName: "Ananya Agrawal",
+//         designation: "Director of Retail Ops",
+//         organization: "Dharampeth Jewellers",
+//         category: "banking",
+//         rating: 5,
+//         content: "In jewelry retail, zero blind-spots is a life-and-death requirement. SPE custom-built an overlapping 4K network dome camera array with biometric vault doors and high-tension electromagnetic lockouts. The system integrated perfectly with our local police alerts. Outstanding craft!",
+//         systemInstalled: "Overlapping 4K Cash-Zone Dome & Biometric Vault grid",
+//         date: "2026-05-18",
+//         verified: true
+//     },
+//     {
+//         id: "t3",
+//         clientName: "Dr. Sudhir Phadke",
+//         designation: "Chief of Staff & Managing Director",
+//         organization: "Orange City Hospital Nagpur",
+//         category: "healthcare",
+//         rating: 5,
+//         content: "Patient safety and restricted drug storage locks were our primary headache. SPE designed a department-restricted RFID access control grid and configured precise perimeter optical beam sensors. Their double online UPS backplane keeps our entire cameras and locks online through long Nagpur summer load-shedding.",
+//         systemInstalled: "RFID Ward Locks, Perimeter Beam Sensors, and 3000VA UPS backup",
+//         date: "2026-04-05",
+//         verified: true
+//     },
+//     {
+//         id: "t4",
+//         clientName: "Rajesh Joshi",
+//         designation: "HOD Computer Science Dept",
+//         organization: "VNIT Nagpur",
+//         category: "industrial",
+//         rating: 5,
+//         content: "SPE deployed a high-speed campus-wide wireless networking bridge connecting remote laboratory blocks back to our central NVR unit. Their knowledge of managed Layer 3 network switches and Surveillance VLAN segregation is of true academic and engineering standards.",
+//         systemInstalled: "Long-range Wireless Bridge, 24-Port Managed PoE Switch Grid",
+//         date: "2026-01-20",
+//         verified: true
+//     },
+//     {
+//         id: "t5",
+//         clientName: "Abhishek Singhania",
+//         designation: "Estate Owner",
+//         organization: "Civil Lines Luxury Estates",
+//         category: "residential",
+//         rating: 5,
+//         content: "I wanted a highly discreet but highly powerful perimeter security shield for my family residence in Nagpur. SPE set up sleek 4MP ColorVu cameras matching my eave colors, and deadbolt biometric entry locks. The custom mobile application setup provides instant and flawless remote control.",
+//         systemInstalled: "Residential Dome Shield & Smart Biometric Fingerprint Deadbolts",
+//         date: "2026-06-01",
+//         verified: true
+//     }
+// ];
+
 export const BLOGS_DATA = [
     {
         id: "b1",
@@ -319,6 +320,7 @@ export const BLOGS_DATA = [
         content: `When main utility grids fail in Nagpur during high-summer peak loads, your security system must remain 100% online. Many businesses make the mistake of using standard line-interactive consumer UPS backups, leading to camera crashes during transfer latency.\n\n### Why Double-Conversion Online UPS is Mandatory\n\nLine-interactive backups take **4 to 12 milliseconds** to switch from utility power to battery. This tiny gap causes sensitive IP camera NPUs to reboot and locks to release.\n\nAn **Online Double-Conversion UPS** constantly rectifies AC utility power to DC, charges the battery pack, and simultaneously inverts DC back to a pristine pure sine-wave AC. The transfer time is **exactly 0 milliseconds**.\n\n### Sizing Calculation Formula\n\nTo calculate your required UPS capacity in VA (Volt-Amps), follow this systematic procedure:\n\n1. **Determine Active Watt Load (W_load):**\n   - Each IP Dome Cam: 12W\n   - High-Power Zoom PTZ Cam: 30W\n   - 16-Channel PoE NVR: 40W\n   - Network Switch: 30W\n   \n   Example: 8 IP Dome Cams + 1 NVR + 1 Switch =\n   (8 x 12) + 40 + 30 = 166 Watts\n\n2. **Convert to Volt-Amps (VA):** Apply a standard power factor of 0.7 and a safety headroom factor of 1.35:\n   UPS Capacity (VA) = (W_load / 0.7) x 1.35\n   UPS Capacity = (166 / 0.7) x 1.35 = 320 VA\n\n3. **Calculate Battery Capacity for Backup Time (Ah):** To sustain 166W for 4 hours of power cut, the battery energy requirement is:\n   Total Wh = 166W x 4 hrs = 664 Watt-hours\n   At a standard 24V battery bank voltage:\n   Battery Ah = (664 Wh / 24V) = 27.6 Ah`
     }
 ];
+
 export const PRODUCTS_DATA = [
     {
         id: "prod-1",

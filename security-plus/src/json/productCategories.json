@@ -3,7 +3,7 @@
         "id": "cctv-cameras",
         "title": "CCTV Cameras",
         "filterValue": "CCTV Cameras",
-        "image": "cctv_category_1782647476026.jpg",
+        "image": "cctv-camera.png",
         "description": "4K UHD cameras with Starlight low-light capturing, full color in 0 Lux, smart AI patrol, and intrusion detection tracking.",
         "features": [
             "Aperture F1.0 ColorVu",
@@ -22,7 +22,7 @@
         "id": "biometric-access",
         "title": "Biometric Access",
         "filterValue": "Biometric Access",
-        "image": "biometric_category_1782647490902.jpg",
+        "image": "biometric-access.png",
         "description": "Facial recognition access controls, high-speed fingerprint scanners, electromagnetic door latch integration, and software SDK logs.",
         "features": [
             "<0.2s Sensing Speed",
@@ -41,7 +41,7 @@
         "id": "nvr-storage",
         "title": "NVR Storage",
         "filterValue": "NVR Storage",
-        "image": "nvr_category_1782647503434.jpg",
+        "image": "storage.png",
         "description": "Enterprise multi-channel network video recorders with H.265+ high encoding compression, RAID support, and secure remote cloud streaming.",
         "features": [
             "4K Real-time Sync Playback",
@@ -61,7 +61,7 @@
         "id": "networking-backbone",
         "title": "Networking Backbone",
         "filterValue": "Networking Backbone",
-        "image": "network_category_1782647515140.jpg",
+        "image": "network.png",
         "description": "Industrial-grade PoE network switches with gigabit fiber uplinks, 250m long-distance cabling, and auto-rebooting camera watchdogs.",
         "features": [
             "250m Long-Distance Link",
@@ -80,7 +80,7 @@
         "id": "video-door-phones",
         "title": "Video Door Phones",
         "filterValue": "Biometric Access",
-        "image": "vdp_category_1782647530140.jpg",
+        "image": "vdp.png",
         "description": "High-fidelity digital video door phones with 7-inch inside monitors, two-way hands-free audio, snapshot visitor log memory, and smart door release.",
         "features": [
             "7-inch TFT LCD Display",
@@ -99,7 +99,7 @@
         "id": "cables-power",
         "title": "Power Backup & Cables",
         "filterValue": "Power Backup",
-        "image": "power_category_1782647544185.jpg",
+        "image": "cables.png",
         "description": "99.99% pure solid copper 3+1 coaxial cables and central multi-channel power distribution boxes with PTC glass fuse protection boards.",
         "features": [
             "99.99% Oxygen-Free Copper",
