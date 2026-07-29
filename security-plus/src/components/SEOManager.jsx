@@ -1,10 +1,14 @@
 import { useEffect } from "react";
+
 export const SEOManager = ({ activeTab }) => {
+
+    const url = "https://securityplus.in";
+
     useEffect(() => {
         let title = "Security Plus Electronics - Central India's Biggest CCTV & Automation Mall";
         let description = "Central India's leading security system integrator. Premium 4K surveillance cameras, facial recognition biometrics, optical fiber backbone networks, and smart backup grids since 2005.";
         let keywords = "CCTV installation Nagpur, security systems Nagpur, biometric locks Nagpur, surveillance systems Maharashtra, best home security camera, SPE Nagpur";
-        let canonical = `https://securitypluselectronics.com/#${activeTab}`;
+        let canonical = `${url}/#${activeTab}`;
         let schemaJson = null;
         switch (activeTab) {
             case "home":
@@ -15,11 +19,11 @@ export const SEOManager = ({ activeTab }) => {
                     "@context": "https://schema.org",
                     "@type": "WebSite",
                     "name": "Security Plus Electronics",
-                    "url": "https://securitypluselectronics.com/",
+                    "url": `${url}`,
                     "description": description,
                     "potentialAction": {
                         "@type": "SearchAction",
-                        "target": "https://securitypluselectronics.com/#products?search={search_term_string}",
+                        "target": `${url}m/#products?search={search_term_string}`,
                         "query-input": "required name=search_term_string"
                     }
                 };
@@ -32,12 +36,12 @@ export const SEOManager = ({ activeTab }) => {
                     "@context": "https://schema.org",
                     "@type": "CollectionPage",
                     "name": "Security Products & CCTV Catalog",
-                    "url": "https://securitypluselectronics.com/#products",
+                    "url": `${url}/#products`,
                     "description": description,
                     "provider": {
                         "@type": "Organization",
                         "name": "Security Plus Electronics",
-                        "url": "https://securitypluselectronics.com/"
+                        "url": `${url}`
                     }
                 };
                 break;
@@ -49,7 +53,7 @@ export const SEOManager = ({ activeTab }) => {
                     "@context": "https://schema.org",
                     "@type": "AboutPage",
                     "name": "About Security Plus Electronics",
-                    "url": "https://securitypluselectronics.com/#about",
+                    "url": `${url}/#about`,
                     "description": description,
                     "mainEntity": {
                         "@type": "Organization",
@@ -74,7 +78,7 @@ export const SEOManager = ({ activeTab }) => {
                     "@context": "https://schema.org",
                     "@type": "WebPage",
                     "name": "Careers & Training Academy",
-                    "url": "https://securitypluselectronics.com/#careers",
+                    "url": `${url}/#careers`,
                     "description": description
                 };
                 break;
@@ -86,7 +90,7 @@ export const SEOManager = ({ activeTab }) => {
                     "@context": "https://schema.org",
                     "@type": "Blog",
                     "name": "SPE Safety Blog",
-                    "url": "https://securitypluselectronics.com/#blog",
+                    "url": `${url}/#blog`,
                     "description": description
                 };
                 break;
@@ -98,7 +102,7 @@ export const SEOManager = ({ activeTab }) => {
                     "@context": "https://schema.org",
                     "@type": "ContactPage",
                     "name": "Contact Support",
-                    "url": "https://securitypluselectronics.com/#contact",
+                    "url": `${url}/#contact`,
                     "description": description,
                     "mainEntity": {
                         "@type": "Organization",
@@ -131,7 +135,7 @@ export const SEOManager = ({ activeTab }) => {
                     "@context": "https://schema.org",
                     "@type": "WebPage",
                     "name": "Integrated Security Ecosystems",
-                    "url": "https://securitypluselectronics.com/#ecosystem",
+                    "url": `${url}/#ecosystem`,
                     "description": description
                 };
                 break;
@@ -143,7 +147,7 @@ export const SEOManager = ({ activeTab }) => {
                     "@context": "https://schema.org",
                     "@type": "ImageGallery",
                     "name": "SPE Flagship Showroom & Technical Gallery",
-                    "url": "https://securitypluselectronics.com/#gallery",
+                    "url": `${url}/#gallery`,
                     "description": description
                 };
                 break;
@@ -155,7 +159,7 @@ export const SEOManager = ({ activeTab }) => {
                     "@context": "https://schema.org",
                     "@type": "WebPage",
                     "name": "Client Testimonials & Reference Ledger",
-                    "url": "https://securitypluselectronics.com/#testimonials",
+                    "url": `${url}/#testimonials`,
                     "description": description
                 };
                 break;
@@ -179,7 +183,7 @@ export const SEOManager = ({ activeTab }) => {
                     "@context": "https://schema.org",
                     "@type": "WebPage",
                     "name": "Register Customer Account",
-                    "url": "https://securitypluselectronics.com/#signup",
+                    "url": `${url}/#signup`,
                     "description": description
                 };
                 break;

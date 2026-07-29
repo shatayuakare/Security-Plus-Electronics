@@ -1,0 +1,92 @@
+.product-description h1,
+.product-description h2,
+.product-description h3,
+.product-description h4,
+.product-description h5,
+.product-description h6 {
+    font-weight: 700;
+    margin: 1rem 0 0.5rem;
+}
+
+.product-description p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.product-description ul,
+.product-description ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.product-description ul {
+    list-style: disc;
+}
+
+.product-description ol {
+    list-style: decimal;
+}
+
+.product-description li {
+    margin-bottom: 0.5rem;
+}
+
+.product-description strong {
+    font-weight: 700;
+}
+
+.product-description img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-description table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-description table th,
+.product-description table td {
+    border: 1px solid #e5e7eb;
+    padding: 8px;
+}
+
+
+.product-short-description p {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.product-short-description strong {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.product-short-description ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin: 0.75rem 0;
+}
+
+.product-short-description ol {
+    list-style: decimal;
+    padding-left: 1.25rem;
+    margin: 0.75rem 0;
+}
+
+.product-short-description li {
+    margin-bottom: 0.4rem;
+}
+
+.product-short-description a {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+.product-short-description br {
+    display: block;
+    margin-bottom: 0.5rem;
+}
