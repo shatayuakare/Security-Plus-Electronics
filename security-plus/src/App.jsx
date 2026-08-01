@@ -50,7 +50,7 @@ const GALLERY_ITEMS = [
     image: speShowroomTour,
     title: "Nagpur Flagship Showroom",
     description: "Central India's premiere retail and enterprise showroom layout, displaying rows of high-performance IP cameras, customized mounting brackets, and recording stacks.",
-    location: "DHARAMPETH, NAGPUR",
+    location: "SITABULDI MAIN ROAD, NAGPUR",
     isPlaceholder: false
   },
   {

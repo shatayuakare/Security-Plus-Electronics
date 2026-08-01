@@ -54,10 +54,7 @@
 
 
 .product-short-description p {
-    margin-bottom: 0.75rem;
-    line-height: 1.7;
     color: #64748b;
-    font-size: 0.95rem;
 }
 
 .product-short-description strong {
@@ -67,13 +64,11 @@
 
 .product-short-description ul {
     list-style: disc;
-    padding-left: 1.25rem;
     margin: 0.75rem 0;
 }
 
 .product-short-description ol {
     list-style: decimal;
-    padding-left: 1.25rem;
     margin: 0.75rem 0;
 }
 

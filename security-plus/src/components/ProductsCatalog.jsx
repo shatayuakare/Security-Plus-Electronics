@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "motion/react";
 import "../products.css"
+import { motion } from "motion/react";
 import { ShoppingBag, ExternalLink, Heart, Video, Cpu, LockKeyhole, HardDrive, Router, BatteryCharging, Eye } from "lucide-react";
 import BrandCarousel from "./BrandCarousel";
 import { BlurUpImage, getProductImageUrls } from "./BlurUpImage";
 import PRODUCTS from "../json/wooProducts.json"
 import parse from "html-react-parser";
+import { Link } from "react-router-dom";
+
 const staggerContainer = {
   initial: {},
   whileInView: {
@@ -23,19 +25,8 @@ const staggerItem = {
 };
 export function ProductsCatalog({ products, productCategories, customerUser, wishlist, toggleWishlist, setToastMessage, setSelectedProductForQuickView }) {
 
-
-
   const [blogCategoryFilter, setBlogCategoryFilter] = useState("All");
   const [productSortOption, setProductSortOption] = useState("default");
-
-  useEffect(() => {
-    console.log(PRODUCTS[0])
-  })
-  function htmlToText(html) {
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    return doc.body.textContent || "";
-  }
-
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
@@ -234,21 +225,22 @@ export function ProductsCatalog({ products, productCategories, customerUser, wis
                       </span>
                     </div>
 
-                    <div className="aspect-video bg-slate-100 border border-slate-100 rounded-xl mb-4 relative group-hover:border-sky-200 transition-colors overflow-hidden flex items-center justify-center">
-                      {/* {(() => {
-                        const urls = getProductImageUrls(product.images[0]);
-                        return (<BlurUpImage src={product.images[0]} placeholderSrc={urls.low} alt={product.name} className="object-cover w-full h-full absolute inset-0 transition-transform duration-500 group-hover:scale-110" containerClassName="absolute inset-0 w-full h-full" />);
-                      })()} */}
+                    <div className="aspect-square bg-slate-100 border border-slate-100 rounded-xl mb-4 relative group-hover:border-sky-200 transition-colors overflow-hidden flex items-center justify-center">
+
                       <img src={product.images[0].src} alt={product.images[0].alt} className="object-cover w-full h-full absolute inset-0 transition-transform duration-500 group-hover:scale-110" />
 
                       <div className="absolute inset-0 bg-slate-950/15 pointer-events-none" />
 
-                      {product.isBestseller && (<span className="absolute top-2.5 left-2.5 text-[8px] font-extrabold bg-[#FF5A00] text-white px-2.5 py-1 rounded-md uppercase tracking-wider z-20 shadow-sm">
-                        ★ Bestseller
-                      </span>)}
-                      {product.isNewArrival && (<span className="absolute top-2.5 left-2.5 text-[8px] font-extrabold bg-sky-600 text-white px-2.5 py-1 rounded-md uppercase tracking-wider z-20 shadow-sm">
-                        New Arrival
-                      </span>)}
+                      {product.isBestseller &&
+                        <span className="absolute top-2.5 left-2.5 text-[8px] font-extrabold bg-[#FF5A00] text-white px-2.5 py-1 rounded-md uppercase tracking-wider z-20 shadow-sm">
+                          ★ Bestseller
+                        </span>
+                      }
+                      {product.isNewArrival &&
+                        <span className="absolute top-2.5 left-2.5 text-[8px] font-extrabold bg-sky-600 text-white px-2.5 py-1 rounded-md uppercase tracking-wider z-20 shadow-sm">
+                          New Arrival
+                        </span>
+                      }
 
                       <button id={`wishlist-toggle-${product.id}`} onClick={(e) => {
                         e.stopPropagation();
@@ -259,9 +251,9 @@ export function ProductsCatalog({ products, productCategories, customerUser, wis
                           : "text-slate-500 hover:text-rose-500"}`} />
                       </button>
 
-                      <div className="absolute bottom-2 left-2 p-1.5 bg-slate-950/80 backdrop-blur-sm rounded-lg border border-slate-800 z-20 flex items-center justify-center">
-                        {product.images[0] === "cctv" && <Video className="h-4 w-4 text-sky-400" />}
-                        {product.images[1] === "ptz" && <Cpu className="h-4 w-4 text-sky-400" />}
+                      <div className="absolute bottom-2 left-2 p-1.5 bg-white backdrop-blur-sm rounded-lg z-20 flex items-center justify-center">
+                        {true && <Video className="h-4 w-4 text-sky-400" />}
+                        {product.images[1] === "ptz" && <Cpu className="h-4 w-4 text-sky-800" />}
                         {product.images[2] === "locks" && <LockKeyhole className="h-4 w-4 text-sky-400" />}
                         {product.images[0] === "storage" && <HardDrive className="h-4 w-4 text-sky-400" />}
                         {product.images[1] === "router" && <Router className="h-4 w-4 text-sky-400" />}
@@ -279,22 +271,21 @@ export function ProductsCatalog({ products, productCategories, customerUser, wis
                       </div>
 
                       <div className="absolute bottom-2 right-2 text-[8px] font-bold text-slate-300 bg-slate-950/80 backdrop-blur-sm px-2 py-1 border border-slate-800 uppercase rounded z-20">
-                        {/* WOSTON SE-HARDWARE */}
                         {product.sku}
                       </div>
                     </div>
 
-                    <h3 className="text-sm font-bold text-slate-900 uppercase group-hover:text-sky-600 transition-colors">
+                    <h3 className="text-sm font-bold text-slate-900 uppercase group-hover:text-sky-600 transition-colors line-clamp-2">
                       {product.name}
                     </h3>
 
-                    <div className="product-short-description">
+                    <div className="product-short-description text-xs line-clamp-3 mt-4">
                       {parse(product.short_description)}
                     </div>
 
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center z-20">
+                  <div className="mt-2 pt-4 border-t border-slate-100 flex justify-between items-center z-20">
                     <span className="text-base font-extrabold text-slate-900">{product.price}</span>
                     <div className="flex gap-1.5">
                       <button id={`quick-view-btn-footer-${product.id}`} onClick={(e) => {
@@ -304,13 +295,11 @@ export function ProductsCatalog({ products, productCategories, customerUser, wis
                         <Eye className="h-3.5 w-3.5 text-sky-600" />
                         Quick View
                       </button>
-                      <button id={`purchase-btn-${product.id}`} onClick={(e) => {
-                        e.stopPropagation();
-                        window.open(product.permalink, "_blank");
-                      }} className="bg-slate-50 hover:bg-sky-600 border border-slate-200 hover:border-sky-600 text-slate-700 hover:text-white px-3 py-1.5 text-[9px] font-bold uppercase transition-all duration-300 rounded-xl flex items-center gap-1 cursor-pointer shadow-sm">
+
+                      <Link to={product.permalink} target={"_blank"} id={`purchase-btn-${product.id}`} className="bg-slate-50 hover:bg-sky-600 border border-slate-200 hover:border-sky-600 text-slate-700 hover:text-slate-50 px-3 py-1.5 text-[9px] font-bold uppercase transition-all duration-300 rounded-xl flex items-center gap-1 cursor-pointer shadow-sm">
                         <ShoppingBag className="h-3.5 w-3.5 text-sky-600 hover:text-white" />
                         Purchase
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </motion.div>
