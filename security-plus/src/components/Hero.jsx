@@ -4,13 +4,9 @@ import cctvHeroBg from "../assets/images/sky_blue_hero_bg_1782755439624.jpg";
 import heroSlide from "../json/heroSlide.json";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import img from "../assets/slide/cctv-mall.png"
 
 const Hero = ({ heroSlideIndex, setHeroSlideIndex, setActiveTab, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
-
-
-  // const [yearOfExperience, setYearOfExperience] = useState();
-  // setYearOfExperience(20)
 
   const heroStats = [
     {
@@ -214,9 +210,9 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setActiveTab, setBookingConfi
                   </div>
 
                   <div className={`col-span-5`}>
-                    <div className={`relative w-full float-end max-w-96 p-4 aspect-square rounded-3xl bg-slate-900/30 border border-slate-800 flex  flex-col justify-center items-center overflow-hidden`}  >
+                    <div className={`relative w-full float-end max-w-96 aspect-square rounded-3xl bg-slate-900/30 border border-slate-800 flex  flex-col justify-center items-center overflow-hidden`}  >
                       {slide.image ? (
-                        <img src={slide.image} alt={"Slide " + idx + "image"} className="w-full h-full  rounded-2xl object-cover" />
+                        <img src={slide.image !== "" ? new URL(`../assets/slide/${slide.image}`, import.meta.url).href : "https://noviatic.com/wp-content/uploads/2026/04/placeholder-image-2-1.jpg"} alt={"Slide " + idx + "image"} className="w-full h-full object-cover" />
                       ) : null}
 
                     </div>

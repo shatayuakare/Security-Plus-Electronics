@@ -24,14 +24,14 @@ import { SurveillancePlanner } from "./components/SurveillancePlanner";
 import { ScrollableTestimonials, OurThought, OurBlogs, Careers, FAQSection, CorporateContactForm, OurLocation } from "./pages/HomeSections";
 import { BrowserRouter, Route, Routes, useLocation, useNavigation } from "react-router-dom"
 import { AboutUs } from "./components/AboutUs";
-import { ContactUs } from "./components/ContactUs";
-import { Careers as CareersPage } from "./components/Careers";
+import { ContactUs } from "./pages/ContactUs";
+import { Careers as CareersPage } from "./pages/Careers";
 import { ProductsCatalog } from "./components/ProductsCatalog";
 import { Testimonials as TestimonialsPage } from "./components/Testimonials";
-import { BlogSection } from "./components/BlogSection";
 import { GallerySection } from "./components/GallerySection";
 import { AuthSection } from "./components/AuthSection";
 import TermsAndConditions from "./pages/TermAndCondition";
+import BlogSection from "./pages/BlogSection";
 import Footer from "./components/Footer";
 import ReelSection from "./components/section/ReelSection";
 
@@ -944,7 +944,6 @@ function App() {
           <Route path="/testimonial" element={<TestimonialsPage testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
           <Route path="/blogs" element={<BlogSection subscribers={subscribers} setSubscribers={setSubscribers} setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
           <Route path="/login" element={<AuthSection registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} />
-
         </Routes>
       </main>
 
@@ -961,7 +960,6 @@ function App() {
           </button>
         </motion.div>)}
       </AnimatePresence>
-
 
       <Footer logoData={logoData} />
 
