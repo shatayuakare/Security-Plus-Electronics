@@ -100,7 +100,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setActiveTab, setBookingConfi
                   className="grid grid-cols-1 lg:grid-cols-12 justify-between gap-12 items-center w-full"
                 >
 
-                  <div className="lg:col-span-7 text-left flex flex-col items-start space-y-6 ">
+                  <div className="md:col-span-7 order-1 md:order-2 col-span-6  text-left flex flex-col items-start space-y-6">
                     <div
                       className="bg-sky-500/10 px-4 text-[9px] py-1.5 inline-flex items-center gap-2 border border-sky-500/20 rounded-full"
                       style={
@@ -162,7 +162,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setActiveTab, setBookingConfi
                       dangerouslySetInnerHTML={{ __html: slide.title }}
                     />
 
-                    <p className="text-sm md:text-base text-slate-300 max-w-2xl leading-relaxed font-sans">
+                    <p className="text-sm md:text-base w-full text-slate-300 max-w-2xl leading-relaxed font-sans">
                       {slide.description}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
@@ -209,7 +209,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setActiveTab, setBookingConfi
                     </div>
                   </div>
 
-                  <div className={`col-span-5`}>
+                  <div className={`col-span-6 md:col-span-5 order-1 md:order-2`}>
                     <div className={`relative w-full float-end max-w-96 aspect-square rounded-3xl bg-slate-900/30 border border-slate-800 flex  flex-col justify-center items-center overflow-hidden`}  >
                       {slide.image ? (
                         <img src={slide.image !== "" ? new URL(`../assets/slide/${slide.image}`, import.meta.url).href : "https://noviatic.com/wp-content/uploads/2026/04/placeholder-image-2-1.jpg"} alt={"Slide " + idx + "image"} className="w-full h-full object-cover" />

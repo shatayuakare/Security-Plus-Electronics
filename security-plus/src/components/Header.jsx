@@ -252,6 +252,9 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
                 <Link to={"/products"} onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }} className={`py-2 text-left border-b border-slate-850 font-sans font-bold text-xs tracking-wider uppercase ${location.pathname === "products" ? "text-sky-400" : "text-slate-300 hover:text-sky-400"}`}>
                   Products
                 </Link>
+                <Link to={"/blogs"} onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }} className={`py-2 text-left border-b border-slate-850 font-sans font-bold text-xs tracking-wider uppercase ${location.pathname === "products" ? "text-sky-400" : "text-slate-300 hover:text-sky-400"}`}>
+                  Products
+                </Link>
                 <Link to={"/about"} onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }} className={`py-2 text-left border-b border-slate-850 font-sans font-bold text-xs tracking-wider uppercase ${location.pathname === "about" ? "text-sky-400" : "text-slate-300 hover:text-sky-400"}`}>
                   About Us
                 </Link>
@@ -266,10 +269,10 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
                   Inquiry List {inquiryList.length > 0 ? `(${inquiryList.length})` : ""}
                 </button>)}
 
-                <button onClick={() => { window.open("https://woston.in", "_blank"); setMobileMenuOpen(false); }} className="bg-sky-600 hover:bg-sky-500 text-white px-5 py-3 rounded-xl font-sans font-bold text-[10px] tracking-widest uppercase border border-sky-600 hover:border-sky-500 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm cursor-pointer w-full">
+                <Link to={"https://woston.in"} target="_blank" onClick={() => setMobileMenuOpen(false)} className="bg-sky-600 hover:bg-sky-500 text-white px-5 py-3 rounded-xl font-sans font-bold text-[10px] tracking-widest uppercase border border-sky-600 hover:border-sky-500 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm cursor-pointer w-full">
                   <ShoppingBag className="h-4 w-4 text-white" />
                   WOSTON STORE
-                </button>
+                </Link>
 
               </div>
             </motion.div>

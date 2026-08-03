@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = ({ logoData }) => {
     return (
-        <footer className="bg-[#121212] w-full mt-24 border-t border-[#2A2A2A] px-8 py-16 relative z-20">
+        <footer className="bg-slate-950 w-full mt-24 border-t border-[#2A2A2A] px-8 py-16 relative z-20">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div className="flex flex-col gap-4">
                     <span className="text-xl font-bold text-white tracking-widest uppercase font-headline">{logoData.companyName}</span>
