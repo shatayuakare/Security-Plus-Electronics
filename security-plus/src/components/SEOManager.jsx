@@ -190,9 +190,7 @@ export const SEOManager = ({ activeTab }) => {
             default:
                 break;
         }
-        // Apply Meta Tags Dynamically
         document.title = title;
-        // 1. Dynamic Meta Description Tag
         let metaDesc = document.querySelector('meta[name="description"]');
         if (!metaDesc) {
             metaDesc = document.createElement("meta");
@@ -200,7 +198,6 @@ export const SEOManager = ({ activeTab }) => {
             document.head.appendChild(metaDesc);
         }
         metaDesc.setAttribute("content", description);
-        // 2. Dynamic Meta Keywords Tag
         let metaKeywords = document.querySelector('meta[name="keywords"]');
         if (!metaKeywords) {
             metaKeywords = document.createElement("meta");
@@ -208,7 +205,6 @@ export const SEOManager = ({ activeTab }) => {
             document.head.appendChild(metaKeywords);
         }
         metaKeywords.setAttribute("content", keywords);
-        // 3. Dynamic OpenGraph Title Tag
         let ogTitle = document.querySelector('meta[property="og:title"]');
         if (!ogTitle) {
             ogTitle = document.createElement("meta");
@@ -224,7 +220,6 @@ export const SEOManager = ({ activeTab }) => {
             document.head.appendChild(ogDesc);
         }
         ogDesc.setAttribute("content", description);
-        // 5. Dynamic OpenGraph URL Tag
         let ogUrl = document.querySelector('meta[property="og:url"]');
         if (!ogUrl) {
             ogUrl = document.createElement("meta");
@@ -232,7 +227,6 @@ export const SEOManager = ({ activeTab }) => {
             document.head.appendChild(ogUrl);
         }
         ogUrl.setAttribute("content", canonical);
-        // 6. Dynamic OpenGraph Type Tag
         let ogType = document.querySelector('meta[property="og:type"]');
         if (!ogType) {
             ogType = document.createElement("meta");
@@ -240,7 +234,6 @@ export const SEOManager = ({ activeTab }) => {
             document.head.appendChild(ogType);
         }
         ogType.setAttribute("content", "website");
-        // 7. Dynamic Canonical Link Tag
         let linkCanonical = document.querySelector('link[rel="canonical"]');
         if (!linkCanonical) {
             linkCanonical = document.createElement("link");
@@ -248,7 +241,6 @@ export const SEOManager = ({ activeTab }) => {
             document.head.appendChild(linkCanonical);
         }
         linkCanonical.setAttribute("href", canonical);
-        // 8. Dynamic JSON-LD Schema Injection
         let scriptSchema = document.getElementById("dynamic-seo-schema");
         if (scriptSchema) {
             if (schemaJson) {

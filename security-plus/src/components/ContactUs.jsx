@@ -63,7 +63,7 @@ export function ContactUs({ logoData, setSupportTickets, setToastMessage }) {
                 </div>
                 <h4 className="text-base font-extrabold text-slate-950 font-sans">WhatsApp Chat</h4>
                 <p className="text-xs text-slate-500 font-sans">Connect 24/7 for immediate hardware queries, stock availability, and instant tech support.</p>
-                <Link to="https://wa.me/919373456746" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-mono text-sm font-bold text-emerald-600 hover:text-emerald-700 hover:underline mt-1">
+                <Link to="https://wa.me/securitypluselectronics" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-mono text-sm font-bold text-emerald-600 hover:text-emerald-700 hover:underline mt-1">
                   +91 9373456746
                   <ExternalLink className="h-3 w-3" />
                 </Link>

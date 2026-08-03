@@ -5,19 +5,19 @@
 
   //       <div className="absolute inset-0 pointer-events-none z-0 border-x border-slate-100 max-w-7xl mx-auto"></div>
 
-  //       <AnimatePresence>
-  //         {toastMessage && (<motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:right-auto z-50 w-auto md:w-120 bg-slate-900/95 backdrop-blur-md text-white p-3.5 rounded-xl border border-slate-800 flex items-start gap-3 shadow-2xl">
+        // <AnimatePresence>
+        //   {toastMessage && (<motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:right-auto z-50 w-auto md:w-120 bg-slate-900/95 backdrop-blur-md text-white p-3.5 rounded-xl border border-slate-800 flex items-start gap-3 shadow-2xl">
 
-  //           <Sparkles className="h-4 w-4 text-sky-400 shrink-0 mt-0.5 animate-pulse" />
-  //           <div className="flex-1 min-w-0">
-  //             <span className="font-mono font-bold text-[9px] tracking-widest text-sky-400 uppercase block">[ SYSTEM SENTINEL GUARD ]</span>
-  //             <p className="text-[11px] text-slate-300 leading-normal mt-0.5 wrap-break-wordbreak">{toastMessage}</p>
-  //           </div>
-  //           <button onClick={() => setToastMessage(null)} className="text-slate-400 hover:text-white shrink-0 cursor-pointer p-0.5">
-  //             <X className="h-3.5 w-3.5" />
-  //           </button>
-  //         </motion.div>)}
-  //       </AnimatePresence>
+        //     <Sparkles className="h-4 w-4 text-sky-400 shrink-0 mt-0.5 animate-pulse" />
+        //     <div className="flex-1 min-w-0">
+        //       <span className="font-mono font-bold text-[9px] tracking-widest text-sky-400 uppercase block">[ SYSTEM SENTINEL GUARD ]</span>
+        //       <p className="text-[11px] text-slate-300 leading-normal mt-0.5 wrap-break-wordbreak">{toastMessage}</p>
+        //     </div>
+        //     <button onClick={() => setToastMessage(null)} className="text-slate-400 hover:text-white shrink-0 cursor-pointer p-0.5">
+        //       <X className="h-3.5 w-3.5" />
+        //     </button>
+        //   </motion.div>)}
+        // </AnimatePresence>
 
 
 

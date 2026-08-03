@@ -1,4 +1,5 @@
 import { MapPin, Globe } from 'lucide-react'
+import { Link } from 'react-router-dom';
 
 const Footer = ({ logoData }) => {
     return (
@@ -24,23 +25,24 @@ const Footer = ({ logoData }) => {
                     </div>
                     <div className="flex flex-col gap-4">
                         <span className="text-[10px] font-bold text-[#FF5A00] tracking-widest uppercase font-mono">Company</span>
-                        <button onClick={() => { setActiveTab("about"); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-xs text-left text-on-surface-variant hover:text-sky-400 transition-colors cursor-pointer">
+                        <Link to={"about"} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-xs text-left text-on-surface-variant hover:text-sky-400 transition-colors cursor-pointer">
                             About Us
-                        </button>
-                        <button onClick={() => { setActiveTab("gallery"); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-xs text-left text-on-surface-variant hover:text-sky-400 transition-colors cursor-pointer">
+                        </Link>
+                        <Link to={"gallary"} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-xs text-left text-on-surface-variant hover:text-sky-400 transition-colors cursor-pointer">
                             Gallery
-                        </button>
-                        <button onClick={() => { setActiveTab("careers"); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-xs text-left text-on-surface-variant hover:text-sky-400 transition-colors cursor-pointer">
+                        </Link>
+                        <Link to={"career"} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-xs text-left text-on-surface-variant hover:text-sky-400 transition-colors cursor-pointer">
                             Careers
-                        </button>
-                        <button onClick={() => { setActiveTab("blog"); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-xs text-left text-on-surface-variant hover:text-sky-400 transition-colors cursor-pointer">
+                        </Link>
+                        <Link to={"blogs"} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-xs text-left text-on-surface-variant hover:text-sky-400 transition-colors cursor-pointer">
                             Safety Blog
-                        </button>
+                        </Link>
                     </div>
+
                     <div className="flex flex-col gap-4">
                         <span className="text-[10px] font-bold text-[#FF5A00] tracking-widest uppercase font-mono">Legal</span>
-                        <a href="#" onClick={(e) => e.preventDefault()} className="text-xs text-on-surface-variant hover:text-white transition-colors">Terms of Service</a>
-                        <a href="#" onClick={(e) => e.preventDefault()} className="text-xs text-on-surface-variant hover:text-white transition-colors">SLA Agreements</a>
+                        <Link to={"/termandcondition"} className="text-xs text-on-surface-variant hover:text-white transition-colors">Terms of Service</Link>
+                        <a href="#" className="text-xs text-on-surface-variant hover:text-white transition-colors">SLA Agreements</a>
                     </div>
                 </div>
             </div>

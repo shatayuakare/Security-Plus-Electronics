@@ -9,6 +9,7 @@ import speCultureCollab from "./assets/images/spe_culture_collab_1782789609536.j
 import speTrainingClass from "./assets/images/spe_training_class_1782789626461.jpg";
 import securityPlusLogo from "./assets/images/security_plus_logo_1783018092399.jpg";
 import AdminPanel from "./components/AdminPanel";
+import { toast, ToastContainer } from "react-toastify"
 import { SEOManager } from "./components/SEOManager";
 import { getProductImageUrls } from "./components/BlurUpImage";
 import BrandCarousel from "./components/BrandCarousel";
@@ -20,6 +21,8 @@ import { SectorsWeProtect } from "./components/SectorsWeProtect";
 import { SurveillancePlanner } from "./components/SurveillancePlanner";
 
 // Import modular section page
+import { ScrollableTestimonials, OurThought, OurBlogs, Careers, FAQSection, CorporateContactForm, OurLocation } from "./pages/HomeSections";
+import { BrowserRouter, Route, Routes, useLocation, useNavigation } from "react-router-dom"
 import { AboutUs } from "./components/AboutUs";
 import { ContactUs } from "./components/ContactUs";
 import { Careers as CareersPage } from "./components/Careers";
@@ -28,19 +31,13 @@ import { Testimonials as TestimonialsPage } from "./components/Testimonials";
 import { BlogSection } from "./components/BlogSection";
 import { GallerySection } from "./components/GallerySection";
 import { AuthSection } from "./components/AuthSection";
-import PRODUCT_CATEGORIES from "./json/productCategories.json"
+import TermsAndConditions from "./pages/TermAndCondition";
 import Footer from "./components/Footer";
 import ReelSection from "./components/section/ReelSection";
 
-
+import PRODUCT_CATEGORIES from "./json/productCategories.json"
 import TESTIMONIALS_DATA from "./json/testimonials.json"
 
-import { ScrollableTestimonials, OurThought, OurBlogs, Careers, FAQSection, CorporateContactForm, OurLocation } from "./pages/HomeSections";
-
-
-
-// Ruotes
-import { BrowserRouter, Route, Routes, useLocation, useNavigation } from "react-router-dom"
 
 
 const GALLERY_ITEMS = [
@@ -103,7 +100,6 @@ const GALLERY_ITEMS = [
   }
 ];
 
-// Global Scroll Animation Presets for consistency
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
   whileInView: { opacity: 1, y: 0 },
@@ -667,6 +663,12 @@ function App() {
     handleRunCalculator();
   }, [calcInput]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setToastMessage(null)
+    }, 1500);
+  }, [toastMessage])
+
   const triggerAiScan = (type) => {
     setAiActiveScan(type);
     let logMsg = "";
@@ -898,6 +900,8 @@ function App() {
     <>
       <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} adminEmails={adminEmails} setAdminLoginOpen={setAdminLoginOpen} setToastMessage={setToastMessage} PRODUCTS_DATA={PRODUCTS_DATA} getProductImageUrls={getProductImageUrls} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} isAdminMode={isAdminMode} setIsAdminMode={setIsAdminMode} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
 
+      <SEOManager />
+
       <main className={location.pathname === "/" ? "pt-0 bg-[#070913]" : "pt-20 bg-white"}>
 
         <Routes>
@@ -932,6 +936,7 @@ function App() {
           </motion.div>} />
 
           <Route path="/about" Component={AboutUs} />
+          <Route path="/termandcondition" Component={TermsAndConditions} />
           <Route path="/gallary" element={<GallerySection setLightboxIndex={setLightboxIndex} galleryItems={GALLERY_ITEMS} />} />
           <Route path="/contact" element={<ContactUs logoData={logoData} setSupportTickets={setSupportTickets} setToastMessage={setToastMessage} />} />
           <Route path="/career" element={<CareersPage careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
@@ -942,6 +947,21 @@ function App() {
 
         </Routes>
       </main>
+
+      <AnimatePresence>
+        {toastMessage && (<motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:right-auto z-50 w-auto md:w-120 bg-slate-900/95 backdrop-blur-md text-white p-3.5 rounded-xl border border-slate-800 flex items-start gap-3 shadow-2xl">
+
+          <Sparkles className="h-4 w-4 text-sky-400 shrink-0 mt-0.5 animate-pulse" />
+          <div className="flex-1 min-w-0">
+            <span className="font-mono font-bold text-[9px] tracking-widest text-sky-400 uppercase block">SYSTEM SENTINEL GUARD</span>
+            <p className="text-[11px] text-slate-300 leading-normal mt-0.5 wrap-break-wordbreak">{toastMessage}</p>
+          </div>
+          <button onClick={() => setToastMessage(null)} className="text-slate-400 hover:text-white shrink-0 cursor-pointer p-0.5">
+            <X className="h-3.5 w-3.5" />
+          </button>
+        </motion.div>)}
+      </AnimatePresence>
+
 
       <Footer logoData={logoData} />
 
