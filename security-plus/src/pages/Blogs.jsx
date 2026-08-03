@@ -5,7 +5,7 @@ import { ChevronRight } from "lucide-react";
 import BLOGS_DATA from "../json/blogs.json";
 
 
-const BlogSection = ({ subscribers, setSubscribers, setToastMessage, setSelectedBlog }) => {
+const Blogs = ({ subscribers, setSubscribers, setToastMessage, setSelectedBlog }) => {
   const [blogSearch, setBlogSearch] = useState("");
   const [blogCategoryFilter, setBlogCategoryFilter] = useState("All");
   const [newsletterEmail, setNewsletterEmail] = useState("");
@@ -104,9 +104,7 @@ const BlogSection = ({ subscribers, setSubscribers, setToastMessage, setSelected
                   </div>
                 </div>))}
             </div>
-
           </div>
-
         </div>
       </section>
     </motion.div>
@@ -114,4 +112,4 @@ const BlogSection = ({ subscribers, setSubscribers, setToastMessage, setSelected
 }
 
 
-export default BlogSection
+export default Blogs

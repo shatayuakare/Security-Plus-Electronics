@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../products.css"
 import { motion } from "motion/react";
 import { ShoppingBag, ExternalLink, Heart, Video, Cpu, LockKeyhole, HardDrive, Router, BatteryCharging, Eye } from "lucide-react";
-import BrandCarousel from "./BrandCarousel";
-import { BlurUpImage, getProductImageUrls } from "./BlurUpImage";
+import BrandCarousel from "../components/BrandCarousel";
+import { BlurUpImage, getProductImageUrls } from "../components/BlurUpImage";
 import PRODUCTS from "../json/wooProducts.json"
 import parse from "html-react-parser";
 import { Link } from "react-router-dom";
@@ -18,16 +18,48 @@ const staggerContainer = {
   viewport: { once: true, margin: "-100px" }
 };
 
+
 const staggerItem = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
 };
-export function ProductsCatalog({ products, productCategories, customerUser, wishlist, toggleWishlist, setToastMessage, setSelectedProductForQuickView }) {
+
+
+export default function Products({ products, productCategories, customerUser, wishlist, toggleWishlist, setToastMessage, setSelectedProductForQuickView }) {
 
   const [blogCategoryFilter, setBlogCategoryFilter] = useState("All");
   const [productSortOption, setProductSortOption] = useState("default");
 
+  const getCategory = (product) => {
+    for (let elem of product.categories) {
+      if (/camera/i.test(elem.name)) {
+        return "CCTV Camera";
+      } else if (/nvr/i.test(elem.name) || /dvr/i.test(elem.name)) {
+        return "Video Recorder";
+      } else if (/cable/i.test(elem.name)) {
+        return "Cables";
+      }
+    }
+    return product.categories[0]?.name || "Other";
+  }
+
+  // const formattedPrice = new Intl.NumberFormat('en-IN', {
+  //   style: 'currency',
+  //   currency: 'INR'
+  // }).format(price);
+
+  const formatPrice = (amount) => {
+    const formatted = new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0 // Removes paisa (.00)
+    }).format(amount);
+
+    return formatted
+
+  }
+  console.log(products[3])
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
@@ -214,14 +246,14 @@ export function ProductsCatalog({ products, productCategories, customerUser, wis
                   scale: 1.02,
                   borderColor: "#0284C7",
                   boxShadow: "0 20px 40px -15px rgba(2, 132, 199, 0.1)"
-                }} className="bg-white border border-slate-200/80 flex flex-col justify-between p-6 relative rounded-2xl group cursor-pointer transition-all duration-300 shadow-sm">
+                }} className="bg-white border border-slate-200/80 flex flex-col justify-between p-4 relative rounded-2xl group cursor-pointer transition-all duration-300 shadow-sm">
                   <div>
                     <div className="flex justify-between items-center mb-4 text-[9px] text-slate-500 font-bold">
                       <span className="uppercase border border-sky-100 px-2.5 py-1 bg-sky-50 text-sky-700 rounded-lg">
-                        {/* {product.categories[0]} */}
+                        {getCategory(product)}
                       </span>
                       <span className="flex items-center gap-1">
-                        ⭐ {product.rating}
+                        {product.brands[0].name}
                       </span>
                     </div>
 
@@ -231,16 +263,12 @@ export function ProductsCatalog({ products, productCategories, customerUser, wis
 
                       <div className="absolute inset-0 bg-slate-950/15 pointer-events-none" />
 
-                      {product.isBestseller &&
-                        <span className="absolute top-2.5 left-2.5 text-[8px] font-extrabold bg-[#FF5A00] text-white px-2.5 py-1 rounded-md uppercase tracking-wider z-20 shadow-sm">
-                          ★ Bestseller
-                        </span>
-                      }
-                      {product.isNewArrival &&
-                        <span className="absolute top-2.5 left-2.5 text-[8px] font-extrabold bg-sky-600 text-white px-2.5 py-1 rounded-md uppercase tracking-wider z-20 shadow-sm">
-                          New Arrival
-                        </span>
-                      }
+                      <span className="absolute top-2.5 left-2.5 text-xs bg-sky-600 text-white px-2.5 pt-2 pb-1 rounded-md uppercase tracking-wider z-20">
+                        {product.on_sale && "★ Bestseller"}
+                        {!product.on_sale && "Sale"}
+                      </span>
+
+
 
                       <button id={`wishlist-toggle-${product.id}`} onClick={(e) => {
                         e.stopPropagation();
@@ -270,8 +298,8 @@ export function ProductsCatalog({ products, productCategories, customerUser, wis
                         </button>
                       </div>
 
-                      <div className="absolute bottom-2 right-2 text-[8px] font-bold text-slate-300 bg-slate-950/80 backdrop-blur-sm px-2 py-1 border border-slate-800 uppercase rounded z-20">
-                        {product.sku}
+                      <div className="absolute bottom-2 right-2 text-[8px] font-bold bg-white text-sky-500  backdrop-blur-sm px-2 py-1 uppercase rounded z-20">
+                        {product.sku ? product.sku : product.brands[0].name}
                       </div>
                     </div>
 
@@ -286,7 +314,11 @@ export function ProductsCatalog({ products, productCategories, customerUser, wis
                   </div>
 
                   <div className="mt-2 pt-4 border-t border-slate-100 flex justify-between items-center z-20">
-                    <span className="text-base font-extrabold text-slate-900">{product.price}</span>
+                    <span className="text-base font-extrabold text-slate-900">
+                      {
+                        formatPrice(!product.prices.sale_price ? product.prices.regular_price : product.prices.sale_price)
+                      }
+                    </span>
                     <div className="flex gap-1.5">
                       <button id={`quick-view-btn-footer-${product.id}`} onClick={(e) => {
                         e.stopPropagation();
@@ -296,8 +328,8 @@ export function ProductsCatalog({ products, productCategories, customerUser, wis
                         Quick View
                       </button>
 
-                      <Link to={product.permalink} target={"_blank"} id={`purchase-btn-${product.id}`} className="bg-slate-50 hover:bg-sky-600 border border-slate-200 hover:border-sky-600 text-slate-700 hover:text-slate-50 px-3 py-1.5 text-[9px] font-bold uppercase transition-all duration-300 rounded-xl flex items-center gap-1 cursor-pointer shadow-sm">
-                        <ShoppingBag className="h-3.5 w-3.5 text-sky-600 hover:text-white" />
+                      <Link to={product.permalink} target={"_blank"} id={`purchase-btn-${product.id}`} className="bg-slate-50 group-hover:bg-sky-600 border border-sky-500 text-slate-700 hover:text-slate-50 px-3 py-1  text-[9px] font-bold uppercase transition-all duration-300 rounded-xl flex items-center justify-center gap-1 cursor-pointer ">
+                        <ShoppingBag className="h-3.5 w-3.5  text-sky-600 duration-300 group-hover:text-sky-50" />
                         Purchase
                       </Link>
                     </div>

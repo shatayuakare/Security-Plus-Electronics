@@ -4,7 +4,7 @@ import { MessageSquare, ExternalLink, Phone, Building, MapPin, Mail, Clock, Chec
 import { Link } from "react-router-dom";
 
 
-export function ContactUs({ logoData, setSupportTickets, setToastMessage }) {
+export default function ContactUs({ logoData, setSupportTickets, setToastMessage }) {
   const [contactForm, setContactForm] = useState({
     name: "",
     company: "",

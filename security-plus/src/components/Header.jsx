@@ -217,7 +217,7 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
           </button>)}
 
           <Link to={"https://woston.in"} target="_blank" className="hidden md:flex">
-            <img src={new URL(`../assets/images/woston-logo.png`, import.meta.url).href} alt="Woston Logo" className="h-12 w-full" />
+            <img src={new URL(`../assets/images/woston-logo-light.png`, import.meta.url).href} alt="Woston Logo" className="h-12 w-full" />
           </Link>
           {/* <button onClick={() => window.open("https://woston.in", "_blank")} className="hidden md:flex bg-sky-600 hover:bg-sky-500 text-white px-5 py-2.5 rounded-lg font-sans font-bold text-[10px] tracking-widest uppercase border border-sky-600 hover:bg-sky-500 transition-all duration-300 items-center gap-2 shadow-sm cursor-pointer">
             <ShoppingBag className="h-3.5 w-3.5 text-white" />

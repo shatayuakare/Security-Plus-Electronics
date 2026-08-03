@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Sparkles, Briefcase, Terminal, CheckCircle2 } from "lucide-react";
 import { toast } from "react-toastify";
 
-export function Careers({ careerApplications, setCareerApplications, setToastMessage }) {
+export default function Careers({ careerApplications, setCareerApplications, setToastMessage }) {
   const [contactTicket, setContactTicket] = useState(null);
 
   const handleApplicationSubmit = (e) => {

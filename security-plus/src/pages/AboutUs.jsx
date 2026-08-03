@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ShieldCheck, CheckCircle2, HelpCircle, ChevronDown } from "lucide-react";
-import BrandCarousel from "./BrandCarousel";
+import BrandCarousel from "../components/BrandCarousel";
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
@@ -10,7 +10,7 @@ const fadeInUp = {
 };
 
 
-export function AboutUs() {
+function AboutUs() {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const faqs = [
     {
@@ -41,7 +41,6 @@ export function AboutUs() {
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-6xl mx-auto space-y-16">
 
-          {/* Visual grid story */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" id="spe-about-story-grid">
             <div className="space-y-6">
               <span className="font-sans text-[10px] text-sky-600 tracking-widest uppercase block font-semibold">BRAND STORY </span>
@@ -168,3 +167,4 @@ export function AboutUs() {
     </motion.div>
   );
 }
+export default AboutUs

@@ -14,29 +14,34 @@ import { SEOManager } from "./components/SEOManager";
 import { getProductImageUrls } from "./components/BlurUpImage";
 import BrandCarousel from "./components/BrandCarousel";
 import { Header } from "./components/Header";
-import Hero from "./components/Hero";
 import { ProductCategories } from "./components/section/ProductCategories";
 import { VirtualShowroom } from "./components/VirtualShowroom";
 import { SectorsWeProtect } from "./components/SectorsWeProtect";
 import { SurveillancePlanner } from "./components/SurveillancePlanner";
 
-// Import modular section page
-import { ScrollableTestimonials, OurThought, OurBlogs, Careers, FAQSection, CorporateContactForm, OurLocation } from "./pages/HomeSections";
+// Import pages
+import { ScrollableTestimonials, OurThought, OurBlogs, FAQSection, CorporateContactForm, OurLocation } from "./pages/Home";
 import { BrowserRouter, Route, Routes, useLocation, useNavigation } from "react-router-dom"
-import { AboutUs } from "./components/AboutUs";
-import { ContactUs } from "./pages/ContactUs";
-import { Careers as CareersPage } from "./pages/Careers";
-import { ProductsCatalog } from "./components/ProductsCatalog";
+import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/ContactUs";
+import Careers from "./pages/Careers";
+import Blogs from "./pages/Blogs";
+import TermsAndConditions from "./pages/TermAndCondition";
+
+// Import modular section page
+import Hero from "./components/Hero";
+import Products from "./pages/Products";
 import { Testimonials as TestimonialsPage } from "./components/Testimonials";
 import { GallerySection } from "./components/GallerySection";
 import { AuthSection } from "./components/AuthSection";
-import TermsAndConditions from "./pages/TermAndCondition";
-import BlogSection from "./pages/BlogSection";
 import Footer from "./components/Footer";
 import ReelSection from "./components/section/ReelSection";
 
+
+// JSON file to fetch data
 import PRODUCT_CATEGORIES from "./json/productCategories.json"
 import TESTIMONIALS_DATA from "./json/testimonials.json"
+import PRODUCTS from "./json/wooProducts.json"
 
 
 
@@ -277,21 +282,10 @@ function App() {
   });
 
   const [products, setProducts] = useState(() => {
-    const saved = localStorage.getItem("spe_products_catalog");
-    if (saved)
-      return JSON.parse(saved);
-    return PRODUCTS_DATA.map(p => {
-      let mappedCat = p.category;
-      if (p.category === "Smart Locks & Biometrics" || p.category === "Video Door Phones")
-        mappedCat = "Biometric Access";
-      else if (p.category === "DVRs & NVRs")
-        mappedCat = "NVR Storage";
-      else if (p.category === "PoE Switches" || p.category === "Networking")
-        mappedCat = "Networking Backbone";
-      else if (p.category === "Cables & Power")
-        mappedCat = "Power Backup";
-      return { ...p, category: mappedCat };
-    });
+    // const saved = localStorage.getItem("spe_products_catalog");
+    // if (saved)
+    //   return JSON.parse(saved);
+    return PRODUCTS.map(p => ({ ...p }));
   });
 
   const [contactData, setContactData] = useState(() => {
@@ -824,8 +818,7 @@ function App() {
       content: "",
       systemInstalled: ""
     });
-    // Clear success banner after 5s
-    setTimeout(() => setFeedbackSuccess(false), 5000);
+    setTimeout(() => setFeedbackSuccess(false), 3000);
   };
 
   const handleContactSubmit = (e) => {
@@ -913,7 +906,7 @@ function App() {
             <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} setBlogCategoryFilter={setBlogCategoryFilter} setActiveTab={setActiveTab} />
 
 
-            <VirtualShowroom loadedImages={loadedImages} setLoadedImages={setLoadedImages} showroomScanStatus={showroomScanStatus} setShowroomScanStatus={setShowroomScanStatus} activeShowroomHotspot={activeShowroomHotspot} setActiveShowroomHotspot={setActiveShowroomHotspot} setToastMessage={setToastMessage} setBookingConfirmed={setBookingConfirmed} setBookingForm={setBookingForm} setShowroomModalOpen={setShowroomModalOpen} />
+            {/* <VirtualShowroom loadedImages={loadedImages} setLoadedImages={setLoadedImages} showroomScanStatus={showroomScanStatus} setShowroomScanStatus={setShowroomScanStatus} activeShowroomHotspot={activeShowroomHotspot} setActiveShowroomHotspot={setActiveShowroomHotspot} setToastMessage={setToastMessage} setBookingConfirmed={setBookingConfirmed} setBookingForm={setBookingForm} setShowroomModalOpen={setShowroomModalOpen} /> */}
 
             <ReelSection />
 
@@ -939,10 +932,10 @@ function App() {
           <Route path="/termandcondition" Component={TermsAndConditions} />
           <Route path="/gallary" element={<GallerySection setLightboxIndex={setLightboxIndex} galleryItems={GALLERY_ITEMS} />} />
           <Route path="/contact" element={<ContactUs logoData={logoData} setSupportTickets={setSupportTickets} setToastMessage={setToastMessage} />} />
-          <Route path="/career" element={<CareersPage careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
-          <Route path="/products" element={<ProductsCatalog products={products} productCategories={productCategories} customerUser={customerUser} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
+          <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
+          <Route path="/products" element={<Products products={products} productCategories={productCategories} customerUser={customerUser} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
           <Route path="/testimonial" element={<TestimonialsPage testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
-          <Route path="/blogs" element={<BlogSection subscribers={subscribers} setSubscribers={setSubscribers} setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
+          <Route path="/blogs" element={<Blogs subscribers={subscribers} setSubscribers={setSubscribers} setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
           <Route path="/login" element={<AuthSection registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} />
         </Routes>
       </main>
