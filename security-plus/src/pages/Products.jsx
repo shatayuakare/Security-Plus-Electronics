@@ -246,13 +246,13 @@ export default function Products({ products, productCategories, customerUser, wi
                   scale: 1.02,
                   borderColor: "#0284C7",
                   boxShadow: "0 20px 40px -15px rgba(2, 132, 199, 0.1)"
-                }} className="bg-white border border-slate-200/80 flex flex-col justify-between p-4 relative rounded-2xl group cursor-pointer transition-all duration-300 shadow-sm">
+                }} className="bg-white border border-slate-200/80 flex flex-col justify-between p-4 relative rounded-2xl group cursor-pointer transition-all duration-300 shadow">
                   <div>
                     <div className="flex justify-between items-center mb-4 text-[9px] text-slate-500 font-bold">
-                      <span className="uppercase border border-sky-100 px-2.5 py-1 bg-sky-50 text-sky-700 rounded-lg">
+                      <span className="uppercase border border-sky-100 px-2.5 pt-1 bg-sky-50 text-sky-700 rounded-lg">
                         {getCategory(product)}
                       </span>
-                      <span className="flex items-center gap-1">
+                      <span className="flex pt-1 items-center gap-1">
                         {product.brands[0].name}
                       </span>
                     </div>
@@ -328,7 +328,7 @@ export default function Products({ products, productCategories, customerUser, wi
                         Quick View
                       </button>
 
-                      <Link to={product.permalink} target={"_blank"} id={`purchase-btn-${product.id}`} className="bg-slate-50 group-hover:bg-sky-600 border border-sky-500 text-slate-700 hover:text-slate-50 px-3 py-1  text-[9px] font-bold uppercase transition-all duration-300 rounded-xl flex items-center justify-center gap-1 cursor-pointer ">
+                      <Link to={product.permalink} target={"_blank"} id={`purchase-btn-${product.id}`} className="bg-slate-50 group-hover:bg-sky-600 border border-sky-500 text-slate-700 group-hover:text-slate-50 px-3 py-1  text-[9px] font-bold uppercase transition-all duration-300 rounded-xl flex items-center justify-center gap-1 cursor-pointer ">
                         <ShoppingBag className="h-3.5 w-3.5  text-sky-600 duration-300 group-hover:text-sky-50" />
                         Purchase
                       </Link>

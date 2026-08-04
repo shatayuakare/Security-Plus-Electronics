@@ -1,7 +1,6 @@
 import React from "react";
 import { Heart, User, Terminal, X, Menu, ClipboardList, ShoppingBag, ArrowLeft, Trash2, Eye } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-// import securityPlusLogo from "../assets/images/security_plus_logo_1783018092399.jpg";
 import logo from "../assets/images/logo.png";
 import { Link, useLocation } from "react-router-dom"
 
@@ -17,6 +16,7 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
   return (
     <header>
       <nav className="fixed top-0 left-0 w-full bg-[#0a0d16]/95 backdrop-blur-md border-b border-slate-800/80 z-40 px-4 md:px-8 py-3 md:py-4 flex justify-between items-center transition-all shadow-lg shadow-slate-950/20">
+
         <Link to={"/"} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }} className="flex items-center gap-2 md:gap-3 cursor-pointer select-none active:scale-95 hover:opacity-90 transition-all" title="Return to Home">
           <div className="h-12 aspect-square flex items-center justify-center shrink-0">
             <img alt="Security Plus Electronics Logo" className="h-full w-full object-cover drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] hover:drop-shadow-white transition-all duration-300" src={companytData.logo} referrerPolicy="no-referrer" />
@@ -26,7 +26,6 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
           </span>
         </Link>
 
-        {/* Desktop Links (Minimized & Unnecessary Moved to Footer) */}
         <div className="hidden md:flex items-center gap-5 lg:gap-6 font-sans font-bold text-[11px] tracking-widest uppercase">
           <Link to={"/"} onClick={() => { window.scrollTo(0, 0); }} className={`transition-all duration-200 cursor-pointer ${location.pathname === "/" ? "text-sky-400" : "text-slate-300 hover:text-sky-400"}`}>
             Home

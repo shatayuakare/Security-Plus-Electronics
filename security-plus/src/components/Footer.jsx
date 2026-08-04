@@ -41,7 +41,7 @@ const Footer = ({ logoData }) => {
 
                     <div className="flex flex-col gap-4">
                         <span className="text-[10px] font-bold text-[#FF5A00] tracking-widest uppercase font-mono">Legal</span>
-                        <Link to={"/termandcondition"} className="text-xs text-on-surface-variant hover:text-white transition-colors">Terms of Service</Link>
+                        <Link to={"/termandcondition"} onClick={() => { window.scrollTo(0, 0); }} className="text-xs text-on-surface-variant hover:text-white transition-colors">Terms of Service</Link>
                         <a href="#" className="text-xs text-on-surface-variant hover:text-white transition-colors">SLA Agreements</a>
                     </div>
                 </div>

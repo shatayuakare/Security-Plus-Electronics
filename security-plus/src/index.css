@@ -136,7 +136,6 @@ div[class*="bg-[#101116]"] {
   background-color: #0284C7 !important;
 }
 
-/* Adjust secondary transparency backgrounds */
 [class*="bg-[#FF5A00]/5"] {
   background-color: rgba(2, 132, 199, 0.05) !important;
 }
@@ -160,7 +159,6 @@ div[class*="bg-[#101116]"] {
   color: #475569 !important;
 }
 
-/* Force hovers and selections to be sky-blue compliant */
 [class*="hover:bg-[#FF5A00]"]:hover {
   background-color: #0369A1 !important;
   color: #FFFFFF !important;
@@ -171,7 +169,7 @@ div[class*="bg-[#101116]"] {
 }
 
 [class*="hover:text-white"]:hover {
-  color: #0284C7 !important;
+  color: #ffffff !important;
 }
 
 [class*="hover:bg-white/5"]:hover {

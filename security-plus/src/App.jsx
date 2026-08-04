@@ -32,7 +32,7 @@ import TermsAndConditions from "./pages/TermAndCondition";
 import Hero from "./components/Hero";
 import Products from "./pages/Products";
 import { Testimonials as TestimonialsPage } from "./components/Testimonials";
-import { GallerySection } from "./components/GallerySection";
+import Gallery from "./pages/Gallery";
 import { AuthSection } from "./components/AuthSection";
 import Footer from "./components/Footer";
 import ReelSection from "./components/section/ReelSection";
@@ -42,68 +42,68 @@ import ReelSection from "./components/section/ReelSection";
 import PRODUCT_CATEGORIES from "./json/productCategories.json"
 import TESTIMONIALS_DATA from "./json/testimonials.json"
 import PRODUCTS from "./json/wooProducts.json"
+import GALLERY_ITEMS from "./json/gallary.json"
 
 
-
-const GALLERY_ITEMS = [
-  {
-    id: "gal-1",
-    category: "showroom",
-    image: speShowroomTour,
-    title: "Nagpur Flagship Showroom",
-    description: "Central India's premiere retail and enterprise showroom layout, displaying rows of high-performance IP cameras, customized mounting brackets, and recording stacks.",
-    location: "SITABULDI MAIN ROAD, NAGPUR",
-    isPlaceholder: false
-  },
-  {
-    id: "gal-2",
-    category: "culture",
-    image: speCultureCollab,
-    title: "Collaborative Engineering Workspace",
-    description: "Our team of network technicians and software security specialists collaborating on a major commercial layout blueprint design in Nagpur.",
-    location: "HQ OFFICE, NAGPUR",
-    isPlaceholder: false
-  },
-  {
-    id: "gal-3",
-    category: "technical",
-    image: speTrainingClass,
-    title: "SPE Free Tech Training Academy",
-    description: "Instructor showing freshers and students how to plug and configure CCTV camera arrays during a free weekend technical surveillance masterclass.",
-    location: "TRAINING WING, NAGPUR",
-    isPlaceholder: false
-  },
-  {
-    id: "gal-4",
-    category: "technical",
-    iconName: "Terminal",
-    bgColor: "from-sky-900 to-slate-950",
-    title: "Fiber Optic Splicing Board",
-    description: "Splicing high-density fiber backbones for Central India commercial grids. Standardizing low latency network relays for robust stream distribution.",
-    location: "SURVEILLANCE GRID LAB",
-    isPlaceholder: true
-  },
-  {
-    id: "gal-5",
-    category: "culture",
-    iconName: "ShieldCheck",
-    bgColor: "from-indigo-900 to-slate-950",
-    title: "Nagpur Safe City Initiative",
-    description: "SPE engineering leaders organizing local community panels to explain biometric data compliance and CCTV system integrity to local Nagpur associations.",
-    location: "NAGPUR COMMUNITY OUTREACH",
-    isPlaceholder: true
-  },
-  {
-    id: "gal-6",
-    category: "showroom",
-    iconName: "Video",
-    bgColor: "from-emerald-900 to-slate-950",
-    title: "Live Demo Diagnostic Wall",
-    description: "Our showroom demo panel mounting the latest F1.0 full-color low-light cameras, coaxial power supply configurations, and network switches.",
-    location: "SPE MALL WING B",
-    isPlaceholder: true
-  }
-];
+// const GALLERY_ITEMS = [
+//   {
+//     id: "gal-1",
+//     category: "showroom",
+//     image: speShowroomTour,
+//     title: "Nagpur Flagship Showroom",
+//     description: "Central India's premiere retail and enterprise showroom layout, displaying rows of high-performance IP cameras, customized mounting brackets, and recording stacks.",
+//     location: "SITABULDI MAIN ROAD, NAGPUR",
+//     isPlaceholder: false
+//   },
+//   {
+//     id: "gal-2",
+//     category: "culture",
+//     image: speCultureCollab,
+//     title: "Collaborative Engineering Workspace",
+//     description: "Our team of network technicians and software security specialists collaborating on a major commercial layout blueprint design in Nagpur.",
+//     location: "HQ OFFICE, NAGPUR",
+//     isPlaceholder: false
+//   },
+//   {
+//     id: "gal-3",
+//     category: "technical",
+//     image: speTrainingClass,
+//     title: "SPE Free Tech Training Academy",
+//     description: "Instructor showing freshers and students how to plug and configure CCTV camera arrays during a free weekend technical surveillance masterclass.",
+//     location: "TRAINING WING, NAGPUR",
+//     isPlaceholder: false
+//   },
+//   {
+//     id: "gal-4",
+//     category: "technical",
+//     iconName: "Terminal",
+//     bgColor: "from-sky-900 to-slate-950",
+//     title: "Fiber Optic Splicing Board",
+//     description: "Splicing high-density fiber backbones for Central India commercial grids. Standardizing low latency network relays for robust stream distribution.",
+//     location: "SURVEILLANCE GRID LAB",
+//     isPlaceholder: true
+//   },
+//   {
+//     id: "gal-5",
+//     category: "culture",
+//     iconName: "ShieldCheck",
+//     bgColor: "from-indigo-900 to-slate-950",
+//     title: "Nagpur Safe City Initiative",
+//     description: "SPE engineering leaders organizing local community panels to explain biometric data compliance and CCTV system integrity to local Nagpur associations.",
+//     location: "NAGPUR COMMUNITY OUTREACH",
+//     isPlaceholder: true
+//   },
+//   {
+//     id: "gal-6",
+//     category: "showroom",
+//     iconName: "Video",
+//     bgColor: "from-emerald-900 to-slate-950",
+//     title: "Live Demo Diagnostic Wall",
+//     description: "Our showroom demo panel mounting the latest F1.0 full-color low-light cameras, coaxial power supply configurations, and network switches.",
+//     location: "SPE MALL WING B",
+//     isPlaceholder: true
+//   }
+// ];
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
@@ -930,7 +930,7 @@ function App() {
 
           <Route path="/about" Component={AboutUs} />
           <Route path="/termandcondition" Component={TermsAndConditions} />
-          <Route path="/gallary" element={<GallerySection setLightboxIndex={setLightboxIndex} galleryItems={GALLERY_ITEMS} />} />
+          <Route path="/gallary" element={<Gallery setLightboxIndex={setLightboxIndex} galleryItems={GALLERY_ITEMS} />} />
           <Route path="/contact" element={<ContactUs logoData={logoData} setSupportTickets={setSupportTickets} setToastMessage={setToastMessage} />} />
           <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
           <Route path="/products" element={<Products products={products} productCategories={productCategories} customerUser={customerUser} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
