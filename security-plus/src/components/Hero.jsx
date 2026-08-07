@@ -157,8 +157,13 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setActiveTab, setBookingConfi
                         dangerouslySetInnerHTML={{ __html: slide.category }}
                       />
                     </div>
-                    <h1
+                    {/* <h1
                       className="font-sans text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight uppercase"
+                      dangerouslySetInnerHTML={{ __html: slide.title }}
+                    /> */}
+
+                    <h1
+                      className="font-sans text-[5rem] font-extrabold tracking-tight text-white leading-tight uppercase"
                       dangerouslySetInnerHTML={{ __html: slide.title }}
                     />
 

@@ -214,16 +214,13 @@ button[class*="bg-[#E04E00]"] * {
   border-bottom: 2px solid #0284C7;
 }
 
-/* Print Stylesheet overrides for printable security proposal */
 @media print {
 
-  /* Hide standard page layout and React app completely */
   #root,
   body> :not(#printable-quote-section) {
     display: none !important;
   }
 
-  /* Render only the white print proposal container */
   #printable-quote-section {
     display: block !important;
     visibility: visible !important;
