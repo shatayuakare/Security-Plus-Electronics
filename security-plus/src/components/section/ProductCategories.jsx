@@ -28,7 +28,8 @@ const staggerItem = {
 
 
 
-export const ProductCategories = ({ loadedImages, setLoadedImages, setActiveTab, }) => {
+export const ProductCategories = ({ loadedImages, setLoadedImages }) => {
+
   const [blogCategoryFilter, setBlogCategoryFilter] = useState("All");
 
   return (<section className="py-24 px-8 relative z-20 border-b border-slate-100 bg-white">

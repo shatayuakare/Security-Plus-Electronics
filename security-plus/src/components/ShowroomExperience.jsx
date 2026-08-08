@@ -1,6 +1,6 @@
 import { Calendar, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, bookingConfirmed }) => {
 
@@ -18,6 +18,27 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
         label: "text-xs font-bold text-black/60 tracking-widest",
         input: "w-full px-3 py-2 text-xs border border-black/30 text-slate-800 focus:outline-none rounded-lg placeholder-black/70 active:border-sky-50"
     }
+
+    const [showroomBookings, setShowroomBookings] = useState(() => {
+        const saved = localStorage.getItem("spe_showroom_bookings");
+        if (saved)
+            return JSON.parse(saved);
+        return [
+            {
+                id: "SPE-BK-321094",
+                name: "Harish Kumar",
+                phone: "+91 91234 56789",
+                email: "harish.k@tcs.com",
+                date: "2026-07-03",
+                time: "11:00",
+                sector: "residential",
+                status: "Confirmed"
+            }
+        ];
+    });
+    useEffect(() => {
+        localStorage.setItem("spe_showroom_bookings", JSON.stringify(showroomBookings));
+    }, [showroomBookings]);
 
     const handleBookShowroom = (e) => {
         e.preventDefault();

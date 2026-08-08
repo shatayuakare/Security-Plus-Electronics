@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import img from "../assets/slide/cctv-mall.png"
 
-const Hero = ({ heroSlideIndex, setHeroSlideIndex, setActiveTab, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
+const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
 
   const heroStats = [
     {

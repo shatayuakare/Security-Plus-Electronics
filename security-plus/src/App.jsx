@@ -1,24 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
-import { Video, Cpu, Router, BatteryCharging, LockKeyhole, Home, Building, HeartPulse, Briefcase, Factory, ChevronRight, X, Send, Sparkles, Calculator, Calendar, ArrowRight, ShieldCheck, Check, Loader2, Menu, MapPin, Globe, User, HardDrive, Terminal, Zap, Fingerprint, Scan, Key, AlertTriangle, Play, Pause, Eye, Network, RefreshCw, CheckCircle2, Ticket, ShoppingBag, ExternalLink, Printer, Twitter, Linkedin, Facebook, Share2, Link, Volume2, VolumeX, Heart, Plus, Trash2, ClipboardList, ArrowLeft } from "lucide-react";
+import { X, Sparkles, Eye, Twitter, Linkedin, Facebook, Share2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { SOLUTIONS_DATA, SECTORS_DATA, QUICK_QUESTIONS } from "./data";
 import logo from "./assets/images/logo.png";
 
 import AdminPanel from "./components/AdminPanel";
-import { toast, ToastContainer } from "react-toastify"
+import { ToastContainer } from "react-toastify"
 import { SEOManager } from "./components/SEOManager";
-import { getProductImageUrls } from "./components/BlurUpImage";
+
 import BrandCarousel from "./components/BrandCarousel";
 import { Header } from "./components/Header";
 import { ProductCategories } from "./components/section/ProductCategories";
 import { VirtualShowroom } from "./components/VirtualShowroom";
-import { SectorsWeProtect } from "./components/SectorsWeProtect";
-import { SurveillancePlanner } from "./components/SurveillancePlanner";
 
 // Import pages
 import { ScrollableTestimonials, OurThought, OurBlogs, FAQSection, CorporateContactForm, OurLocation } from "./pages/Home";
-import { BrowserRouter, Route, Routes, useLocation, useNavigation } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Careers from "./pages/Careers";
@@ -36,7 +33,6 @@ import ReelSection from "./components/section/ReelSection";
 
 
 // JSON file to fetch data
-import PRODUCT_CATEGORIES from "./json/productCategories.json"
 import TESTIMONIALS_DATA from "./json/testimonials.json"
 import PRODUCTS from "./json/wooProducts.json"
 import GALLERY_ITEMS from "./json/gallary.json"
@@ -57,21 +53,6 @@ const fadeIn = {
   viewport: { once: true, margin: "-100px" },
   transition: { duration: 0.8, ease: "easeOut" }
 };
-const staggerContainer = {
-  initial: {},
-  whileInView: {
-    transition: {
-      staggerChildren: 0.12
-    }
-  },
-  viewport: { once: true, margin: "-100px" }
-};
-const staggerItem = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
-};
-
 
 
 function App() {
@@ -79,52 +60,16 @@ function App() {
   const location = useLocation();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isLightMode, setIsLightMode] = useState(false);
-  const [chatOpen, setChatOpen] = useState(false);
 
-  const [chatMessages, setChatMessages] = useState([
-    {
-      role: "assistant",
-      content: "Hello! I am SPE Sentinel, your dedicated AI Security Assistant. I can help you select security setups, calculate storage space, explain AI cameras, or draft a layout for your premises. How can I protect you today?"
-    }
-  ]);
-  const [userInput, setUserInput] = useState("");
-  const [chatLoading, setChatLoading] = useState(false);
-  const [selectedSolution, setSelectedSolution] = useState(null);
-  const [selectedSector, setSelectedSector] = useState(null);
   const [showroomModalOpen, setShowroomModalOpen] = useState(false);
-  const [cctvRes, setCctvRes] = useState("4K");
-  const [cctvNightMode, setCctvNightMode] = useState(false);
-  const [cctvFps, setCctvFps] = useState(30);
-  const [aiActiveScan, setAiActiveScan] = useState(null);
-  const [aiScanLogs, setAiScanLogs] = useState([
-    "System booted.",
-    "Optical feeds synchronized on Layer 3 network."
-  ]);
-
-  const [powerCamCount, setPowerCamCount] = useState(8);
-  const [powerBackupHours, setPowerBackupHours] = useState(4);
-  const [lockStatus, setLockStatus] = useState("idle");
-  const [selectedLockMethod, setSelectedLockMethod] = useState("fingerprint");
-
 
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
 
   const [activeShowroomHotspot, setActiveShowroomHotspot] = useState(null);
   const [showroomScanStatus, setShowroomScanStatus] = useState("idle");
-  const [calcInput, setCalcInput] = useState({
-    premisesType: "home",
-    areaSizeSqFt: 1500,
-    indoorCams: 4,
-    outdoorCams: 2,
-    resolution: "4K",
-    retentionDays: 30,
-    continuousRecording: true
-  });
-  const [calcResult, setCalcResult] = useState(null);
+
   const [toastMessage, setToastMessage] = useState(null);
-  const [activeTab, setActiveTab] = useState("home");
   const [customerUser, setCustomerUser] = useState(() => {
     const saved = localStorage.getItem("spe_customer_user");
     return saved ? JSON.parse(saved) : null;
@@ -302,21 +247,9 @@ function App() {
       linkedin: "https://linkedin.com/securitypluselectronics"
     };
   });
-  const [openFaqIndex, setOpenFaqIndex] = useState(null);
-  const [wostonModalOpen, setWostonModalOpen] = useState(false);
-  const [isRedirecting, setIsRedirecting] = useState(false);
-  const [redirectProgress, setRedirectProgress] = useState(0);
+
   const [testimonials, setTestimonials] = useState(TESTIMONIALS_DATA);
-  const [newFeedback, setNewFeedback] = useState({
-    clientName: "",
-    designation: "",
-    organization: "",
-    category: "commercial",
-    rating: 5,
-    content: "",
-    systemInstalled: ""
-  });
-  const [feedbackSuccess, setFeedbackSuccess] = useState(false);
+
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [adminEmails, setAdminEmails] = useState(() => {
     const saved = localStorage.getItem("spe_admin_emails");
@@ -459,23 +392,7 @@ function App() {
       }
     ];
   });
-  const [showroomBookings, setShowroomBookings] = useState(() => {
-    const saved = localStorage.getItem("spe_showroom_bookings");
-    if (saved)
-      return JSON.parse(saved);
-    return [
-      {
-        id: "SPE-BK-321094",
-        name: "Harish Kumar",
-        phone: "+91 91234 56789",
-        email: "harish.k@tcs.com",
-        date: "2026-07-03",
-        time: "11:00",
-        sector: "residential",
-        status: "Confirmed"
-      }
-    ];
-  });
+
   const [subscribers, setSubscribers] = useState(() => {
     const saved = localStorage.getItem("spe_subscribers");
     if (saved)
@@ -489,9 +406,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem("spe_career_apps", JSON.stringify(careerApplications));
   }, [careerApplications]);
-  useEffect(() => {
-    localStorage.setItem("spe_showroom_bookings", JSON.stringify(showroomBookings));
-  }, [showroomBookings]);
   useEffect(() => {
     localStorage.setItem("spe_subscribers", JSON.stringify(subscribers));
   }, [subscribers]);
@@ -529,7 +443,6 @@ function App() {
   }, []);
 
   const [selectedBlog, setSelectedBlog] = useState(null);
-  const [blogCategoryFilter, setBlogCategoryFilter] = useState("All");
 
   useEffect(() => {
     const alerts = [
@@ -564,19 +477,18 @@ function App() {
 
   return (
     <>
-      <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} adminEmails={adminEmails} setAdminLoginOpen={setAdminLoginOpen} setToastMessage={setToastMessage} PRODUCTS={PRODUCTS} getProductImageUrls={getProductImageUrls} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} isAdminMode={isAdminMode} setIsAdminMode={setIsAdminMode} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
+      <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} adminEmails={adminEmails} setAdminLoginOpen={setAdminLoginOpen} setToastMessage={setToastMessage} PRODUCTS={PRODUCTS} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} isAdminMode={isAdminMode} setIsAdminMode={setIsAdminMode} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
 
       <SEOManager />
 
       <main className={location.pathname === "/" ? "pt-0 bg-[#070913]" : "pt-20 bg-white"}>
-
         <Routes>
           <Route path="/" element={<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <Hero heroSlideIndex={heroSlideIndex} setHeroSlideIndex={setHeroSlideIndex} setActiveTab={setActiveTab} setShowroomModalOpen={setShowroomModalOpen} setBookingConfirmed={setBookingConfirmed} />
+            <Hero heroSlideIndex={heroSlideIndex} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} setBookingConfirmed={setBookingConfirmed} />
 
             <BrandCarousel />
 
-            <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} setActiveTab={setActiveTab} />
+            <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} />
 
             <VirtualShowroom loadedImages={loadedImages} setLoadedImages={setLoadedImages} showroomScanStatus={showroomScanStatus} setShowroomScanStatus={setShowroomScanStatus} activeShowroomHotspot={activeShowroomHotspot} setActiveShowroomHotspot={setActiveShowroomHotspot} setToastMessage={setToastMessage} setShowroomModalOpen={setShowroomModalOpen} />
 
