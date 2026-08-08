@@ -4,6 +4,10 @@ import React, { useEffect, useState } from 'react'
 
 const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, bookingConfirmed }) => {
 
+    const formStyle = {
+        label: "text-xs font-bold text-black/60 tracking-widest text-mono",
+        input: "w-full px-3 py-2 text-xs border border-black/10 text-slate-800 focus:outline-none rounded-md placeholder-black/70 active:border-sky-50"
+    }
     const [bookingForm, setBookingForm] = useState({
         name: "",
         phone: "",
@@ -14,10 +18,7 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
     });
 
     const [bookingTicket, setBookingTicket] = useState(null);
-    const formStyle = {
-        label: "text-xs font-bold text-black/60 tracking-widest",
-        input: "w-full px-3 py-2 text-xs border border-black/30 text-slate-800 focus:outline-none rounded-lg placeholder-black/70 active:border-sky-50"
-    }
+
 
     const [showroomBookings, setShowroomBookings] = useState(() => {
         const saved = localStorage.getItem("spe_showroom_bookings");
@@ -63,7 +64,7 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
         setBookingConfirmed(true);
     };
     return (
-        <div className="product-quick-view fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="bg-white border border-sky-500 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl relative text-slate-800">
                 <div className="p-6 border-b border-slate-300 flex justify-between items-center bg-[#0F0F0F] font-mono">
                     <div className="flex items-center gap-3">
@@ -89,29 +90,29 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
 
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-1">
-                            <label className="text-[9px] font-bold text-[#888888] uppercase tracking-widest">Mobile Number</label>
-                            <input type="tel" required placeholder="e.g. +91 98765 43210" value={bookingForm.phone} onChange={(e) => setBookingForm(prev => ({ ...prev, phone: e.target.value }))} className="w-full bg-[#ffffff] border border-[#2A2A2A] px-3 py-2 text-xs text-white focus:outline-none focus:border-[#FF5A00] rounded-none placeholder-black/70" />
+                            <label className={formStyle.label}>Mobile Number</label>
+                            <input type="tel" required placeholder="e.g. +91 98765 43210" value={bookingForm.phone} onChange={(e) => setBookingForm(prev => ({ ...prev, phone: e.target.value }))} className={formStyle.input} />
                         </div>
                         <div className="space-y-1">
-                            <label className="text-[9px] font-bold text-[#888888] uppercase tracking-widest">Corporate Email</label>
-                            <input type="email" placeholder="e.g. name@company.com" value={bookingForm.email} onChange={(e) => setBookingForm(prev => ({ ...prev, email: e.target.value }))} className="w-full bg-[#0F0F0F] border border-[#2A2A2A] px-3 py-2 text-xs text-white focus:outline-none focus:border-[#FF5A00] rounded-none placeholder-white/20" />
+                            <label className={formStyle.label}>Corporate Email</label>
+                            <input type="email" placeholder="e.g. name@company.com" value={bookingForm.email} onChange={(e) => setBookingForm(prev => ({ ...prev, email: e.target.value }))} className={formStyle.input} />
                         </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-1">
-                            <label className="text-[9px] font-bold text-[#888888] uppercase tracking-widest">Preferred Date</label>
-                            <input type="date" required value={bookingForm.date} onChange={(e) => setBookingForm(prev => ({ ...prev, date: e.target.value }))} className="w-full bg-[#0F0F0F] border border-[#2A2A2A] px-3 py-2 text-xs text-white focus:outline-none focus:border-[#FF5A00] rounded-none" />
+                            <label className={formStyle.label}>Preferred Date</label>
+                            <input type="date" required value={bookingForm.date} onChange={(e) => setBookingForm(prev => ({ ...prev, date: e.target.value }))} className={formStyle.input} />
                         </div>
                         <div className="space-y-1">
-                            <label className="text-[9px] font-bold text-[#888888] uppercase tracking-widest">Preferred Time Slot</label>
-                            <input type="time" required value={bookingForm.time} onChange={(e) => setBookingForm(prev => ({ ...prev, time: e.target.value }))} className="w-full bg-[#0F0F0F] border border-[#2A2A2A] px-3 py-2 text-xs text-white focus:outline-none focus:border-[#FF5A00] rounded-none" />
+                            <label className={formStyle.label}>Preferred Time Slot</label>
+                            <input type="time" required value={bookingForm.time} onChange={(e) => setBookingForm(prev => ({ ...prev, time: e.target.value }))} className={formStyle.input} />
                         </div>
                     </div>
 
                     <div className="space-y-1">
-                        <label className="text-[9px] font-bold text-[#888888] uppercase tracking-widest">Primary Protection Field</label>
-                        <select value={bookingForm.sector} onChange={(e) => setBookingForm(prev => ({ ...prev, sector: e.target.value }))} className="w-full bg-[#0F0F0F] border border-[#2A2A2A] px-3 py-2 text-xs text-white focus:outline-none focus:border-[#FF5A00] rounded-none">
+                        <label className={formStyle.label}>Primary Protection Field</label>
+                        <select value={bookingForm.sector} onChange={(e) => setBookingForm(prev => ({ ...prev, sector: e.target.value }))} className={formStyle.input}>
                             <option value="residential">Residential Home CCTV &amp; Automation</option>
                             <option value="commercial">Commercial Space Attendance &amp; Security</option>
                             <option value="healthcare">Healthcare Wards Monitoring</option>

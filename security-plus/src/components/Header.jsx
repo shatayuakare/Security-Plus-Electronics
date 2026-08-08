@@ -7,11 +7,7 @@ import { Link, useLocation } from "react-router-dom"
 
 const companytData = { logo: logo, name: "Security Plus Electronics", subName: "CCTV Mall", }
 
-
-
-
 export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser, wishlist, toggleWishlist, accountDropdownOpen, setAccountDropdownOpen, dropdownSubView, setDropdownSubView, logoData, adminEmails, setAdminLoginOpen, setToastMessage, PRODUCTS_DATA, setSelectedProductForQuickView, mobileMenuOpen, setMobileMenuOpen, isAdminMode, setIsAdminMode, inquiryList, setIsInquiryDrawerOpen, accountRef, mobileHamburgerRef, mobileMenuRef, }) => {
-
 
 
   return (

@@ -39,8 +39,6 @@ import GALLERY_ITEMS from "./json/gallary.json"
 import QuickProductView from "./components/QuickProductView";
 import ShowroomExperience from "./components/ShowroomExperience";
 
-
-
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
   whileInView: { opacity: 1, y: 0 },
