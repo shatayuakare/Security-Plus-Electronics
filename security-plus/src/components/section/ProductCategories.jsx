@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import PRODUCT_CATEGORIES from "../../json/productCategories.json"
+import { useState } from "react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
@@ -27,7 +28,9 @@ const staggerItem = {
 
 
 
-export const ProductCategories = ({ loadedImages, setLoadedImages, setBlogCategoryFilter, setActiveTab, }) => {
+export const ProductCategories = ({ loadedImages, setLoadedImages, setActiveTab, }) => {
+  const [blogCategoryFilter, setBlogCategoryFilter] = useState("All");
+
   return (<section className="py-24 px-8 relative z-20 border-b border-slate-100 bg-white">
     <div className="max-w-7xl mx-auto">
       <motion.div {...fadeInUp} className="text-center mb-16">

@@ -59,7 +59,7 @@ export default function Products({ products, productCategories, customerUser, wi
     return formatted
 
   }
-  console.log(products[3])
+  // console.log(products[3])
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
@@ -268,8 +268,6 @@ export default function Products({ products, productCategories, customerUser, wi
                         {!product.on_sale && "Sale"}
                       </span>
 
-
-
                       <button id={`wishlist-toggle-${product.id}`} onClick={(e) => {
                         e.stopPropagation();
                         toggleWishlist(product.id);
@@ -304,7 +302,7 @@ export default function Products({ products, productCategories, customerUser, wi
                     </div>
 
                     <h3 className="text-sm font-bold text-slate-900 uppercase group-hover:text-sky-600 transition-colors line-clamp-2">
-                      {product.name}
+                      {parse(product.name)}
                     </h3>
 
                     <div className="product-short-description text-xs line-clamp-3 mt-4">
