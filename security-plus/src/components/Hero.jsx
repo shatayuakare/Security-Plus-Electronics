@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import img from "../assets/slide/cctv-mall.png"
 
-const Hero = ({ heroSlideIndex, setHeroSlideIndex, setActiveTab, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
+const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
 
   const heroStats = [
     {
@@ -68,7 +68,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setActiveTab, setBookingConfi
 
   const triggerShowroomModal = () => {
     setBookingConfirmed(false);
-    setBookingForm({ name: "", phone: "", email: "", date: "", time: "", sector: "residential" });
+    // setBookingForm({ name: "", phone: "", email: "", date: "", time: "", sector: "residential" });
     setShowroomModalOpen(true);
   };
 
@@ -170,6 +170,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setActiveTab, setBookingConfi
                     <p className="text-sm md:text-base w-full text-slate-300 max-w-2xl leading-relaxed font-sans">
                       {slide.description}
                     </p>
+
                     <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
                       {slide.btnLink && slide.btnLink !== "none" && (
                         <Link to={`${slide.btnLink}`} className={`${idx === 1

@@ -1,27 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
-import { Video, Cpu, Router, BatteryCharging, LockKeyhole, Home, Building, HeartPulse, Briefcase, Factory, ChevronRight, X, Send, Sparkles, Calculator, Calendar, ArrowRight, ShieldCheck, Check, Loader2, Menu, MapPin, Globe, User, HardDrive, Terminal, Zap, Fingerprint, Scan, Key, AlertTriangle, Play, Pause, Eye, Network, RefreshCw, CheckCircle2, Ticket, ShoppingBag, ExternalLink, Printer, Twitter, Linkedin, Facebook, Share2, Link, Volume2, VolumeX, Heart, Plus, Trash2, ClipboardList, ArrowLeft } from "lucide-react";
+import { X, Sparkles, Eye, Twitter, Linkedin, Facebook, Share2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { SOLUTIONS_DATA, SECTORS_DATA, QUICK_QUESTIONS, PRODUCTS_DATA } from "./data";
 import logo from "./assets/images/logo.png";
-import speShowroomTour from "./assets/images/spe_showroom_tour_1782789590181.jpg";
-import speCultureCollab from "./assets/images/spe_culture_collab_1782789609536.jpg";
-import speTrainingClass from "./assets/images/spe_training_class_1782789626461.jpg";
-import securityPlusLogo from "./assets/images/security_plus_logo_1783018092399.jpg";
+
 import AdminPanel from "./components/AdminPanel";
-import { toast, ToastContainer } from "react-toastify"
+import { ToastContainer } from "react-toastify"
 import { SEOManager } from "./components/SEOManager";
-import { getProductImageUrls } from "./components/BlurUpImage";
+
 import BrandCarousel from "./components/BrandCarousel";
 import { Header } from "./components/Header";
 import { ProductCategories } from "./components/section/ProductCategories";
 import { VirtualShowroom } from "./components/VirtualShowroom";
-import { SectorsWeProtect } from "./components/SectorsWeProtect";
-import { SurveillancePlanner } from "./components/SurveillancePlanner";
 
 // Import pages
 import { ScrollableTestimonials, OurThought, OurBlogs, FAQSection, CorporateContactForm, OurLocation } from "./pages/Home";
-import { BrowserRouter, Route, Routes, useLocation, useNavigation } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Careers from "./pages/Careers";
@@ -39,71 +33,11 @@ import ReelSection from "./components/section/ReelSection";
 
 
 // JSON file to fetch data
-import PRODUCT_CATEGORIES from "./json/productCategories.json"
 import TESTIMONIALS_DATA from "./json/testimonials.json"
 import PRODUCTS from "./json/wooProducts.json"
 import GALLERY_ITEMS from "./json/gallary.json"
-
-
-// const GALLERY_ITEMS = [
-//   {
-//     id: "gal-1",
-//     category: "showroom",
-//     image: speShowroomTour,
-//     title: "Nagpur Flagship Showroom",
-//     description: "Central India's premiere retail and enterprise showroom layout, displaying rows of high-performance IP cameras, customized mounting brackets, and recording stacks.",
-//     location: "SITABULDI MAIN ROAD, NAGPUR",
-//     isPlaceholder: false
-//   },
-//   {
-//     id: "gal-2",
-//     category: "culture",
-//     image: speCultureCollab,
-//     title: "Collaborative Engineering Workspace",
-//     description: "Our team of network technicians and software security specialists collaborating on a major commercial layout blueprint design in Nagpur.",
-//     location: "HQ OFFICE, NAGPUR",
-//     isPlaceholder: false
-//   },
-//   {
-//     id: "gal-3",
-//     category: "technical",
-//     image: speTrainingClass,
-//     title: "SPE Free Tech Training Academy",
-//     description: "Instructor showing freshers and students how to plug and configure CCTV camera arrays during a free weekend technical surveillance masterclass.",
-//     location: "TRAINING WING, NAGPUR",
-//     isPlaceholder: false
-//   },
-//   {
-//     id: "gal-4",
-//     category: "technical",
-//     iconName: "Terminal",
-//     bgColor: "from-sky-900 to-slate-950",
-//     title: "Fiber Optic Splicing Board",
-//     description: "Splicing high-density fiber backbones for Central India commercial grids. Standardizing low latency network relays for robust stream distribution.",
-//     location: "SURVEILLANCE GRID LAB",
-//     isPlaceholder: true
-//   },
-//   {
-//     id: "gal-5",
-//     category: "culture",
-//     iconName: "ShieldCheck",
-//     bgColor: "from-indigo-900 to-slate-950",
-//     title: "Nagpur Safe City Initiative",
-//     description: "SPE engineering leaders organizing local community panels to explain biometric data compliance and CCTV system integrity to local Nagpur associations.",
-//     location: "NAGPUR COMMUNITY OUTREACH",
-//     isPlaceholder: true
-//   },
-//   {
-//     id: "gal-6",
-//     category: "showroom",
-//     iconName: "Video",
-//     bgColor: "from-emerald-900 to-slate-950",
-//     title: "Live Demo Diagnostic Wall",
-//     description: "Our showroom demo panel mounting the latest F1.0 full-color low-light cameras, coaxial power supply configurations, and network switches.",
-//     location: "SPE MALL WING B",
-//     isPlaceholder: true
-//   }
-// ];
+import QuickProductView from "./components/QuickProductView";
+import ShowroomExperience from "./components/ShowroomExperience";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
@@ -117,21 +51,6 @@ const fadeIn = {
   viewport: { once: true, margin: "-100px" },
   transition: { duration: 0.8, ease: "easeOut" }
 };
-const staggerContainer = {
-  initial: {},
-  whileInView: {
-    transition: {
-      staggerChildren: 0.12
-    }
-  },
-  viewport: { once: true, margin: "-100px" }
-};
-const staggerItem = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
-};
-
 
 
 function App() {
@@ -139,60 +58,16 @@ function App() {
   const location = useLocation();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isLightMode, setIsLightMode] = useState(false);
-  const [chatOpen, setChatOpen] = useState(false);
 
-  const [chatMessages, setChatMessages] = useState([
-    {
-      role: "assistant",
-      content: "Hello! I am SPE Sentinel, your dedicated AI Security Assistant. I can help you select security setups, calculate storage space, explain AI cameras, or draft a layout for your premises. How can I protect you today?"
-    }
-  ]);
-  const [userInput, setUserInput] = useState("");
-  const [chatLoading, setChatLoading] = useState(false);
-  const chatBottomRef = useRef(null);
-  const [selectedSolution, setSelectedSolution] = useState(null);
-  const [selectedSector, setSelectedSector] = useState(null);
   const [showroomModalOpen, setShowroomModalOpen] = useState(false);
-  const [cctvRes, setCctvRes] = useState("4K");
-  const [cctvNightMode, setCctvNightMode] = useState(false);
-  const [cctvFps, setCctvFps] = useState(30);
-  const [aiActiveScan, setAiActiveScan] = useState(null);
-  const [aiScanLogs, setAiScanLogs] = useState([
-    "System booted.",
-    "Optical feeds synchronized on Layer 3 network."
-  ]);
-
-  const [powerCamCount, setPowerCamCount] = useState(8);
-  const [powerBackupHours, setPowerBackupHours] = useState(4);
-  const [lockStatus, setLockStatus] = useState("idle");
-  const [selectedLockMethod, setSelectedLockMethod] = useState("fingerprint");
-
-  const [bookingForm, setBookingForm] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    date: "",
-    time: "",
-    sector: "residential"
-  });
 
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
-  const [bookingTicket, setBookingTicket] = useState(null);
+
+
   const [activeShowroomHotspot, setActiveShowroomHotspot] = useState(null);
   const [showroomScanStatus, setShowroomScanStatus] = useState("idle");
-  const [calcInput, setCalcInput] = useState({
-    premisesType: "home",
-    areaSizeSqFt: 1500,
-    indoorCams: 4,
-    outdoorCams: 2,
-    resolution: "4K",
-    retentionDays: 30,
-    continuousRecording: true
-  });
-  const [calcResult, setCalcResult] = useState(null);
+
   const [toastMessage, setToastMessage] = useState(null);
-  const [activeTab, setActiveTab] = useState("home");
   const [customerUser, setCustomerUser] = useState(() => {
     const saved = localStorage.getItem("spe_customer_user");
     return saved ? JSON.parse(saved) : null;
@@ -370,21 +245,9 @@ function App() {
       linkedin: "https://linkedin.com/securitypluselectronics"
     };
   });
-  const [openFaqIndex, setOpenFaqIndex] = useState(null);
-  const [wostonModalOpen, setWostonModalOpen] = useState(false);
-  const [isRedirecting, setIsRedirecting] = useState(false);
-  const [redirectProgress, setRedirectProgress] = useState(0);
+
   const [testimonials, setTestimonials] = useState(TESTIMONIALS_DATA);
-  const [newFeedback, setNewFeedback] = useState({
-    clientName: "",
-    designation: "",
-    organization: "",
-    category: "commercial",
-    rating: 5,
-    content: "",
-    systemInstalled: ""
-  });
-  const [feedbackSuccess, setFeedbackSuccess] = useState(false);
+
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [adminEmails, setAdminEmails] = useState(() => {
     const saved = localStorage.getItem("spe_admin_emails");
@@ -451,28 +314,7 @@ function App() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleShareProduct = async (product) => {
-    const shareData = {
-      title: product.name,
-      text: `${product.name} - ${product.desc}. Price: ${product.price}. Available at Security Plus Electronics Nagpur.`,
-      url: window.location.href,
-    };
-    try {
-      if (navigator.share) {
-        await navigator.share(shareData);
-        setToastMessage("Product details shared successfully!");
-      }
-      else {
-        await navigator.clipboard.writeText(`${shareData.title}\n${shareData.text}\nLink: ${shareData.url}`);
-        setToastMessage("Product link and specifications copied to clipboard!");
-      }
-    }
-    catch (err) {
-      if (err.name !== "AbortError") {
-        setToastMessage("Sharing failed: " + err.message);
-      }
-    }
-  };
+
   const [supportTickets, setSupportTickets] = useState(() => {
     const saved = localStorage.getItem("spe_support_tickets");
     if (saved)
@@ -548,23 +390,7 @@ function App() {
       }
     ];
   });
-  const [showroomBookings, setShowroomBookings] = useState(() => {
-    const saved = localStorage.getItem("spe_showroom_bookings");
-    if (saved)
-      return JSON.parse(saved);
-    return [
-      {
-        id: "SPE-BK-321094",
-        name: "Harish Kumar",
-        phone: "+91 91234 56789",
-        email: "harish.k@tcs.com",
-        date: "2026-07-03",
-        time: "11:00",
-        sector: "residential",
-        status: "Confirmed"
-      }
-    ];
-  });
+
   const [subscribers, setSubscribers] = useState(() => {
     const saved = localStorage.getItem("spe_subscribers");
     if (saved)
@@ -578,9 +404,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem("spe_career_apps", JSON.stringify(careerApplications));
   }, [careerApplications]);
-  useEffect(() => {
-    localStorage.setItem("spe_showroom_bookings", JSON.stringify(showroomBookings));
-  }, [showroomBookings]);
   useEffect(() => {
     localStorage.setItem("spe_subscribers", JSON.stringify(subscribers));
   }, [subscribers]);
@@ -618,25 +441,6 @@ function App() {
   }, []);
 
   const [selectedBlog, setSelectedBlog] = useState(null);
-  const [blogCategoryFilter, setBlogCategoryFilter] = useState("All");
-
-  const [testimonialFilter, setTestimonialFilter] = useState("all");
-
-  const [contactForm, setContactForm] = useState({
-    name: "",
-    company: "",
-    email: "",
-    phone: "",
-    department: "sales",
-    message: ""
-  });
-  const [contactTicket, setContactTicket] = useState(null);
-  const [pinging, setPinging] = useState(false);
-  const [pingResults, setPingResults] = useState([]);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
-  useEffect(() => {
-    chatBottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chatMessages, chatLoading]);
 
   useEffect(() => {
     const alerts = [
@@ -653,9 +457,7 @@ function App() {
     return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    handleRunCalculator();
-  }, [calcInput]);
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -663,225 +465,7 @@ function App() {
     }, 1500);
   }, [toastMessage])
 
-  const triggerAiScan = (type) => {
-    setAiActiveScan(type);
-    let logMsg = "";
-    if (type === "face")
-      logMsg = "Executing 360° Pan Sweep... Horizontal panoramic sweep complete. Coverage: 100%.";
-    if (type === "vehicle")
-      logMsg = "Zooming lens in... 45x Optical Zoom engaged. Distant license plates resolved clearly.";
-    if (type === "tripwire")
-      logMsg = "Engaging Laser Night Vision... Long-range infrared spotlight adjusted to 150m.";
-    if (type === "safety")
-      logMsg = "Initiating Patrol Sweep... Route #2 active (Warehouse perimeters). Zero blind spots detected.";
-    setAiScanLogs(prev => [logMsg, ...prev.slice(0, 4)]);
-    setTimeout(() => {
-      setAiActiveScan(null);
-    }, 4000);
-  };
 
-  const handleSendMessage = async (textToSend) => {
-    const input = textToSend || userInput;
-    if (!input.trim())
-      return;
-    const userMsg = { role: "user", content: input };
-    setChatMessages(prev => [...prev, userMsg]);
-    if (!textToSend)
-      setUserInput("");
-    setChatLoading(true);
-    try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: [...chatMessages, userMsg] })
-      });
-      const data = await response.json();
-      if (data.text) {
-        setChatMessages(prev => [...prev, { role: "assistant", content: data.text }]);
-      }
-      else {
-        setChatMessages(prev => [...prev, { role: "assistant", content: "Sorry, I am facing an issue connecting with the secure backend. Let me help you offline: SPE in Nagpur offers complete 4K CCTV setups, smart biometric lock integration, and robust power grids. Visit our physical store or request a call!" }]);
-      }
-    }
-    catch (err) {
-      console.error(err);
-      setChatMessages(prev => [...prev, { role: "assistant", content: "I was unable to establish a secure link. Security Plus Electronics in Nagpur is ready to assist you physically at our grand showroom!" }]);
-    }
-    finally {
-      setChatLoading(false);
-    }
-  };
-
-  const handleRunCalculator = () => {
-    const cams = calcInput.indoorCams + calcInput.outdoorCams;
-    if (cams <= 0) {
-      setCalcResult(null);
-      return;
-    }
-    // NVR channels is next power of 2 from (4, 8, 16, 32, 64)
-    let nvr = 4;
-    if (cams > 4)
-      nvr = 8;
-    if (cams > 8)
-      nvr = 16;
-    if (cams > 16)
-      nvr = 32;
-    if (cams > 32)
-      nvr = 64;
-    const ratePerCamGB = calcInput.resolution === "1080p" ? 15 : 45;
-    let totalGB = cams * ratePerCamGB * calcInput.retentionDays;
-    if (!calcInput.continuousRecording) {
-      totalGB = totalGB * 0.4;
-    }
-    const storageTB = parseFloat((totalGB / 1024).toFixed(2));
-    const hddCount = Math.ceil(storageTB / 4);
-    const recommendedHDD = `${hddCount}x 4TB Western Digital Purple Surveillance HDD (Total: ${hddCount * 4}TB)`;
-    const wattLoad = (cams * 15) + 40;
-    const upsVA = Math.ceil((wattLoad / 0.7) * 1.4 * (calcInput.retentionDays > 0 ? 1.2 : 1));
-    const cables = cams * 25;
-    const labor = Math.ceil(cams / 2);
-    const specs = [
-      `Secure Layer 2 PoE Switch with ${nvr} Gigabit ethernet ports`,
-      `Cat6 Shielded Solid Copper network cables with RJ45 weatherproofing boots`,
-      `Surveillance-grade heavy-duty outdoor camera junction boxes`,
-      `Smart mobile application setup on up to 5 smartphones with remote live view authorization`,
-      `AI motion tracking and smart zone alerts configuration`
-    ];
-    setCalcResult({
-      recommendedCameras: cams,
-      nvrChannels: nvr,
-      storageRequiredTB: storageTB,
-      recommendedStorageHDD: recommendedHDD,
-      backupUpsRatingVA: upsVA,
-      estimatedCablesMeters: cables,
-      estimatedLaborDays: labor,
-      recommendedSpecs: specs
-    });
-  };
-
-  const runSmartLockAuth = () => {
-    setLockStatus("scanning");
-    setTimeout(() => {
-      const success = Math.random() > 0.2;
-      setLockStatus(success ? "granted" : "denied");
-    }, 1800);
-  };
-
-  const handleBookShowroom = (e) => {
-    e.preventDefault();
-    if (!bookingForm.name || !bookingForm.phone || !bookingForm.date)
-      return;
-    const randomTicketNo = `SPE-BK-${Math.floor(100000 + Math.random() * 900000)}`;
-    const newBooking = {
-      id: randomTicketNo,
-      name: bookingForm.name,
-      phone: bookingForm.phone,
-      email: bookingForm.email || "No Email Provided",
-      date: bookingForm.date,
-      time: bookingForm.time || "12:00",
-      sector: bookingForm.sector || "residential",
-      status: "Confirmed"
-    };
-    setShowroomBookings(prev => [newBooking, ...prev]);
-    setBookingTicket({
-      ticketNo: randomTicketNo,
-      ...bookingForm
-    });
-    setBookingConfirmed(true);
-  };
-
-
-  const handleSubmitFeedback = (e) => {
-    e.preventDefault();
-    if (!newFeedback.clientName || !newFeedback.content)
-      return;
-    const feedbackItem = {
-      id: `t-user-${Date.now()}`,
-      clientName: newFeedback.clientName,
-      designation: newFeedback.designation || "Valued Client",
-      organization: newFeedback.organization || "Independent",
-      category: newFeedback.category,
-      rating: newFeedback.rating,
-      content: newFeedback.content,
-      systemInstalled: newFeedback.systemInstalled || "Custom SPE Surveillance Pack",
-      date: new Date().toISOString().split("T")[0],
-      verified: true
-    };
-    setTestimonials(prev => [feedbackItem, ...prev]);
-    setFeedbackSuccess(true);
-    setNewFeedback({
-      clientName: "",
-      designation: "",
-      organization: "",
-      category: "commercial",
-      rating: 5,
-      content: "",
-      systemInstalled: ""
-    });
-    setTimeout(() => setFeedbackSuccess(false), 3000);
-  };
-
-  const handleContactSubmit = (e) => {
-    e.preventDefault();
-    if (!contactForm.name || !contactForm.email || !contactForm.message)
-      return;
-    const randomTicketId = `SPE-TKT-${Math.floor(100000 + Math.random() * 900000)}`;
-    const randomEngineer = ["Sandeep Agnihotri", "Manoj Kulkarni", "Prateek Deshpande", "Amrita Rao"][Math.floor(Math.random() * 4)];
-
-    const newTicket = {
-      id: randomTicketId,
-      name: contactForm.name,
-      company: contactForm.company || "Residential Client",
-      email: contactForm.email,
-      phone: contactForm.phone || "",
-      department: contactForm.department,
-      message: contactForm.message,
-      date: new Date().toISOString().split('T')[0],
-      status: "Open",
-      assignedTo: randomEngineer,
-      notes: ["Ticket generated automatically on customer inquiry submission."]
-    };
-
-    setSupportTickets(prev => [newTicket, ...prev]);
-    setContactTicket({
-      ticketId: randomTicketId,
-      assignedEngineer: randomEngineer,
-      estimatedResponse: "2 Hours SLA Guarantee",
-      ...contactForm
-    });
-
-    setContactForm({
-      name: "",
-      company: "",
-      email: "",
-      phone: "",
-      department: "sales",
-      message: ""
-    });
-  };
-
-
-  const getIcon = (name, className = "h-6 w-6 text-primary") => {
-    switch (name) {
-      case "Video": return <Video className={className} />;
-      case "Cpu": return <Cpu className={className} />;
-      case "Router": return <Router className={className} />;
-      case "BatteryCharging": return <BatteryCharging className={className} />;
-      case "LockKeyhole": return <LockKeyhole className={className} />;
-      case "Home": return <Home className={className} />;
-      case "Building": return <Building className={className} />;
-      case "HeartPulse": return <HeartPulse className={className} />;
-      case "Briefcase": return <Briefcase className={className} />;
-      case "Factory": return <Factory className={className} />;
-      default: return <Video className={className} />;
-    }
-  };
-  const filteredGalleryItems = GALLERY_ITEMS.filter(item => {
-    if (testimonialFilter === "all" || !["showroom", "culture", "technical"].includes(testimonialFilter)) {
-      return true;
-    }
-    return item.category === testimonialFilter;
-  });
   if (isAdminMode) {
     return (<AdminPanel onExit={() => setIsAdminMode(false)} supportTickets={supportTickets} setSupportTickets={setSupportTickets} careerApplications={careerApplications} setCareerApplications={setCareerApplications} subscribers={subscribers} setSubscribers={setSubscribers} setToastMessage={setToastMessage} products={products} setProducts={setProducts} productCategories={productCategories} setProductCategories={setProductCategories} contactData={contactData} setContactData={setContactData} logoData={logoData} setLogoData={setLogoData} socialLinks={socialLinks} setSocialLinks={setSocialLinks} reels={reels} setReels={setReels} adminEmails={adminEmails} setAdminEmails={setAdminEmails} adminPasscodeVal={adminPasscodeVal} setAdminPasscodeVal={setAdminPasscodeVal} />);
   }
@@ -891,22 +475,20 @@ function App() {
 
   return (
     <>
-      <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} adminEmails={adminEmails} setAdminLoginOpen={setAdminLoginOpen} setToastMessage={setToastMessage} PRODUCTS_DATA={PRODUCTS_DATA} getProductImageUrls={getProductImageUrls} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} isAdminMode={isAdminMode} setIsAdminMode={setIsAdminMode} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
+      <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} adminEmails={adminEmails} setAdminLoginOpen={setAdminLoginOpen} setToastMessage={setToastMessage} PRODUCTS={PRODUCTS} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} isAdminMode={isAdminMode} setIsAdminMode={setIsAdminMode} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
 
       <SEOManager />
 
       <main className={location.pathname === "/" ? "pt-0 bg-[#070913]" : "pt-20 bg-white"}>
-
         <Routes>
           <Route path="/" element={<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <Hero heroSlideIndex={heroSlideIndex} setHeroSlideIndex={setHeroSlideIndex} setActiveTab={setActiveTab} setBookingConfirmed={setBookingConfirmed} setBookingForm={setBookingForm} setShowroomModalOpen={setShowroomModalOpen} />
+            <Hero heroSlideIndex={heroSlideIndex} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} setBookingConfirmed={setBookingConfirmed} />
 
             <BrandCarousel />
 
-            <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} setBlogCategoryFilter={setBlogCategoryFilter} setActiveTab={setActiveTab} />
+            <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} />
 
-
-            {/* <VirtualShowroom loadedImages={loadedImages} setLoadedImages={setLoadedImages} showroomScanStatus={showroomScanStatus} setShowroomScanStatus={setShowroomScanStatus} activeShowroomHotspot={activeShowroomHotspot} setActiveShowroomHotspot={setActiveShowroomHotspot} setToastMessage={setToastMessage} setBookingConfirmed={setBookingConfirmed} setBookingForm={setBookingForm} setShowroomModalOpen={setShowroomModalOpen} /> */}
+            <VirtualShowroom loadedImages={loadedImages} setLoadedImages={setLoadedImages} showroomScanStatus={showroomScanStatus} setShowroomScanStatus={setShowroomScanStatus} activeShowroomHotspot={activeShowroomHotspot} setActiveShowroomHotspot={setActiveShowroomHotspot} setToastMessage={setToastMessage} setShowroomModalOpen={setShowroomModalOpen} />
 
             <ReelSection />
 
@@ -940,9 +522,16 @@ function App() {
         </Routes>
       </main>
 
+      {/* Selected Product Quick View */}
+      <AnimatePresence>
+        {selectedProductForQuickView &&
+          <QuickProductView selectedProductForQuickView={selectedProductForQuickView} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} setInquiryList={setInquiryList} inquiryList={inquiryList} />
+        }
+      </AnimatePresence>
+
+      {/* Toast View */}
       <AnimatePresence>
         {toastMessage && (<motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:right-auto z-50 w-auto md:w-120 bg-slate-900/95 backdrop-blur-md text-white p-3.5 rounded-xl border border-slate-800 flex items-start gap-3 shadow-2xl">
-
           <Sparkles className="h-4 w-4 text-sky-400 shrink-0 mt-0.5 animate-pulse" />
           <div className="flex-1 min-w-0">
             <span className="font-mono font-bold text-[9px] tracking-widest text-sky-400 uppercase block">SYSTEM SENTINEL GUARD</span>
@@ -953,6 +542,122 @@ function App() {
           </button>
         </motion.div>)}
       </AnimatePresence>
+
+      {/* quick view Blog modal */}
+      <AnimatePresence>
+        {selectedBlog &&
+          (<div className="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4">
+            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="bg-[#121212] border border-[#2A2A2A] w-full max-w-3xl max-h-[90vh] flex flex-col shadow-2xl rounded-none">
+              {/* Header */}
+              <div className="p-6 border-b border-[#2A2A2A] flex justify-between items-start bg-[#0F0F0F]">
+                <div>
+                  <div className="flex items-center gap-2 mb-2 font-mono">
+                    <span className="text-[9px] px-2 py-0.5 bg-[#FF5A00]/10 text-[#FF5A00] border border-[#FF5A00]/30 uppercase font-bold tracking-widest">
+                      {selectedBlog.category}
+                    </span>
+                    <span className="text-[9px] text-[#888888] uppercase tracking-wider">• {selectedBlog.readTime}</span>
+                  </div>
+                  <h3 className="font-headline font-bold text-lg md:text-2xl text-white uppercase tracking-wide leading-snug">
+                    {selectedBlog.title}
+                  </h3>
+                </div>
+                <button onClick={() => setSelectedBlog(null)} className="text-on-surface-variant hover:text-white p-1 hover:bg-white/5 transition-all cursor-pointer shrink-0 ml-4">
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <div className="p-6 md:p-8 space-y-6 overflow-y-auto font-mono text-xs text-on-surface-variant leading-relaxed">
+                <div className="flex items-center gap-3 p-4 bg-[#0F0F0F] border border-[#2A2A2A] rounded-none">
+                  <div className="w-10 h-10 rounded-none bg-[#FF5A00] text-white flex items-center justify-center font-bold text-sm uppercase">
+                    {selectedBlog.author.slice(0, 2)}
+                  </div>
+                  <div>
+                    <span className="text-white text-xs font-bold block uppercase">{selectedBlog.author}</span>
+                    <span className="text-[9px] text-[#888888] uppercase block">{selectedBlog.authorRole}</span>
+                  </div>
+                  <div className="ml-auto text-right text-[9px] text-[#888888] uppercase">
+                    <span>Published: </span>
+                    <span className="text-white font-bold block">{selectedBlog.date}</span>
+                  </div>
+                </div>
+
+                <div className="space-y-4 whitespace-pre-line text-gray-300">
+                  {selectedBlog.content}
+                </div>
+
+                {selectedBlog.tags && (<div className="pt-4 border-t border-[#2A2A2A] flex flex-wrap gap-2 items-center">
+                  <span className="text-[9px] text-[#888888] uppercase tracking-widest font-bold">TAGS:</span>
+                  {selectedBlog.tags.map((tag, idx) => (<span key={idx} className="text-[9px] bg-white/5 border border-[#2A2A2A] px-2.5 py-1 text-white uppercase font-bold">
+                    #{tag}
+                  </span>))}
+                </div>)}
+
+                <div className="pt-4 border-t border-[#2A2A2A] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[9px] text-[#888888] uppercase tracking-widest font-bold">SHARE INTEL:</span>
+                    <div className="flex items-center gap-1.5">
+                      <button onClick={() => {
+                        const url = encodeURIComponent(window.location.href);
+                        const text = encodeURIComponent(`Check out this security insight: ${selectedBlog.title}`);
+                        window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
+                      }} className="p-2 border border-[#2A2A2A] hover:border-sky-500 hover:bg-sky-500/10 text-[#888888] hover:text-sky-500 transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on X">
+                        <Twitter className="h-3.5 w-3.5" />
+                      </button>
+                      <button onClick={() => {
+                        const url = encodeURIComponent(window.location.href);
+                        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, "_blank");
+                      }} className="p-2 border border-[#2A2A2A] hover:border-sky-500 hover:bg-sky-500/10 text-[#888888] hover:text-sky-500 transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on LinkedIn">
+                        <Linkedin className="h-3.5 w-3.5" />
+                      </button>
+                      <button onClick={() => {
+                        const url = encodeURIComponent(window.location.href);
+                        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+                      }} className="p-2 border border-[#2A2A2A] hover:border-sky-500 hover:bg-sky-500/10 text-[#888888] hover:text-sky-500 transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on Facebook">
+                        <Facebook className="h-3.5 w-3.5" />
+                      </button>
+                      <button onClick={() => {
+                        const url = encodeURIComponent(window.location.href);
+                        const text = encodeURIComponent(`Read "${selectedBlog.title}" at Security Plus Electronics`);
+                        window.open(`https://api.whatsapp.com/send?text=${text}%20${url}`, "_blank");
+                      }} className="p-2 border border-[#2A2A2A] hover:border-sky-500 hover:bg-sky-500/10 text-[#888888] hover:text-sky-500 transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on WhatsApp">
+                        <Share2 className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
+                  </div>
+
+                  <button onClick={() => {
+                    navigator.clipboard.writeText(`${window.location.origin}/blog/${selectedBlog.id || "article"}`);
+                    setToastMessage("Secure link copied to clipboard.");
+                  }} className="flex items-center gap-1.5 px-3 py-1.5 border border-[#2A2A2A] hover:border-sky-500 text-on-surface-variant hover:text-sky-500 hover:bg-sky-500/10 transition-all text-[10px] font-bold tracking-wider uppercase rounded-none cursor-pointer self-start sm:self-auto">
+                    <Link className="h-3 w-3" />
+                    Copy Secure Link
+                  </button>
+                </div>
+              </div>
+
+              <div className="p-4 border-t border-[#2A2A2A] bg-[#0F0F0F] flex justify-end gap-3 font-mono shrink-0">
+                <button onClick={() => setSelectedBlog(null)} className="px-5 py-2.5 border border-[#2A2A2A] text-[10px] font-bold tracking-wider uppercase hover:bg-white/5 text-white transition-all rounded-none">
+                  Close Article
+                </button>
+
+                <button onClick={() => {
+                  setSelectedBlog(null);
+                  setBookingConfirmed(false);
+                  setShowroomModalOpen(true);
+                }} className="bg-[#FF5A00] hover:bg-[#E04E00] text-white px-5 py-2.5 font-bold text-[10px] tracking-widest uppercase border border-[#FF5A00] transition-all rounded-none">
+                  Discuss Tech with advisor
+                </button>
+              </div>
+            </motion.div>
+          </div>)}
+      </AnimatePresence>
+
+      {/* Showroom Modal */}
+      <AnimatePresence >
+        {showroomModalOpen &&
+          <ShowroomExperience setShowroomModalOpen={setShowroomModalOpen} />
+        }
+      </AnimatePresence >
 
       <Footer logoData={logoData} />
 

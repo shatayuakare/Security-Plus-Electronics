@@ -2,15 +2,12 @@ import React from "react";
 import { Heart, User, Terminal, X, Menu, ClipboardList, ShoppingBag, ArrowLeft, Trash2, Eye } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import logo from "../assets/images/logo.png";
+import { getProductImageUrls } from "../components/BlurUpImage";
 import { Link, useLocation } from "react-router-dom"
 
 const companytData = { logo: logo, name: "Security Plus Electronics", subName: "CCTV Mall", }
 
-
-
-
-export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser, wishlist, toggleWishlist, accountDropdownOpen, setAccountDropdownOpen, dropdownSubView, setDropdownSubView, logoData, adminEmails, setAdminLoginOpen, setToastMessage, PRODUCTS_DATA, getProductImageUrls, setSelectedProductForQuickView, mobileMenuOpen, setMobileMenuOpen, isAdminMode, setIsAdminMode, inquiryList, setIsInquiryDrawerOpen, accountRef, mobileHamburgerRef, mobileMenuRef, }) => {
-
+export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser, wishlist, toggleWishlist, accountDropdownOpen, setAccountDropdownOpen, dropdownSubView, setDropdownSubView, logoData, adminEmails, setAdminLoginOpen, setToastMessage, PRODUCTS_DATA, setSelectedProductForQuickView, mobileMenuOpen, setMobileMenuOpen, isAdminMode, setIsAdminMode, inquiryList, setIsInquiryDrawerOpen, accountRef, mobileHamburgerRef, mobileMenuRef, }) => {
 
 
   return (

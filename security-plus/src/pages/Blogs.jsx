@@ -14,7 +14,6 @@ const Blogs = ({ subscribers, setSubscribers, setToastMessage, setSelectedBlog }
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-7xl mx-auto font-sans">
-
           <div className="text-center mb-12">
             <span className="font-sans font-bold text-[10px] text-sky-600 tracking-widest uppercase block mb-3">TECH LOGS // SECURITY ACADEMY</span>
             <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-slate-900 uppercase">Surveillance Logs &amp; Guides</h2>
