@@ -93,126 +93,16 @@ body {
   background: #0ea5e9;
 }
 
-/* ==========================================================================
-   GLOBAL CORPORATE STYLE OVERRIDES (White Canvas & Sky Blue Theme)
-   ========================================================================== */
 
-/* Force all dark background modules to pure white */
-div[class*="bg-[#08090C]"],
-div[class*="bg-[#060913]"],
-div[class*="bg-[#0D0E12]"],
-main[class*="bg-[#08090C]"],
-section[class*="bg-[#08090C]"],
-section[class*="bg-[#060913]"],
-header[class*="bg-[#08090C]"] {
-  background-color: #FFFFFF !important;
-}
-
-/* Force secondary dark items to clean slate gray */
-div[class*="bg-[#121212]"],
-div[class*="bg-[#0F0F0F]"],
-div[class*="bg-[#151515]"],
-div[class*="bg-[#101116]"] {
-  background-color: #F8FAFC !important;
-  color: #1E293B !important;
-}
-
-/* Map old orange accents (#FF5A00) to Corporate Sky Blue (#0284C7) */
-[class*="text-[#FF5A00]"] {
-  color: #0284C7 !important;
-}
-
-[class*="bg-[#FF5A00]"],
-[class*="bg-[#E04E00]"] {
-  background-color: #0284C7 !important;
-  color: #FFFFFF !important;
-}
-
-[class*="border-[#FF5A00]"] {
-  border-color: #0284C7 !important;
-}
-
-[class*="selection:bg-[#FF5A00]"]::selection {
-  background-color: #0284C7 !important;
-}
-
-[class*="bg-[#FF5A00]/5"] {
-  background-color: rgba(2, 132, 199, 0.05) !important;
-}
-
-[class*="bg-[#FF5A00]/10"] {
-  background-color: rgba(2, 132, 199, 0.08) !important;
-}
-
-/* Standardize dark borders to light borders */
-[class*="border-[#2A2A2A]"],
-[class*="border-[#1A1C23]"] {
-  border-color: #E2E8F0 !important;
-}
-
-/* Standardize dark/grey text to elegant corporate slate gray */
-[class*="text-[#888888]"] {
-  color: #64748B !important;
-}
-
-[class*="text-on-surface-variant"] {
-  color: #475569 !important;
-}
-
-[class*="hover:bg-[#FF5A00]"]:hover {
-  background-color: #0369A1 !important;
-  color: #FFFFFF !important;
-}
-
-[class*="hover:border-[#FF5A00]"]:hover {
-  border-color: #0284C7 !important;
-}
-
-[class*="hover:text-white"]:hover {
-  color: #ffffff !important;
-}
-
-[class*="hover:bg-white/5"]:hover {
-  background-color: #F1F5F9 !important;
-}
-
-/* Correct text colors inside dark container components to protect legibility */
-div[class*="bg-[#121212]"] *,
-div[class*="bg-[#0F0F0F]"] * {
-  color: #334155 !important;
-}
-
-div[class*="bg-[#121212]"] h1,
-div[class*="bg-[#121212]"] h2,
-div[class*="bg-[#121212]"] h3,
-div[class*="bg-[#121212]"] h4,
-div[class*="bg-[#0F0F0F]"] h1,
-div[class*="bg-[#0F0F0F]"] h2,
-div[class*="bg-[#0F0F0F]"] h3,
-div[class*="bg-[#0F0F0F]"] h4 {
-  color: #0F172A !important;
-}
-
-div[class*="bg-[#121212]"] p,
-div[class*="bg-[#0F0F0F]"] p {
-  color: #475569 !important;
-}
-
-div[class*="bg-[#121212]"] span,
-div[class*="bg-[#0F0F0F]"] span {
-  color: #475569 !important;
-}
-
-/* Protect white text on buttons */
-button[class*="bg-[#FF5A00]"] *,
-button[class*="bg-[#E04E00]"] * {
-  color: #FFFFFF;
-}
-
-/* Smooth transition for active tags */
 .active-tab-highlight {
   border-bottom: 2px solid #0284C7;
 }
+
+img {
+  border-style: solid !important;
+}
+
+
 
 @media print {
 
@@ -247,6 +137,7 @@ button[class*="bg-[#E04E00]"] * {
   #printable-quote-section .border-sky-600 {
     border-color: #0284C7 !important;
   }
+
 
   #printable-quote-section .text-sky-700 {
     color: #0369A1 !important;

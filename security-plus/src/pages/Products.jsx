@@ -120,126 +120,6 @@ export default function Products({ products, productCategories, customerUser, wi
           </div>
 
           <motion.div key={`${blogCategoryFilter}-${productSortOption}`} variants={staggerContainer} initial="initial" animate="whileInView" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* {(() => {
-              const filtered = products.filter(p => {
-                if (blogCategoryFilter === "All")
-                  return true;
-                return p.category === blogCategoryFilter;
-              });
-
-              const sorted = [...filtered].sort((a, b) => {
-                if (productSortOption === "price-asc" || productSortOption === "price-desc") {
-                  const priceA = parseFloat(a.price.replace(/[^\d.]/g, "")) || 0;
-                  const priceB = parseFloat(b.price.replace(/[^\d.]/g, "")) || 0;
-                  return productSortOption === "price-asc" ? priceA - priceB : priceB - priceA;
-                }
-                else if (productSortOption === "rating-desc") {
-                  return b.rating - a.rating;
-                }
-                return 0;
-              });
-              return sorted.map((product) => (<motion.div layout variants={staggerItem} key={product.id} whileHover={{
-                scale: 1.02,
-                borderColor: "#0284C7",
-                boxShadow: "0 20px 40px -15px rgba(2, 132, 199, 0.1)"
-              }} className="bg-white border border-slate-200/80 flex flex-col justify-between p-6 relative rounded-2xl group cursor-pointer transition-all duration-300 shadow-sm">
-                <div>
-                  <div className="flex justify-between items-center mb-4 text-[9px] text-slate-500 font-bold">
-                    <span className="uppercase border border-sky-100 px-2.5 py-1 bg-sky-50 text-sky-700 rounded-lg">
-                      {product.category}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      ⭐ {product.rating}
-                    </span>
-                  </div>
-
-                  <div className="aspect-video bg-slate-100 border border-slate-100 rounded-xl mb-4 relative group-hover:border-sky-200 transition-colors overflow-hidden flex items-center justify-center">
-                    {(() => {
-                      const urls = getProductImageUrls(product.image);
-                      return (<BlurUpImage src={urls.high} placeholderSrc={urls.low} alt={product.name} className="object-cover w-full h-full absolute inset-0 transition-transform duration-500 group-hover:scale-110" containerClassName="absolute inset-0 w-full h-full" />);
-                    })()}
-
-                    <div className="absolute inset-0 bg-slate-950/15 pointer-events-none" />
-
-                    {product.isBestseller && (<span className="absolute top-2.5 left-2.5 text-[8px] font-extrabold bg-[#FF5A00] text-white px-2.5 py-1 rounded-md uppercase tracking-wider z-20 shadow-sm">
-                      ★ Bestseller
-                    </span>)}
-                    {product.isNewArrival && (<span className="absolute top-2.5 left-2.5 text-[8px] font-extrabold bg-sky-600 text-white px-2.5 py-1 rounded-md uppercase tracking-wider z-20 shadow-sm">
-                      New Arrival
-                    </span>)}
-
-                    <button id={`wishlist-toggle-${product.id}`} onClick={(e) => {
-                      e.stopPropagation();
-                      toggleWishlist(product.id);
-                    }} className="absolute top-2.5 right-2.5 z-20 p-2 bg-white/90 hover:bg-white backdrop-blur-md rounded-full border border-slate-100 shadow-sm transition-all duration-300 hover:scale-110 cursor-pointer" title={wishlist.includes(product.id) ? "Remove from wishlist" : "Save to wishlist"}>
-                      <Heart className={`h-3.5 w-3.5 transition-colors duration-300 ${wishlist.includes(product.id)
-                        ? "fill-rose-500 text-rose-500"
-                        : "text-slate-500 hover:text-rose-500"}`} />
-                    </button>
-
-                    <div className="absolute bottom-2 left-2 p-1.5 bg-slate-950/80 backdrop-blur-sm rounded-lg border border-slate-800 z-20 flex items-center justify-center">
-                      {product.image === "cctv" && <Video className="h-4 w-4 text-sky-400" />}
-                      {product.image === "ptz" && <Cpu className="h-4 w-4 text-sky-400" />}
-                      {product.image === "locks" && <LockKeyhole className="h-4 w-4 text-sky-400" />}
-                      {product.image === "storage" && <HardDrive className="h-4 w-4 text-sky-400" />}
-                      {product.image === "router" && <Router className="h-4 w-4 text-sky-400" />}
-                      {product.image === "battery" && <BatteryCharging className="h-4 w-4 text-sky-400" />}
-                    </div>
-
-                    <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 backdrop-blur-[2px] z-10">
-                      <button id={`quick-view-btn-img-${product.id}`} onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedProductForQuickView(product);
-                      }} className="bg-white text-slate-900 hover:bg-sky-600 hover:text-white px-4 py-2 text-xs font-bold rounded-lg transition-all shadow-md flex items-center gap-1.5 cursor-pointer transform translate-y-2 group-hover:translate-y-0 duration-300 z-20">
-                        <Eye className="h-3.5 w-3.5" />
-                        Quick View
-                      </button>
-                    </div>
-
-                    <div className="absolute bottom-2 right-2 text-[8px] font-bold text-slate-300 bg-slate-950/80 backdrop-blur-sm px-2 py-1 border border-slate-800 rounded z-20">
-                      WOSTON SE-HARDWARE
-                    </div>
-                  </div>
-
-                  <h3 className="text-sm font-bold text-slate-900 uppercase group-hover:text-sky-600 transition-colors">
-                    {product.name}
-                  </h3>
-
-                  <p className="text-xs text-slate-500 mt-2 leading-relaxed">
-                    {product.desc}
-                  </p>
-
-                  <div className="mt-4 border-t border-slate-100 pt-3 space-y-1.5">
-                    {product.specs.map((s, idx) => (<div key={idx} className="flex justify-between text-[9px] text-slate-500 font-bold">
-                      <span className="uppercase text-slate-400">{s.label}:</span>
-                      <span className="text-slate-700 truncate max-w-[150px]">{s.value}</span>
-                    </div>))}
-                  </div>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center z-20">
-                  <span className="text-base font-extrabold text-slate-900">{product.price}</span>
-                  <div className="flex gap-1.5">
-                    <button id={`quick-view-btn-footer-${product.id}`} onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedProductForQuickView(product);
-                    }} className="bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-100/50 px-3 py-1.5 text-[9px] font-bold uppercase transition-all duration-300 rounded-xl flex items-center gap-1 cursor-pointer">
-                      <Eye className="h-3.5 w-3.5 text-sky-600" />
-                      Quick View
-                    </button>
-                    <button id={`purchase-btn-${product.id}`} onClick={(e) => {
-                      e.stopPropagation();
-                      window.open("https://woston.in", "_blank");
-                    }} className="bg-slate-50 hover:bg-sky-600 border border-slate-200 hover:border-sky-600 text-slate-700 hover:text-white px-3 py-1.5 text-[9px] font-bold uppercase transition-all duration-300 rounded-xl flex items-center gap-1 cursor-pointer shadow-sm">
-                      <ShoppingBag className="h-3.5 w-3.5 text-sky-600 hover:text-white" />
-                      Purchase
-                    </button>
-                  </div>
-                </div>
-              </motion.div>));
-            })()} */}
-
-
             {
               PRODUCTS.map((product) =>
                 <motion.div layout variants={staggerItem} key={product.id} whileHover={{
@@ -248,11 +128,11 @@ export default function Products({ products, productCategories, customerUser, wi
                   boxShadow: "0 20px 40px -15px rgba(2, 132, 199, 0.1)"
                 }} className="bg-white border border-slate-200/80 flex flex-col justify-between p-4 relative rounded-2xl group cursor-pointer transition-all duration-300 shadow">
                   <div>
-                    <div className="flex justify-between items-center mb-4 text-[9px] text-slate-500 font-bold">
-                      <span className="uppercase border border-sky-100 px-2.5 pt-1 bg-sky-50 text-sky-700 rounded-lg">
+                    <div className="flex justify-between items-center mb-2 text-[9px] text-slate-500 font-bold">
+                      <span className="uppercase border border-sky-100 px-2.5 py-1 bg-sky-50 text-sky-700 rounded-lg">
                         {getCategory(product)}
                       </span>
-                      <span className="flex pt-1 items-center gap-1">
+                      <span className="flex pt-1 items-center uppercase gap-1">
                         {product.brands[0].name}
                       </span>
                     </div>

@@ -58,26 +58,7 @@ function AboutUs() {
 
             <div className="bg-white border border-slate-200 space-y-4 rounded-2xl shadow-sm relative">
 
-              <img className="h-full w-full" src={new URL("../assets/certificate.png", import.meta.url).href} alt="" />
-
-              {/* <div className="absolute top-3 left-4 text-[8px] text-slate-400 font-bold">[ SYSTEM CERTIFICATE // SEC_PLUS_05 ]</div>
-
-              <div className="p-6 bg-slate-50 border border-slate-100 text-center space-y-3 rounded-xl">
-                <ShieldCheck className="h-10 w-10 text-sky-600 mx-auto animate-pulse" />
-                <h3 className="font-sans font-bold text-xs text-slate-900 uppercase tracking-wider">CERTIFIED INTEGRITY</h3>
-                <p className="text-[9px] text-slate-500 max-w-xs mx-auto uppercase leading-relaxed font-semibold">Official Elite Gold Partner for Hikvision, Dahua Authorized Solutions Integrator, and CP Plus Central Distributor.</p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="bg-slate-50 p-3.5 border border-slate-100 text-center rounded-xl">
-                  <span className="text-slate-900 font-extrabold block text-base">20+ YRS</span>
-                  <span className="text-[8px] uppercase font-bold text-slate-400">Operations</span>
-                </div>
-                <div className="bg-slate-50 p-3.5 border border-slate-100 text-center rounded-xl">
-                  <span className="text-slate-900 font-extrabold block text-base">2 HR SLA</span>
-                  <span className="text-[8px] uppercase font-bold text-slate-400">Support Guarantee</span>
-                </div>
-              </div> */}
+              <img className="h-full w-full" src={new URL("../assets/certificate.png", import.meta.url).href} alt="Certificarte" />
             </div>
           </div>
 
@@ -115,12 +96,12 @@ function AboutUs() {
           <div className="space-y-8 pt-8 border-t border-slate-200" id="spe-about-faq-sec">
             <div className="text-center">
               <span className="font-sans font-bold text-[10px] text-sky-600 tracking-widest uppercase block mb-3">
-                [ SERVICE OPERATIONS // CLIENT INTELLIGENCE ]
+                Service Operation
               </span>
               <h3 className="font-sans text-xl md:text-2xl font-extrabold text-slate-900 uppercase">
                 Deployment &amp; Support FAQs
               </h3>
-              <p className="text-xs text-slate-500 max-w-xl mx-auto mt-2 uppercase font-bold tracking-wider">
+              <p className="text-xs text-slate-500 max-w-xl mx-auto mt-2  font-bold tracking-wider">
                 Addressing common engineering queries about our physical installation processes, SLA warranties, and Nagpur fleet coverage.
               </p>
             </div>
@@ -161,7 +142,10 @@ function AboutUs() {
             </div>
           </div>
 
-          <BrandCarousel />
+          <div className=" overflow-hidden rounded-2xl shadow-sm">
+
+            <BrandCarousel />
+          </div>
         </div>
       </section>
     </motion.div>

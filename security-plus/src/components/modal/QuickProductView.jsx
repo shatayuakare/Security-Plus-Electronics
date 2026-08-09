@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { X, Plus, ShoppingBag, Share2 } from "lucide-react";
 import parse from "html-react-parser";
 
-import "../products.css"
+import "../../products.css"
 import { Link } from 'react-router-dom';
 
 const QuickProductView = ({ selectedProductForQuickView, setSelectedProductForQuickView, setInquiryList, inquiryList, setToastMessage }) => {
@@ -29,9 +29,8 @@ const QuickProductView = ({ selectedProductForQuickView, setSelectedProductForQu
         }).format(amount);
 
         return formatted
-
     }
-    // This function displays options to share the product via WhatsApp, Facebook, Twitter, or native sharing/copy.
+
     const handleShareProduct = async (product) => {
         const shareUrl = window.location.href;
         const shareText = `${parse(product.name)} - ${parse(product.short_description)}. Price: ${formatPrice(!product.prices?.sale_price ? product.prices.regular_price : product.prices?.sale_price)}. Available at Security Plus Electronics Nagpur.`;
@@ -120,7 +119,7 @@ const QuickProductView = ({ selectedProductForQuickView, setSelectedProductForQu
                         <div className="flex gap-2 overflow-x-scroll select-none">
                             {
                                 selectedProductForQuickView.images?.map((img, idx) => (
-                                    <img key={idx} className={`h-15 aspect-square rounded-lg border cursor-pointer ${currentImage === idx ? "border-sky-500" : "border-sky-50"}`} onClick={() => setCurrentImage(idx)} src={img?.src} alt={img?.alt} />
+                                    <img key={idx} className={`h-15 aspect-square rounded-lg border cursor-pointer ${currentImage === idx ? "border-primary" : "border-sky-50"}`} onClick={() => setCurrentImage(idx)} src={img?.src} alt={img?.alt} />
                                 ))
                             }
                         </div>
@@ -137,7 +136,7 @@ const QuickProductView = ({ selectedProductForQuickView, setSelectedProductForQu
                             <h3 className="text-lg font-extrabold text-slate-900 uppercase tracking-tight leading-6 pr-8 font-sans">
                                 {parse(selectedProductForQuickView?.name)}
                             </h3>
-                            <span className="text-lg font-extrabold text-sky-600 block mt-2 font-sans tracking-widest">
+                            <span className="text-lg font-extrabold text-primary block mt-2 font-sans tracking-widest">
                                 {
                                     formatPrice(!selectedProductForQuickView.prices.sale_price ? selectedProductForQuickView.prices.regular_price : selectedProductForQuickView.prices.sale_price) + "/-"
                                 }
@@ -173,7 +172,7 @@ const QuickProductView = ({ selectedProductForQuickView, setSelectedProductForQu
 
                         <Link to={selectedProductForQuickView.permalink} target='_blank' id="modal-direct-buy-btn" onClick={() => {
                             setSelectedProductForQuickView(null);
-                        }} className="bg-slate-900 hover:bg-slate-800 text-white px-5 py-3 rounded-xl text-xs font-bold uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer border border-slate-800 font-sans">
+                        }} className="text-primary px-5 py-3 rounded-xl text-xs font-bold uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer border border-primary font-sans">
                             <ShoppingBag className="h-4 w-4" />
                             Buy Now
                         </Link>
