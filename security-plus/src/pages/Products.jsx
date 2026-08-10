@@ -46,36 +46,36 @@ export default function Products({ products, productCategories, customerUser, wi
   }
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const fetchProducts = async () => {
+  //   const fetchProducts = async () => {
 
-      try {
+  //     try {
 
-        const response = await fetch(
-          `https://woston.in/wp-json/wc/store/v1/products?per_page=12&page=${currentPage}`, { mode: "no-cors" }
-        );
+  //       const response = await fetch(
+  //         `https://woston.in/wp-json/wc/store/v1/products?per_page=12&page=${currentPage}`, { mode: "no-cors" }
+  //       );
 
-        console.log(response)
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
+  //       console.log(response)
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch products");
+  //       }
 
-        const data = await response.json();
-        console.log(data)
-        setProducts(data);
+  //       const data = await response.json();
+  //       console.log(data)
+  //       setProducts(data);
 
-      } catch (error) {
+  //     } catch (error) {
 
-        console.error(error);
+  //       console.error(error);
 
-      }
+  //     }
 
-    };
+  //   };
 
-    fetchProducts();
+  //   fetchProducts();
 
-  }, [currentPage]);
+  // }, [currentPage]);
   // const formattedPrice = new Intl.NumberFormat('en-IN', {
   //   style: 'currency',
   //   currency: 'INR'
