@@ -71,16 +71,16 @@ export default function ContactUs({ logoData, setSupportTickets, setToastMessage
             </div>
 
             <div className="bg-white p-6 border border-slate-200 rounded-2xl shadow-sm flex items-start gap-4 transition-all hover:border-sky-300">
-              <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-sky-50 text-primary flex items-center justify-center shrink-0">
                 <Phone className="h-5 w-5" />
               </div>
               <div className="space-y-1.5">
-                <span className="text-[9px] font-bold text-sky-600 uppercase tracking-wider block">ON-CALL TELEPHONY SUPPORT</span>
+                <span className="text-[9px] font-bold text-primary uppercase tracking-wider block">ON-CALL TELEPHONY SUPPORT</span>
                 <h4 className="text-base font-extrabold text-slate-950 font-sans">Direct Calling Lines</h4>
                 <p className="text-xs text-slate-500 font-sans">Speak directly with our support desk or schedule technician dispatches.</p>
                 <div className="space-y-1 pt-1 font-mono text-sm font-bold text-slate-800">
-                  <Link to="{tel:+917020320794}" className="block hover:text-sky-600 transition-colors">+91 7020320794</Link>
-                  <Link to="{tel:+919284522248}" className="block hover:text-sky-600 transition-colors">+91 9284522248</Link>
+                  <Link to="{tel:+917020320794}" className="block hover:text-primary transition-colors">+91 7020320794</Link>
+                  <Link to="{tel:+919284522248}" className="block hover:text-primary transition-colors">+91 9284522248</Link>
                 </div>
               </div>
             </div>
@@ -110,7 +110,7 @@ export default function ContactUs({ logoData, setSupportTickets, setToastMessage
                 </p>
                 <div className="flex items-center gap-2 text-xs text-slate-500">
                   <Mail className="h-3.5 w-3.5 text-slate-400" />
-                  <Link to={"mailto:info@securityplus.in"} className="hover:underline hover:text-sky-600 font-mono">info@securityplus.in</Link>
+                  <Link to={"mailto:info@securityplus.in"} className="hover:underline hover:text-primary font-mono">info@securityplus.in</Link>
                 </div>
               </div>
 
@@ -130,7 +130,7 @@ export default function ContactUs({ logoData, setSupportTickets, setToastMessage
 
               {contactTicket ? (<div className="mt-8 space-y-6">
                 <div className="bg-sky-50 border border-sky-100 p-8 text-center space-y-4 rounded-xl">
-                  <CheckCircle2 className="h-12 w-12 text-sky-600 mx-auto" />
+                  <CheckCircle2 className="h-12 w-12 text-primary mx-auto" />
                   <h4 className="font-bold text-slate-900 text-lg font-sans">Message Sent Successfully</h4>
                   <p className="text-xs text-slate-600 leading-relaxed max-w-sm mx-auto font-sans">
                     Thank you, <span className="font-semibold text-slate-900">{contactForm.name}</span>. We have received your inquiry. A representative will contact you shortly on your details.
@@ -148,28 +148,28 @@ export default function ContactUs({ logoData, setSupportTickets, setToastMessage
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-sans">Your Name</label>
-                    <input type="text" required placeholder="Anand Patil" value={contactForm.name} onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all font-sans" />
+                    <input type="text" required placeholder="Anand Patil" value={contactForm.name} onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all font-sans" />
                   </div>
                   <div className="space-y-1.5">
                     <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-sans">Organization / Company</label>
-                    <input type="text" placeholder="Nagpur Enterprises" value={contactForm.company} onChange={(e) => setContactForm(prev => ({ ...prev, company: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all font-sans" />
+                    <input type="text" placeholder="Nagpur Enterprises" value={contactForm.company} onChange={(e) => setContactForm(prev => ({ ...prev, company: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all font-sans" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-sans">Email Address</label>
-                    <input type="email" required placeholder="anand@company.com" value={contactForm.email} onChange={(e) => setContactForm(prev => ({ ...prev, email: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all font-sans" />
+                    <input type="email" required placeholder="anand@company.com" value={contactForm.email} onChange={(e) => setContactForm(prev => ({ ...prev, email: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all font-sans" />
                   </div>
                   <div className="space-y-1.5">
                     <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-sans">Phone Number</label>
-                    <input type="tel" placeholder="+91 90000 00000" value={contactForm.phone} onChange={(e) => setContactForm(prev => ({ ...prev, phone: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all font-sans" />
+                    <input type="tel" placeholder="+91 90000 00000" value={contactForm.phone} onChange={(e) => setContactForm(prev => ({ ...prev, phone: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all font-sans" />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-sans">Select Department</label>
-                  <select value={contactForm.department} onChange={(e) => setContactForm(prev => ({ ...prev, department: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl transition-all font-sans font-semibold">
+                  <select value={contactForm.department} onChange={(e) => setContactForm(prev => ({ ...prev, department: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl transition-all font-sans font-semibold">
                     <option value="sales">Showroom Sales &amp; Sizing Quotations</option>
                     <option value="technical">Technical Support &amp; Network Audits</option>
                     <option value="sla">Emergency Maintenance &amp; Repair</option>
@@ -178,10 +178,10 @@ export default function ContactUs({ logoData, setSupportTickets, setToastMessage
 
                 <div className="space-y-1.5">
                   <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-sans">Message Details</label>
-                  <textarea required rows={3} placeholder="Describe your security requirements or systems inquiries in detail..." value={contactForm.message} onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all font-sans"></textarea>
+                  <textarea required rows={3} placeholder="Describe your security requirements or systems inquiries in detail..." value={contactForm.message} onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all font-sans"></textarea>
                 </div>
 
-                <button type="submit" className="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs uppercase tracking-widest py-4 border border-sky-600 rounded-xl transition-all cursor-pointer shadow-md shadow-sky-50 font-sans">
+                <button type="submit" className="w-full bg-primary hover:bg-sky-700 text-white font-bold text-xs uppercase tracking-widest py-4 border border-primary rounded-xl transition-all cursor-pointer shadow-md shadow-sky-50 font-sans">
                   Send Message
                 </button>
               </form>)}

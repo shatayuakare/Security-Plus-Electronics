@@ -43,6 +43,8 @@ body {
   color: #0F172A !important;
 }
 
+
+
 @utility glass-panel {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(8px);
@@ -134,7 +136,7 @@ img {
   }
 
   /* Retain specific Sky Blue styling borders for professional letterhead */
-  #printable-quote-section .border-sky-600 {
+  #printable-quote-section .border-primary {
     border-color: #0284C7 !important;
   }
 
@@ -143,7 +145,7 @@ img {
     color: #0369A1 !important;
   }
 
-  #printable-quote-section .text-sky-600 {
+  #printable-quote-section .text-primary {
     color: #0284C7 !important;
   }
 

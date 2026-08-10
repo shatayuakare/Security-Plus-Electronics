@@ -35,7 +35,7 @@ export const ProductCategories = ({ loadedImages, setLoadedImages }) => {
   return (<section className="py-24 px-8 relative z-20 border-b border-slate-100 bg-white">
     <div className="max-w-7xl mx-auto">
       <motion.div {...fadeInUp} className="text-center mb-16">
-        <span className="font-sans font-extrabold text-[10px] text-sky-600 tracking-widest uppercase block mb-3">
+        <span className="font-sans font-extrabold text-[10px] text-primary tracking-widest uppercase block mb-3">
           HARDWARE CATALOG
         </span>
         <h2 className="font-sans text-3xl md:text-5xl font-extrabold text-slate-900 uppercase tracking-tight mb-4">
@@ -54,7 +54,7 @@ export const ProductCategories = ({ loadedImages, setLoadedImages }) => {
             borderColor: "#0284C7",
             boxShadow: "0 20px 40px -15px rgba(2, 132, 199, 0.15)"
           }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="bg-white border border-slate-200 flex flex-col justify-between p-0 relative rounded-2xl group transition-all duration-100 overflow-hidden shadow-sm ">
-            <div className="absolute rounded-t-2xl top-0 left-0 right-0 h-6 group-hover:border-t-6 bg-transparent group-hover:border-sky-600 transition-all duration-200 z-30"></div>
+            <div className="absolute rounded-t-2xl top-0 left-0 right-0 h-6 group-hover:border-t-6 bg-transparent group-hover:border-primary transition-all duration-200 z-30"></div>
 
             <div className="relative h-64 overflow-hidden border-b border-slate-100">
               <div className="absolute inset-0 bg-linear-to-t from-white/0 via-transparent z-10"></div>
@@ -63,7 +63,7 @@ export const ProductCategories = ({ loadedImages, setLoadedImages }) => {
                 {category.stats}
               </span>
               {!loadedImages[category.id] && (<div className="absolute inset-0 flex items-center justify-center bg-slate-50 z-0">
-                <div className="w-8 h-8 border-2 border-sky-600 border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
               </div>)}
               <img src={new URL(`../../assets/images/categories/${category.image}`, import.meta.url).href} alt={category.title} loading="lazy" onLoad={() => setLoadedImages(prev => ({ ...prev, [category.id]: true }))} className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${loadedImages[category.id] ? "opacity-100 scale-100" : "opacity-0 scale-95"}`} referrerPolicy="no-referrer" />
             </div>
@@ -86,12 +86,12 @@ export const ProductCategories = ({ loadedImages, setLoadedImages }) => {
                 </p>
 
                 <div className="space-y-2  border-t border-b border-slate-100 py-4">
-                  <span className="text-[9px] font-bold text-sky-600 uppercase tracking-widest  mb-1">
+                  <span className="text-[9px] font-bold text-primary uppercase tracking-widest  mb-1">
                     KEY SPECIFICATIONS
                   </span>
                   <div className="grid grid-cols-1 gap-1">
                     {category.features.map((feature, fIdx) => (<div key={fIdx} className="flex items-center gap-2 text-[11px] text-slate-700">
-                      <div className="w-1.5 h-1.5 bg-sky-600 rounded-full"></div>
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
                       <span>{feature}</span>
                     </div>))}
                   </div>
@@ -101,7 +101,7 @@ export const ProductCategories = ({ loadedImages, setLoadedImages }) => {
               <Link to={"/products"} onClick={() => {
                 setBlogCategoryFilter(category.filterValue);
                 window.scrollTo({ top: 0, behavior: "smooth" });
-              }} className="w-full py-3 bg-slate-50 hover:bg-sky-600 text-sky-600 hover:text-[#ffffff] border border-slate-200 hover:border-sky-600 text-xs font-bold tracking-wider uppercase transition-all duration-300 rounded-xl cursor-pointer shadow flex items-center justify-center gap-2 hover:gap-6">
+              }} className="w-full py-3 bg-slate-50 hover:bg-primary text-primary hover:text-[#ffffff] border border-slate-200 hover:border-primary text-xs font-bold tracking-wider uppercase transition-all duration-300 rounded-xl cursor-pointer shadow flex items-center justify-center gap-2 hover:gap-6">
                 <span>EXPLORE PRODUCTS</span>
                 <ArrowRight className="h-4.5 w-4.5 -mt-1 font-bold" />
               </Link>

@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { CheckCircle2 } from "lucide-react";
-export function AuthSection({ registeredCustomers, setRegisteredCustomers, setCustomerUser, setToastMessage }) {
+import { Link, useLocation } from "react-router-dom";
+
+
+export function AuthSection({ registeredCustomers, setRegisteredCustomers, setCustomerUser, setToastMessage, isLogin }) {
+
+  const location = useLocation();
   // Login states
+  const [isLoginPage, setIsLoginPage] = useState(isLogin)
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [loginError, setLoginError] = useState("");
@@ -18,6 +24,7 @@ export function AuthSection({ registeredCustomers, setRegisteredCustomers, setCu
   const [signUpPassword, setSignUpPassword] = useState("");
   const [signUpConfirmPassword, setSignUpConfirmPassword] = useState("");
   const [signUpError, setSignUpError] = useState("");
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     setLoginError("");
@@ -90,189 +97,204 @@ export function AuthSection({ registeredCustomers, setRegisteredCustomers, setCu
     setSignUpConfirmPassword("");
     setActiveTab("products");
   };
+
+
+  useEffect(() => {
+    if (location.pathname === "/login") {
+      setIsLoginPage(true)
+    }
+    if (location.pathname === "/register") {
+      setIsLoginPage(false)
+    }
+  }, [isLogin])
+
   return (<div className="w-full px-8 py-16 font-sans">
     <div className="max-w-md mx-auto">
-      {true && (<motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.3 }} className="bg-white p-8 md:p-10 border border-slate-200 rounded-3xl shadow-xl space-y-6">
-        {!isForgotPasswordMode ? (<>
-          <div className="text-center space-y-1">
-            <span className="text-[10px] text-sky-600 font-extrabold uppercase tracking-widest block font-sans">
-              [ CLIENT PORTAL ACCESS ]
-            </span>
-            <h2 className="text-2xl font-bold text-slate-900 font-sans tracking-tight">
-              Welcome Back
-            </h2>
-            <p className="text-xs text-slate-400 leading-normal font-sans">
-              Please authenticate to access your customer dashboard, inquiry specs, and support tickets.
-            </p>
-          </div>
 
-          {loginError && (<div className="bg-rose-50 border border-rose-100 text-rose-600 px-4 py-3 rounded-xl text-xs font-medium font-sans">
-            ⚠️ {loginError}
-          </div>)}
+      {
+        isLoginPage ?
+          (<motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.3 }} className="bg-white p-8 md:p-10 border border-slate-200 rounded-3xl shadow-xl space-y-6">
+            {!isForgotPasswordMode ? (<>
+              <div className="text-center space-y-1">
+                <span className="text-[9px] text-primary font-extrabold uppercase tracking-widest block font-sans">
+                  CLIENT PORTAL ACCESS
+                </span>
+                <h2 className="text-2xl font-bold text-slate-900 font-sans tracking-tight">
+                  Welcome Back
+                </h2>
+                <p className="text-xs text-slate-400 leading-normal font-sans">
+                  Please authenticate to access your customer dashboard, inquiry specs, and support tickets.
+                </p>
+              </div>
 
-          <form onSubmit={handleLoginSubmit} className="space-y-4">
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
-                Email Address
-              </label>
-              <input type="email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} placeholder="e.g. manager@securityplus.in" className="w-full bg-slate-50 border border-slate-200 focus:border-sky-500 focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
-            </div>
+              {loginError && (<div className="bg-rose-50 border border-rose-100 text-rose-600 px-4 py-3 rounded-xl text-xs font-medium font-sans">
+                ⚠️ {loginError}
+              </div>)}
 
-            <div className="space-y-1.5">
-              <div className="flex justify-between items-center">
-                <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
-                  Account Password
-                </label>
+              <form onSubmit={handleLoginSubmit} className="space-y-4">
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
+                    Email Address
+                  </label>
+                  <input type="email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} placeholder="e.g. manager@securityplus.in" className="w-full bg-slate-50 border border-slate-200 focus:border-primary focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
+                </div>
+
+                <div className="space-y-1.5">
+                  <div className="flex justify-between items-center">
+                    <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
+                      Account Password
+                    </label>
+                    <button type="button" onClick={() => {
+                      setIsForgotPasswordMode(true);
+                      setForgotPasswordEmail(loginEmail);
+                      setForgotPasswordError("");
+                      setForgotPasswordMessage("");
+                    }} className="text-[10px] text-primary hover:text-primary font-bold hover:underline font-sans cursor-pointer bg-transparent border-0 outline-none">
+                      Forgot Password?
+                    </button>
+                  </div>
+                  <input type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} placeholder="••••••••••••" className="w-full bg-slate-50 border border-slate-200 focus:border-primary focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
+                </div>
+
+                <button type="submit" className="w-full bg-primary hover:bg-primary text-white font-sans font-bold text-xs tracking-widest uppercase py-3.5 rounded-2xl border border-primary hover:border-primary transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md hover:shadow-primary/10">
+                  Login Account
+                </button>
+              </form>
+
+              <div className="text-center pt-2 space-y-2">
+                <p className="text-xs text-slate-500 font-sans">
+                  Don&apos;t have a secure profile?{" "}
+                  <Link to={"/register"} className="text-primary hover:text-primary font-bold underline cursor-pointer bg-transparent border-0 outline-none">
+                    Register Account
+                  </Link>
+                </p>
+                <p className="text-[10px] text-slate-400 font-mono">
+                  Demo customer login: <span className="font-bold text-slate-600">info@securityplus.in</span> / <span className="font-bold text-slate-600">customer123</span>
+                </p>
+              </div>
+            </>) : (<>
+              <div className="text-center space-y-1">
+                <span className="text-[10px] text-primary font-extrabold uppercase tracking-widest block font-sans">
+                  PORTAL RECOVERY
+                </span>
+                <h2 className="text-2xl font-bold text-slate-900 font-sans tracking-tight">
+                  Reset Password
+                </h2>
+                <p className="text-xs text-slate-400 leading-normal font-sans">
+                  Enter your registered email address and we will trigger a secure password reset link.
+                </p>
+              </div>
+
+              {forgotPasswordError && (<div className="bg-rose-50 border border-rose-100 text-rose-600 px-4 py-3 rounded-xl text-xs font-medium font-sans">
+                ⚠️ {forgotPasswordError}
+              </div>)}
+
+              {forgotPasswordMessage ? (<div className="bg-emerald-50 border border-emerald-100 text-emerald-800 p-5 rounded-2xl text-xs font-sans space-y-3">
+                <div className="flex items-center gap-2 text-emerald-600 font-bold">
+                  <CheckCircle2 className="h-4.5 w-4.5" />
+                  <span>Reset Link Dispatched</span>
+                </div>
+                <p className="leading-relaxed text-slate-600">
+                  {forgotPasswordMessage}
+                </p>
+                <button onClick={() => {
+                  setIsForgotPasswordMode(false);
+                  setForgotPasswordMessage("");
+                }} className="w-full bg-slate-900 hover:bg-slate-800 text-white font-sans font-bold text-[10px] tracking-wider uppercase py-2.5 rounded-xl transition-all cursor-pointer text-center block">
+                  Return to Login
+                </button>
+              </div>) : (<form onSubmit={handleForgotPasswordSubmit} className="space-y-4">
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
+                    Registered Email Address
+                  </label>
+                  <input type="email" value={forgotPasswordEmail} onChange={(e) => setForgotPasswordEmail(e.target.value)} placeholder="e.g. client@securityplus.in" className="w-full bg-slate-50 border border-slate-200 focus:border-primary focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
+                </div>
+
+                <button type="submit" className="w-full bg-primary hover:bg-primary text-white font-sans font-bold text-xs tracking-widest uppercase py-3.5 rounded-2xl border border-primary hover:border-primary transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md hover:shadow-primary/10">
+                  Trigger Reset Link
+                </button>
+
                 <button type="button" onClick={() => {
-                  setIsForgotPasswordMode(true);
-                  setForgotPasswordEmail(loginEmail);
+                  setIsForgotPasswordMode(false);
                   setForgotPasswordError("");
                   setForgotPasswordMessage("");
-                }} className="text-[10px] text-sky-600 hover:text-sky-500 font-bold hover:underline font-sans cursor-pointer bg-transparent border-0 outline-none">
-                  Forgot Password?
+                }} className="w-full text-slate-500 hover:text-slate-800 font-sans font-bold text-xs py-1 transition-all cursor-pointer text-center block bg-transparent border-0 outline-none">
+                  Cancel and Return
                 </button>
-              </div>
-              <input type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} placeholder="••••••••••••" className="w-full bg-slate-50 border border-slate-200 focus:border-sky-500 focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
-            </div>
-
-            <button type="submit" className="w-full bg-sky-600 hover:bg-sky-500 text-white font-sans font-bold text-xs tracking-widest uppercase py-3.5 rounded-2xl border border-sky-600 hover:border-sky-500 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md hover:shadow-sky-500/10">
-              Authenticate Account
-            </button>
-          </form>
-
-          <div className="text-center pt-2 space-y-2">
-            <p className="text-xs text-slate-500 font-sans">
-              Don&apos;t have a secure profile?{" "}
-              <button onClick={() => setActiveTab("signup")} className="text-sky-600 hover:text-sky-500 font-bold underline cursor-pointer bg-transparent border-0 outline-none">
+              </form>)}
+            </>)}
+          </motion.div>)
+          :
+          (<motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.3 }} className="bg-white p-8 md:p-10 border border-slate-200 rounded-3xl shadow-xl space-y-6">
+            <div className="text-center space-y-1">
+              <span className="text-[10px] text-primary font-extrabold uppercase tracking-widest block font-sans">
+                CREATE SECURE CLIENT CARD
+              </span>
+              <h2 className="text-2xl font-bold text-slate-900 font-sans tracking-tight">
                 Register Account
+              </h2>
+              <p className="text-xs text-slate-400 leading-normal font-sans">
+                Join SPE CCTV Mall to access real-time specifications, customize security models, and save dynamic layouts.
+              </p>
+            </div>
+
+            {signUpError && (<div className="bg-rose-50 border border-rose-100 text-rose-600 px-4 py-3 rounded-xl text-xs font-medium font-sans">
+              ⚠️ {signUpError}
+            </div>)}
+
+            <form onSubmit={handleSignUpSubmit} className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
+                  Your Full Name
+                </label>
+                <input type="text" value={signUpName} onChange={(e) => setSignUpName(e.target.value)} placeholder="e.g. Rahul Patil" className="w-full bg-slate-50 border border-slate-200 focus:border-primary focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
+                  Email Address
+                </label>
+                <input type="email" value={signUpEmail} onChange={(e) => setSignUpEmail(e.target.value)} placeholder="e.g. client@securityplus.in" className="w-full bg-slate-50 border border-slate-200 focus:border-primary focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
+                  Phone Number (Optional)
+                </label>
+                <input type="tel" value={signUpPhone} onChange={(e) => setSignUpPhone(e.target.value)} placeholder="e.g. 08048102415" className="w-full bg-slate-50 border border-slate-200 focus:border-primary focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
+                    Password
+                  </label>
+                  <input type="password" value={signUpPassword} onChange={(e) => setSignUpPassword(e.target.value)} placeholder="••••••••" className="w-full bg-slate-50 border border-slate-200 focus:border-primary focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
+                    Confirm Password
+                  </label>
+                  <input type="password" value={signUpConfirmPassword} onChange={(e) => setSignUpConfirmPassword(e.target.value)} placeholder="••••••••" className="w-full bg-slate-50 border border-slate-200 focus:border-primary focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
+                </div>
+              </div>
+
+              <button type="submit" className="w-full bg-primary hover:bg-primary text-white font-sans font-bold text-xs tracking-widest uppercase py-3.5 rounded-2xl border border-primary hover:border-primary transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md hover:shadow-primary/10">
+                Create Customer Account
               </button>
-            </p>
-            <p className="text-[10px] text-slate-400 font-mono">
-              Demo customer login: <span className="font-bold text-slate-600">info@securityplus.in</span> / <span className="font-bold text-slate-600">customer123</span>
-            </p>
-          </div>
-        </>) : (<>
-          <div className="text-center space-y-1">
-            <span className="text-[10px] text-sky-600 font-extrabold uppercase tracking-widest block font-sans">
-              [ PORTAL RECOVERY ]
-            </span>
-            <h2 className="text-2xl font-bold text-slate-900 font-sans tracking-tight">
-              Reset Password
-            </h2>
-            <p className="text-xs text-slate-400 leading-normal font-sans">
-              Enter your registered email address and we will trigger a secure password reset link.
-            </p>
-          </div>
+            </form>
 
-          {forgotPasswordError && (<div className="bg-rose-50 border border-rose-100 text-rose-600 px-4 py-3 rounded-xl text-xs font-medium font-sans">
-            ⚠️ {forgotPasswordError}
-          </div>)}
-
-          {forgotPasswordMessage ? (<div className="bg-emerald-50 border border-emerald-100 text-emerald-800 p-5 rounded-2xl text-xs font-sans space-y-3">
-            <div className="flex items-center gap-2 text-emerald-600 font-bold">
-              <CheckCircle2 className="h-4.5 w-4.5" />
-              <span>Reset Link Dispatched</span>
+            <div className="text-center pt-2">
+              <p className="text-xs text-slate-500 font-sans">
+                Already registered?{" "}
+                <Link to={"/login"} className="text-primary hover:text-primary font-bold underline cursor-pointer bg-transparent border-0 outline-none">
+                  Sign In Here
+                </Link>
+              </p>
             </div>
-            <p className="leading-relaxed text-slate-600">
-              {forgotPasswordMessage}
-            </p>
-            <button onClick={() => {
-              setIsForgotPasswordMode(false);
-              setForgotPasswordMessage("");
-            }} className="w-full bg-slate-900 hover:bg-slate-800 text-white font-sans font-bold text-[10px] tracking-wider uppercase py-2.5 rounded-xl transition-all cursor-pointer text-center block">
-              Return to Login
-            </button>
-          </div>) : (<form onSubmit={handleForgotPasswordSubmit} className="space-y-4">
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
-                Registered Email Address
-              </label>
-              <input type="email" value={forgotPasswordEmail} onChange={(e) => setForgotPasswordEmail(e.target.value)} placeholder="e.g. client@securityplus.in" className="w-full bg-slate-50 border border-slate-200 focus:border-sky-500 focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
-            </div>
-
-            <button type="submit" className="w-full bg-sky-600 hover:bg-sky-500 text-white font-sans font-bold text-xs tracking-widest uppercase py-3.5 rounded-2xl border border-sky-600 hover:border-sky-500 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md hover:shadow-sky-500/10">
-              Trigger Reset Link
-            </button>
-
-            <button type="button" onClick={() => {
-              setIsForgotPasswordMode(false);
-              setForgotPasswordError("");
-              setForgotPasswordMessage("");
-            }} className="w-full text-slate-500 hover:text-slate-800 font-sans font-bold text-xs py-1 transition-all cursor-pointer text-center block bg-transparent border-0 outline-none">
-              Cancel and Return
-            </button>
-          </form>)}
-        </>)}
-      </motion.div>)}
-
-      {false === "signup" && (<motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.3 }} className="bg-white p-8 md:p-10 border border-slate-200 rounded-3xl shadow-xl space-y-6">
-        <div className="text-center space-y-1">
-          <span className="text-[10px] text-sky-600 font-extrabold uppercase tracking-widest block font-sans">
-            [ CREATE SECURE CLIENT CARD ]
-          </span>
-          <h2 className="text-2xl font-bold text-slate-900 font-sans tracking-tight">
-            Register Account
-          </h2>
-          <p className="text-xs text-slate-400 leading-normal font-sans">
-            Join SPE CCTV Mall to access real-time specifications, customize security models, and save dynamic layouts.
-          </p>
-        </div>
-
-        {signUpError && (<div className="bg-rose-50 border border-rose-100 text-rose-600 px-4 py-3 rounded-xl text-xs font-medium font-sans">
-          ⚠️ {signUpError}
-        </div>)}
-
-        <form onSubmit={handleSignUpSubmit} className="space-y-4">
-          <div className="space-y-1.5">
-            <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
-              Your Full Name
-            </label>
-            <input type="text" value={signUpName} onChange={(e) => setSignUpName(e.target.value)} placeholder="e.g. Rahul Patil" className="w-full bg-slate-50 border border-slate-200 focus:border-sky-500 focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
-          </div>
-
-          <div className="space-y-1.5">
-            <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
-              Email Address
-            </label>
-            <input type="email" value={signUpEmail} onChange={(e) => setSignUpEmail(e.target.value)} placeholder="e.g. client@securityplus.in" className="w-full bg-slate-50 border border-slate-200 focus:border-sky-500 focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
-          </div>
-
-          <div className="space-y-1.5">
-            <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
-              Phone Number (Optional)
-            </label>
-            <input type="tel" value={signUpPhone} onChange={(e) => setSignUpPhone(e.target.value)} placeholder="e.g. 08048102415" className="w-full bg-slate-50 border border-slate-200 focus:border-sky-500 focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
-                Password
-              </label>
-              <input type="password" value={signUpPassword} onChange={(e) => setSignUpPassword(e.target.value)} placeholder="••••••••" className="w-full bg-slate-50 border border-slate-200 focus:border-sky-500 focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
-            </div>
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block font-sans">
-                Confirm Password
-              </label>
-              <input type="password" value={signUpConfirmPassword} onChange={(e) => setSignUpConfirmPassword(e.target.value)} placeholder="••••••••" className="w-full bg-slate-50 border border-slate-200 focus:border-sky-500 focus:bg-white text-slate-800 text-xs px-4 py-3 rounded-xl outline-none transition-all font-sans" required />
-            </div>
-          </div>
-
-          <button type="submit" className="w-full bg-sky-600 hover:bg-sky-500 text-white font-sans font-bold text-xs tracking-widest uppercase py-3.5 rounded-2xl border border-sky-600 hover:border-sky-500 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md hover:shadow-sky-500/10">
-            Create Customer Account
-          </button>
-        </form>
-
-        <div className="text-center pt-2">
-          <p className="text-xs text-slate-500 font-sans">
-            Already registered?{" "}
-            <button onClick={() => setActiveTab("login")} className="text-sky-600 hover:text-sky-500 font-bold underline cursor-pointer bg-transparent border-0 outline-none">
-              Sign In Here
-            </button>
-          </p>
-        </div>
-      </motion.div>)}
+          </motion.div>)
+      }
     </div>
   </div>);
 }

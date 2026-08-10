@@ -19,7 +19,7 @@ export default function Gallery({ setLightboxIndex, galleryItems }) {
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-7xl mx-auto space-y-12 font-sans">
           <div className="text-center max-w-3xl mx-auto">
-            <span className="font-sans font-extrabold text-[10px] text-sky-600 tracking-widest uppercase block mb-3">
+            <span className="font-sans font-extrabold text-[10px] text-primary tracking-widest uppercase block mb-3">
               SPE PUBLIC LEDGER
             </span>
             <h2 className="font-sans text-3xl md:text-5xl font-extrabold text-slate-900 uppercase tracking-tight mb-4">
@@ -32,7 +32,7 @@ export default function Gallery({ setLightboxIndex, galleryItems }) {
 
           <div className="flex flex-wrap justify-center gap-2 border-b border-slate-200 pb-6">
             {["all", "showroom", "culture", "technical"].map((filter) => (<button key={filter} onClick={() => setGalleryFilter(filter)} className={`px-5 py-2.5 rounded-lg font-sans font-bold text-[10px] tracking-widest uppercase transition-all cursor-pointer ${galleryFilter === filter
-              ? "bg-sky-600 text-white border border-sky-600 shadow-sm"
+              ? "bg-primary text-white border border-primary shadow-sm"
               : "bg-white text-slate-600 border border-slate-200 hover:border-slate-300"}`}>
               {filter === "all" ? "All Photos" : filter === "showroom" ? "Showroom Tour" : filter === "culture" ? "Company Culture" : "Technical Setup"}
             </button>))}
@@ -45,12 +45,12 @@ export default function Gallery({ setLightboxIndex, galleryItems }) {
                 if (originalIndex !== -1) {
                   setLightboxIndex(originalIndex);
                 }
-              }} className="bg-white rounded-2xl overflow-hidden shadow border-b-2 group-hover:border-sky-700 border-sky-500 flex flex-col group cursor-pointer">
+              }} className="bg-white rounded-2xl overflow-hidden shadow border-b-2 group-hover:border-sky-700 border-primary flex flex-col group cursor-pointer">
                 <div className="relative w-full aspect-3/2 overflow-hidden bg-slate-100 flex items-center justify-center">
                   {item.isPlaceholder ? (
                     <div className={`w-full h-full flex items-center justify-center p-8 bg-gradient-to-br ${item.bgColor} relative`}>
                       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-                      {item.iconName === "Terminal" && <Terminal className="h-16 w-16 text-sky-500/30 animate-pulse" />}
+                      {item.iconName === "Terminal" && <Terminal className="h-16 w-16 text-primary/30 animate-pulse" />}
                       {item.iconName === "ShieldCheck" && <ShieldCheck className="h-16 w-16 text-indigo-500/30 animate-pulse" />}
                       {item.iconName === "Video" && <Video className="h-16 w-16 text-emerald-500/30 animate-pulse" />}
                     </div>) : (
@@ -62,12 +62,12 @@ export default function Gallery({ setLightboxIndex, galleryItems }) {
                 </div>
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 uppercase group-hover:text-sky-600 transition-colors font-sans">{item.title}</h3>
+                    <h3 className="text-sm font-bold text-slate-900 uppercase group-hover:text-primary transition-colors font-sans">{item.title}</h3>
                     <p className="text-xs text-slate-500 mt-1 font-sans">{item.desc}</p>
                   </div>
                   {/* <div className="pt-3 border-t border-slate-100 flex justify-between items-center text-[9px] font-bold uppercase text-slate-400">
                     <span>Verified Log</span>
-                    <span className="text-sky-600">{item.id}</span>
+                    <span className="text-primary">{item.id}</span>
                   </div> */}
                 </div>
               </motion.div>

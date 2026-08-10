@@ -64,7 +64,7 @@ const TermsAndConditions = () => {
     return (
         <div className="bg-slate-50 min-h-screen">
             {/* Hero */}
-            <section className="bg-gradient-to-r from-sky-800 via-sky-600 to-sky-950 text-white">
+            <section className="bg-gradient-to-r from-sky-800 via-primary to-sky-950 text-white">
                 <div className="max-w-7xl mx-auto px-6 py-20">
                     <div className="flex items-center gap-4 mb-6">
                         <div className="p-4 bg-white/10 rounded-xl backdrop-blur">
@@ -93,7 +93,7 @@ const TermsAndConditions = () => {
             <div className="max-w-7xl mx-auto px-6 py-16">
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-12">
                     <div className="flex items-center gap-3 mb-5">
-                        <Building2 className="text-sky-600" size={30} />
+                        <Building2 className="text-primary" size={30} />
 
                         <h2 className="text-2xl font-bold text-gray-800">
                             Welcome to Security Plus Electronics
@@ -124,7 +124,7 @@ const TermsAndConditions = () => {
                                 <div className="p-8">
                                     <div className="flex items-center gap-4 mb-5">
                                         <div className="bg-sky-100 p-3 rounded-xl">
-                                            <Icon className="text-sky-600" size={28} />
+                                            <Icon className="text-primary" size={28} />
                                         </div>
 
                                         <h2 className="text-2xl font-semibold text-gray-800">
@@ -134,7 +134,7 @@ const TermsAndConditions = () => {
 
                                     <div className="flex">
                                         <ChevronRight
-                                            className="text-sky-600 mt-1 mr-3 flex-shrink-0"
+                                            className="text-primary mt-1 mr-3 flex-shrink-0"
                                             size={18}
                                         />
 

@@ -43,10 +43,10 @@ function AboutUs() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" id="spe-about-story-grid">
             <div className="space-y-6">
-              <span className="font-sans text-[10px] text-sky-600 tracking-widest uppercase block font-semibold">BRAND STORY </span>
+              <span className="font-sans text-[10px] text-primary tracking-widest uppercase block font-semibold">BRAND STORY </span>
               <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-slate-900 uppercase">Nagpur's Landmark Security Mall</h2>
-              <div className="h-0.5 w-24 bg-sky-600"></div>
-              <p className="text-xs text-sky-600 font-bold uppercase leading-relaxed">THE CORE SECURITY SOURCE</p>
+              <div className="h-0.5 w-24 bg-primary"></div>
+              <p className="text-xs text-primary font-bold uppercase leading-relaxed">THE CORE SECURITY SOURCE</p>
 
               <p className="text-sm text-slate-600 leading-relaxed">
                 Founded in 2005 in Nagpur, Maharashtra, <strong>Security Plus Electronics (SPE)</strong> has grown from a specialized hardware supplier to Central India's biggest physical CCTV and Automation Mall. We stand as a beacon of trust, helping government institutes, financial entities, healthcare providers, and high-net-worth individuals protect assets.
@@ -64,26 +64,26 @@ function AboutUs() {
 
           {/* SLA quality details */}
           <div className="bg-white p-8 border border-slate-200 rounded-2xl shadow-sm" id="spe-about-sla-details">
-            <span className="text-[9px] font-bold text-sky-600 uppercase tracking-widest block mb-1">THE TWO-HOUR FIELD RESOLUTION GUARANTEE</span>
+            <span className="text-[9px] font-bold text-primary uppercase tracking-widest block mb-1">THE TWO-HOUR FIELD RESOLUTION GUARANTEE</span>
             <h3 className="font-sans text-xl font-bold text-slate-900 mb-4 uppercase tracking-wider">Our SLA Guarantees</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-slate-500">
               <div className="bg-slate-50 p-4 border border-slate-100 space-y-2 rounded-xl">
-                <div className="flex items-center gap-2 text-sky-600">
+                <div className="flex items-center gap-2 text-primary">
                   <CheckCircle2 className="h-4 w-4" />
                   <span className="font-bold uppercase tracking-wider">2 Hour Onsite Support</span>
                 </div>
                 <p className="text-[11px] leading-relaxed">For emergency enterprise banking or healthcare outages, we dispatch field specialists to Nagpur perimeters within 120 minutes of logging.</p>
               </div>
               <div className="bg-slate-50 p-4 border border-slate-100 space-y-2 rounded-xl">
-                <div className="flex items-center gap-2 text-sky-600">
+                <div className="flex items-center gap-2 text-primary">
                   <CheckCircle2 className="h-4 w-4" />
                   <span className="font-bold uppercase tracking-wider">Zero Blind-Spot Promise</span>
                 </div>
                 <p className="text-[11px] leading-relaxed">We custom-engineer camera layouts with overlapping fields of view, ensuring high-value money vaults or safes stay monitored continuously.</p>
               </div>
               <div className="bg-slate-50 p-4 border border-slate-100 space-y-2 rounded-xl">
-                <div className="flex items-center gap-2 text-sky-600">
+                <div className="flex items-center gap-2 text-primary">
                   <CheckCircle2 className="h-4 w-4" />
                   <span className="font-bold uppercase tracking-wider">Redundancy Assured</span>
                 </div>
@@ -95,7 +95,7 @@ function AboutUs() {
           {/* Collapsible FAQ Section */}
           <div className="space-y-8 pt-8 border-t border-slate-200" id="spe-about-faq-sec">
             <div className="text-center">
-              <span className="font-sans font-bold text-[10px] text-sky-600 tracking-widest uppercase block mb-3">
+              <span className="font-sans font-bold text-[10px] text-primary tracking-widest uppercase block mb-3">
                 Service Operation
               </span>
               <h3 className="font-sans text-xl md:text-2xl font-extrabold text-slate-900 uppercase">
@@ -109,13 +109,13 @@ function AboutUs() {
             <div className="max-w-4xl mx-auto space-y-4">
               {faqs.map((faq, idx) => {
                 const isOpen = openFaqIndex === idx;
-                return (<div key={idx} className={`border transition-all duration-300 rounded-2xl bg-white ${isOpen ? "border-sky-500 shadow-md shadow-sky-50" : "border-slate-200 hover:border-slate-300"}`}>
+                return (<div key={idx} className={`border transition-all duration-300 rounded-2xl bg-white ${isOpen ? "border-primary shadow-md shadow-sky-50" : "border-slate-200 hover:border-slate-300"}`}>
                   <button onClick={() => setOpenFaqIndex(isOpen ? null : idx)} className="w-full text-left p-5 flex items-center justify-between font-bold text-xs text-slate-800 tracking-wide cursor-pointer select-none">
                     <span className="flex items-center gap-3">
-                      <HelpCircle className={`h-4 w-4 shrink-0 transition-colors ${isOpen ? "text-sky-600" : "text-slate-400"}`} />
+                      <HelpCircle className={`h-4 w-4 shrink-0 transition-colors ${isOpen ? "text-primary" : "text-slate-400"}`} />
                       {faq.question}
                     </span>
-                    <ChevronDown className={`h-4 w-4 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 text-sky-600" : "text-slate-400"}`} />
+                    <ChevronDown className={`h-4 w-4 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 text-primary" : "text-slate-400"}`} />
                   </button>
 
                   <AnimatePresence initial={false}>

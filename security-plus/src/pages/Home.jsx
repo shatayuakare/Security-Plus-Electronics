@@ -26,7 +26,7 @@ export const ScrollableTestimonials = () => {
     <div className="max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
         <div>
-          <span className="font-mono text-xs font-bold text-sky-600 uppercase tracking-widest block mb-2">
+          <span className="font-mono text-xs font-bold text-primary uppercase tracking-widest block mb-2">
             CLIENT ADVOCACY & TRUST
           </span>
           <h2 className="text-3xl md:text-5xl font-sans font-bold text-slate-900 tracking-tight">
@@ -40,10 +40,10 @@ export const ScrollableTestimonials = () => {
         <div className="flex items-center gap-4">
 
           <div className="flex gap-3">
-            <button onClick={prevSlide} className="p-3 border border-slate-200 text-slate-600 hover:text-sky-600 hover:border-sky-600 transition-all rounded-full bg-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Previous Testimonial">
+            <button onClick={prevSlide} className="p-3 border border-slate-200 text-slate-600 hover:text-primary hover:border-primary transition-all rounded-full bg-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Previous Testimonial">
               <ArrowLeft className="h-4 w-4" />
             </button>
-            <button onClick={nextSlide} className="p-3 border border-slate-200 text-slate-600 hover:text-sky-600 hover:border-sky-600 transition-all rounded-full bg-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Next Testimonial">
+            <button onClick={nextSlide} className="p-3 border border-slate-200 text-slate-600 hover:text-primary hover:border-primary transition-all rounded-full bg-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Next Testimonial">
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>
@@ -56,7 +56,7 @@ export const ScrollableTestimonials = () => {
             <div className="md:col-span-3 flex flex-col justify-between">
               <div>
                 <div className="flex gap-1 mb-4">
-                  {[...Array(TESTIMONIALS_DATA[scrollIndex].rating)].map((_, i) => (<Star key={i} className="h-4 w-4 fill-sky-500 text-sky-500" />))}
+                  {[...Array(TESTIMONIALS_DATA[scrollIndex].rating)].map((_, i) => (<Star key={i} className="h-4 w-4 fill-primary text-primary" />))}
                 </div>
                 <p className="text-slate-700 text-base md:text-lg italic font-sans leading-relaxed mb-6">
                   "{TESTIMONIALS_DATA[scrollIndex].content}"
@@ -67,7 +67,7 @@ export const ScrollableTestimonials = () => {
                   {TESTIMONIALS_DATA[scrollIndex].clientName}
                 </h4>
                 <p className="text-xs text-slate-500">
-                  {TESTIMONIALS_DATA[scrollIndex].designation} &mdash; <span className="text-sky-600 font-semibold">{TESTIMONIALS_DATA[scrollIndex].organization}</span>
+                  {TESTIMONIALS_DATA[scrollIndex].designation} &mdash; <span className="text-primary font-semibold">{TESTIMONIALS_DATA[scrollIndex].organization}</span>
                 </p>
               </div>
             </div>
@@ -90,7 +90,7 @@ export const ScrollableTestimonials = () => {
 
       {/* Indicator dots */}
       <div className="flex justify-center gap-2 mt-8">
-        {TESTIMONIALS_DATA.map((_, idx) => (<button key={idx} onClick={() => setScrollIndex(idx)} className={`h-2 transition-all rounded-full cursor-pointer ${idx === scrollIndex ? "w-6 bg-sky-600" : "w-2 bg-slate-300"}`} aria-label={`Go to slide ${idx + 1}`} />))}
+        {TESTIMONIALS_DATA.map((_, idx) => (<button key={idx} onClick={() => setScrollIndex(idx)} className={`h-2 transition-all rounded-full cursor-pointer ${idx === scrollIndex ? "w-6 bg-primary" : "w-2 bg-slate-300"}`} aria-label={`Go to slide ${idx + 1}`} />))}
       </div>
     </div>
   </section>);
@@ -121,7 +121,7 @@ export const OurThought = () => {
   return (<section className="py-24 px-6 md:px-12 bg-white border-b border-slate-100">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <span className="font-mono text-xs font-bold text-sky-600 uppercase tracking-widest block mb-2">
+        <span className="font-mono text-xs font-bold text-primary uppercase tracking-widest block mb-2">
           SYSTEM INTEGRITY INSIGHTS
         </span>
         <h2 className="text-3xl md:text-5xl font-sans font-bold text-slate-900 tracking-tight">
@@ -135,22 +135,22 @@ export const OurThought = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {thoughts.map((thought, idx) => {
           const IconComponent = thought.icon;
-          return (<div key={idx} className="bg-white border border-slate-200 p-8 hover:border-sky-500 hover:shadow-lg transition-all duration-300 rounded-2xl flex flex-col justify-between group">
+          return (<div key={idx} className="bg-white border border-slate-200 p-8 hover:border-primary hover:shadow-lg transition-all duration-300 rounded-2xl flex flex-col justify-between group">
             <div>
-              <div className="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center mb-6 group-hover:bg-sky-600 group-hover:text-white transition-all duration-300">
+              <div className="w-12 h-12 rounded-xl bg-sky-50 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                 <IconComponent className="h-6 w-6" />
               </div>
-              <span className="font-mono text-[10px] font-bold text-sky-600 tracking-wider uppercase block mb-2">
+              <span className="font-mono text-[10px] font-bold text-primary tracking-wider uppercase block mb-2">
                 {thought.tag}
               </span>
-              <h3 className="text-lg font-sans font-bold text-slate-900 mb-3 group-hover:text-sky-600 transition-colors">
+              <h3 className="text-lg font-sans font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">
                 {thought.title}
               </h3>
               <p className="text-slate-500 text-xs leading-relaxed mb-6">
                 {thought.desc}
               </p>
             </div>
-            <div className="flex items-center gap-1 text-xs font-bold text-sky-600 font-mono hover:text-sky-700 transition-colors cursor-pointer pt-4 border-t border-slate-100">
+            <div className="flex items-center gap-1 text-xs font-bold text-primary font-mono hover:text-sky-700 transition-colors cursor-pointer pt-4 border-t border-slate-100">
               <span>READ BRIEFING</span>
               <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
             </div>
@@ -158,7 +158,7 @@ export const OurThought = () => {
         })}
       </div>
       <div className="flex justify-center mt-12">
-        <button className="group bg-sky-600 hover:bg-sky-700 text-white font-bold font-sans py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+        <button className="group bg-primary hover:bg-sky-700 text-white font-bold font-sans py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
           <span>BROWSE ALL ARTICLES</span>
           <ArrowRight className="h-4 w-4 inline-block ml-2 group-hover:translate-x-1 transition-transform" />
         </button>
@@ -171,7 +171,7 @@ export const OurBlogs = () => {
   return (<section className="py-24 px-6 md:px-12 bg-slate-50 border-b border-slate-100">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <span className="font-mono text-xs font-bold text-sky-600 uppercase tracking-widest block mb-2">
+        <span className="font-mono text-xs font-bold text-primary uppercase tracking-widest block mb-2">
           RECENT INDUSTRY NEWS & SECURITY GUIDES
         </span>
         <h2 className="text-3xl md:text-5xl font-sans font-bold text-slate-900 tracking-tight">
@@ -183,10 +183,10 @@ export const OurBlogs = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {BLOGS_DATA.slice(0, 3).map((blog) => (<div key={blog.id} className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-sky-500 transition-all duration-300 flex flex-col justify-between">
+        {BLOGS_DATA.slice(0, 3).map((blog) => (<div key={blog.id} className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-primary transition-all duration-300 flex flex-col justify-between">
           <div>
             <div className="h-48 bg-sky-100 relative overflow-hidden flex items-center justify-center">
-              <div className="absolute inset-0 bg-gradient-to-br from-sky-400 to-sky-600 opacity-80"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-sky-400 to-primary opacity-80"></div>
               <div className="absolute inset-0 grid-pattern opacity-30"></div>
               <div className="relative z-10 text-white font-mono p-6">
                 <span className="text-[10px] bg-white/20 backdrop-blur-sm border border-white/30 px-2 py-0.5 rounded block w-fit mb-3">
@@ -214,7 +214,7 @@ export const OurBlogs = () => {
               <div className="text-xs font-bold text-slate-900">{blog.author}</div>
               <div className="text-[10px] text-slate-400">{blog.authorRole}</div>
             </div>
-            <button className="text-xs btn btn-link font-mono font-bold text-sky-600 hover:text-sky-700 flex items-center gap-1 cursor-pointer">
+            <button className="text-xs btn btn-link font-mono font-bold text-primary hover:text-sky-700 flex items-center gap-1 cursor-pointer">
               <span>READ</span>
               <ArrowRight className="h-3 w-3" />
             </button>
@@ -280,7 +280,7 @@ export const Careers = () => {
   return (<section className="py-24 px-6 md:px-12 bg-white border-b border-slate-100" id="careers-section">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <span className="font-mono text-xs font-bold text-sky-600 uppercase tracking-widest block mb-2">
+        <span className="font-mono text-xs font-bold text-primary uppercase tracking-widest block mb-2">
           GLOBAL CAREERS & TALENT ACQUISITION
         </span>
         <h2 className="text-3xl md:text-5xl font-sans font-bold text-slate-900 tracking-tight">
@@ -298,11 +298,11 @@ export const Careers = () => {
           </h3>
 
           <div className="space-y-4">
-            {jobs.map((job) => (<div key={job.id} className="bg-slate-50 border border-slate-200 p-6 rounded-2xl hover:border-sky-500 hover:shadow-md transition-all duration-300">
+            {jobs.map((job) => (<div key={job.id} className="bg-slate-50 border border-slate-200 p-6 rounded-2xl hover:border-primary hover:shadow-md transition-all duration-300">
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
                 <div>
                   <h4 className="text-base font-bold text-slate-900 font-sans">{job.title}</h4>
-                  <span className="text-xs font-mono text-sky-600 block mt-0.5">{job.type}</span>
+                  <span className="text-xs font-mono text-primary block mt-0.5">{job.type}</span>
                 </div>
                 <span className="text-[10px] font-bold font-mono bg-sky-50 text-sky-700 px-2 py-0.5 border border-sky-100 rounded w-fit shrink-0">
                   EXP: {job.experience}
@@ -316,7 +316,7 @@ export const Careers = () => {
               <button onClick={() => {
                 setSelectedJob(job.title);
                 document.getElementById("career-application-box")?.scrollIntoView({ behavior: "smooth" });
-              }} className="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-wider uppercase rounded-lg transition-colors cursor-pointer">
+              }} className="px-4 py-2 bg-primary hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-wider uppercase rounded-lg transition-colors cursor-pointer">
                 APPLY FOR POSITION
               </button>
             </div>))}
@@ -330,49 +330,49 @@ export const Careers = () => {
             </h3>
             <ul className="space-y-3">
               {benefits.map((benefit, idx) => (<li key={idx} className="flex gap-2.5 items-start text-xs text-slate-600 font-sans">
-                <CheckCircle2 className="h-4 w-4 text-sky-500 shrink-0 mt-0.5" />
+                <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                 <span>{benefit}</span>
               </li>))}
             </ul>
           </div>
 
           <AnimatePresence>
-            {selectedJob && (<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="bg-slate-50 border-2 border-sky-600 p-6 rounded-2xl shadow-xl relative">
+            {selectedJob && (<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="bg-slate-50 border-2 border-primary p-6 rounded-2xl shadow-xl relative">
               <h4 className="text-sm font-bold text-slate-900 mb-4 font-sans uppercase">
-                Applying for: <span className="text-sky-600">{selectedJob}</span>
+                Applying for: <span className="text-primary">{selectedJob}</span>
               </h4>
 
               {formSubmitted ? (<div className="text-center py-8">
-                <CheckCircle2 className="h-12 w-12 text-sky-500 mx-auto mb-3 animate-bounce" />
+                <CheckCircle2 className="h-12 w-12 text-primary mx-auto mb-3 animate-bounce" />
                 <h5 className="font-sans font-bold text-slate-900 text-sm">Application Sent Successfully!</h5>
                 <p className="text-xs text-slate-500 mt-1">Our HR department will review your credentials and contact you within 48 business hours.</p>
               </div>) : (<form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-[10px] font-bold text-slate-600 uppercase tracking-wide block mb-1">Full Name</label>
-                    <input type="text" required placeholder="John Doe" value={careerForm.name} onChange={(e) => setCareerForm({ ...careerForm, name: e.target.value })} className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-sky-500 text-slate-900" />
+                    <input type="text" required placeholder="John Doe" value={careerForm.name} onChange={(e) => setCareerForm({ ...careerForm, name: e.target.value })} className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-primary text-slate-900" />
                   </div>
                   <div>
                     <label className="text-[10px] font-bold text-slate-600 uppercase tracking-wide block mb-1">Email Address</label>
-                    <input type="email" required placeholder="john@example.com" value={careerForm.email} onChange={(e) => setCareerForm({ ...careerForm, email: e.target.value })} className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-sky-500 text-slate-900" />
+                    <input type="email" required placeholder="john@example.com" value={careerForm.email} onChange={(e) => setCareerForm({ ...careerForm, email: e.target.value })} className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-primary text-slate-900" />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-[10px] font-bold text-slate-600 uppercase tracking-wide block mb-1">Contact Phone</label>
-                    <input type="tel" required placeholder="+91 98765 43210" value={careerForm.phone} onChange={(e) => setCareerForm({ ...careerForm, phone: e.target.value })} className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-sky-500 text-slate-900" />
+                    <input type="tel" required placeholder="+91 98765 43210" value={careerForm.phone} onChange={(e) => setCareerForm({ ...careerForm, phone: e.target.value })} className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-primary text-slate-900" />
                   </div>
                   <div>
                     <label className="text-[10px] font-bold text-slate-600 uppercase tracking-wide block mb-1">Resume Link (PDF/Google Drive)</label>
-                    <input type="url" required placeholder="https://drive.google.com/..." value={careerForm.resumeLink} onChange={(e) => setCareerForm({ ...careerForm, resumeLink: e.target.value })} className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-sky-500 text-slate-900" />
+                    <input type="url" required placeholder="https://drive.google.com/..." value={careerForm.resumeLink} onChange={(e) => setCareerForm({ ...careerForm, resumeLink: e.target.value })} className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-primary text-slate-900" />
                   </div>
                 </div>
                 <div>
                   <label className="text-[10px] font-bold text-slate-600 uppercase tracking-wide block mb-1">Cover Note / Project Experience</label>
-                  <textarea rows={3} placeholder="Briefly describe your experience with Hikvision, Dahua, networking, or cameras..." value={careerForm.message} onChange={(e) => setCareerForm({ ...careerForm, message: e.target.value })} className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-sky-500 text-slate-900" />
+                  <textarea rows={3} placeholder="Briefly describe your experience with Hikvision, Dahua, networking, or cameras..." value={careerForm.message} onChange={(e) => setCareerForm({ ...careerForm, message: e.target.value })} className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-primary text-slate-900" />
                 </div>
                 <div className="flex gap-2">
-                  <button type="submit" className="flex-1 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-wider uppercase rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer">
+                  <button type="submit" className="flex-1 py-2.5 bg-primary hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-wider uppercase rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer">
                     <Send className="h-3 w-3" />
                     <span>SUBMIT CREDENTIALS</span>
                   </button>
@@ -417,7 +417,7 @@ export const FAQSection = () => {
   return (<section className="py-24 px-6 md:px-12 bg-slate-50 border-b border-slate-100">
     <div className="max-w-4xl mx-auto">
       <div className="text-center mb-16">
-        <span className="font-mono text-xs font-bold text-sky-600 uppercase tracking-widest block mb-2">
+        <span className="font-mono text-xs font-bold text-primary uppercase tracking-widest block mb-2">
           CLEAR ANSWERS TO CORE SECURITY PARADIGMS
         </span>
         <h2 className="text-3xl md:text-4xl font-sans font-bold text-slate-900 tracking-tight">
@@ -432,7 +432,7 @@ export const FAQSection = () => {
         {faqs.map((faq, idx) => (<div key={idx} className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-sky-400 transition-colors duration-200">
           <button onClick={() => setOpenIndex(openIndex === idx ? null : idx)} className="w-full flex justify-between items-center p-6 text-left font-sans font-semibold text-slate-800 text-sm md:text-base focus:outline-none cursor-pointer">
             <span>{faq.q}</span>
-            <ChevronDown className={`h-5 w-5 text-slate-400 shrink-0 transition-transform duration-300 ${openIndex === idx ? "rotate-180 text-sky-600" : ""}`} />
+            <ChevronDown className={`h-5 w-5 text-slate-400 shrink-0 transition-transform duration-300 ${openIndex === idx ? "rotate-180 text-primary" : ""}`} />
           </button>
 
           <AnimatePresence initial={false}>
@@ -525,7 +525,7 @@ export const CorporateContactForm = () => {
   return (<section className="py-24 px-6 md:px-12 bg-white border-b border-slate-100" id="contact-form-section">
     <div className="max-w-4xl mx-auto">
       <div className="text-center mb-16">
-        <span className="font-sans text-xs font-bold text-sky-600 uppercase tracking-widest block mb-2">
+        <span className="font-sans text-xs font-bold text-primary uppercase tracking-widest block mb-2">
           Corporate Consultation Desk
         </span>
         <h2 className="text-3xl md:text-5xl font-sans font-bold text-slate-900 tracking-tight">
@@ -538,12 +538,12 @@ export const CorporateContactForm = () => {
 
       <div className="bg-slate-50 border border-slate-200 p-8 md:p-12 rounded-3xl shadow-sm">
         {submitted ? (<motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-center py-12">
-          <div className="w-16 h-16 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center mx-auto mb-6">
+          <div className="w-16 h-16 rounded-full bg-sky-50 text-primary flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 className="h-10 w-10 animate-pulse" />
           </div>
           <h3 className="text-xl font-bold text-slate-900 font-sans">Corporate Inquiry Logged</h3>
           <p className="text-slate-500 text-sm mt-2 max-w-md mx-auto leading-relaxed">
-            Thank you, <span className="text-sky-600 font-semibold">{formData.name}</span>. An SPE Senior Network & surveillance engineer has been assigned. We will reach out via <span className="text-slate-950 font-medium">{formData.email}</span> within 4 business hours.
+            Thank you, <span className="text-primary font-semibold">{formData.name}</span>. An SPE Senior Network & surveillance engineer has been assigned. We will reach out via <span className="text-slate-950 font-medium">{formData.email}</span> within 4 business hours.
           </p>
           <span className="text-[10px] font-mono text-slate-400 uppercase mt-4 block">
             TICKET ID: SPE-{Math.floor(100000 + Math.random() * 900000)}
@@ -554,13 +554,13 @@ export const CorporateContactForm = () => {
               <label className="text-[10px] font-bold text-slate-600 uppercase tracking-wider block mb-2">
                 Your Full Name *
               </label>
-              <input type="text" required placeholder="Enter your name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-sky-500 transition-colors" />
+              <input type="text" required placeholder="Enter your name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-primary transition-colors" />
             </div>
             <div>
               <label className="text-[10px] font-bold text-slate-600 uppercase tracking-wider block mb-2">
                 Company / Organization
               </label>
-              <input type="text" placeholder="Enter company name" value={formData.org} onChange={(e) => setFormData({ ...formData, org: e.target.value })} className="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-sky-500 transition-colors" />
+              <input type="text" placeholder="Enter company name" value={formData.org} onChange={(e) => setFormData({ ...formData, org: e.target.value })} className="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-primary transition-colors" />
             </div>
           </div>
 
@@ -576,7 +576,7 @@ export const CorporateContactForm = () => {
                 ? "border-red-500 focus:border-red-500 bg-red-50/20"
                 : touched.phone && !errors.phone
                   ? "border-emerald-500 focus:border-emerald-500 bg-emerald-50/10"
-                  : "border-slate-200 focus:border-sky-500"}`} />
+                  : "border-slate-200 focus:border-primary"}`} />
             </div>
             <div>
               <div className="flex justify-between items-center mb-2">
@@ -589,7 +589,7 @@ export const CorporateContactForm = () => {
                 ? "border-red-500 focus:border-red-500 bg-red-50/20"
                 : touched.email && !errors.email
                   ? "border-emerald-500 focus:border-emerald-500 bg-emerald-50/10"
-                  : "border-slate-200 focus:border-sky-500"}`} />
+                  : "border-slate-200 focus:border-primary"}`} />
             </div>
           </div>
 
@@ -598,7 +598,7 @@ export const CorporateContactForm = () => {
               Project Segment / Sector Scope *
             </label>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-              {["Corporate", "Residential", "Industrial", "Healthcare", "Banking"].map((sec) => (<button key={sec} type="button" onClick={() => setFormData({ ...formData, segment: sec })} className={`py-2 px-3 border text-[10px] font-bold font-mono tracking-wider uppercase transition-all rounded-lg cursor-pointer ${formData.segment === sec ? "border-sky-600 bg-sky-50 text-sky-700 font-bold" : "border-slate-200 bg-white text-slate-600"}`}>
+              {["Corporate", "Residential", "Industrial", "Healthcare", "Banking"].map((sec) => (<button key={sec} type="button" onClick={() => setFormData({ ...formData, segment: sec })} className={`py-2 px-3 border text-[10px] font-bold font-mono tracking-wider uppercase transition-all rounded-lg cursor-pointer ${formData.segment === sec ? "border-primary bg-sky-50 text-sky-700 font-bold" : "border-slate-200 bg-white text-slate-600"}`}>
                 {sec}
               </button>))}
             </div>
@@ -608,10 +608,10 @@ export const CorporateContactForm = () => {
             <label className="text-[10px] font-bold text-slate-600 uppercase tracking-wider block mb-2">
               Describe Security Requirements (Camera count, Storage duration, etc.) *
             </label>
-            <textarea required rows={4} placeholder="Tell us about your requirements (e.g. 16 full-color IP bullet cameras, 200m fiber cabling, PTZ tracking on main shipping yard, etc.)..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-sky-500 transition-colors" />
+            <textarea required rows={4} placeholder="Tell us about your requirements (e.g. 16 full-color IP bullet cameras, 200m fiber cabling, PTZ tracking on main shipping yard, etc.)..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-primary transition-colors" />
           </div>
 
-          <button type="submit" className="w-full bg-sky-600 hover:bg-sky-700 text-white font-mono font-bold text-xs tracking-widest uppercase py-4 rounded-xl border border-sky-600 transition-all flex items-center justify-center gap-2.5 shadow-md cursor-pointer">
+          <button type="submit" className="w-full bg-primary hover:bg-sky-700 text-white font-mono font-bold text-xs tracking-widest uppercase py-4 rounded-xl border border-primary transition-all flex items-center justify-center gap-2.5 shadow-md cursor-pointer">
             <Send className="h-4 w-4" />
             <span>SUBMIT CORPORATE INQUIRY</span>
           </button>
@@ -631,7 +631,7 @@ export const OurLocation = ({ contactData }) => {
   return (<section className="py-24 px-6 md:px-12 bg-slate-50 relative border-b border-slate-100">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <span className="font-sans text-xs font-bold text-sky-600 uppercase tracking-widest block mb-2">
+        <span className="font-sans text-xs font-bold text-primary uppercase tracking-widest block mb-2">
           Visit Our Flagship Experience Mall
         </span>
         <h2 className="text-3xl md:text-5xl font-sans font-bold text-slate-900 tracking-tight">
@@ -654,7 +654,7 @@ export const OurLocation = ({ contactData }) => {
             </h3>
 
             <div className="flex items-start gap-3.5">
-              <div className="w-9 h-9 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 mt-0.5">
+              <div className="w-9 h-9 rounded-lg bg-sky-50 text-primary flex items-center justify-center shrink-0 mt-0.5">
                 <MapPin className="h-5 w-5" />
               </div>
               <div>
@@ -686,7 +686,7 @@ export const OurLocation = ({ contactData }) => {
             </div>
 
             <div className="flex items-start gap-3.5">
-              <div className="w-9 h-9 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 mt-0.5">
+              <div className="w-9 h-9 rounded-lg bg-sky-50 text-primary flex items-center justify-center shrink-0 mt-0.5">
                 <Phone className="h-5 w-5" />
               </div>
               <div>
@@ -716,21 +716,21 @@ export const OurLocation = ({ contactData }) => {
             </div>
 
             <div className="flex items-start gap-3.5">
-              <div className="w-9 h-9 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 mt-0.5">
+              <div className="w-9 h-9 rounded-lg bg-sky-50 text-primary flex items-center justify-center shrink-0 mt-0.5">
                 <Mail className="h-5 w-5" />
               </div>
               <div>
                 <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">
                   System Support Mail
                 </h4>
-                <p className="text-xs text-sky-600 leading-relaxed font-mono font-medium">
+                <p className="text-xs text-primary leading-relaxed font-mono font-medium">
                   {displayEmail}
                 </p>
               </div>
             </div>
 
             <div className="flex items-start gap-3.5">
-              <div className="w-9 h-9 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 mt-0.5">
+              <div className="w-9 h-9 rounded-lg bg-sky-50 text-primary flex items-center justify-center shrink-0 mt-0.5">
                 <Clock className="h-5 w-5" />
               </div>
               <div>
@@ -746,12 +746,12 @@ export const OurLocation = ({ contactData }) => {
 
           <button onClick={() => {
             alert("This function is underprocess")
-          }} className="w-full mt-8 py-3 bg-sky-600 hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-widest uppercase rounded-xl transition-all cursor-pointer text-center">
+          }} className="w-full mt-8 py-3 bg-primary hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-widest uppercase rounded-xl transition-all cursor-pointer text-center">
             BOOK TECHNICAL APPOINTMENT
           </button>
           {/* <button onClick={() => {
             document.getElementById("contact-form-section")?.scrollIntoView({ behavior: "smooth" });
-          }} className="w-full mt-8 py-3 bg-sky-600 hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-widest uppercase rounded-xl transition-all cursor-pointer text-center">
+          }} className="w-full mt-8 py-3 bg-primary hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-widest uppercase rounded-xl transition-all cursor-pointer text-center">
             BOOK TECHNICAL APPOINTMENT
           </button> */}
         </div>

@@ -59,7 +59,7 @@ export function Testimonials({ testimonials, setTestimonials, setToastMessage })
       <div className="max-w-7xl mx-auto font-sans">
 
         <motion.div {...fadeInUp} className="text-center mb-12">
-          <span className="font-sans font-bold text-[10px] text-sky-600 tracking-widest uppercase block mb-3">[ REFERENCE GRID // CLIENT VOICE ]</span>
+          <span className="font-sans font-bold text-[10px] text-primary tracking-widest uppercase block mb-3">[ REFERENCE GRID // CLIENT VOICE ]</span>
           <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-slate-900 uppercase">Nagpur Trust Testimonials</h2>
           <p className="text-slate-500 mt-3 text-sm max-w-2xl mx-auto leading-relaxed">
             See how Security Plus Electronics secures Nagpur's top metro grids, jewelers, medical centers, and luxury residential estates.
@@ -67,7 +67,7 @@ export function Testimonials({ testimonials, setTestimonials, setToastMessage })
         </motion.div>
 
         <motion.div {...fadeInUp} className="flex flex-wrap justify-center gap-2 mb-12 max-w-3xl mx-auto">
-          {["all", "residential", "commercial", "banking", "healthcare", "industrial"].map(cat => (<button key={cat} onClick={() => setTestimonialFilter(cat)} className={`text-[10px] px-4 py-2 border uppercase font-bold tracking-wider transition-all duration-300 rounded-full cursor-pointer ${testimonialFilter === cat ? "bg-sky-600 text-white border-sky-600 shadow-sm" : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"}`}>
+          {["all", "residential", "commercial", "banking", "healthcare", "industrial"].map(cat => (<button key={cat} onClick={() => setTestimonialFilter(cat)} className={`text-[10px] px-4 py-2 border uppercase font-bold tracking-wider transition-all duration-300 rounded-full cursor-pointer ${testimonialFilter === cat ? "bg-primary text-white border-primary shadow-sm" : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"}`}>
             {cat}
           </button>))}
         </motion.div>
@@ -75,7 +75,7 @@ export function Testimonials({ testimonials, setTestimonials, setToastMessage })
         <motion.div variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-100px" }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {testimonials
             .filter(t => testimonialFilter === "all" || t.category === testimonialFilter)
-            .map((item) => (<motion.div key={item.id} variants={staggerItem} whileHover={{ y: -5, borderColor: "#0284C7", boxShadow: "0 20px 40px -15px rgba(2, 132, 199, 0.08)" }} className="bg-white p-6 border border-slate-200 flex flex-col justify-between hover:border-sky-500 transition-all duration-300 rounded-2xl relative shadow-sm">
+            .map((item) => (<motion.div key={item.id} variants={staggerItem} whileHover={{ y: -5, borderColor: "#0284C7", boxShadow: "0 20px 40px -15px rgba(2, 132, 199, 0.08)" }} className="bg-white p-6 border border-slate-200 flex flex-col justify-between hover:border-primary transition-all duration-300 rounded-2xl relative shadow-sm">
               <span className="absolute top-4 right-4 text-[8px] font-bold bg-green-50 border border-green-100 text-green-700 px-2.5 py-1 rounded-lg uppercase tracking-wider">
                 Verified Client
               </span>
@@ -93,7 +93,7 @@ export function Testimonials({ testimonials, setTestimonials, setToastMessage })
               <div className="mt-6 pt-4 border-t border-slate-100 space-y-2">
                 <div className="text-[10px]">
                   <span className="text-slate-400 uppercase block text-[8px] font-bold">[ System Deployed ]</span>
-                  <span className="text-sky-600 font-bold block truncate">{item.systemInstalled}</span>
+                  <span className="text-primary font-bold block truncate">{item.systemInstalled}</span>
                 </div>
 
                 <div className="flex justify-between items-end pt-1">
@@ -109,7 +109,7 @@ export function Testimonials({ testimonials, setTestimonials, setToastMessage })
 
         <div className="bg-white border border-slate-200 p-8 max-w-3xl mx-auto rounded-2xl shadow-sm">
           <div className="border-b border-slate-100 pb-4 mb-6">
-            <h3 className="font-sans font-extrabold text-sm text-sky-600 uppercase tracking-wider flex items-center gap-2">
+            <h3 className="font-sans font-extrabold text-sm text-primary uppercase tracking-wider flex items-center gap-2">
               <MessageSquare className="h-4 w-4" />
               SUBMIT YOUR INSTALLATION FEEDBACK
             </h3>
@@ -127,26 +127,26 @@ export function Testimonials({ testimonials, setTestimonials, setToastMessage })
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1">
                 <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">[ Your Full Name ]</label>
-                <input type="text" required placeholder="e.g. Anand Deshpande" value={newFeedback.clientName} onChange={(e) => setNewFeedback(prev => ({ ...prev, clientName: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
+                <input type="text" required placeholder="e.g. Anand Deshpande" value={newFeedback.clientName} onChange={(e) => setNewFeedback(prev => ({ ...prev, clientName: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
               </div>
               <div className="space-y-1">
                 <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">[ System Model Installed ]</label>
-                <input type="text" placeholder="e.g. 4-Cam ColorVu Array & Biometric Locks" value={newFeedback.systemInstalled} onChange={(e) => setNewFeedback(prev => ({ ...prev, systemInstalled: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
+                <input type="text" placeholder="e.g. 4-Cam ColorVu Array & Biometric Locks" value={newFeedback.systemInstalled} onChange={(e) => setNewFeedback(prev => ({ ...prev, systemInstalled: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-1">
                 <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">[ Designation ]</label>
-                <input type="text" placeholder="e.g. Managing Director" value={newFeedback.designation} onChange={(e) => setNewFeedback(prev => ({ ...prev, designation: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
+                <input type="text" placeholder="e.g. Managing Director" value={newFeedback.designation} onChange={(e) => setNewFeedback(prev => ({ ...prev, designation: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
               </div>
               <div className="space-y-1">
                 <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">[ Organization Name ]</label>
-                <input type="text" placeholder="e.g. Orange Trade Center" value={newFeedback.organization} onChange={(e) => setNewFeedback(prev => ({ ...prev, organization: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
+                <input type="text" placeholder="e.g. Orange Trade Center" value={newFeedback.organization} onChange={(e) => setNewFeedback(prev => ({ ...prev, organization: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
               </div>
               <div className="space-y-1">
                 <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">[ Rating Score ]</label>
-                <select value={newFeedback.rating} onChange={(e) => setNewFeedback(prev => ({ ...prev, rating: parseInt(e.target.value) }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl transition-all">
+                <select value={newFeedback.rating} onChange={(e) => setNewFeedback(prev => ({ ...prev, rating: parseInt(e.target.value) }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl transition-all">
                   <option value="5">★★★★★ Outstanding (5/5)</option>
                   <option value="4">★★★★ High Quality (4/5)</option>
                   <option value="3">★★★ Average Setup (3/5)</option>
@@ -156,7 +156,7 @@ export function Testimonials({ testimonials, setTestimonials, setToastMessage })
 
             <div className="space-y-1">
               <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">[ Sector Category ]</label>
-              <select value={newFeedback.category} onChange={(e) => setNewFeedback(prev => ({ ...prev, category: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl transition-all">
+              <select value={newFeedback.category} onChange={(e) => setNewFeedback(prev => ({ ...prev, category: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl transition-all">
                 <option value="commercial">Commercial Space</option>
                 <option value="residential">Residential Home</option>
                 <option value="banking">Banking &amp; Financial Vault</option>
@@ -167,10 +167,10 @@ export function Testimonials({ testimonials, setTestimonials, setToastMessage })
 
             <div className="space-y-1">
               <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Write Review Content ]</label>
-              <textarea required rows={4} placeholder="Provide descriptive feedback about installation timelines, optics clarity, network stability, and staff service..." value={newFeedback.content} onChange={(e) => setNewFeedback(prev => ({ ...prev, content: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all"></textarea>
+              <textarea required rows={4} placeholder="Provide descriptive feedback about installation timelines, optics clarity, network stability, and staff service..." value={newFeedback.content} onChange={(e) => setNewFeedback(prev => ({ ...prev, content: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all"></textarea>
             </div>
 
-            <button type="submit" className="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold text-[10px] uppercase tracking-widest py-3.5 border border-sky-600 rounded-xl transition-all cursor-pointer shadow-sm">
+            <button type="submit" className="w-full bg-primary hover:bg-sky-700 text-white font-bold text-[10px] uppercase tracking-widest py-3.5 border border-primary rounded-xl transition-all cursor-pointer shadow-sm">
               SUBMIT VERIFIED CLIENT TESTIMONIAL
             </button>
           </form>)}

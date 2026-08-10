@@ -28,6 +28,7 @@ const staggerItem = {
 
 export default function Products({ products, productCategories, customerUser, wishlist, toggleWishlist, setToastMessage, setSelectedProductForQuickView }) {
 
+  const [currentPage, setCurrentPage] = useState(1);
   const [blogCategoryFilter, setBlogCategoryFilter] = useState("All");
   const [productSortOption, setProductSortOption] = useState("default");
 
@@ -44,6 +45,37 @@ export default function Products({ products, productCategories, customerUser, wi
     return product.categories[0]?.name || "Other";
   }
 
+
+  useEffect(() => {
+
+    const fetchProducts = async () => {
+
+      try {
+
+        const response = await fetch(
+          `https://woston.in/wp-json/wc/store/v1/products?per_page=12&page=${currentPage}`, { mode: "no-cors" }
+        );
+
+        console.log(response)
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+
+        const data = await response.json();
+        console.log(data)
+        setProducts(data);
+
+      } catch (error) {
+
+        console.error(error);
+
+      }
+
+    };
+
+    fetchProducts();
+
+  }, [currentPage]);
   // const formattedPrice = new Intl.NumberFormat('en-IN', {
   //   style: 'currency',
   //   currency: 'INR'
@@ -65,7 +97,7 @@ export default function Products({ products, productCategories, customerUser, wi
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-7xl mx-auto text-sans">
           <div className="text-center mb-12">
-            <span className="font-sans font-bold text-[10px] tracking-widest text-sky-600 bg-sky-50 px-3.5 py-1.5 border border-sky-100 rounded-full inline-block mb-4">
+            <span className="font-sans font-bold text-[10px] tracking-widest text-primary bg-sky-50 px-3.5 py-1.5 border border-sky-100 rounded-full inline-block mb-4">
               Woston Security Hardware Catalog
             </span>
             <h1 className="text-3xl md:text-5xl font-sans font-extrabold text-slate-900 tracking-tight uppercase">
@@ -79,14 +111,14 @@ export default function Products({ products, productCategories, customerUser, wi
             <div className="mt-8 p-6 bg-white border border-slate-200/80 max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-left rounded-2xl shadow-sm">
               <div>
                 <h3 className="text-sm font-bold text-slate-900 uppercase flex items-center gap-2">
-                  <ShoppingBag className="h-4 w-4 text-sky-600" />
+                  <ShoppingBag className="h-4 w-4 text-primary" />
                   WOSTON ONLINE SALES PORTAL
                 </h3>
                 <p className="text-xs text-slate-500 mt-1 max-w-lg leading-relaxed">
                   Our primary secure digital storefront is hosting live stock data, delivery estimates for Nagpur, Pune, and Mumbai regions, and direct credit card merchant channels.
                 </p>
               </div>
-              <button onClick={() => window.open("https://woston.in", "_blank")} className="bg-sky-600 hover:bg-sky-700 text-white px-5 py-2.5 rounded-xl font-bold text-[10px] tracking-widest uppercase border border-sky-600 hover:border-sky-700 transition-all duration-300 flex items-center gap-2 whitespace-nowrap cursor-pointer shadow-sm">
+              <button onClick={() => window.open("https://woston.in", "_blank")} className="bg-primary hover:bg-sky-700 text-white px-5 py-2.5 rounded-xl font-bold text-[10px] tracking-widest uppercase border border-primary hover:border-sky-700 transition-all duration-300 flex items-center gap-2 whitespace-nowrap cursor-pointer shadow-sm">
                 <span>GO TO WOSTON STORE</span>
                 <ExternalLink className="h-3 w-3" />
               </button>
@@ -100,7 +132,7 @@ export default function Products({ products, productCategories, customerUser, wi
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4 mb-10 bg-white border border-slate-200/80 p-5 rounded-2xl shadow-sm">
             <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
               {["All", ...productCategories].map((cat) => (<button key={cat} onClick={() => setBlogCategoryFilter(cat)} className={`text-[10px] uppercase tracking-wider px-4.5 py-2.5 border transition-all rounded-full font-bold cursor-pointer ${blogCategoryFilter === cat
-                ? "bg-sky-600 border-sky-600 text-white shadow-sm"
+                ? "bg-primary border-primary text-white shadow-sm"
                 : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"}`}>
                 {cat}
               </button>))}
@@ -110,7 +142,7 @@ export default function Products({ products, productCategories, customerUser, wi
               <span className="font-mono text-[9px] text-slate-400 uppercase font-bold tracking-wider whitespace-nowrap">
                 SORT BY:
               </span>
-              <select value={productSortOption} onChange={(e) => setProductSortOption(e.target.value)} className="bg-white border border-slate-200 hover:border-sky-500 text-slate-800 text-xs px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-sky-500 font-sans cursor-pointer transition-colors shadow-sm w-full lg:w-auto min-w-45">
+              <select value={productSortOption} onChange={(e) => setProductSortOption(e.target.value)} className="bg-white border border-slate-200 hover:border-primary text-slate-800 text-xs px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary font-sans cursor-pointer transition-colors shadow-sm w-full lg:w-auto min-w-45">
                 <option value="default">Recommended (Original)</option>
                 <option value="price-asc">Price: Low to High</option>
                 <option value="price-desc">Price: High to Low</option>
@@ -121,7 +153,7 @@ export default function Products({ products, productCategories, customerUser, wi
 
           <motion.div key={`${blogCategoryFilter}-${productSortOption}`} variants={staggerContainer} initial="initial" animate="whileInView" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {
-              PRODUCTS.map((product) =>
+              products.map((product) =>
                 <motion.div layout variants={staggerItem} key={product.id} whileHover={{
                   scale: 1.02,
                   borderColor: "#0284C7",
@@ -143,7 +175,7 @@ export default function Products({ products, productCategories, customerUser, wi
 
                       <div className="absolute inset-0 bg-slate-950/15 pointer-events-none" />
 
-                      <span className="absolute top-2.5 left-2.5 text-xs bg-sky-600 text-white px-2.5 pt-2 pb-1 rounded-md uppercase tracking-wider z-20">
+                      <span className="absolute top-2.5 left-2.5 text-xs bg-primary text-white px-2.5 pt-2 pb-1 rounded-md uppercase tracking-wider z-20">
                         {product.on_sale && "★ Bestseller"}
                         {!product.on_sale && "Sale"}
                       </span>
@@ -170,18 +202,18 @@ export default function Products({ products, productCategories, customerUser, wi
                         <button id={`quick-view-btn-img-${product.id}`} onClick={(e) => {
                           e.stopPropagation();
                           setSelectedProductForQuickView(product);
-                        }} className="bg-white text-slate-900 hover:bg-sky-600 hover:text-white px-4 py-2 text-xs font-bold rounded-lg transition-all shadow-md flex items-center gap-1.5 cursor-pointer transform translate-y-2 group-hover:translate-y-0 duration-300 z-20">
+                        }} className="bg-white text-slate-900 hover:bg-primary hover:text-white px-4 py-2 text-xs font-bold rounded-lg transition-all shadow-md flex items-center gap-1.5 cursor-pointer transform translate-y-2 group-hover:translate-y-0 duration-300 z-20">
                           <Eye className="h-3.5 w-3.5" />
                           Quick View
                         </button>
                       </div>
 
-                      <div className="absolute bottom-2 right-2 text-[8px] font-bold bg-white text-sky-500  backdrop-blur-sm px-2 py-1 uppercase rounded z-20">
+                      <div className="absolute bottom-2 right-2 text-[8px] font-bold bg-white text-primary  backdrop-blur-sm px-2 py-1 uppercase rounded z-20">
                         {product.sku ? product.sku : product.brands[0].name}
                       </div>
                     </div>
 
-                    <h3 className="text-sm font-bold text-slate-900 uppercase group-hover:text-sky-600 transition-colors line-clamp-2">
+                    <h3 className="text-sm font-bold text-slate-900 uppercase group-hover:text-primary transition-colors line-clamp-2">
                       {parse(product.name)}
                     </h3>
 
@@ -202,12 +234,12 @@ export default function Products({ products, productCategories, customerUser, wi
                         e.stopPropagation();
                         setSelectedProductForQuickView(product);
                       }} className="bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-100/50 px-3 py-1.5 text-[9px] font-bold uppercase transition-all duration-300 rounded-xl flex items-center gap-1 cursor-pointer">
-                        <Eye className="h-3.5 w-3.5 text-sky-600" />
+                        <Eye className="h-3.5 w-3.5 text-primary" />
                         Quick View
                       </button>
 
-                      <Link to={product.permalink} target={"_blank"} id={`purchase-btn-${product.id}`} className="bg-slate-50 group-hover:bg-sky-600 border border-sky-500 text-slate-700 group-hover:text-slate-50 px-3 py-1  text-[9px] font-bold uppercase transition-all duration-300 rounded-xl flex items-center justify-center gap-1 cursor-pointer ">
-                        <ShoppingBag className="h-3.5 w-3.5  text-sky-600 duration-300 group-hover:text-sky-50" />
+                      <Link to={product.permalink} target={"_blank"} id={`purchase-btn-${product.id}`} className="bg-slate-50 group-hover:bg-primary border border-primary text-slate-700 group-hover:text-slate-50 px-3 py-1  text-[9px] font-bold uppercase transition-all duration-300 rounded-xl flex items-center justify-center gap-1 cursor-pointer ">
+                        <ShoppingBag className="h-3.5 w-3.5  text-primary duration-300 group-hover:text-sky-50" />
                         Purchase
                       </Link>
                     </div>

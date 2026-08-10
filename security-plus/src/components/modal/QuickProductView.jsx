@@ -36,7 +36,6 @@ const QuickProductView = ({ selectedProductForQuickView, setSelectedProductForQu
         const shareText = `${parse(product.name)} - ${parse(product.short_description)}. Price: ${formatPrice(!product.prices?.sale_price ? product.prices.regular_price : product.prices?.sale_price)}. Available at Security Plus Electronics Nagpur.`;
         const fullShareText = `${shareText}\n${shareUrl}`;
 
-        console.log(shareText)
 
         const options = [
             {
@@ -76,7 +75,6 @@ const QuickProductView = ({ selectedProductForQuickView, setSelectedProductForQu
                     text: shareText,
                     url: shareUrl,
                 });
-                setToastMessage("Product details shared successfully!");
             } else {
                 const pick = window.prompt(
                     "Share Product:\n1. WhatsApp\n2. Facebook\n3. Twitter\n4. Copy Link\n\nEnter number:"
@@ -97,7 +95,7 @@ const QuickProductView = ({ selectedProductForQuickView, setSelectedProductForQu
 
     return (
         <div className="product-quick-view fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <motion.div id="quick-view-modal-container" initial={{ scale: 0.95, opacity: 0, y: 10 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 10 }} className="bg-white border border-sky-500 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl relative flex flex-col md:flex-row text-slate-800">
+            <motion.div id="quick-view-modal-container" initial={{ scale: 0.95, opacity: 0, y: 10 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 10 }} className="bg-white border border-primary w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl relative flex flex-col md:flex-row text-slate-800">
                 <div className="md:w-5/12 border bg-slate-50 border-r border-slate-100 p-4 flex flex-col justify-between relative min-h-auto md:min-h-90">
                     <div className="">
                         <div className='flex items-center justify-between pt-1'>
@@ -165,14 +163,14 @@ const QuickProductView = ({ selectedProductForQuickView, setSelectedProductForQu
                                 setInquiryList(prev => [...prev, selectedProductForQuickView]);
                                 setToastMessage(`Added ${selectedProductForQuickView.name} to your inquiry list. Click 'Inquiry List' in the top bar to review.`);
                             }
-                        }} className="flex-1 bg-sky-600 hover:bg-sky-500 text-white py-3 rounded-xl text-xs font-bold uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-sky-100 hover:scale-[1.01] font-sans">
+                        }} className="flex-1 bg-primary hover:bg-primary-hover text-white py-3 rounded-xl text-xs font-bold uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-sky-100 hover:scale-[1.01] font-sans">
                             <Plus className="h-4 w-4" />
                             Add to Inquiry
                         </button>)}
 
                         <Link to={selectedProductForQuickView.permalink} target='_blank' id="modal-direct-buy-btn" onClick={() => {
                             setSelectedProductForQuickView(null);
-                        }} className="text-primary px-5 py-3 rounded-xl text-xs font-bold uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer border border-primary font-sans">
+                        }} className="text-primary hover:text-white hover:bg-primary-hover px-5 py-3 rounded-xl text-xs font-bold uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer border border-primary font-sans">
                             <ShoppingBag className="h-4 w-4" />
                             Buy Now
                         </Link>

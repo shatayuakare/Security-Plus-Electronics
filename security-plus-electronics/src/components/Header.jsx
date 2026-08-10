@@ -59,8 +59,8 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
         {/* Interactive Account Dropdown */}
         <div className="relative" ref={accountRef}>
           <button onClick={() => setAccountDropdownOpen(!accountDropdownOpen)} className={`h-8 w-8 rounded-full border transition-all duration-200 cursor-pointer flex items-center justify-center shrink-0 ${accountDropdownOpen
-            ? "bg-sky-600 border-sky-600 text-white shadow-lg shadow-sky-500/15"
-            : "bg-slate-950 border-slate-850 text-slate-300 hover:border-sky-500 hover:text-sky-400"}`} title="Account Options">
+            ? "bg-primary border-primary text-white shadow-lg shadow-primary/15"
+            : "bg-slate-950 border-slate-850 text-slate-300 hover:border-primary hover:text-sky-400"}`} title="Account Options">
             <User className="h-4 w-4" />
           </button>
           <AnimatePresence>
@@ -73,7 +73,7 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
                 </div>
 
                 {/* Wishlist Navigation Button */}
-                <button onClick={() => setDropdownSubView("wishlist")} className="w-full bg-slate-900 hover:bg-slate-800 text-slate-200 font-sans font-bold text-[9px] tracking-widest uppercase py-2.5 rounded-lg border border-slate-800 hover:border-sky-500 transition-all cursor-pointer flex items-center justify-between px-3">
+                <button onClick={() => setDropdownSubView("wishlist")} className="w-full bg-slate-900 hover:bg-slate-800 text-slate-200 font-sans font-bold text-[9px] tracking-widest uppercase py-2.5 rounded-lg border border-slate-800 hover:border-primary transition-all cursor-pointer flex items-center justify-between px-3">
                   <span className="flex items-center gap-1.5">
                     <Heart className="h-3.5 w-3.5 text-rose-500 fill-rose-500" />
                     My Wishlist
@@ -83,7 +83,7 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
                   </span>
                 </button>
 
-                <button onClick={() => { setActiveTab("products"); setAccountDropdownOpen(false); }} className="w-full bg-slate-900 hover:bg-slate-800 text-slate-200 font-sans font-bold text-[9px] tracking-widest uppercase py-2.5 rounded-lg border border-slate-800 hover:border-sky-500 transition-all cursor-pointer flex items-center justify-center gap-1.5">
+                <button onClick={() => { setActiveTab("products"); setAccountDropdownOpen(false); }} className="w-full bg-slate-900 hover:bg-slate-800 text-slate-200 font-sans font-bold text-[9px] tracking-widest uppercase py-2.5 rounded-lg border border-slate-800 hover:border-primary transition-all cursor-pointer flex items-center justify-center gap-1.5">
                   Explore Catalog
                 </button>
 
@@ -162,11 +162,11 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
                     <h4 className="text-xs font-bold text-white uppercase">Guest Visitor</h4>
                     <p className="text-[10px] text-slate-400 leading-normal mt-1">Log in or create a customer account to access exclusive specs and order management.</p>
                   </div>
-                  <button onClick={() => { setActiveTab("login"); setAccountDropdownOpen(false); }} className="w-full bg-sky-600 hover:bg-sky-500 text-white font-sans font-bold text-[9px] tracking-widest uppercase py-2.5 rounded-lg border border-sky-600 hover:border-sky-500 transition-all cursor-pointer flex items-center justify-center gap-1.5">
+                  <button onClick={() => { setActiveTab("login"); setAccountDropdownOpen(false); }} className="w-full bg-primary hover:bg-primary text-white font-sans font-bold text-[9px] tracking-widest uppercase py-2.5 rounded-lg border border-primary hover:border-primary transition-all cursor-pointer flex items-center justify-center gap-1.5">
                     <User className="w-3 h-3" />
                     Sign In
                   </button>
-                  <button onClick={() => { setActiveTab("signup"); setAccountDropdownOpen(false); }} className="w-full bg-slate-900 hover:bg-slate-800 text-sky-400 font-sans font-bold text-[9px] tracking-widest uppercase py-2.5 rounded-lg border border-slate-800 hover:border-sky-500 transition-all cursor-pointer flex items-center justify-center gap-1.5">
+                  <button onClick={() => { setActiveTab("signup"); setAccountDropdownOpen(false); }} className="w-full bg-slate-900 hover:bg-slate-800 text-sky-400 font-sans font-bold text-[9px] tracking-widest uppercase py-2.5 rounded-lg border border-slate-800 hover:border-primary transition-all cursor-pointer flex items-center justify-center gap-1.5">
                     Register Account
                   </button>
                 </>)) : (<>
@@ -189,7 +189,7 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
                       setToastMessage("Scroll down to find the Admin Management Console at the bottom of the workspace.");
                     }
                     setAccountDropdownOpen(false);
-                  }} className="w-full bg-slate-900 hover:bg-slate-800 text-sky-400 font-sans font-bold text-[9px] tracking-widest uppercase py-2 rounded-lg border border-slate-800 hover:border-sky-500 transition-all cursor-pointer flex items-center justify-center gap-1.5">
+                  }} className="w-full bg-slate-900 hover:bg-slate-800 text-sky-400 font-sans font-bold text-[9px] tracking-widest uppercase py-2 rounded-lg border border-slate-800 hover:border-primary transition-all cursor-pointer flex items-center justify-center gap-1.5">
                     <Terminal className="w-3 h-3" />
                     Admin Control Panel
                   </button>
@@ -208,7 +208,7 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
         </div>
 
         {/* Inquiry list only accessible inside Admin Panel or by logged-in admin */}
-        {isAdminMode && (<button id="header-inquiry-btn" onClick={() => setIsInquiryDrawerOpen(true)} className="hidden sm:flex bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-sky-500 text-white px-4 py-2.5 rounded-lg font-sans font-bold text-[10px] tracking-widest uppercase transition-all duration-300 items-center gap-2 shadow-sm cursor-pointer relative">
+        {isAdminMode && (<button id="header-inquiry-btn" onClick={() => setIsInquiryDrawerOpen(true)} className="hidden sm:flex bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-primary text-white px-4 py-2.5 rounded-lg font-sans font-bold text-[10px] tracking-widest uppercase transition-all duration-300 items-center gap-2 shadow-sm cursor-pointer relative">
           <ClipboardList className="h-3.5 w-3.5 text-sky-400" />
           Inquiry List
           {inquiryList.length > 0 && (<span className="absolute -top-1.5 -right-1.5 h-4.5 min-w-4.5 px-1.5 flex items-center justify-center bg-rose-500 text-white rounded-full font-mono font-bold text-[8px] animate-pulse">
@@ -216,13 +216,13 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
           </span>)}
         </button>)}
 
-        <button onClick={() => window.open("https://woston.in", "_blank")} className="hidden md:flex bg-sky-600 hover:bg-sky-500 text-white px-5 py-2.5 rounded-lg font-sans font-bold text-[10px] tracking-widest uppercase border border-sky-600 hover:bg-sky-500 transition-all duration-300 items-center gap-2 shadow-sm cursor-pointer">
+        <button onClick={() => window.open("https://woston.in", "_blank")} className="hidden md:flex bg-primary hover:bg-primary text-white px-5 py-2.5 rounded-lg font-sans font-bold text-[10px] tracking-widest uppercase border border-primary hover:bg-primary transition-all duration-300 items-center gap-2 shadow-sm cursor-pointer">
           <ShoppingBag className="h-3.5 w-3.5 text-white" />
           WOSTON STORE
         </button>
 
         {/* Mobile hamburger */}
-        <button ref={mobileHamburgerRef} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden h-8 w-8 flex items-center justify-center rounded-lg border border-slate-850 bg-slate-950 text-slate-300 hover:border-sky-500 hover:text-sky-400 transition-all cursor-pointer shrink-0 p-1" title="Toggle Menu">
+        <button ref={mobileHamburgerRef} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden h-8 w-8 flex items-center justify-center rounded-lg border border-slate-850 bg-slate-950 text-slate-300 hover:border-primary hover:text-sky-400 transition-all cursor-pointer shrink-0 p-1" title="Toggle Menu">
           <Menu className="h-4.5 w-4.5" />
         </button>
       </div>
@@ -266,7 +266,7 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
               Inquiry List {inquiryList.length > 0 ? `(${inquiryList.length})` : ""}
             </button>)}
 
-            <button onClick={() => { window.open("https://woston.in", "_blank"); setMobileMenuOpen(false); }} className="bg-sky-600 hover:bg-sky-500 text-white px-5 py-3 rounded-xl font-sans font-bold text-[10px] tracking-widest uppercase border border-sky-600 hover:border-sky-500 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm cursor-pointer w-full">
+            <button onClick={() => { window.open("https://woston.in", "_blank"); setMobileMenuOpen(false); }} className="bg-primary hover:bg-primary text-white px-5 py-3 rounded-xl font-sans font-bold text-[10px] tracking-widest uppercase border border-primary hover:border-primary transition-all duration-300 flex items-center justify-center gap-2 shadow-sm cursor-pointer w-full">
               <ShoppingBag className="h-4 w-4 text-white" />
               WOSTON STORE
             </button>

@@ -66,7 +66,7 @@ const ReelCard = ({
         <motion.div
             {...fadeInUp}
             onMouseEnter={handleMouseEnter}
-            className="relative aspect-9/16 bg-slate-950 border border-slate-200/80 rounded-3xl overflow-hidden group shadow-md hover:shadow-xl hover:border-sky-500 transition-all duration-300 w-full"
+            className="relative aspect-9/16 bg-slate-950 border border-slate-200/80 rounded-3xl overflow-hidden group shadow-md hover:shadow-xl hover:border-primary transition-all duration-300 w-full"
         >
             <video
                 ref={videoRef}
@@ -79,7 +79,7 @@ const ReelCard = ({
             />
 
             <div className="absolute top-0 left-0 right-0 p-5 bg-linear-to-b from-black/80 via-black/40 to-transparent z-10 text-white pointer-events-none">
-                <span className="font-sans text-[9px] bg-sky-500/20 text-sky-300 border border-sky-500/30 px-2 py-0.5 rounded-md tracking-wider uppercase font-bold">
+                <span className="font-sans text-[9px] bg-primary/20 text-sky-300 border border-primary/30 px-2 py-0.5 rounded-md tracking-wider uppercase font-bold">
                     {reel.category}
                 </span>
                 <h4 className="font-sans font-bold text-sm tracking-tight mt-2.5 drop-shadow">
@@ -123,7 +123,7 @@ const ReelCard = ({
                 <div className="flex justify-start items-center pt-2 border-t border-white/10">
                     <button
                         onClick={togglePlay}
-                        className="pointer-events-auto w-8 h-8 rounded-full bg-sky-600 hover:bg-sky-500 text-white flex items-center justify-center transition-all cursor-pointer shadow"
+                        className="pointer-events-auto w-8 h-8 rounded-full bg-primary hover:bg-primary text-white flex items-center justify-center transition-all cursor-pointer shadow"
                     >
                         {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4 translate-x-0.5" />}
                     </button>
@@ -211,7 +211,7 @@ const ReelSection = ({ fadeInUp }) => {
         <section className="py-24 px-8 relative z-20 border-b border-slate-100 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto relative">
                 <motion.div {...fadeInUp} className="text-center mb-16">
-                    <span className="font-sans font-extrabold text-[10px] text-sky-600 tracking-widest uppercase block mb-3">
+                    <span className="font-sans font-extrabold text-[10px] text-primary tracking-widest uppercase block mb-3">
                         EXPLORE SURVEILLANCE IN ACTION
                     </span>
                     <h2 className="font-sans text-3xl md:text-5xl font-extrabold text-slate-900 uppercase tracking-tight mb-4">

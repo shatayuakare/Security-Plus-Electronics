@@ -16,7 +16,7 @@ export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanSta
   return (<section className="py-24 px-8 border-b border-slate-100 bg-slate-50 relative z-20">
     <div className="max-w-7xl mx-auto">
       <motion.div {...fadeInUp} className="text-center mb-16">
-        <span className="font-sans font-extrabold text-[10px] text-sky-600 tracking-widest uppercase block mb-3">
+        <span className="font-sans font-extrabold text-[10px] text-primary tracking-widest uppercase block mb-3">
           VIRTUAL TOUR COMPONENT
         </span>
         <h2 className="font-sans text-3xl md:text-5xl font-extrabold text-slate-900 uppercase tracking-tight mb-4">
@@ -47,13 +47,13 @@ export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanSta
           <div className="relative aspect-[21/9] w-full rounded-2xl overflow-hidden border border-slate-100 shadow-inner group">
             {/* Panoramic Viewport Image */}
             {!loadedImages["speShowroomTour"] && (<div className="absolute inset-0 flex items-center justify-center bg-slate-50 z-0">
-              <div className="w-8 h-8 border-2 border-sky-600 border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
             </div>)}
             <img src={speShowroomTour} alt="SPE Nagpur Showroom Panoramic Virtual Tour" loading="lazy" onLoad={() => setLoadedImages(prev => ({ ...prev, speShowroomTour: true }))} className={`w-full h-full object-cover transition-all duration-700 select-none scale-[1.05] ${loadedImages["speShowroomTour"] ? "opacity-100" : "opacity-0"}`} />
 
             {/* Laser scanning visual indicator */}
-            {showroomScanStatus === "scanning" && (<div className="absolute inset-0 z-20 pointer-events-none bg-sky-500/5">
-              <motion.div initial={{ top: "0%" }} animate={{ top: "100%" }} transition={{ repeat: Infinity, duration: 2.5, ease: "linear" }} className="absolute left-0 right-0 h-1 bg-sky-500 shadow-[0_0_15px_rgba(2,132,199,0.8)]" />
+            {showroomScanStatus === "scanning" && (<div className="absolute inset-0 z-20 pointer-events-none bg-primary/5">
+              <motion.div initial={{ top: "0%" }} animate={{ top: "100%" }} transition={{ repeat: Infinity, duration: 2.5, ease: "linear" }} className="absolute left-0 right-0 h-1 bg-primary shadow-[0_0_15px_rgba(2,132,199,0.8)]" />
             </div>)}
 
             {/* Hotspot 1: CCTV Camera Dome */}
@@ -61,8 +61,8 @@ export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanSta
               setActiveShowroomHotspot("h1");
               setToastMessage("Auditing CCTV Camera Dome on Nagpur Showroom Board #1.");
             }} className="absolute z-30 group/spot flex items-center justify-center cursor-pointer" style={{ top: "35%", left: "28%" }} title="AI PTZ Speed Dome Camera">
-              <span className="absolute inline-flex h-8 w-8 rounded-full bg-sky-500/30 animate-ping"></span>
-              <span className={`relative flex h-6 w-6 items-center justify-center rounded-full border border-sky-400 font-bold text-[10px] text-white shadow transition-all ${activeShowroomHotspot === "h1" ? "bg-sky-600 scale-125" : "bg-sky-500 hover:bg-sky-600"}`}>
+              <span className="absolute inline-flex h-8 w-8 rounded-full bg-primary/30 animate-ping"></span>
+              <span className={`relative flex h-6 w-6 items-center justify-center rounded-full border border-sky-400 font-bold text-[10px] text-white shadow transition-all ${activeShowroomHotspot === "h1" ? "bg-primary scale-125" : "bg-primary hover:bg-primary"}`}>
                 1
               </span>
               {/* Hotspot Name Overlay on Hover */}
@@ -76,8 +76,8 @@ export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanSta
               setActiveShowroomHotspot("h2");
               setToastMessage("Auditing Smart Biometric Face Latch at Showroom Entry Lane.");
             }} className="absolute z-30 group/spot flex items-center justify-center cursor-pointer" style={{ top: "58%", left: "45%" }} title="Biometric Facial Gateway">
-              <span className="absolute inline-flex h-8 w-8 rounded-full bg-sky-500/30 animate-ping"></span>
-              <span className={`relative flex h-6 w-6 items-center justify-center rounded-full border border-sky-400 font-bold text-[10px] text-white shadow transition-all ${activeShowroomHotspot === "h2" ? "bg-sky-600 scale-125" : "bg-sky-500 hover:bg-sky-600"}`}>
+              <span className="absolute inline-flex h-8 w-8 rounded-full bg-primary/30 animate-ping"></span>
+              <span className={`relative flex h-6 w-6 items-center justify-center rounded-full border border-sky-400 font-bold text-[10px] text-white shadow transition-all ${activeShowroomHotspot === "h2" ? "bg-primary scale-125" : "bg-primary hover:bg-primary"}`}>
                 2
               </span>
               <span className="absolute left-8 bg-slate-900/90 backdrop-blur-md text-white text-[9px] font-bold px-2 py-1 rounded border border-slate-700 pointer-events-none opacity-0 group-hover/spot:opacity-100 transition-opacity whitespace-nowrap shadow-md uppercase">
@@ -90,8 +90,8 @@ export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanSta
               setActiveShowroomHotspot("h3");
               setToastMessage("Auditing CCTV Storage Network Video Recorder Units.");
             }} className="absolute z-30 group/spot flex items-center justify-center cursor-pointer" style={{ top: "42%", left: "68%" }} title="Enterprise NVR Storage Rack">
-              <span className="absolute inline-flex h-8 w-8 rounded-full bg-sky-500/30 animate-ping"></span>
-              <span className={`relative flex h-6 w-6 items-center justify-center rounded-full border border-sky-400 font-bold text-[10px] text-white shadow transition-all ${activeShowroomHotspot === "h3" ? "bg-sky-600 scale-125" : "bg-sky-500 hover:bg-sky-600"}`}>
+              <span className="absolute inline-flex h-8 w-8 rounded-full bg-primary/30 animate-ping"></span>
+              <span className={`relative flex h-6 w-6 items-center justify-center rounded-full border border-sky-400 font-bold text-[10px] text-white shadow transition-all ${activeShowroomHotspot === "h3" ? "bg-primary scale-125" : "bg-primary hover:bg-primary"}`}>
                 3
               </span>
               <span className="absolute left-8 bg-slate-900/90 backdrop-blur-md text-white text-[9px] font-bold px-2 py-1 rounded border border-slate-700 pointer-events-none opacity-0 group-hover/spot:opacity-100 transition-opacity whitespace-nowrap shadow-md uppercase">
@@ -104,8 +104,8 @@ export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanSta
               setActiveShowroomHotspot("h4");
               setToastMessage("Auditing High-Power Coaxial/Fiber Backbone Switch.");
             }} className="absolute z-30 group/spot flex items-center justify-center cursor-pointer" style={{ top: "54%", left: "82%" }} title="Fiber Ring PoE Switch">
-              <span className="absolute inline-flex h-8 w-8 rounded-full bg-sky-500/30 animate-ping"></span>
-              <span className={`relative flex h-6 w-6 items-center justify-center rounded-full border border-sky-400 font-bold text-[10px] text-white shadow transition-all ${activeShowroomHotspot === "h4" ? "bg-sky-600 scale-125" : "bg-sky-500 hover:bg-sky-600"}`}>
+              <span className="absolute inline-flex h-8 w-8 rounded-full bg-primary/30 animate-ping"></span>
+              <span className={`relative flex h-6 w-6 items-center justify-center rounded-full border border-sky-400 font-bold text-[10px] text-white shadow transition-all ${activeShowroomHotspot === "h4" ? "bg-primary scale-125" : "bg-primary hover:bg-primary"}`}>
                 4
               </span>
               <span className="absolute left-8 bg-slate-900/90 backdrop-blur-md text-white text-[9px] font-bold px-2 py-1 rounded border border-slate-700 pointer-events-none opacity-0 group-hover/spot:opacity-100 transition-opacity whitespace-nowrap shadow-md uppercase">
@@ -155,7 +155,7 @@ export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanSta
         <div className="lg:col-span-4 bg-white p-6 border border-slate-200 rounded-3xl shadow-sm flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 pb-4 border-b border-slate-100 mb-5">
-              <Terminal className="h-4 w-4 text-sky-600 shrink-0" />
+              <Terminal className="h-4 w-4 text-primary shrink-0" />
               <h3 className="font-sans font-extrabold text-sm text-slate-900 uppercase tracking-tight">
                 Component Diagnostic Unit
               </h3>
@@ -323,7 +323,7 @@ export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanSta
           </div>
 
           <div className="pt-6 border-t border-slate-100">
-            <button onClick={triggerGuidedTour} className="w-full py-3 bg-sky-600 hover:bg-sky-700 text-white border border-sky-600 text-xs font-bold tracking-wider uppercase transition-all duration-300 rounded-xl cursor-pointer flex items-center justify-center gap-2 shadow-sm">
+            <button onClick={triggerGuidedTour} className="w-full py-3 bg-primary hover:bg-sky-700 text-white border border-primary text-xs font-bold tracking-wider uppercase transition-all duration-300 rounded-xl cursor-pointer flex items-center justify-center gap-2 shadow-sm">
               <Calendar className="h-4 w-4" />
               BOOK LIVE IN-PERSON GUIDED TOUR
             </button>

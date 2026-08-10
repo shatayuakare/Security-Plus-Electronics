@@ -42,7 +42,7 @@ export default function Careers({ careerApplications, setCareerApplications, set
         <div className="max-w-7xl mx-auto space-y-12">
 
           <div className="text-center max-w-3xl mx-auto">
-            <span className="font-sans font-extrabold text-[10px] text-sky-600 tracking-widest uppercase block mb-3">
+            <span className="font-sans font-extrabold text-[10px] text-primary tracking-widest uppercase block mb-3">
               CAREERS & TECHNOLOGY ACADEMY
             </span>
             <h2 className="font-sans text-3xl md:text-5xl font-extrabold text-slate-900 uppercase tracking-tight mb-4">
@@ -59,7 +59,7 @@ export default function Careers({ careerApplications, setCareerApplications, set
 
               <div className="bg-white p-6 md:p-8 border border-slate-200 rounded-3xl shadow-sm space-y-6">
                 <div className="border-b border-slate-100 pb-4 flex items-center gap-2">
-                  <Sparkles className="h-5 w-5 text-sky-600" />
+                  <Sparkles className="h-5 w-5 text-primary" />
                   <h3 className="font-sans font-extrabold text-lg text-slate-900 uppercase tracking-tight">
                     Free Training Academies
                   </h3>
@@ -70,7 +70,7 @@ export default function Careers({ careerApplications, setCareerApplications, set
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex flex-col justify-between space-y-4 hover:border-sky-500 transition-colors">
+                  <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex flex-col justify-between space-y-4 hover:border-primary transition-colors">
                     <div className="space-y-2">
                       <span className="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2 py-0.5 border border-emerald-200 rounded font-mono uppercase tracking-wider">
                         Open to: Students &amp; Freshers
@@ -88,7 +88,7 @@ export default function Careers({ careerApplications, setCareerApplications, set
                     </div>
                   </div>
 
-                  <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex flex-col justify-between space-y-4 hover:border-sky-500 transition-colors">
+                  <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex flex-col justify-between space-y-4 hover:border-primary transition-colors">
                     <div className="space-y-2">
                       <span className="bg-sky-100 text-sky-800 text-[9px] font-bold px-2 py-0.5 border border-sky-200 rounded font-mono uppercase tracking-wider">
                         Open to: Freshers &amp; Employees
@@ -106,7 +106,7 @@ export default function Careers({ careerApplications, setCareerApplications, set
                     </div>
                   </div>
 
-                  <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl md:col-span-2 flex flex-col justify-between space-y-4 hover:border-sky-500 transition-colors">
+                  <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl md:col-span-2 flex flex-col justify-between space-y-4 hover:border-primary transition-colors">
                     <div className="space-y-2">
                       <span className="bg-indigo-100 text-indigo-800 text-[9px] font-bold px-2 py-0.5 border border-indigo-200 rounded font-mono uppercase tracking-wider">
                         Open to: Employees Only
@@ -128,18 +128,18 @@ export default function Careers({ careerApplications, setCareerApplications, set
 
               <div className="bg-white p-6 md:p-8 border border-slate-200 rounded-3xl shadow-sm space-y-6">
                 <div className="border-b border-slate-100 pb-4 flex items-center gap-2">
-                  <Briefcase className="h-5 w-5 text-sky-600" />
+                  <Briefcase className="h-5 w-5 text-primary" />
                   <h3 className="font-sans font-extrabold text-lg text-slate-900 uppercase tracking-tight">
                     Active Professional Positions
                   </h3>
                 </div>
 
                 <div className="space-y-4">
-                  <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl hover:border-sky-500 hover:shadow-md transition-all duration-300">
+                  <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl hover:border-primary hover:shadow-md transition-all duration-300">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-3">
                       <div>
                         <h4 className="text-base font-extrabold text-slate-900  uppercase font-headline">Sales and Marketing Specialist</h4>
-                        <span className="text-xs font-mono text-sky-600 block mt-0.5">FULL-TIME // DHARAMPETH HQ</span>
+                        <span className="text-xs font-mono text-primary block mt-0.5">FULL-TIME // DHARAMPETH HQ</span>
                       </div>
                       <span className="text-[10px] font-extrabold font-mono bg-sky-50 text-sky-700 px-2.5 py-1 border border-sky-100 rounded shrink-0 uppercase">
                         EXP: MIN 2 YEARS REQUIRED
@@ -150,11 +150,11 @@ export default function Careers({ careerApplications, setCareerApplications, set
                     </p>
                   </div>
 
-                  <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl hover:border-sky-500 hover:shadow-md transition-all duration-300">
+                  <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl hover:border-primary hover:shadow-md transition-all duration-300">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-3">
                       <div>
                         <h4 className="text-base font-extrabold text-slate-900 uppercase font-headline">Senior CCTV Integration Engineer</h4>
-                        <span className="text-xs font-mono text-sky-600 block mt-0.5">FULL-TIME // FIELD INTEGRATIONS</span>
+                        <span className="text-xs font-mono text-primary block mt-0.5">FULL-TIME // FIELD INTEGRATIONS</span>
                       </div>
                       <span className="text-[10px] font-extrabold font-mono bg-sky-50 text-sky-700 px-2.5 py-1 border border-sky-100 rounded shrink-0 uppercase">
                         EXP: 3+ YEARS
@@ -165,11 +165,11 @@ export default function Careers({ careerApplications, setCareerApplications, set
                     </p>
                   </div>
 
-                  <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl hover:border-sky-500 hover:shadow-md transition-all duration-300">
+                  <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl hover:border-primary hover:shadow-md transition-all duration-300">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-3">
                       <div>
                         <h4 className="text-base font-extrabold text-slate-900 uppercase font-headline">Network Systems Specialist (PoE/Fiber)</h4>
-                        <span className="text-xs font-mono text-sky-600 block mt-0.5">FULL-TIME // NAGPUR</span>
+                        <span className="text-xs font-mono text-primary block mt-0.5">FULL-TIME // NAGPUR</span>
                       </div>
                       <span className="text-[10px] font-extrabold font-mono bg-sky-50 text-sky-700 px-2.5 py-1 border border-sky-100 rounded shrink-0 uppercase">
                         EXP: 2+ YEARS
@@ -186,7 +186,7 @@ export default function Careers({ careerApplications, setCareerApplications, set
             <div className="lg:col-span-4" id="spe-careers-form-card">
               <div className="bg-white p-6 border border-slate-200 rounded-3xl shadow-sm sticky top-24 space-y-6">
                 <div className="border-b border-slate-100 pb-4 flex items-center gap-2">
-                  <Terminal className="h-4 w-4 text-sky-600" />
+                  <Terminal className="h-4 w-4 text-primary" />
                   <h3 className="font-sans font-extrabold text-sm text-slate-900 uppercase tracking-tight">
                     Career Application Portal
                   </h3>
@@ -210,22 +210,22 @@ export default function Careers({ careerApplications, setCareerApplications, set
                 </div>) : (<form onSubmit={handleApplicationSubmit} className="space-y-4">
                   <div className="space-y-1">
                     <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Full Name</label>
-                    <input type="text" required name="candidateName" placeholder="e.g. Ramesh Deshmukh" className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
+                    <input type="text" required name="candidateName" placeholder="e.g. Ramesh Deshmukh" className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
                   </div>
 
                   <div className="space-y-1">
                     <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Email Address</label>
-                    <input type="email" required name="candidateEmail" placeholder="e.g. ramesh@gmail.com" className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
+                    <input type="email" required name="candidateEmail" placeholder="e.g. ramesh@gmail.com" className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
                   </div>
 
                   <div className="space-y-1">
                     <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Phone Number</label>
-                    <input type="text" required name="candidatePhone" placeholder="e.g. +91 98765 43210" className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
+                    <input type="text" required name="candidatePhone" placeholder="e.g. +91 98765 43210" className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
                   </div>
 
                   <div className="space-y-1">
                     <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Selection Option</label>
-                    <select required name="candidateOption" className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl transition-all font-sans font-semibold">
+                    <select required name="candidateOption" className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl transition-all font-sans font-semibold">
                       <option value="job_sales">Job: Sales &amp; Marketing Specialist</option>
                       <option value="job_cctv">Job: Senior CCTV Engineer</option>
                       <option value="job_network">Job: Network Systems Specialist</option>
@@ -237,15 +237,15 @@ export default function Careers({ careerApplications, setCareerApplications, set
 
                   <div className="space-y-1">
                     <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Experience / Bio</label>
-                    <textarea required name="candidateBio" rows={3} placeholder="Describe your active hardware experience or college degree details..." className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
+                    <textarea required name="candidateBio" rows={3} placeholder="Describe your active hardware experience or college degree details..." className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
                   </div>
 
                   <div className="space-y-1">
                     <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Resume / Portfolio Link</label>
-                    <input type="url" name="candidateResume" placeholder="e.g. https://drive.google.com/resume" className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-sky-500 focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
+                    <input type="url" name="candidateResume" placeholder="e.g. https://drive.google.com/resume" className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
                   </div>
 
-                  <button type="submit" className="w-full py-3 bg-sky-600 hover:bg-sky-700 text-white font-sans font-bold text-[10px] tracking-widest uppercase rounded-xl transition-all cursor-pointer shadow-sm text-center">
+                  <button type="submit" className="w-full py-3 bg-primary hover:bg-sky-700 text-white font-sans font-bold text-[10px] tracking-widest uppercase rounded-xl transition-all cursor-pointer shadow-sm text-center">
                     SUBMIT APPLICATION
                   </button>
                 </form>)}

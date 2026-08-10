@@ -1,22 +1,32 @@
 import express from "express";
-import mongoose from "mongoose";
+import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 
-const server = express();
+const app = express();
 
-// server.use()
+const WooCommerce = new WooCommerceRestApi({
+    url: "http://localhost:3000",
+    consumerKey: process.env.WC_CONSUMER_KEY,
+    consumerSecret: process.env.WC_CONSUMER_SECRET,
+    version: "wc/v3"
+});
 
-server.get("/", (req, res) => {
+app.get("/api/products", async (req, res) => {
     try {
-        console.log("Server start Successfully")
-        res.send("Hello world");
-        mongoose.connect('mongodb+srv://Security-Plus:x15qp9VEpM3BZW4J@cluster0.k18l20d.mongodb.net/')
-            .then(() => console.log('Connected!'));
+        const response = await WooCommerce.get("products", {
+            per_page: 20,
+            page: 1
+        });
+
+        res.json(response.data);
 
     } catch (error) {
-        console.log(error)
-        // req.response.message(error.message)
+        console.error(error.response?.data || error.message);
+
+        res.status(500).json({
+            message: "Unable to fetch WooCommerce products"
+        });
     }
+});
 
-})
 
-server.listen(3000) 
+app.listen(5000)

@@ -1,6 +1,6 @@
 return (
       <>
-            <div className="text-slate-900 antialiased overflow-x-hidden selection:bg-sky-600 selection:text-white min-h-screen font-sans relative border-0 border-sky-600  bg-red-500">
+            <div className="text-slate-900 antialiased overflow-x-hidden selection:bg-primary selection:text-white min-h-screen font-sans relative border-0 border-primary  bg-red-500">
                   <SEOManager activeTab={activeTab} />
 
                   <div className="absolute inset-0 pointer-events-none z-0 border-x border-slate-100 max-w-7xl mx-auto"></div>
@@ -44,9 +44,9 @@ return (
 
                               <motion.section {...fadeInUp} className="py-24 px-8 relative z-20 border-b border-slate-100 bg-slate-50">
                                     <div className="max-w-4xl mx-auto text-center">
-                                          <span className="font-sans font-bold text-[10px] text-sky-600 tracking-widest uppercase block mb-3">[ OUR VISION &amp; SLA VALUES ]</span>
+                                          <span className="font-sans font-bold text-[10px] text-primary tracking-widest uppercase block mb-3">[ OUR VISION &amp; SLA VALUES ]</span>
                                           <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 uppercase">Our Vision &amp; Mission</h2>
-                                          <div className="h-0.5 w-20 bg-sky-600 mx-auto mb-8"></div>
+                                          <div className="h-0.5 w-20 bg-primary mx-auto mb-8"></div>
                                           <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
                                                 Deliver innovative, reliable, and complete security solutions with exceptional customer support. We custom-engineer systems that protect Nagpur's leading commercial, financial, and industrial properties with absolute technological integrity.
                                           </p>
@@ -571,26 +571,26 @@ return (
                                                                   const url = encodeURIComponent(window.location.href);
                                                                   const text = encodeURIComponent(`Check out this security insight: ${selectedBlog.title}`);
                                                                   window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
-                                                            }} className="p-2 border border-[#2A2A2A] hover:border-sky-500 hover:bg-sky-500/10 text-[#888888] hover:text-sky-500 transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on X">
+                                                            }} className="p-2 border border-[#2A2A2A] hover:border-primary hover:bg-primary/10 text-[#888888] hover:text-primary transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on X">
                                                                   <Twitter className="h-3.5 w-3.5" />
                                                             </button>
                                                             <button onClick={() => {
                                                                   const url = encodeURIComponent(window.location.href);
                                                                   window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, "_blank");
-                                                            }} className="p-2 border border-[#2A2A2A] hover:border-sky-500 hover:bg-sky-500/10 text-[#888888] hover:text-sky-500 transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on LinkedIn">
+                                                            }} className="p-2 border border-[#2A2A2A] hover:border-primary hover:bg-primary/10 text-[#888888] hover:text-primary transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on LinkedIn">
                                                                   <Linkedin className="h-3.5 w-3.5" />
                                                             </button>
                                                             <button onClick={() => {
                                                                   const url = encodeURIComponent(window.location.href);
                                                                   window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
-                                                            }} className="p-2 border border-[#2A2A2A] hover:border-sky-500 hover:bg-sky-500/10 text-[#888888] hover:text-sky-500 transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on Facebook">
+                                                            }} className="p-2 border border-[#2A2A2A] hover:border-primary hover:bg-primary/10 text-[#888888] hover:text-primary transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on Facebook">
                                                                   <Facebook className="h-3.5 w-3.5" />
                                                             </button>
                                                             <button onClick={() => {
                                                                   const url = encodeURIComponent(window.location.href);
                                                                   const text = encodeURIComponent(`Read "${selectedBlog.title}" at Security Plus Electronics`);
                                                                   window.open(`https://api.whatsapp.com/send?text=${text}%20${url}`, "_blank");
-                                                            }} className="p-2 border border-[#2A2A2A] hover:border-sky-500 hover:bg-sky-500/10 text-[#888888] hover:text-sky-500 transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on WhatsApp">
+                                                            }} className="p-2 border border-[#2A2A2A] hover:border-primary hover:bg-primary/10 text-[#888888] hover:text-primary transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on WhatsApp">
                                                                   <Share2 className="h-3.5 w-3.5" />
                                                             </button>
                                                       </div>
@@ -599,7 +599,7 @@ return (
                                                 <button onClick={() => {
                                                       navigator.clipboard.writeText(`${window.location.origin}/blog/${selectedBlog.id || "article"}`);
                                                       setToastMessage("Secure link copied to clipboard.");
-                                                }} className="flex items-center gap-1.5 px-3 py-1.5 border border-[#2A2A2A] hover:border-sky-500 text-on-surface-variant hover:text-sky-500 hover:bg-sky-500/10 transition-all text-[10px] font-bold tracking-wider uppercase rounded-none cursor-pointer self-start sm:self-auto">
+                                                }} className="flex items-center gap-1.5 px-3 py-1.5 border border-[#2A2A2A] hover:border-primary text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-all text-[10px] font-bold tracking-wider uppercase rounded-none cursor-pointer self-start sm:self-auto">
                                                       <Link className="h-3 w-3" />
                                                       Copy Secure Link
                                                 </button>
@@ -755,12 +755,12 @@ return (
                                           </div>
 
                                           <div className="flex-1 flex items-center justify-center py-6">
-                                                {selectedProductForQuickView.image === "cctv" && <Video className="h-16 w-16 text-sky-600" />}
-                                                {selectedProductForQuickView.image === "ptz" && <Cpu className="h-16 w-16 text-sky-600" />}
-                                                {selectedProductForQuickView.image === "locks" && <LockKeyhole className="h-16 w-16 text-sky-600" />}
-                                                {selectedProductForQuickView.image === "storage" && <HardDrive className="h-16 w-16 text-sky-600" />}
-                                                {selectedProductForQuickView.image === "router" && <Router className="h-16 w-16 text-sky-600" />}
-                                                {selectedProductForQuickView.image === "battery" && <BatteryCharging className="h-16 w-16 text-sky-600" />}
+                                                {selectedProductForQuickView.image === "cctv" && <Video className="h-16 w-16 text-primary" />}
+                                                {selectedProductForQuickView.image === "ptz" && <Cpu className="h-16 w-16 text-primary" />}
+                                                {selectedProductForQuickView.image === "locks" && <LockKeyhole className="h-16 w-16 text-primary" />}
+                                                {selectedProductForQuickView.image === "storage" && <HardDrive className="h-16 w-16 text-primary" />}
+                                                {selectedProductForQuickView.image === "router" && <Router className="h-16 w-16 text-primary" />}
+                                                {selectedProductForQuickView.image === "battery" && <BatteryCharging className="h-16 w-16 text-primary" />}
                                           </div>
 
                                           <div className="text-[9px] font-mono font-bold text-slate-400 text-center uppercase tracking-wider">
@@ -778,7 +778,7 @@ return (
                                                       <h3 className="text-lg font-extrabold text-slate-900 uppercase tracking-tight pr-8 font-sans">
                                                             {selectedProductForQuickView.name}
                                                       </h3>
-                                                      <span className="text-lg font-extrabold text-sky-600 block mt-1 font-sans">
+                                                      <span className="text-lg font-extrabold text-primary block mt-1 font-sans">
                                                             {selectedProductForQuickView.price}
                                                       </span>
                                                 </div>
@@ -817,7 +817,7 @@ return (
                                                             setInquiryList(prev => [...prev, selectedProductForQuickView]);
                                                             setToastMessage(`Added ${selectedProductForQuickView.name} to your inquiry list. Click 'Inquiry List' in the top bar to review.`);
                                                       }
-                                                }} className="flex-1 bg-sky-600 hover:bg-sky-500 text-white py-3 rounded-xl text-xs font-bold uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-sky-100 hover:scale-[1.01] font-sans">
+                                                }} className="flex-1 bg-primary hover:bg-primary text-white py-3 rounded-xl text-xs font-bold uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-sky-100 hover:scale-[1.01] font-sans">
                                                       <Plus className="h-4 w-4" />
                                                       Add to Inquiry
                                                 </button>)}
@@ -848,7 +848,7 @@ return (
                                     <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
                                           <div className="flex items-center gap-2.5">
                                                 <div className="h-8 w-8 bg-sky-50 border border-sky-100 rounded-lg flex items-center justify-center">
-                                                      <ClipboardList className="h-4.5 w-4.5 text-sky-600" />
+                                                      <ClipboardList className="h-4.5 w-4.5 text-primary" />
                                                 </div>
                                                 <div>
                                                       <h3 className="font-sans font-extrabold text-sm text-slate-900 uppercase tracking-wider">Showroom Inquiry</h3>
@@ -887,16 +887,16 @@ return (
                                                             {inquiryList.map((item) => (<div key={item.id} className="bg-slate-50 border border-slate-100 rounded-xl p-3.5 flex items-center justify-between gap-3 group relative hover:border-sky-200 transition-colors">
                                                                   <div className="flex items-center gap-3">
                                                                         <div className="h-10 w-10 bg-white border border-slate-200 rounded-lg flex items-center justify-center shrink-0">
-                                                                              {item.image === "cctv" && <Video className="h-5 w-5 text-sky-600" />}
-                                                                              {item.image === "ptz" && <Cpu className="h-5 w-5 text-sky-600" />}
-                                                                              {item.image === "locks" && <LockKeyhole className="h-5 w-5 text-sky-600" />}
-                                                                              {item.image === "storage" && <HardDrive className="h-5 w-5 text-sky-600" />}
-                                                                              {item.image === "router" && <Router className="h-5 w-5 text-sky-600" />}
-                                                                              {item.image === "battery" && <BatteryCharging className="h-5 w-5 text-sky-600" />}
+                                                                              {item.image === "cctv" && <Video className="h-5 w-5 text-primary" />}
+                                                                              {item.image === "ptz" && <Cpu className="h-5 w-5 text-primary" />}
+                                                                              {item.image === "locks" && <LockKeyhole className="h-5 w-5 text-primary" />}
+                                                                              {item.image === "storage" && <HardDrive className="h-5 w-5 text-primary" />}
+                                                                              {item.image === "router" && <Router className="h-5 w-5 text-primary" />}
+                                                                              {item.image === "battery" && <BatteryCharging className="h-5 w-5 text-primary" />}
                                                                         </div>
                                                                         <div className="min-w-0 flex-1">
                                                                               <h4 className="text-[11px] font-extrabold text-slate-800 uppercase line-clamp-1 font-sans">{item.name}</h4>
-                                                                              <span className="text-[9px] text-sky-600 font-bold block">{item.price} • {item.category}</span>
+                                                                              <span className="text-[9px] text-primary font-bold block">{item.price} • {item.category}</span>
                                                                         </div>
                                                                   </div>
                                                                   <button id={`remove-inquiry-item-${item.id}`} onClick={() => {
@@ -924,20 +924,20 @@ return (
                                                       }} className="space-y-3.5 text-xs font-sans">
                                                             <div>
                                                                   <label className="block text-[10px] text-slate-500 font-bold uppercase mb-1">Your Full Name / Company</label>
-                                                                  <input type="text" required name="clientName" placeholder="e.g. Nagpur Metro Corp or Corporate Security Team" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-sky-500 font-sans text-slate-850" />
+                                                                  <input type="text" required name="clientName" placeholder="e.g. Nagpur Metro Corp or Corporate Security Team" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-primary font-sans text-slate-850" />
                                                             </div>
 
                                                             <div>
                                                                   <label className="block text-[10px] text-slate-500 font-bold uppercase mb-1">Contact Phone Number</label>
-                                                                  <input type="tel" required name="clientPhone" placeholder="e.g. +91 91234 56789" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-sky-500 font-sans text-slate-850" />
+                                                                  <input type="tel" required name="clientPhone" placeholder="e.g. +91 91234 56789" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-primary font-sans text-slate-850" />
                                                             </div>
 
                                                             <div>
                                                                   <label className="block text-[10px] text-slate-500 font-bold uppercase mb-1">Optional Site Requirements</label>
-                                                                  <textarea rows={3} name="clientNotes" placeholder="Describe your site (e.g. Nagpur residential showroom, commercial jewelry outlet, multi-tier warehouse, etc.)" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-sky-500 font-sans resize-none text-slate-850" />
+                                                                  <textarea rows={3} name="clientNotes" placeholder="Describe your site (e.g. Nagpur residential showroom, commercial jewelry outlet, multi-tier warehouse, etc.)" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-primary font-sans resize-none text-slate-850" />
                                                             </div>
 
-                                                            <button id="submit-b2b-inquiry-btn" type="submit" className="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold text-[10px] tracking-widest uppercase py-3.5 rounded-xl transition-all shadow-md shadow-sky-100 flex items-center justify-center gap-2 cursor-pointer">
+                                                            <button id="submit-b2b-inquiry-btn" type="submit" className="w-full bg-primary hover:bg-primary text-white font-bold text-[10px] tracking-widest uppercase py-3.5 rounded-xl transition-all shadow-md shadow-sky-100 flex items-center justify-center gap-2 cursor-pointer">
                                                                   <Send className="h-4 w-4" />
                                                                   SUBMIT OFFICIAL INQUIRY
                                                             </button>
@@ -955,7 +955,7 @@ return (
                   {/* FLOATING INQUIRY LIST BUTTON */}
                   < AnimatePresence >
                         {
-                              inquiryList.length > 0 && (<motion.button id="floating-inquiry-bubble" initial={{ opacity: 0, scale: 0.8, y: 50 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8, y: 50 }} onClick={() => setIsInquiryDrawerOpen(true)} className="fixed bottom-6 right-6 z-40 bg-slate-950 hover:bg-sky-600 text-white p-4 rounded-full border border-slate-800 hover:border-sky-500 transition-all duration-300 shadow-2xl flex items-center justify-center cursor-pointer group active:scale-95" title="View Security Inquiry List">
+                              inquiryList.length > 0 && (<motion.button id="floating-inquiry-bubble" initial={{ opacity: 0, scale: 0.8, y: 50 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8, y: 50 }} onClick={() => setIsInquiryDrawerOpen(true)} className="fixed bottom-6 right-6 z-40 bg-slate-950 hover:bg-primary text-white p-4 rounded-full border border-slate-800 hover:border-primary transition-all duration-300 shadow-2xl flex items-center justify-center cursor-pointer group active:scale-95" title="View Security Inquiry List">
                                     <ClipboardList className="h-6 w-6 text-sky-400 group-hover:text-white transition-colors" />
                                     <span className="absolute -top-1.5 -right-1.5 h-6 w-6 flex items-center justify-center bg-rose-500 text-white rounded-full font-mono font-bold text-xs shadow-md border-2 border-slate-950">
                                           {inquiryList.length}
@@ -967,14 +967,14 @@ return (
                   {/* SECURE SPE ADMIN ACCESS LEDGER TERMINAL */}
                   <AnimatePresence>
                         {adminLoginOpen && (<div className="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
-                              <motion.div initial={{ scale: 0.95, opacity: 0, y: 15 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 15 }} className="bg-[#090D16] border-2 border-sky-500 w-full max-w-md overflow-hidden shadow-[0_0_50px_rgba(14,165,233,0.3)] rounded-none relative text-slate-200 font-mono">
+                              <motion.div initial={{ scale: 0.95, opacity: 0, y: 15 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 15 }} className="bg-[#090D16] border-2 border-primary w-full max-w-md overflow-hidden shadow-[0_0_50px_rgba(14,165,233,0.3)] rounded-none relative text-slate-200 font-mono">
                                     {/* Glowing top border */}
-                                    <div className="h-[2px] bg-gradient-to-r from-sky-600 via-cyan-400 to-sky-600 animate-pulse"></div>
+                                    <div className="h-[2px] bg-gradient-to-r from-primary via-cyan-400 to-primary animate-pulse"></div>
 
                                     {/* Terminal Header */}
                                     <div className="p-4 border-b border-sky-900/50 flex justify-between items-center bg-[#070A11]">
                                           <div className="flex items-center gap-2">
-                                                <span className="h-2 w-2 rounded-full bg-sky-500 animate-ping"></span>
+                                                <span className="h-2 w-2 rounded-full bg-primary animate-ping"></span>
                                                 <div>
                                                       <h3 className="font-bold text-[11px] tracking-widest text-sky-400 uppercase">SPE NAGPUR SECURE BACKEND</h3>
                                                       <span className="text-[7px] text-slate-500 uppercase block tracking-widest">[ CENTRAL LEDGER DESK v2.4 ]</span>
@@ -1015,7 +1015,7 @@ return (
                                           }
                                     }} className="p-6 space-y-4">
                                           <div className="bg-[#05070C] border border-sky-950 p-3 text-[9px] text-slate-400 space-y-1 leading-relaxed">
-                                                <span className="text-sky-500 block font-bold">[ SYSTEM MEMORANDUM ]</span>
+                                                <span className="text-primary block font-bold">[ SYSTEM MEMORANDUM ]</span>
                                                 <p>
                                                       Authorized administrators only. Multi-vector tracking is active.
                                                       Your Nagpur network address has been logged. Enter system passcode to bypass standard firewall.
@@ -1023,7 +1023,7 @@ return (
                                           </div>
 
                                           <div className="space-y-1.5">
-                                                <label className="text-[8px] font-bold text-sky-500 uppercase tracking-widest block">[ GATEWAY ACCESS PASSCODE ]</label>
+                                                <label className="text-[8px] font-bold text-primary uppercase tracking-widest block">[ GATEWAY ACCESS PASSCODE ]</label>
                                                 <div className="relative">
                                                       <input type="password" required value={adminPasscode} onChange={(e) => {
                                                             setAdminPasscode(e.target.value);
@@ -1039,7 +1039,7 @@ return (
                                           </div>)}
 
                                           <div className="pt-2 border-t border-sky-950/50 flex flex-col gap-2">
-                                                <button type="submit" className="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 text-[10px] tracking-widest uppercase border border-sky-600 transition-all rounded-none hover:shadow-[0_0_15px_rgba(14,165,233,0.4)]">
+                                                <button type="submit" className="w-full bg-primary hover:bg-primary text-white font-bold py-3 text-[10px] tracking-widest uppercase border border-primary transition-all rounded-none hover:shadow-[0_0_15px_rgba(14,165,233,0.4)]">
                                                       ESTABLISH CONNECTION
                                                 </button>
                                                 <span className="text-center text-[7px] text-slate-600 uppercase tracking-wider block">
@@ -1299,7 +1299,7 @@ return (
                               </div>
 
                               <div className="bg-black/85 border border-[#2A2A2A] p-4 md:p-6 text-center max-w-3xl mx-auto w-full z-10 rounded-none mb-4">
-                                    <span className="text-[9px] bg-sky-600 text-white font-bold px-2.5 py-1 rounded-none uppercase tracking-wider mb-2 inline-block">
+                                    <span className="text-[9px] bg-primary text-white font-bold px-2.5 py-1 rounded-none uppercase tracking-wider mb-2 inline-block">
                                           {filteredGalleryItems[lightboxIndex].category}
                                     </span>
                                     <h3 className="text-white font-sans font-extrabold text-sm md:text-lg uppercase mb-2 tracking-tight">
@@ -1321,14 +1321,14 @@ return (
                         &&
                         <div id="printable-quote-section" className="hidden bg-white text-slate-900 p-8 max-w-4xl mx-auto border border-slate-300 font-sans">
                               {/* Corporate Header */}
-                              <div className="flex justify-between items-start border-b-2 border-sky-600 pb-6 mb-6">
+                              <div className="flex justify-between items-start border-b-2 border-primary pb-6 mb-6">
                                     <div>
                                           <h1 className="text-2xl font-extrabold text-sky-700 tracking-tight">{(logoData.companyName && logoData.companySuffix ? `${logoData.companyName} ${logoData.companySuffix}` : "SECURITY PLUS ELECTRONICS")?.toUpperCase()}</h1>
                                           <p className="text-xs text-slate-500 uppercase tracking-wider font-mono">Central India's Premiere Security Systems Integrator</p>
                                           <p className="text-[10px] text-slate-400 mt-1">{contactData.address} • {contactData.email}</p>
                                     </div>
                                     <div className="text-right">
-                                          <span className="text-xs font-bold text-sky-600 uppercase tracking-widest block">[ OFFICIAL SECURITY PROPOSAL ]</span>
+                                          <span className="text-xs font-bold text-primary uppercase tracking-widest block">[ OFFICIAL SECURITY PROPOSAL ]</span>
                                           <p className="text-[10px] text-slate-500 mt-1">DATE: {new Date().toLocaleDateString()}</p>
                                           <p className="text-[10px] text-slate-500">PLAN ID: SPE-{(calcInput.areaSizeSqFt * calcInput.indoorCams).toString().slice(0, 4)}</p>
                                     </div>
@@ -1398,7 +1398,7 @@ return (
                                     <h3 className="text-xs font-bold text-slate-700 uppercase tracking-widest border-b border-slate-200 pb-2 mb-3">3. Included Installation Hardware BOM</h3>
                                     <div className="grid grid-cols-2 gap-2 text-xs">
                                           {calcResult.recommendedSpecs.map((spec, idx) => (<div key={idx} className="flex items-start gap-2 bg-slate-50 p-2.5 border border-slate-100 text-slate-700">
-                                                <span className="text-sky-600 font-bold">✓</span>
+                                                <span className="text-primary font-bold">✓</span>
                                                 <span>{spec}</span>
                                           </div>))}
                                     </div>
@@ -1447,9 +1447,9 @@ return (
 
                               <motion.section {...fadeInUp} className="py-24 px-8 relative z-20 border-b border-slate-100 bg-slate-50">
                                     <div className="max-w-4xl mx-auto text-center">
-                                          <span className="font-sans font-bold text-[10px] text-sky-600 tracking-widest uppercase block mb-3">[ OUR VISION &amp; SLA VALUES ]</span>
+                                          <span className="font-sans font-bold text-[10px] text-primary tracking-widest uppercase block mb-3">[ OUR VISION &amp; SLA VALUES ]</span>
                                           <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 uppercase">Our Vision &amp; Mission</h2>
-                                          <div className="h-0.5 w-20 bg-sky-600 mx-auto mb-8"></div>
+                                          <div className="h-0.5 w-20 bg-primary mx-auto mb-8"></div>
                                           <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
                                                 Deliver innovative, reliable, and complete security solutions with exceptional customer support. We custom-engineer systems that protect Nagpur's leading commercial, financial, and industrial properties with absolute technological integrity.
                                           </p>
@@ -1982,26 +1982,26 @@ return (
                                                                   const url = encodeURIComponent(window.location.href);
                                                                   const text = encodeURIComponent(`Check out this security insight: ${selectedBlog.title}`);
                                                                   window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
-                                                            }} className="p-2 border border-[#2A2A2A] hover:border-sky-500 hover:bg-sky-500/10 text-[#888888] hover:text-sky-500 transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on X">
+                                                            }} className="p-2 border border-[#2A2A2A] hover:border-primary hover:bg-primary/10 text-[#888888] hover:text-primary transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on X">
                                                                   <Twitter className="h-3.5 w-3.5" />
                                                             </button>
                                                             <button onClick={() => {
                                                                   const url = encodeURIComponent(window.location.href);
                                                                   window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, "_blank");
-                                                            }} className="p-2 border border-[#2A2A2A] hover:border-sky-500 hover:bg-sky-500/10 text-[#888888] hover:text-sky-500 transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on LinkedIn">
+                                                            }} className="p-2 border border-[#2A2A2A] hover:border-primary hover:bg-primary/10 text-[#888888] hover:text-primary transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on LinkedIn">
                                                                   <Linkedin className="h-3.5 w-3.5" />
                                                             </button>
                                                             <button onClick={() => {
                                                                   const url = encodeURIComponent(window.location.href);
                                                                   window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
-                                                            }} className="p-2 border border-[#2A2A2A] hover:border-sky-500 hover:bg-sky-500/10 text-[#888888] hover:text-sky-500 transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on Facebook">
+                                                            }} className="p-2 border border-[#2A2A2A] hover:border-primary hover:bg-primary/10 text-[#888888] hover:text-primary transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on Facebook">
                                                                   <Facebook className="h-3.5 w-3.5" />
                                                             </button>
                                                             <button onClick={() => {
                                                                   const url = encodeURIComponent(window.location.href);
                                                                   const text = encodeURIComponent(`Read "${selectedBlog.title}" at Security Plus Electronics`);
                                                                   window.open(`https://api.whatsapp.com/send?text=${text}%20${url}`, "_blank");
-                                                            }} className="p-2 border border-[#2A2A2A] hover:border-sky-500 hover:bg-sky-500/10 text-[#888888] hover:text-sky-500 transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on WhatsApp">
+                                                            }} className="p-2 border border-[#2A2A2A] hover:border-primary hover:bg-primary/10 text-[#888888] hover:text-primary transition-all rounded-none cursor-pointer flex items-center justify-center" title="Share on WhatsApp">
                                                                   <Share2 className="h-3.5 w-3.5" />
                                                             </button>
                                                       </div>
@@ -2010,7 +2010,7 @@ return (
                                                 <button onClick={() => {
                                                       navigator.clipboard.writeText(`${window.location.origin}/blog/${selectedBlog.id || "article"}`);
                                                       setToastMessage("Secure link copied to clipboard.");
-                                                }} className="flex items-center gap-1.5 px-3 py-1.5 border border-[#2A2A2A] hover:border-sky-500 text-on-surface-variant hover:text-sky-500 hover:bg-sky-500/10 transition-all text-[10px] font-bold tracking-wider uppercase rounded-none cursor-pointer self-start sm:self-auto">
+                                                }} className="flex items-center gap-1.5 px-3 py-1.5 border border-[#2A2A2A] hover:border-primary text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-all text-[10px] font-bold tracking-wider uppercase rounded-none cursor-pointer self-start sm:self-auto">
                                                       <Link className="h-3 w-3" />
                                                       Copy Secure Link
                                                 </button>
@@ -2166,12 +2166,12 @@ return (
                                     </div>
 
                                     <div className="flex-1 flex items-center justify-center py-6">
-                                          {selectedProductForQuickView.image === "cctv" && <Video className="h-16 w-16 text-sky-600" />}
-                                          {selectedProductForQuickView.image === "ptz" && <Cpu className="h-16 w-16 text-sky-600" />}
-                                          {selectedProductForQuickView.image === "locks" && <LockKeyhole className="h-16 w-16 text-sky-600" />}
-                                          {selectedProductForQuickView.image === "storage" && <HardDrive className="h-16 w-16 text-sky-600" />}
-                                          {selectedProductForQuickView.image === "router" && <Router className="h-16 w-16 text-sky-600" />}
-                                          {selectedProductForQuickView.image === "battery" && <BatteryCharging className="h-16 w-16 text-sky-600" />}
+                                          {selectedProductForQuickView.image === "cctv" && <Video className="h-16 w-16 text-primary" />}
+                                          {selectedProductForQuickView.image === "ptz" && <Cpu className="h-16 w-16 text-primary" />}
+                                          {selectedProductForQuickView.image === "locks" && <LockKeyhole className="h-16 w-16 text-primary" />}
+                                          {selectedProductForQuickView.image === "storage" && <HardDrive className="h-16 w-16 text-primary" />}
+                                          {selectedProductForQuickView.image === "router" && <Router className="h-16 w-16 text-primary" />}
+                                          {selectedProductForQuickView.image === "battery" && <BatteryCharging className="h-16 w-16 text-primary" />}
                                     </div>
 
                                     <div className="text-[9px] font-mono font-bold text-slate-400 text-center uppercase tracking-wider">
@@ -2189,7 +2189,7 @@ return (
                                                 <h3 className="text-lg font-extrabold text-slate-900 uppercase tracking-tight pr-8 font-sans">
                                                       {selectedProductForQuickView.name}
                                                 </h3>
-                                                <span className="text-lg font-extrabold text-sky-600 block mt-1 font-sans">
+                                                <span className="text-lg font-extrabold text-primary block mt-1 font-sans">
                                                       {selectedProductForQuickView.price}
                                                 </span>
                                           </div>
@@ -2228,7 +2228,7 @@ return (
                                                       setInquiryList(prev => [...prev, selectedProductForQuickView]);
                                                       setToastMessage(`Added ${selectedProductForQuickView.name} to your inquiry list. Click 'Inquiry List' in the top bar to review.`);
                                                 }
-                                          }} className="flex-1 bg-sky-600 hover:bg-sky-500 text-white py-3 rounded-xl text-xs font-bold uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-sky-100 hover:scale-[1.01] font-sans">
+                                          }} className="flex-1 bg-primary hover:bg-primary text-white py-3 rounded-xl text-xs font-bold uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-sky-100 hover:scale-[1.01] font-sans">
                                                 <Plus className="h-4 w-4" />
                                                 Add to Inquiry
                                           </button>)}
@@ -2259,7 +2259,7 @@ return (
                               <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
                                     <div className="flex items-center gap-2.5">
                                           <div className="h-8 w-8 bg-sky-50 border border-sky-100 rounded-lg flex items-center justify-center">
-                                                <ClipboardList className="h-4.5 w-4.5 text-sky-600" />
+                                                <ClipboardList className="h-4.5 w-4.5 text-primary" />
                                           </div>
                                           <div>
                                                 <h3 className="font-sans font-extrabold text-sm text-slate-900 uppercase tracking-wider">Showroom Inquiry</h3>
@@ -2298,16 +2298,16 @@ return (
                                                       {inquiryList.map((item) => (<div key={item.id} className="bg-slate-50 border border-slate-100 rounded-xl p-3.5 flex items-center justify-between gap-3 group relative hover:border-sky-200 transition-colors">
                                                             <div className="flex items-center gap-3">
                                                                   <div className="h-10 w-10 bg-white border border-slate-200 rounded-lg flex items-center justify-center shrink-0">
-                                                                        {item.image === "cctv" && <Video className="h-5 w-5 text-sky-600" />}
-                                                                        {item.image === "ptz" && <Cpu className="h-5 w-5 text-sky-600" />}
-                                                                        {item.image === "locks" && <LockKeyhole className="h-5 w-5 text-sky-600" />}
-                                                                        {item.image === "storage" && <HardDrive className="h-5 w-5 text-sky-600" />}
-                                                                        {item.image === "router" && <Router className="h-5 w-5 text-sky-600" />}
-                                                                        {item.image === "battery" && <BatteryCharging className="h-5 w-5 text-sky-600" />}
+                                                                        {item.image === "cctv" && <Video className="h-5 w-5 text-primary" />}
+                                                                        {item.image === "ptz" && <Cpu className="h-5 w-5 text-primary" />}
+                                                                        {item.image === "locks" && <LockKeyhole className="h-5 w-5 text-primary" />}
+                                                                        {item.image === "storage" && <HardDrive className="h-5 w-5 text-primary" />}
+                                                                        {item.image === "router" && <Router className="h-5 w-5 text-primary" />}
+                                                                        {item.image === "battery" && <BatteryCharging className="h-5 w-5 text-primary" />}
                                                                   </div>
                                                                   <div className="min-w-0 flex-1">
                                                                         <h4 className="text-[11px] font-extrabold text-slate-800 uppercase line-clamp-1 font-sans">{item.name}</h4>
-                                                                        <span className="text-[9px] text-sky-600 font-bold block">{item.price} • {item.category}</span>
+                                                                        <span className="text-[9px] text-primary font-bold block">{item.price} • {item.category}</span>
                                                                   </div>
                                                             </div>
                                                             <button id={`remove-inquiry-item-${item.id}`} onClick={() => {
@@ -2335,20 +2335,20 @@ return (
                                                 }} className="space-y-3.5 text-xs font-sans">
                                                       <div>
                                                             <label className="block text-[10px] text-slate-500 font-bold uppercase mb-1">Your Full Name / Company</label>
-                                                            <input type="text" required name="clientName" placeholder="e.g. Nagpur Metro Corp or Corporate Security Team" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-sky-500 font-sans text-slate-850" />
+                                                            <input type="text" required name="clientName" placeholder="e.g. Nagpur Metro Corp or Corporate Security Team" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-primary font-sans text-slate-850" />
                                                       </div>
 
                                                       <div>
                                                             <label className="block text-[10px] text-slate-500 font-bold uppercase mb-1">Contact Phone Number</label>
-                                                            <input type="tel" required name="clientPhone" placeholder="e.g. +91 91234 56789" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-sky-500 font-sans text-slate-850" />
+                                                            <input type="tel" required name="clientPhone" placeholder="e.g. +91 91234 56789" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-primary font-sans text-slate-850" />
                                                       </div>
 
                                                       <div>
                                                             <label className="block text-[10px] text-slate-500 font-bold uppercase mb-1">Optional Site Requirements</label>
-                                                            <textarea rows={3} name="clientNotes" placeholder="Describe your site (e.g. Nagpur residential showroom, commercial jewelry outlet, multi-tier warehouse, etc.)" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-sky-500 font-sans resize-none text-slate-850" />
+                                                            <textarea rows={3} name="clientNotes" placeholder="Describe your site (e.g. Nagpur residential showroom, commercial jewelry outlet, multi-tier warehouse, etc.)" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-primary font-sans resize-none text-slate-850" />
                                                       </div>
 
-                                                      <button id="submit-b2b-inquiry-btn" type="submit" className="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold text-[10px] tracking-widest uppercase py-3.5 rounded-xl transition-all shadow-md shadow-sky-100 flex items-center justify-center gap-2 cursor-pointer">
+                                                      <button id="submit-b2b-inquiry-btn" type="submit" className="w-full bg-primary hover:bg-primary text-white font-bold text-[10px] tracking-widest uppercase py-3.5 rounded-xl transition-all shadow-md shadow-sky-100 flex items-center justify-center gap-2 cursor-pointer">
                                                             <Send className="h-4 w-4" />
                                                             SUBMIT OFFICIAL INQUIRY
                                                       </button>
@@ -2366,7 +2366,7 @@ return (
             {/* FLOATING INQUIRY LIST BUTTON */}
             < AnimatePresence >
                   {
-                        inquiryList.length > 0 && (<motion.button id="floating-inquiry-bubble" initial={{ opacity: 0, scale: 0.8, y: 50 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8, y: 50 }} onClick={() => setIsInquiryDrawerOpen(true)} className="fixed bottom-6 right-6 z-40 bg-slate-950 hover:bg-sky-600 text-white p-4 rounded-full border border-slate-800 hover:border-sky-500 transition-all duration-300 shadow-2xl flex items-center justify-center cursor-pointer group active:scale-95" title="View Security Inquiry List">
+                        inquiryList.length > 0 && (<motion.button id="floating-inquiry-bubble" initial={{ opacity: 0, scale: 0.8, y: 50 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8, y: 50 }} onClick={() => setIsInquiryDrawerOpen(true)} className="fixed bottom-6 right-6 z-40 bg-slate-950 hover:bg-primary text-white p-4 rounded-full border border-slate-800 hover:border-primary transition-all duration-300 shadow-2xl flex items-center justify-center cursor-pointer group active:scale-95" title="View Security Inquiry List">
                               <ClipboardList className="h-6 w-6 text-sky-400 group-hover:text-white transition-colors" />
                               <span className="absolute -top-1.5 -right-1.5 h-6 w-6 flex items-center justify-center bg-rose-500 text-white rounded-full font-mono font-bold text-xs shadow-md border-2 border-slate-950">
                                     {inquiryList.length}
@@ -2378,14 +2378,14 @@ return (
             {/* SECURE SPE ADMIN ACCESS LEDGER TERMINAL */}
             <AnimatePresence>
                   {adminLoginOpen && (<div className="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
-                        <motion.div initial={{ scale: 0.95, opacity: 0, y: 15 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 15 }} className="bg-[#090D16] border-2 border-sky-500 w-full max-w-md overflow-hidden shadow-[0_0_50px_rgba(14,165,233,0.3)] rounded-none relative text-slate-200 font-mono">
+                        <motion.div initial={{ scale: 0.95, opacity: 0, y: 15 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 15 }} className="bg-[#090D16] border-2 border-primary w-full max-w-md overflow-hidden shadow-[0_0_50px_rgba(14,165,233,0.3)] rounded-none relative text-slate-200 font-mono">
                               {/* Glowing top border */}
-                              <div className="h-[2px] bg-gradient-to-r from-sky-600 via-cyan-400 to-sky-600 animate-pulse"></div>
+                              <div className="h-[2px] bg-gradient-to-r from-primary via-cyan-400 to-primary animate-pulse"></div>
 
                               {/* Terminal Header */}
                               <div className="p-4 border-b border-sky-900/50 flex justify-between items-center bg-[#070A11]">
                                     <div className="flex items-center gap-2">
-                                          <span className="h-2 w-2 rounded-full bg-sky-500 animate-ping"></span>
+                                          <span className="h-2 w-2 rounded-full bg-primary animate-ping"></span>
                                           <div>
                                                 <h3 className="font-bold text-[11px] tracking-widest text-sky-400 uppercase">SPE NAGPUR SECURE BACKEND</h3>
                                                 <span className="text-[7px] text-slate-500 uppercase block tracking-widest">[ CENTRAL LEDGER DESK v2.4 ]</span>
@@ -2426,7 +2426,7 @@ return (
                                     }
                               }} className="p-6 space-y-4">
                                     <div className="bg-[#05070C] border border-sky-950 p-3 text-[9px] text-slate-400 space-y-1 leading-relaxed">
-                                          <span className="text-sky-500 block font-bold">[ SYSTEM MEMORANDUM ]</span>
+                                          <span className="text-primary block font-bold">[ SYSTEM MEMORANDUM ]</span>
                                           <p>
                                                 Authorized administrators only. Multi-vector tracking is active.
                                                 Your Nagpur network address has been logged. Enter system passcode to bypass standard firewall.
@@ -2434,7 +2434,7 @@ return (
                                     </div>
 
                                     <div className="space-y-1.5">
-                                          <label className="text-[8px] font-bold text-sky-500 uppercase tracking-widest block">[ GATEWAY ACCESS PASSCODE ]</label>
+                                          <label className="text-[8px] font-bold text-primary uppercase tracking-widest block">[ GATEWAY ACCESS PASSCODE ]</label>
                                           <div className="relative">
                                                 <input type="password" required value={adminPasscode} onChange={(e) => {
                                                       setAdminPasscode(e.target.value);
@@ -2450,7 +2450,7 @@ return (
                                     </div>)}
 
                                     <div className="pt-2 border-t border-sky-950/50 flex flex-col gap-2">
-                                          <button type="submit" className="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 text-[10px] tracking-widest uppercase border border-sky-600 transition-all rounded-none hover:shadow-[0_0_15px_rgba(14,165,233,0.4)]">
+                                          <button type="submit" className="w-full bg-primary hover:bg-primary text-white font-bold py-3 text-[10px] tracking-widest uppercase border border-primary transition-all rounded-none hover:shadow-[0_0_15px_rgba(14,165,233,0.4)]">
                                                 ESTABLISH CONNECTION
                                           </button>
                                           <span className="text-center text-[7px] text-slate-600 uppercase tracking-wider block">
@@ -2710,7 +2710,7 @@ return (
                         </div>
 
                         <div className="bg-black/85 border border-[#2A2A2A] p-4 md:p-6 text-center max-w-3xl mx-auto w-full z-10 rounded-none mb-4">
-                              <span className="text-[9px] bg-sky-600 text-white font-bold px-2.5 py-1 rounded-none uppercase tracking-wider mb-2 inline-block">
+                              <span className="text-[9px] bg-primary text-white font-bold px-2.5 py-1 rounded-none uppercase tracking-wider mb-2 inline-block">
                                     {filteredGalleryItems[lightboxIndex].category}
                               </span>
                               <h3 className="text-white font-sans font-extrabold text-sm md:text-lg uppercase mb-2 tracking-tight">
@@ -2732,14 +2732,14 @@ return (
                   &&
                   <div id="printable-quote-section" className="hidden bg-white text-slate-900 p-8 max-w-4xl mx-auto border border-slate-300 font-sans">
                         {/* Corporate Header */}
-                        <div className="flex justify-between items-start border-b-2 border-sky-600 pb-6 mb-6">
+                        <div className="flex justify-between items-start border-b-2 border-primary pb-6 mb-6">
                               <div>
                                     <h1 className="text-2xl font-extrabold text-sky-700 tracking-tight">{(logoData.companyName && logoData.companySuffix ? `${logoData.companyName} ${logoData.companySuffix}` : "SECURITY PLUS ELECTRONICS")?.toUpperCase()}</h1>
                                     <p className="text-xs text-slate-500 uppercase tracking-wider font-mono">Central India's Premiere Security Systems Integrator</p>
                                     <p className="text-[10px] text-slate-400 mt-1">{contactData.address} • {contactData.email}</p>
                               </div>
                               <div className="text-right">
-                                    <span className="text-xs font-bold text-sky-600 uppercase tracking-widest block">[ OFFICIAL SECURITY PROPOSAL ]</span>
+                                    <span className="text-xs font-bold text-primary uppercase tracking-widest block">[ OFFICIAL SECURITY PROPOSAL ]</span>
                                     <p className="text-[10px] text-slate-500 mt-1">DATE: {new Date().toLocaleDateString()}</p>
                                     <p className="text-[10px] text-slate-500">PLAN ID: SPE-{(calcInput.areaSizeSqFt * calcInput.indoorCams).toString().slice(0, 4)}</p>
                               </div>
@@ -2809,7 +2809,7 @@ return (
                               <h3 className="text-xs font-bold text-slate-700 uppercase tracking-widest border-b border-slate-200 pb-2 mb-3">3. Included Installation Hardware BOM</h3>
                               <div className="grid grid-cols-2 gap-2 text-xs">
                                     {calcResult.recommendedSpecs.map((spec, idx) => (<div key={idx} className="flex items-start gap-2 bg-slate-50 p-2.5 border border-slate-100 text-slate-700">
-                                          <span className="text-sky-600 font-bold">✓</span>
+                                          <span className="text-primary font-bold">✓</span>
                                           <span>{spec}</span>
                                     </div>))}
                               </div>

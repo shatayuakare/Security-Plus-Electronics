@@ -102,7 +102,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBooki
 
                   <div className="md:col-span-7 order-1 md:order-2 col-span-6  text-left flex flex-col items-start space-y-6">
                     <div
-                      className="bg-sky-500/10 px-4 text-[9px] py-1.5 inline-flex items-center gap-2 border border-sky-500/20 rounded-full"
+                      className="bg-primary/10 px-4 text-[9px] py-1.5 inline-flex items-center gap-2 border border-primary/20 rounded-full"
                       style={
                         slide.category?.includes("EMERALD")
                           ? { backgroundColor: "rgba(16,185,129,0.1)", borderColor: "rgba(16,185,129,0.2)" }
@@ -183,7 +183,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBooki
                                 ? "bg-rose-600 hover:bg-rose-500 shadow-lg shadow-rose-500/20"
                                 : idx === 5
                                   ? "bg-cyan-600 hover:bg-cyan-500 shadow-lg shadow-cyan-500/20"
-                                  : "bg-sky-600 hover:bg-sky-500 shadow-lg shadow-sky-500/20"
+                                  : "bg-primary hover:bg-primary shadow-lg shadow-primary/20"
                           } text-white px-8 py-4 font-sans font-bold text-xs tracking-widest uppercase rounded-xl transition-all duration-300 text-center cursor-pointer`}
                         >
                           {slide.btnText}
@@ -232,7 +232,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBooki
         <div className="flex justify-between items-center mt-12 pt-6 border-t border-slate-900/60 max-w-5xl mx-auto w-full">
           <div className="flex gap-2.5">
             {[0, 1, 2, 3, 4, 5].map((idx) => (<button key={idx} onClick={() => setHeroSlideIndex(idx)} className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${heroSlideIndex === idx
-              ? "w-8 bg-sky-500"
+              ? "w-8 bg-primary"
               : "w-2.5 bg-slate-800 hover:bg-slate-700"}`} title={`Go to slide ${idx + 1}`} />))}
           </div>
         </div>
@@ -272,7 +272,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBooki
   //           {
   //             heroSlide.map((slide, index) => (<motion.div key={index} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.5, ease: "easeInOut" }} className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
   //               <div className="lg:col-span-7 text-left flex flex-col items-start space-y-6">
-  //                 <div className="bg-sky-500/10 px-4 py-1.5 inline-flex items-center gap-2 border border-sky-500/20 rounded-full">
+  //                 <div className="bg-primary/10 px-4 py-1.5 inline-flex items-center gap-2 border border-primary/20 rounded-full">
   //                   <div className="w-1.5 h-1.5 bg-sky-400 rounded-full animate-pulse"></div>
   //                   {slide.category}
   //                 </div>
@@ -283,7 +283,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBooki
   //                   {slide.description}
   //                 </p>
   //                 <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
-  //                   <button onClick={() => { setActiveTab("products"); window.scrollTo(0, 0); }} className="bg-sky-600 hover:bg-sky-500 text-white px-8 py-4 font-sans font-bold text-xs tracking-widest uppercase rounded-xl transition-all duration-300 text-center cursor-pointer shadow-lg shadow-sky-500/20">
+  //                   <button onClick={() => { setActiveTab("products"); window.scrollTo(0, 0); }} className="bg-primary hover:bg-primary text-white px-8 py-4 font-sans font-bold text-xs tracking-widest uppercase rounded-xl transition-all duration-300 text-center cursor-pointer shadow-lg shadow-primary/20">
   //                     {slide.btnText}
   //                   </button>
   //                   <button onClick={triggerShowroomModal} className="bg-white/5 hover:bg-white/10 text-white px-8 py-4 font-sans font-bold text-xs tracking-widest uppercase border border-white/10 transition-all duration-300 flex items-center justify-center gap-2 rounded-xl cursor-pointer shadow-sm">
@@ -301,7 +301,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBooki
   //           }
   //           {heroSlideIndex === 0 && (<motion.div key="slide-0" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.5, ease: "easeInOut" }} className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
   //             <div className="lg:col-span-7 text-left flex flex-col items-start space-y-6">
-  //               <div className="bg-sky-500/10 px-4 py-1.5 inline-flex items-center gap-2 border border-sky-500/20 rounded-full">
+  //               <div className="bg-primary/10 px-4 py-1.5 inline-flex items-center gap-2 border border-primary/20 rounded-full">
   //                 <div className="w-1.5 h-1.5 bg-sky-400 rounded-full animate-pulse"></div>
   //                 <span className="font-sans font-bold text-[9px] text-sky-300 tracking-wider uppercase">NAGPUR HQ EXPERIENCE MALL</span>
   //               </div>
@@ -313,7 +313,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBooki
   //                 Explore 20+ years of security excellence with Nagpur's largest live experience center. Professional 4K security installations, on-site live testing, and expert system sizing.
   //               </p>
   //               <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
-  //                 <button onClick={() => { setActiveTab("products"); window.scrollTo(0, 0); }} className="bg-sky-600 hover:bg-sky-500 text-white px-8 py-4 font-sans font-bold text-xs tracking-widest uppercase rounded-xl transition-all duration-300 text-center cursor-pointer shadow-lg shadow-sky-500/20">
+  //                 <button onClick={() => { setActiveTab("products"); window.scrollTo(0, 0); }} className="bg-primary hover:bg-primary text-white px-8 py-4 font-sans font-bold text-xs tracking-widest uppercase rounded-xl transition-all duration-300 text-center cursor-pointer shadow-lg shadow-primary/20">
   //                   EXPLORE SOLUTIONS
   //                 </button>
   //                 <button onClick={triggerShowroomModal} className="bg-white/5 hover:bg-white/10 text-white px-8 py-4 font-sans font-bold text-xs tracking-widest uppercase border border-white/10 transition-all duration-300 flex items-center justify-center gap-2 rounded-xl cursor-pointer shadow-sm">
@@ -616,7 +616,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBooki
 
   //         <div className="flex gap-2.5">
   //           {[0, 1, 2, 3, 4, 5].map((idx) => (<button key={idx} onClick={() => setHeroSlideIndex(idx)} className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${heroSlideIndex === idx
-  //             ? "w-8 bg-sky-500"
+  //             ? "w-8 bg-primary"
   //             : "w-2.5 bg-slate-800 hover:bg-slate-700"}`} title={`Go to slide ${idx + 1}`} />))}
   //         </div>
 
@@ -628,15 +628,15 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBooki
 
   //       <div className="grid grid-cols-1 md:grid-cols-3 gap-0 bg-sky-50/95 backdrop-blur-md border border-sky-100 w-full max-w-5xl divide-y md:divide-y-0 md:divide-x divide-sky-100 rounded-2xl shadow-lg mt-16 mx-auto">
   //         <div className="p-8 flex flex-col items-center justify-center transition-all duration-300 hover:bg-sky-100/40 relative group rounded-t-2xl md:rounded-t-none md:rounded-l-2xl">
-  //           <span className="font-sans text-4xl md:text-5xl font-extrabold text-sky-600 mb-2">20+</span>
+  //           <span className="font-sans text-4xl md:text-5xl font-extrabold text-primary mb-2">20+</span>
   //           <span className="font-sans font-semibold text-[10px] text-sky-900/80 tracking-wider uppercase">Years of Excellence</span>
   //         </div>
   //         <div className="p-8 flex flex-col items-center justify-center transition-all duration-300 hover:bg-sky-100/40 relative group">
-  //           <span className="font-sans text-4xl md:text-5xl font-extrabold text-sky-600 mb-2">40+</span>
+  //           <span className="font-sans text-4xl md:text-5xl font-extrabold text-primary mb-2">40+</span>
   //           <span className="font-sans font-semibold text-[10px] text-sky-900/80 tracking-wider uppercase">Premium Brands</span>
   //         </div>
   //         <div className="p-8 flex flex-col items-center justify-center transition-all duration-300 hover:bg-sky-100/40 relative group rounded-b-2xl md:rounded-b-none md:rounded-r-2xl">
-  //           <span className="font-sans text-4xl md:text-5xl font-extrabold text-sky-600 mb-2">5000+</span>
+  //           <span className="font-sans text-4xl md:text-5xl font-extrabold text-primary mb-2">5000+</span>
   //           <span className="font-sans font-semibold text-[10px] text-sky-900/80 tracking-wider uppercase">Happy Customers</span>
   //         </div>
   //       </div>

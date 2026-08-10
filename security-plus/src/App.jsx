@@ -64,7 +64,6 @@ function App() {
 
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
-
   const [activeShowroomHotspot, setActiveShowroomHotspot] = useState(null);
   const [showroomScanStatus, setShowroomScanStatus] = useState("idle");
 
@@ -81,8 +80,6 @@ function App() {
       { name: "Security Manager", email: "info@securityplus.in", phone: "08048102415", password: "customer123" }
     ];
   });
-
-
 
   useEffect(() => {
     if (customerUser) {
@@ -158,9 +155,9 @@ function App() {
   });
 
   const [products, setProducts] = useState(() => {
-    // const saved = localStorage.getItem("spe_products_catalog");
-    // if (saved)
-    //   return JSON.parse(saved);
+    const saved = localStorage.getItem("spe_products_catalog");
+    if (saved)
+      return JSON.parse(saved);
     return PRODUCTS.map(p => ({ ...p }));
   });
 
@@ -444,26 +441,37 @@ function App() {
   const [selectedBlog, setSelectedBlog] = useState(null);
 
   useEffect(() => {
-    const alerts = [
-      "System Notification: Boundary line crossing detected at Commercial Warehouse gate 2 - filtered as False Alarm (Stray Dog).",
-      "Network Status: Automated backup grid testing succeeded. All 5,102 node feeds online.",
-      "Showroom Alert: Live interactive demonstration of Hanwha camera sets starts in Nagpur showroom in 10 minutes.",
-      "Secure System Intel: H.265+ encoding verified on 4K streams saving 76% bandwidth."
-    ];
-    const timer = setInterval(() => {
-      const randomAlert = alerts[Math.floor(Math.random() * alerts.length)];
-      setToastMessage(randomAlert);
-      setTimeout(() => setToastMessage(null), 6000);
-    }, 45000);
-    return () => clearInterval(timer);
-  }, []);
-
+    const handleEscape = (e) => {
+      if (e.key === "Escape") {
+        if (selectedBlog) {
+          setSelectedBlog(null);
+        }
+        if (showroomModalOpen) {
+          setShowroomModalOpen(false);
+        }
+        if (selectedProductForQuickView) {
+          setSelectedProductForQuickView(null);
+        }
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [selectedBlog, showroomModalOpen, selectedProductForQuickView]);
 
 
   useEffect(() => {
+    if (selectedProductForQuickView) {
+      setSelectedProductForQuickView(null)
+    }
+    if (selectedBlog) {
+      setSelectedBlog(null)
+    }
+    if (showroomModalOpen) {
+      setShowroomModalOpen(false)
+    }
     setTimeout(() => {
       setToastMessage(null)
-    }, 1500);
+    }, 2000);
   }, [toastMessage])
 
 
@@ -486,18 +494,15 @@ function App() {
             <Hero heroSlideIndex={heroSlideIndex} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} setBookingConfirmed={setBookingConfirmed} />
 
             <BrandCarousel />
-
             <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} />
-
             <VirtualShowroom loadedImages={loadedImages} setLoadedImages={setLoadedImages} showroomScanStatus={showroomScanStatus} setShowroomScanStatus={setShowroomScanStatus} activeShowroomHotspot={activeShowroomHotspot} setActiveShowroomHotspot={setActiveShowroomHotspot} setToastMessage={setToastMessage} setShowroomModalOpen={setShowroomModalOpen} />
-
             <ReelSection />
 
             <motion.section {...fadeInUp} className="py-24 px-8 relative z-20 border-b border-slate-100 bg-slate-50">
               <div className="max-w-4xl mx-auto text-center">
-                <span className="font-sans font-bold text-[10px] text-sky-600 tracking-widest uppercase block mb-3">OUR VISION &amp; SLA VALUES</span>
+                <span className="font-sans font-bold text-[10px] text-primary tracking-widest uppercase block mb-3">OUR VISION &amp; SLA VALUES</span>
                 <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 uppercase">Our Vision &amp; Mission</h2>
-                <div className="h-0.5 w-20 bg-sky-600 mx-auto mb-8"></div>
+                <div className="h-0.5 w-20 bg-primary mx-auto mb-8"></div>
                 <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
                   Deliver innovative, reliable, and complete security solutions with exceptional customer support. We custom-engineer systems that protect Nagpur's leading commercial, financial, and industrial properties with absolute technological integrity.
                 </p>
@@ -519,7 +524,8 @@ function App() {
           <Route path="/products" element={<Products products={products} productCategories={productCategories} customerUser={customerUser} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
           <Route path="/testimonial" element={<TestimonialsPage testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
           <Route path="/blogs" element={<Blogs subscribers={subscribers} setSubscribers={setSubscribers} setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
-          <Route path="/login" element={<AuthSection registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} />
+          <Route path="/login" element={<AuthSection isLogin={true} registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} />
+          <Route path="/register" element={<AuthSection isLogin={false} registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} />
         </Routes>
       </main>
 
@@ -533,7 +539,7 @@ function App() {
       {/* Toast View */}
       <AnimatePresence>
         {toastMessage && (<motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:right-auto z-50 w-auto md:w-120 bg-slate-900/95 backdrop-blur-md text-white p-3.5 rounded-xl border border-slate-800 flex items-start gap-3 shadow-2xl">
-          <Sparkles className="h-4 w-4 text-sky-400 shrink-0 mt-0.5 animate-pulse" />
+          <Sparkles className="h-4 w-4 text-primary shrink-0 mt-0.5 animate-pulse" />
           <div className="flex-1 min-w-0">
             <span className="font-mono font-bold text-[9px] tracking-widest text-sky-400 uppercase block">SYSTEM SENTINEL GUARD</span>
             <p className="text-[11px] text-slate-300 leading-normal mt-0.5 wrap-break-wordbreak">{toastMessage}</p>
@@ -547,7 +553,7 @@ function App() {
       {/* quick view Blog modal */}
       <AnimatePresence>
         {selectedBlog &&
-          <QuickBlogVIew setSelectedBlog={setSelectedBlog} selectedBlog={selectedBlog} />
+          <QuickBlogVIew setSelectedBlog={setSelectedBlog} selectedBlog={selectedBlog} setToastMessage={setToastMessage} />
         }
       </AnimatePresence>
 
