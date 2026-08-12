@@ -1,32 +1,34 @@
 import express from "express";
-import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
+// import dns from "dns"
+// import mongoose from "mongoose";
+// import dotenv from "dotenv"
+import cors from "cors"
+import productRoute from "./routes/products.route.js";
+const server = express();
 
-const app = express();
+// dotenv.config();
+// dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
-const WooCommerce = new WooCommerceRestApi({
-    url: "http://localhost:3000",
-    consumerKey: process.env.WC_CONSUMER_KEY,
-    consumerSecret: process.env.WC_CONSUMER_SECRET,
-    version: "wc/v3"
-});
-
-app.get("/api/products", async (req, res) => {
-    try {
-        const response = await WooCommerce.get("products", {
-            per_page: 20,
-            page: 1
-        });
-
-        res.json(response.data);
-
-    } catch (error) {
-        console.error(error.response?.data || error.message);
-
-        res.status(500).json({
-            message: "Unable to fetch WooCommerce products"
-        });
-    }
-});
+server.use(cors())
 
 
-app.listen(5000)
+
+server.listen(3000, () => {
+    console.log("Backend Server connected")
+
+    // mongoose
+    //     .connect(process.env.MONGODB)
+    //     .then(() => {
+    //         console.log(`Database Connected Successfully`);
+    //     })
+    //     .catch((error) => {
+    //         console.error("MongoDB Connection Error:", error.message);
+    //         console.log(
+    //             "Please ensure MongoDB is running or check your connection string"
+    //         );
+    //     });
+
+})
+
+
+server.use("/products", productRoute)
