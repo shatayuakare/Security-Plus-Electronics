@@ -156,11 +156,11 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
                       <h4 className="text-xs font-bold text-white uppercase">Guest Visitor</h4>
                       <p className="text-[10px] text-slate-400 leading-normal mt-1">Log in or create a customer account to access exclusive specs and order management.</p>
                     </div>
-                    <Link to={"/login"} onClick={() => { setAccountDropdownOpen(false); }} className="w-full bg-primary hover:bg-primary text-white font-sans font-bold text-[9px] tracking-widest uppercase py-2.5 rounded-lg border border-primary hover:border-primary transition-all cursor-pointer flex items-center justify-center gap-1.5">
+                    <Link to={"/login"} onClick={() => { setAccountDropdownOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="w-full bg-primary hover:bg-primary text-white font-sans font-bold text-[9px] tracking-widest uppercase py-2.5 rounded-lg border border-primary hover:border-primary transition-all cursor-pointer flex items-center justify-center gap-1.5">
                       <User className="w-3 h-3" />
                       Sign In
                     </Link>
-                    <Link to={"/register"} onClick={() => { setAccountDropdownOpen(false); }} className="w-full bg-slate-900 hover:bg-slate-800 text-sky-400 font-sans font-bold text-[9px] tracking-widest uppercase py-2.5 rounded-lg border border-slate-800 hover:border-primary transition-all cursor-pointer flex items-center justify-center gap-1.5">
+                    <Link to={"/register"} onClick={() => { setAccountDropdownOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="w-full bg-slate-900 hover:bg-slate-800 text-sky-400 font-sans font-bold text-[9px] tracking-widest uppercase py-2.5 rounded-lg border border-slate-800 hover:border-primary transition-all cursor-pointer flex items-center justify-center gap-1.5">
                       Register Account
                     </Link>
                   </>)) : (<>

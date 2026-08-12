@@ -20,15 +20,16 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
     const [bookingTicket, setBookingTicket] = useState(null);
 
 
-    const [showroomBookings, setShowroomBookings] = useState(() => {
-        const saved = localStorage.getItem("spe_showroom_bookings");
-        if (saved)
-            return JSON.parse(saved);
-    });
-    console.log(showroomBookings)
-    useEffect(() => {
-        localStorage.setItem("spe_showroom_bookings", JSON.stringify(showroomBookings));
-    }, [showroomBookings]);
+    // const [showroomBookings, setShowroomBookings] = useState(() => {
+    //     const saved = localStorage.getItem("spe_showroom_bookings");
+    //     if (saved)
+    //         return JSON.parse(saved);
+    //     return 0
+    // });
+    // console.log(showroomBookings)
+    // useEffect(() => {
+    //     localStorage.setItem("spe_showroom_bookings", JSON.stringify(showroomBookings));
+    // }, [showroomBookings]);
 
     const handleBookShowroom = (e) => {
         e.preventDefault();
@@ -45,7 +46,7 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
             sector: bookingForm.sector || "residential",
             status: "Confirmed"
         };
-        setShowroomBookings(prev => [newBooking, ...prev]);
+        // setShowroomBookings(prev => [newBooking, ...prev]);
         setBookingTicket({
             ticketNo: randomTicketNo,
             ...bookingForm

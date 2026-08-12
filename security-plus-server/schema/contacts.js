@@ -1,4 +1,4 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 
 const contactSchema = new mongoose.Schema({
     name: {
@@ -15,7 +15,7 @@ const contactSchema = new mongoose.Schema({
     },
     phone: {
         type: Number,
-        required: true
+        required: false
     },
     department: {
         type: String,

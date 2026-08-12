@@ -3,6 +3,7 @@ import { ChevronDown, Send, CheckCircle2, MapPin, Phone, Mail, Clock, Star, Arro
 import { motion, AnimatePresence } from "motion/react";
 import TESTIMONIALS_DATA from "../json/testimonials.json";
 import BLOGS_DATA from "../json/blogs.json";
+import { Link } from "react-router-dom";
 
 
 export const ScrollableTestimonials = () => {
@@ -88,7 +89,6 @@ export const ScrollableTestimonials = () => {
         </AnimatePresence>
       </div>
 
-      {/* Indicator dots */}
       <div className="flex justify-center gap-2 mt-8">
         {TESTIMONIALS_DATA.map((_, idx) => (<button key={idx} onClick={() => setScrollIndex(idx)} className={`h-2 transition-all rounded-full cursor-pointer ${idx === scrollIndex ? "w-6 bg-primary" : "w-2 bg-slate-300"}`} aria-label={`Go to slide ${idx + 1}`} />))}
       </div>
@@ -158,16 +158,16 @@ export const OurThought = () => {
         })}
       </div>
       <div className="flex justify-center mt-12">
-        <button className="group bg-primary hover:bg-sky-700 text-white font-bold font-sans py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+        <Link to={"/blogs"} className="group bg-primary hover:bg-sky-700 text-white font-bold font-sans py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
           <span>BROWSE ALL ARTICLES</span>
           <ArrowRight className="h-4 w-4 inline-block ml-2 group-hover:translate-x-1 transition-transform" />
-        </button>
+        </Link>
       </div>
     </div>
   </section>);
 };
 
-export const OurBlogs = () => {
+export const OurBlogs = ({ setSelectedBlog }) => {
   return (<section className="py-24 px-6 md:px-12 bg-slate-50 border-b border-slate-100">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
@@ -214,7 +214,7 @@ export const OurBlogs = () => {
               <div className="text-xs font-bold text-slate-900">{blog.author}</div>
               <div className="text-[10px] text-slate-400">{blog.authorRole}</div>
             </div>
-            <button className="text-xs btn btn-link font-mono font-bold text-primary hover:text-sky-700 flex items-center gap-1 cursor-pointer">
+            <button onClick={() => setSelectedBlog(blog)} className="text-xs btn btn-link font-mono font-bold text-primary hover:text-sky-700 flex items-center gap-1 cursor-pointer">
               <span>READ</span>
               <ArrowRight className="h-3 w-3" />
             </button>

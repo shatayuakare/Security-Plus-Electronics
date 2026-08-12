@@ -37,8 +37,10 @@ import TESTIMONIALS_DATA from "./json/testimonials.json"
 import PRODUCTS from "./json/wooProducts.json"
 import GALLERY_ITEMS from "./json/gallary.json"
 import QuickProductView from "./components/modal/QuickProductView";
-import ShowroomExperience from "./components/ShowroomExperience";
+import ShowroomExperience from "./components/modal/ShowroomExperience";
 import QuickBlogVIew from "./components/modal/QuickBlogVIew";
+import axios from "axios";
+import { SERVER } from "./utils/Constant";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
@@ -154,12 +156,20 @@ function App() {
     return ["CCTV Cameras", "Biometric Access", "NVR Storage", "Networking Backbone", "Power Backup"];
   });
 
+  const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState(() => {
     const saved = localStorage.getItem("spe_products_catalog");
     if (saved)
       return JSON.parse(saved);
     return PRODUCTS.map(p => ({ ...p }));
   });
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      await axios.get(`${SERVER}/products/${currentPage}`).then(res => setProducts(res.data)).catch(e => console.error(e));
+    }
+    fetchProducts();
+  }, [currentPage]);
 
   const [contactData, setContactData] = useState(() => {
     const saved = localStorage.getItem("spe_contact_data");
@@ -363,37 +373,6 @@ function App() {
     const saved = localStorage.getItem("spe_career_apps");
     if (saved)
       return JSON.parse(saved);
-    return [
-      {
-        id: "SPE-APP-77123",
-        name: "Rahul Deshmukh",
-        email: "rahul.desh@gmail.com",
-        phone: "+91 88312 90123",
-        selectedOption: "class_basics",
-        experience: "Engineering student at Nagpur University. Want hands-on field training with CCTV.",
-        resumeUrl: "https://drive.google.com/resume-rdesh",
-        date: "2026-06-29",
-        status: "Approved"
-      },
-      {
-        id: "SPE-APP-43120",
-        name: "Pooja Patil",
-        email: "pooja.patil@outlook.com",
-        phone: "+91 77123 45678",
-        selectedOption: "job_sales",
-        experience: "3 years sales experience at local electronics appliance store. Proficient in Marathi and Hindi.",
-        resumeUrl: "https://drive.google.com/resume-ppatil",
-        date: "2026-06-30",
-        status: "Pending Review"
-      }
-    ];
-  });
-
-  const [subscribers, setSubscribers] = useState(() => {
-    const saved = localStorage.getItem("spe_subscribers");
-    if (saved)
-      return JSON.parse(saved);
-    return ["info@securityplus.in", "admin@securityplus.in", "mandal.tech@outlook.com"];
   });
 
   useEffect(() => {
@@ -402,9 +381,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem("spe_career_apps", JSON.stringify(careerApplications));
   }, [careerApplications]);
-  useEffect(() => {
-    localStorage.setItem("spe_subscribers", JSON.stringify(subscribers));
-  }, [subscribers]);
   useEffect(() => {
     localStorage.setItem("spe_admin_mode", String(isAdminMode));
   }, [isAdminMode]);
@@ -458,7 +434,6 @@ function App() {
     return () => window.removeEventListener("keydown", handleEscape);
   }, [selectedBlog, showroomModalOpen, selectedProductForQuickView]);
 
-
   useEffect(() => {
     if (selectedProductForQuickView) {
       setSelectedProductForQuickView(null)
@@ -476,7 +451,7 @@ function App() {
 
 
   if (isAdminMode) {
-    return (<AdminPanel onExit={() => setIsAdminMode(false)} supportTickets={supportTickets} setSupportTickets={setSupportTickets} careerApplications={careerApplications} setCareerApplications={setCareerApplications} subscribers={subscribers} setSubscribers={setSubscribers} setToastMessage={setToastMessage} products={products} setProducts={setProducts} productCategories={productCategories} setProductCategories={setProductCategories} contactData={contactData} setContactData={setContactData} logoData={logoData} setLogoData={setLogoData} socialLinks={socialLinks} setSocialLinks={setSocialLinks} reels={reels} setReels={setReels} adminEmails={adminEmails} setAdminEmails={setAdminEmails} adminPasscodeVal={adminPasscodeVal} setAdminPasscodeVal={setAdminPasscodeVal} />);
+    return (<AdminPanel onExit={() => setIsAdminMode(false)} supportTickets={supportTickets} setSupportTickets={setSupportTickets} careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} products={products} setProducts={setProducts} productCategories={productCategories} setProductCategories={setProductCategories} contactData={contactData} setContactData={setContactData} logoData={logoData} setLogoData={setLogoData} socialLinks={socialLinks} setSocialLinks={setSocialLinks} reels={reels} setReels={setReels} adminEmails={adminEmails} setAdminEmails={setAdminEmails} adminPasscodeVal={adminPasscodeVal} setAdminPasscodeVal={setAdminPasscodeVal} />);
   }
 
 
@@ -510,8 +485,8 @@ function App() {
             </motion.section>
 
             <ScrollableTestimonials />
-            <OurThought />
-            {/* <OurBlogs /> */}
+            {/* <OurThought /> */}
+            <OurBlogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />
             {/* <OurLocation contactData={contactData} /> */}
             <FAQSection />
           </motion.div>} />
@@ -521,15 +496,14 @@ function App() {
           <Route path="/gallary" element={<Gallery setLightboxIndex={setLightboxIndex} galleryItems={GALLERY_ITEMS} />} />
           <Route path="/contact" element={<ContactUs logoData={logoData} setSupportTickets={setSupportTickets} setToastMessage={setToastMessage} />} />
           <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
-          <Route path="/products" element={<Products products={products} productCategories={productCategories} customerUser={customerUser} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
+          <Route path="/products" element={<Products products={products} productCategories={productCategories} customerUser={customerUser} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
           <Route path="/testimonial" element={<TestimonialsPage testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
-          <Route path="/blogs" element={<Blogs subscribers={subscribers} setSubscribers={setSubscribers} setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
+          <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
           <Route path="/login" element={<AuthSection isLogin={true} registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} />
           <Route path="/register" element={<AuthSection isLogin={false} registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} />
         </Routes>
       </main>
 
-      {/* Selected Product Quick View */}
       <AnimatePresence>
         {selectedProductForQuickView &&
           <QuickProductView selectedProductForQuickView={selectedProductForQuickView} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} setInquiryList={setInquiryList} inquiryList={inquiryList} />
@@ -565,9 +539,7 @@ function App() {
       </AnimatePresence >
 
       <Footer logoData={logoData} />
-
     </>
   )
-
 }
 export default App;

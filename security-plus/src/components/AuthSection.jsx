@@ -164,7 +164,7 @@ export function AuthSection({ registeredCustomers, setRegisteredCustomers, setCu
               <div className="text-center pt-2 space-y-2">
                 <p className="text-xs text-slate-500 font-sans">
                   Don&apos;t have a secure profile?{" "}
-                  <Link to={"/register"} className="text-primary hover:text-primary font-bold underline cursor-pointer bg-transparent border-0 outline-none">
+                  <Link to={"/register"} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-primary hover:text-primary font-bold underline cursor-pointer bg-transparent border-0 outline-none">
                     Register Account
                   </Link>
                 </p>
@@ -288,7 +288,7 @@ export function AuthSection({ registeredCustomers, setRegisteredCustomers, setCu
             <div className="text-center pt-2">
               <p className="text-xs text-slate-500 font-sans">
                 Already registered?{" "}
-                <Link to={"/login"} className="text-primary hover:text-primary font-bold underline cursor-pointer bg-transparent border-0 outline-none">
+                <Link to={"/login"} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-primary hover:text-primary font-bold underline cursor-pointer bg-transparent border-0 outline-none">
                   Sign In Here
                 </Link>
               </p>
