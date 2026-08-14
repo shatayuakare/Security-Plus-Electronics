@@ -3,7 +3,6 @@ import "./index.css";
 import { X, Sparkles, Eye, Twitter, Linkedin, Facebook, Share2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import logo from "./assets/images/logo.png";
-
 import AdminPanel from "./components/AdminPanel";
 import { ToastContainer } from "react-toastify"
 import { SEOManager } from "./components/SEOManager";
@@ -31,7 +30,6 @@ import { AuthSection } from "./components/AuthSection";
 import Footer from "./components/Footer";
 import ReelSection from "./components/section/ReelSection";
 
-
 // JSON file to fetch data
 import TESTIMONIALS_DATA from "./json/testimonials.json"
 import PRODUCTS from "./json/wooProducts.json"
@@ -41,6 +39,7 @@ import ShowroomExperience from "./components/modal/ShowroomExperience";
 import QuickBlogVIew from "./components/modal/QuickBlogVIew";
 import axios from "axios";
 import { SERVER } from "./utils/Constant";
+import { wordpressCredentials } from "./main";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
@@ -56,8 +55,10 @@ const fadeIn = {
 };
 
 
-function App() {
 
+
+
+function App() {
   const location = useLocation();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -166,7 +167,19 @@ function App() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      await axios.get(`https://woston.in/wp-json/wc/store/v1/products?per_page=12&page=${currentPage}`).then(res => setProducts(res.data)).catch(e => console.error(e));
+      await axios.get(`https://woston.in/wp-json/wc/store/v1/products`, {
+        params: {
+          per_page: 12,
+          page: currentPage,
+        },
+        headers: {
+          Authorization: `Basic ${wordpressCredentials}`,
+          "Content-Type": "application/json"
+        },
+      }).then(res => {
+        console.log("Product fetch successfuly")
+        setProducts(res.data)
+      }).catch(e => console.error("error", e));
     }
     fetchProducts();
   }, [currentPage]);
@@ -453,9 +466,28 @@ function App() {
   if (isAdminMode) {
     return (<AdminPanel onExit={() => setIsAdminMode(false)} supportTickets={supportTickets} setSupportTickets={setSupportTickets} careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} products={products} setProducts={setProducts} productCategories={productCategories} setProductCategories={setProductCategories} contactData={contactData} setContactData={setContactData} logoData={logoData} setLogoData={setLogoData} socialLinks={socialLinks} setSocialLinks={setSocialLinks} reels={reels} setReels={setReels} adminEmails={adminEmails} setAdminEmails={setAdminEmails} adminPasscodeVal={adminPasscodeVal} setAdminPasscodeVal={setAdminPasscodeVal} />);
   }
+  // useEffect(() => {
+  //   const authenticateWordpress = async () => {
+  //     const username = "Developer";
+  //     const appPassword = "LLfM PNoU 1JP0 mTz1 Yu6U JrWx";
 
+  //     const credentials = btoa(`${username}:${appPassword}`);
 
+  //     // const response = await axios.get(
+  //     //   "https://woston.in/wp-json/contact-form-7/v1/contact-forms",
+  //     // {
+  //     //   headers: {
+  //     //     Authorization: `Basic ${credentials}`,
+  //     //   },
+  //     // }
+  //     // );
 
+  //     // const data = await response.json();
+
+  //     // console.log(data);
+  //   }
+  //   // authenticateWordpress()
+  // }, [])
 
 
 
@@ -465,7 +497,6 @@ function App() {
       <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} adminEmails={adminEmails} setAdminLoginOpen={setAdminLoginOpen} setToastMessage={setToastMessage} PRODUCTS={PRODUCTS} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} isAdminMode={isAdminMode} setIsAdminMode={setIsAdminMode} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
 
       <SEOManager />
-
       <main className={location.pathname === "/" ? "pt-0 bg-[#070913]" : "pt-20 bg-white"}>
         <Routes>
           <Route path="/" element={<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
