@@ -166,7 +166,7 @@ function App() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      await axios.get(`${SERVER}/products/${currentPage}`).then(res => setProducts(res.data)).catch(e => console.error(e));
+      await axios.get(`https://woston.in/wp-json/wc/store/v1/products?per_page=12&page=${currentPage}`).then(res => setProducts(res.data)).catch(e => console.error(e));
     }
     fetchProducts();
   }, [currentPage]);
@@ -453,6 +453,9 @@ function App() {
   if (isAdminMode) {
     return (<AdminPanel onExit={() => setIsAdminMode(false)} supportTickets={supportTickets} setSupportTickets={setSupportTickets} careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} products={products} setProducts={setProducts} productCategories={productCategories} setProductCategories={setProductCategories} contactData={contactData} setContactData={setContactData} logoData={logoData} setLogoData={setLogoData} socialLinks={socialLinks} setSocialLinks={setSocialLinks} reels={reels} setReels={setReels} adminEmails={adminEmails} setAdminEmails={setAdminEmails} adminPasscodeVal={adminPasscodeVal} setAdminPasscodeVal={setAdminPasscodeVal} />);
   }
+
+
+
 
 
 
