@@ -40,6 +40,7 @@ import QuickBlogVIew from "./components/modal/QuickBlogVIew";
 import axios from "axios";
 import { SERVER } from "./utils/Constant";
 import { wordpressCredentials } from "./main";
+// import { wordpressCredentials } from "./main";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
@@ -167,16 +168,7 @@ function App() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      await axios.get(`https://woston.in/wp-json/wc/store/v1/products`, {
-        params: {
-          per_page: 12,
-          page: currentPage,
-        },
-        headers: {
-          Authorization: `Basic ${wordpressCredentials}`,
-          "Content-Type": "application/json"
-        },
-      }).then(res => {
+      await axios.get(`https://woston.in/wp-json/wc/store/v1/products?per_page=12&page=${currentPage}`).then(res => {
         console.log("Product fetch successfuly")
         setProducts(res.data)
       }).catch(e => console.error("error", e));
@@ -386,6 +378,30 @@ function App() {
     const saved = localStorage.getItem("spe_career_apps");
     if (saved)
       return JSON.parse(saved);
+    return [
+      {
+        id: "SPE-APP-77123",
+        name: "Rahul Deshmukh",
+        email: "rahul.desh@gmail.com",
+        phone: "+91 88312 90123",
+        selectedOption: "class_basics",
+        experience: "Engineering student at Nagpur University. Want hands-on field training with CCTV.",
+        resumeUrl: "https://drive.google.com/resume-rdesh",
+        date: "2026-06-29",
+        status: "Approved"
+      },
+      {
+        id: "SPE-APP-43120",
+        name: "Pooja Patil",
+        email: "pooja.patil@outlook.com",
+        phone: "+91 77123 45678",
+        selectedOption: "job_sales",
+        experience: "3 years sales experience at local electronics appliance store. Proficient in Marathi and Hindi.",
+        resumeUrl: "https://drive.google.com/resume-ppatil",
+        date: "2026-06-30",
+        status: "Pending Review"
+      }
+    ];
   });
 
   useEffect(() => {
@@ -466,28 +482,23 @@ function App() {
   if (isAdminMode) {
     return (<AdminPanel onExit={() => setIsAdminMode(false)} supportTickets={supportTickets} setSupportTickets={setSupportTickets} careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} products={products} setProducts={setProducts} productCategories={productCategories} setProductCategories={setProductCategories} contactData={contactData} setContactData={setContactData} logoData={logoData} setLogoData={setLogoData} socialLinks={socialLinks} setSocialLinks={setSocialLinks} reels={reels} setReels={setReels} adminEmails={adminEmails} setAdminEmails={setAdminEmails} adminPasscodeVal={adminPasscodeVal} setAdminPasscodeVal={setAdminPasscodeVal} />);
   }
-  // useEffect(() => {
-  //   const authenticateWordpress = async () => {
-  //     const username = "Developer";
-  //     const appPassword = "LLfM PNoU 1JP0 mTz1 Yu6U JrWx";
+  useEffect(() => {
+    const authenticateWordpress = async () => {
+      const response = await fetch(
+        "https://woston.in/wp-json/contact-form-7/v1/contact-forms",
+        {
+          headers: {
+            Authorization: `Basic ${wordpressCredentials}`,
+          },
+        }
+      );
 
-  //     const credentials = btoa(`${username}:${appPassword}`);
+      const data = await response.json();
 
-  //     // const response = await axios.get(
-  //     //   "https://woston.in/wp-json/contact-form-7/v1/contact-forms",
-  //     // {
-  //     //   headers: {
-  //     //     Authorization: `Basic ${credentials}`,
-  //     //   },
-  //     // }
-  //     // );
-
-  //     // const data = await response.json();
-
-  //     // console.log(data);
-  //   }
-  //   // authenticateWordpress()
-  // }, [])
+      console.log(data);
+    }
+    authenticateWordpress()
+  }, [])
 
 
 
