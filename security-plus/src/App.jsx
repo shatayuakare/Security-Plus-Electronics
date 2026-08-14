@@ -3,7 +3,6 @@ import "./index.css";
 import { X, Sparkles, Eye, Twitter, Linkedin, Facebook, Share2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import logo from "./assets/images/logo.png";
-
 import AdminPanel from "./components/AdminPanel";
 import { ToastContainer } from "react-toastify"
 import { SEOManager } from "./components/SEOManager";
@@ -31,7 +30,6 @@ import { AuthSection } from "./components/AuthSection";
 import Footer from "./components/Footer";
 import ReelSection from "./components/section/ReelSection";
 
-
 // JSON file to fetch data
 import TESTIMONIALS_DATA from "./json/testimonials.json"
 import PRODUCTS from "./json/wooProducts.json"
@@ -39,8 +37,6 @@ import GALLERY_ITEMS from "./json/gallary.json"
 import QuickProductView from "./components/modal/QuickProductView";
 import ShowroomExperience from "./components/modal/ShowroomExperience";
 import QuickBlogVIew from "./components/modal/QuickBlogVIew";
-import axios from "axios";
-import { SERVER } from "./utils/Constant";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
@@ -56,8 +52,10 @@ const fadeIn = {
 };
 
 
-function App() {
 
+
+
+function App() {
   const location = useLocation();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -163,13 +161,6 @@ function App() {
       return JSON.parse(saved);
     return PRODUCTS.map(p => ({ ...p }));
   });
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      await axios.get(`${SERVER}/products/${currentPage}`).then(res => setProducts(res.data)).catch(e => console.error(e));
-    }
-    fetchProducts();
-  }, [currentPage]);
 
   const [contactData, setContactData] = useState(() => {
     const saved = localStorage.getItem("spe_contact_data");
@@ -373,6 +364,37 @@ function App() {
     const saved = localStorage.getItem("spe_career_apps");
     if (saved)
       return JSON.parse(saved);
+    return [
+      {
+        id: "SPE-APP-77123",
+        name: "Rahul Deshmukh",
+        email: "rahul.desh@gmail.com",
+        phone: "+91 88312 90123",
+        selectedOption: "class_basics",
+        experience: "Engineering student at Nagpur University. Want hands-on field training with CCTV.",
+        resumeUrl: "https://drive.google.com/resume-rdesh",
+        date: "2026-06-29",
+        status: "Approved"
+      },
+      {
+        id: "SPE-APP-43120",
+        name: "Pooja Patil",
+        email: "pooja.patil@outlook.com",
+        phone: "+91 77123 45678",
+        selectedOption: "job_sales",
+        experience: "3 years sales experience at local electronics appliance store. Proficient in Marathi and Hindi.",
+        resumeUrl: "https://drive.google.com/resume-ppatil",
+        date: "2026-06-30",
+        status: "Pending Review"
+      }
+    ];
+  });
+
+  const [subscribers, setSubscribers] = useState(() => {
+    const saved = localStorage.getItem("spe_subscribers");
+    if (saved)
+      return JSON.parse(saved);
+    return ["info@securityplus.in", "admin@securityplus.in", "mandal.tech@outlook.com"];
   });
 
   useEffect(() => {
@@ -453,6 +475,23 @@ function App() {
   if (isAdminMode) {
     return (<AdminPanel onExit={() => setIsAdminMode(false)} supportTickets={supportTickets} setSupportTickets={setSupportTickets} careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} products={products} setProducts={setProducts} productCategories={productCategories} setProductCategories={setProductCategories} contactData={contactData} setContactData={setContactData} logoData={logoData} setLogoData={setLogoData} socialLinks={socialLinks} setSocialLinks={setSocialLinks} reels={reels} setReels={setReels} adminEmails={adminEmails} setAdminEmails={setAdminEmails} adminPasscodeVal={adminPasscodeVal} setAdminPasscodeVal={setAdminPasscodeVal} />);
   }
+  useEffect(() => {
+    const authenticateWordpress = async () => {
+      const response = await fetch(
+        "https://woston.in/wp-json/contact-form-7/v1/contact-forms",
+        {
+          headers: {
+            Authorization: `Basic ${wordpressCredentials}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      console.log(data);
+    }
+    authenticateWordpress()
+  }, [])
 
 
 
@@ -462,7 +501,6 @@ function App() {
       <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} adminEmails={adminEmails} setAdminLoginOpen={setAdminLoginOpen} setToastMessage={setToastMessage} PRODUCTS={PRODUCTS} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} isAdminMode={isAdminMode} setIsAdminMode={setIsAdminMode} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
 
       <SEOManager />
-
       <main className={location.pathname === "/" ? "pt-0 bg-[#070913]" : "pt-20 bg-white"}>
         <Routes>
           <Route path="/" element={<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
