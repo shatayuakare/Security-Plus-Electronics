@@ -39,6 +39,8 @@ import ShowroomExperience from "./components/modal/ShowroomExperience";
 import QuickBlogVIew from "./components/modal/QuickBlogVIew";
 import axios from "axios";
 import { wordpressCredentials } from "./main"
+import { SERVER } from "./utils/Constant";
+import { wordpressCredentials } from "./main";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
@@ -485,19 +487,53 @@ function App() {
     return (<AdminPanel onExit={() => setIsAdminMode(false)} supportTickets={supportTickets} setSupportTickets={setSupportTickets} careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} products={products} setProducts={setProducts} productCategories={productCategories} setProductCategories={setProductCategories} contactData={contactData} setContactData={setContactData} logoData={logoData} setLogoData={setLogoData} socialLinks={socialLinks} setSocialLinks={setSocialLinks} reels={reels} setReels={setReels} adminEmails={adminEmails} setAdminEmails={setAdminEmails} adminPasscodeVal={adminPasscodeVal} setAdminPasscodeVal={setAdminPasscodeVal} />);
   }
 
+  // useEffect(() => {
+  //   const authenticateWordpress = async () => {
+  //     // console.log("wordpress ", wordpressCredentials)
+  //     await axios.get(
+  //       "https://woston.in/wp-json/contact-form-7/v1/contact-forms/018810f",
+  //       { headers: { Authorization: `Basic ${wordpressCredentials}` }, }
+  //     ).then(res => console.log(res.data)).catch(e => console.log(e))
+  //   }
+  //   authenticateWordpress()
+  // }, [])
+
+
+  // function SubmitWPForm() {
+  // const [formData, setFormData] = useState({ "your-name": 'test', "your-email": 'test@test.com', "your-subject": "testing data", "your-message": 'this is just testing message' });
+  // const [status, setStatus] = useState('');
+
   useEffect(() => {
-    const authenticateWordpress = async () => {
-      // console.log("wordpress ", wordpressCredentials)
-      await axios.get(
-        "https://woston.in/wp-json/contact-form-7/v1/contact-forms",
-        { headers: { Authorization: `Basic ${wordpressCredentials}` }, }
-      ).then(res => console.log(res.data)).catch(e => console.log(e))
-    }
-    authenticateWordpress()
+    const submitContact = async () => {
+      // const formData = new FormData();
+
+      // formData.append("your-name", "navin");
+      // formData.append("your-email", "navin@navin.com");
+      // formData.append("your-subject", "testing data");
+      // formData.append("your-message", "Dont consider this contact this is just a tesing message");
+
+      try {
+        // console.log(formData)
+        const response = await axios.post(
+          "https://woston.in/wp-json/contact-form-7/v1/contact-forms/018810f/feedback",
+          { "your-name": 'test', "your-email": 'test@test.com', "your-subject": "testing data", "your-message": 'this is just testing message' }
+        );
+
+        console.log("CF7 Response:", response.data);
+
+        if (response.data.status === "mail_sent") {
+          console.log("Contact submitted successfully");
+        }
+      } catch (error) {
+        console.error(
+          "CF7 Error:",
+          error.response?.data || error.message
+        );
+      }
+    };
+
+    submitContact()
   }, [])
-
-
-
 
   return (
     <>
