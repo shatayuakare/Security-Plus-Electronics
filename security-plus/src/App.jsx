@@ -162,6 +162,13 @@ function App() {
     return PRODUCTS.map(p => ({ ...p }));
   });
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      await axios.get(`https://woston.in/wp-json/wc/store/v1/products?per_page=12&page=${currentPage}`).then(res => setProducts(res.data)).catch(e => console.error("Error :- ", e));
+    }
+    fetchProducts();
+  }, [currentPage]);
+
   const [contactData, setContactData] = useState(() => {
     const saved = localStorage.getItem("spe_contact_data");
     const defaults = {
@@ -475,20 +482,14 @@ function App() {
   if (isAdminMode) {
     return (<AdminPanel onExit={() => setIsAdminMode(false)} supportTickets={supportTickets} setSupportTickets={setSupportTickets} careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} products={products} setProducts={setProducts} productCategories={productCategories} setProductCategories={setProductCategories} contactData={contactData} setContactData={setContactData} logoData={logoData} setLogoData={setLogoData} socialLinks={socialLinks} setSocialLinks={setSocialLinks} reels={reels} setReels={setReels} adminEmails={adminEmails} setAdminEmails={setAdminEmails} adminPasscodeVal={adminPasscodeVal} setAdminPasscodeVal={setAdminPasscodeVal} />);
   }
+
   useEffect(() => {
     const authenticateWordpress = async () => {
-      const response = await fetch(
+      // console.log("wordpress ", wordpressCredentials)
+      await axios.get(
         "https://woston.in/wp-json/contact-form-7/v1/contact-forms",
-        {
-          headers: {
-            Authorization: `Basic ${wordpressCredentials}`,
-          },
-        }
-      );
-
-      const data = await response.json();
-
-      console.log(data);
+        { headers: { Authorization: `Basic ${wordpressCredentials}` }, }
+      ).then(res => console.log(res.data)).catch(e => console.log(e))
     }
     authenticateWordpress()
   }, [])
