@@ -37,6 +37,8 @@ import GALLERY_ITEMS from "./json/gallary.json"
 import QuickProductView from "./components/modal/QuickProductView";
 import ShowroomExperience from "./components/modal/ShowroomExperience";
 import QuickBlogVIew from "./components/modal/QuickBlogVIew";
+import axios from "axios";
+import { wordpressCredentials } from "./main"
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
