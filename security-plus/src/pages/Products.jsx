@@ -92,22 +92,61 @@ function ProductGridLoader() {
   );
 }
 
-export default function Products({ products, productCategories, customerUser, setCurrentPage, currentPage, wishlist, toggleWishlist, setToastMessage, setSelectedProductForQuickView }) {
+export default function Products({ products, productCategories, setCurrentPage, setProductCategories, currentPage, wishlist, toggleWishlist, setToastMessage, setSelectedProductForQuickView }) {
+  const [filteredProducts, setFilteredProducts] = useState(products)
+  const [productCategoryFilter, setProductCategoryFilter] = useState("all");
+  const [productSortOption, setProductSortOption] = useState("asce");
 
-  const [blogCategoryFilter, setBlogCategoryFilter] = useState("All");
-  const [productSortOption, setProductSortOption] = useState("price_asce");
+  const filterByCategory = (selectedCategorySlug) => {
+    if (selectedCategorySlug === "all") return;
+    const targetCategory = productCategories.find(cat => cat.slug === selectedCategorySlug);
+
+    const validCategoryIds = new Set(targetCategory?.subCategories.map(sub => sub.id) || []);
+
+    return products.filter(product =>
+      product.categories?.some(cat => validCategoryIds.has(cat.id))
+    );
+  }
+
+
+  // useEffect(() => {
+  //   if (productCategoryFilter === "all") return setFilteredProducts(products)
+  //   if (productCategoryFilter !== "all") {
+  //     setFilteredProducts(filterByCategory(productCategoryFilter))
+  //   }
+  // }, [productCategoryFilter])
+
+  useEffect(() => {
+    let list = productCategoryFilter === "all"
+      ? [...products]
+      : filterByCategory(productCategoryFilter);
+
+    // Default sort by ascending price if no sort option is specified or set to 'asce'
+    if (!productSortOption || productSortOption === "asce") {
+      list.sort((a, b) => Number(a.prices?.price || 0) - Number(b.prices?.price || 0));
+    } else if (productSortOption === "desc") {
+      list.sort((a, b) => Number(b.prices?.price || 0) - Number(a.prices?.price || 0));
+    }
+
+    setFilteredProducts(list);
+  }, [productCategoryFilter, filteredProducts]);
+
 
   const getCategory = (product) => {
     for (let elem of product.categories) {
       if (/camera/i.test(elem.name)) {
         return "CCTV Camera";
-      } else if (/nvr/i.test(elem.name) || /dvr/i.test(elem.name)) {
+      } else if (/video/i.test(elem.name) || /dvr/i.test(elem.name)) {
         return "Video Recorder";
       } else if (/cable/i.test(elem.name)) {
         return "Cables";
+      } else if (/switch/i.test(elem.name)) {
+        return "Switch";
+      } else {
+        return "Accessories"
       }
     }
-    return product.categories[0]?.name || "Other";
+    return product.categories[0]?.name || "Other"
   }
 
   const formatPrice = (amount) => {
@@ -118,35 +157,6 @@ export default function Products({ products, productCategories, customerUser, se
     }).format(amount);
     return formatted
   }
-
-  const getFilteredAndSortedProducts = () => {
-    let filteredProducts = products;
-    if (blogCategoryFilter && blogCategoryFilter !== "All") {
-      filteredProducts = filteredProducts.filter(product => {
-        const cat = getCategory(product);
-        return cat === blogCategoryFilter;
-      });
-    }
-
-    let sortedProducts = [...filteredProducts];
-    if (productSortOption === "price_asce") {
-      sortedProducts.sort((a, b) => {
-        let priceA = Number(a.prices?.price || a.price || 0);
-        let priceB = Number(b.prices?.price || b.price || 0);
-        return priceA - priceB;
-      });
-    } else if (productSortOption === "price_desc") {
-      sortedProducts.sort((a, b) => {
-        let priceA = Number(a.prices?.price || a.price || 0);
-        let priceB = Number(b.prices?.price || b.price || 0);
-        return priceB - priceA;
-      });
-
-    }
-
-    return sortedProducts;
-  }
-
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
@@ -187,10 +197,11 @@ export default function Products({ products, productCategories, customerUser, se
 
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4 mb-10 bg-white border border-slate-200/80 p-5 rounded-2xl shadow-sm">
             <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-              {["All", ...productCategories].map((cat) => (<button key={cat} onClick={() => setBlogCategoryFilter(cat)} className={`text-[10px] uppercase tracking-wider px-4.5 py-2.5 border transition-all rounded-full font-bold cursor-pointer ${blogCategoryFilter === cat
-                ? "bg-primary border-primary text-white shadow-sm"
-                : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"}`}>
-                {cat}
+              {[{ name: "All", slug: "all" }, ...productCategories].map((cat, idx) => (<button key={idx} onClick={() => setProductCategoryFilter(cat.slug)}
+                className={`text-[10px] uppercase tracking-wider px-4.5 py-2.5 border transition-all rounded-full font-bold cursor-pointer ${productCategoryFilter === cat.slug
+                  ? "bg-primary border-primary text-white shadow-sm"
+                  : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"}`}>
+                {cat.name}
               </button>))}
             </div>
 
@@ -200,17 +211,16 @@ export default function Products({ products, productCategories, customerUser, se
               </span>
               <select value={productSortOption} onChange={(e) => setProductSortOption(e.target.value)} className="bg-white border border-slate-200 hover:border-primary text-slate-800 text-xs px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary font-sans cursor-pointer transition-colors shadow-sm w-full lg:w-auto min-w-45">
                 <option value="default">Recommended (default)</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
-                <option value="rating-desc">Rating: Highest First</option>
+                <option value="asce">Price: Low to High</option>
+                <option value="desc">Price: High to Low</option>
               </select>
             </div>
           </div>
 
-          <motion.div key={`${blogCategoryFilter}-${productSortOption}`} variants={staggerContainer} initial="initial" animate="whileInView" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div key={`${productCategoryFilter}-${productSortOption}`} variants={staggerContainer} initial="initial" animate="whileInView" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {
-              products ?
-                products?.map((product) =>
+              filteredProducts ?
+                filteredProducts?.map((product) =>
                   <motion.div layout variants={staggerItem} key={product.id} whileHover={{
                     scale: 1.02,
                     borderColor: "#0284C7",
@@ -317,7 +327,7 @@ export default function Products({ products, productCategories, customerUser, se
               <ChevronLeft className="h-5 w-5 font-semibold" />
               <span>Prev</span>
             </button>
-            <button onClick={() => { window.scrollTo(0, 0); setCurrentPage(currentPage + 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm">
+            <button onClick={() => { window.scrollTo(0, 0); setCurrentPage(currentPage + 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm" disabled={filteredProducts.length < 12 && true}>
               <span>Next</span>
               <ChevronRight className="h-5 w-5" />
             </button>
