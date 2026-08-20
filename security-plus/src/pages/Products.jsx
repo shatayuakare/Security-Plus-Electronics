@@ -241,17 +241,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
                         <img src={product?.images[0]?.src} alt={product.images[0]?.alt} className="object-cover w-full h-full absolute inset-0 transition-transform duration-500 group-hover:scale-110" />
 
                         <div className="absolute inset-0 bg-slate-950/15 pointer-events-none" />
-                        {/* <button id={`wishlist-toggle-${product.id}`} onClick={(e) => {
-                          e.stopPropagation();
-                          toggleWishlist(product?.id);
-                        }} className="absolute top-2.5 left-2.5 z-20 p-2 bg-white/90 hover:bg-white backdrop-blur-md rounded-full border border-slate-100 shadow-sm transition-all duration-300 hover:scale-110 cursor-pointer" title={wishlist?.includes(product?.id) ? "Remove from wishlist" : "Save to wishlist"}>
-<img src="" alt="" />
 
-
-                          <Heart className={`h-3.5 w-3.5 transition-colors duration-300 ${wishlist?.includes(product.id)
-                            ? "fill-rose-500 text-rose-500"
-                            : "text-slate-500 hover:text-rose-500"}`} />
-                        </button> */}
                         <div className="absolute top-2.5 left-2.5 z-20 overflow-hidden backdrop-blur-md rounded-full shadow-sm transition-all duration-300 hover:scale-110">
                           {
                             BRANDS.map((brand, idx) => (brand.name === product?.brands[0].name) ? <img className="h-10 aspect-square" src={new URL(`../assets/brands/${brand.icon}`, import.meta.url).href} alt={brand.name} /> : <></>)

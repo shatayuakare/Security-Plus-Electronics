@@ -40,7 +40,6 @@ import QuickBlogVIew from "./components/modal/QuickBlogVIew";
 import axios from "axios";
 import { wordpressCredentials } from "./main"
 import { SERVER } from "./utils/Constant";
-import { wordpressCredentials } from "./main";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
