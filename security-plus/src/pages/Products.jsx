@@ -5,6 +5,7 @@ import { ShoppingBag, ExternalLink, Heart, Video, Cpu, LockKeyhole, HardDrive, R
 import BrandCarousel from "../components/BrandCarousel";
 import { BlurUpImage, getProductImageUrls } from "../components/BlurUpImage";
 import PRODUCTS from "../json/wooProducts.json"
+import BRANDS from "../json/brands.json"
 import parse from "html-react-parser";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -92,22 +93,60 @@ function ProductGridLoader() {
   );
 }
 
-export default function Products({ products, productCategories, customerUser, setCurrentPage, currentPage, wishlist, toggleWishlist, setToastMessage, setSelectedProductForQuickView }) {
 
-  const [blogCategoryFilter, setBlogCategoryFilter] = useState("All");
-  const [productSortOption, setProductSortOption] = useState("price_asce");
+export default function Products({ products, productCategories, setCurrentPage, setInquiryList, setProductCategories, currentPage, wishlist, toggleWishlist, setToastMessage, setSelectedProductForQuickView }) {
+  const [filteredProducts, setFilteredProducts] = useState(products)
+  const [productCategoryFilter, setProductCategoryFilter] = useState("all");
+  const [productSortOption, setProductSortOption] = useState();
+
+
+  const filterByCategory = (selectedCategorySlug) => {
+    if (selectedCategorySlug === "all") return;
+    const targetCategory = productCategories.find(cat => cat.slug === selectedCategorySlug);
+    const validCategoryIds = new Set(targetCategory?.subCategories.map(sub => sub.id) || []);
+
+    return products.filter(product =>
+      product.categories?.some(cat => validCategoryIds.has(cat.id))
+    );
+  }
+
+  useEffect(() => {
+    let list = productCategoryFilter === "all"
+      ? [...products]
+      : filterByCategory(productCategoryFilter);
+
+    // Sort only if products or sorting option changes, avoid sorting in place for performance
+    let sortedList = [...list];
+    if (!productSortOption || productSortOption === "asce") {
+      sortedList = sortedList.sort((a, b) => Number(a.prices?.price || 0) - Number(b.prices?.price || 0));
+    } else if (productSortOption === "desc") {
+      sortedList = sortedList.sort((a, b) => Number(b.prices?.price || 0) - Number(a.prices?.price || 0));
+    }
+    list = sortedList;
+
+    setFilteredProducts(list);
+  }, [productSortOption, productCategoryFilter]);
+
 
   const getCategory = (product) => {
     for (let elem of product.categories) {
-      if (/camera/i.test(elem.name)) {
+      if (/camera|cameras|cctv/i.test(elem.name)) {
         return "CCTV Camera";
-      } else if (/nvr/i.test(elem.name) || /dvr/i.test(elem.name)) {
+      } else if (/video|dvr|nvr|xvr/i.test(elem.name) || /dvr/i.test(elem.name)) {
         return "Video Recorder";
-      } else if (/cable/i.test(elem.name)) {
+      } else if (/cable|cables/i.test(elem.name)) {
         return "Cables";
+      } else if (/rack|accessories|housing/i.test(elem.name)) {
+        return "Accessories";
+      } else if (/switch|poe/i.test(elem.name)) {
+        return "Switch";
+      } else if (/ups|smps|adapter|power supply|/i.test(elem.name)) {
+        return "Power Supply";
+      } else {
+        return "Other"
       }
     }
-    return product.categories[0]?.name || "Other";
+    return product.categories[0]?.name || "Other"
   }
 
   const formatPrice = (amount) => {
@@ -118,35 +157,6 @@ export default function Products({ products, productCategories, customerUser, se
     }).format(amount);
     return formatted
   }
-
-  const getFilteredAndSortedProducts = () => {
-    let filteredProducts = products;
-    if (blogCategoryFilter && blogCategoryFilter !== "All") {
-      filteredProducts = filteredProducts.filter(product => {
-        const cat = getCategory(product);
-        return cat === blogCategoryFilter;
-      });
-    }
-
-    let sortedProducts = [...filteredProducts];
-    if (productSortOption === "price_asce") {
-      sortedProducts.sort((a, b) => {
-        let priceA = Number(a.prices?.price || a.price || 0);
-        let priceB = Number(b.prices?.price || b.price || 0);
-        return priceA - priceB;
-      });
-    } else if (productSortOption === "price_desc") {
-      sortedProducts.sort((a, b) => {
-        let priceA = Number(a.prices?.price || a.price || 0);
-        let priceB = Number(b.prices?.price || b.price || 0);
-        return priceB - priceA;
-      });
-
-    }
-
-    return sortedProducts;
-  }
-
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
@@ -187,10 +197,11 @@ export default function Products({ products, productCategories, customerUser, se
 
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4 mb-10 bg-white border border-slate-200/80 p-5 rounded-2xl shadow-sm">
             <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-              {["All", ...productCategories].map((cat) => (<button key={cat} onClick={() => setBlogCategoryFilter(cat)} className={`text-[10px] uppercase tracking-wider px-4.5 py-2.5 border transition-all rounded-full font-bold cursor-pointer ${blogCategoryFilter === cat
-                ? "bg-primary border-primary text-white shadow-sm"
-                : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"}`}>
-                {cat}
+              {[{ name: "All", slug: "all" }, ...productCategories].map((cat, idx) => (<button key={idx} onClick={() => setProductCategoryFilter(cat.slug)}
+                className={`text-[10px] uppercase tracking-wider px-4.5 py-2.5 border transition-all rounded-full font-bold cursor-pointer ${productCategoryFilter === cat.slug
+                  ? "bg-primary border-primary text-white shadow-sm"
+                  : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"}`}>
+                {cat.name}
               </button>))}
             </div>
 
@@ -200,17 +211,16 @@ export default function Products({ products, productCategories, customerUser, se
               </span>
               <select value={productSortOption} onChange={(e) => setProductSortOption(e.target.value)} className="bg-white border border-slate-200 hover:border-primary text-slate-800 text-xs px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary font-sans cursor-pointer transition-colors shadow-sm w-full lg:w-auto min-w-45">
                 <option value="default">Recommended (default)</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
-                <option value="rating-desc">Rating: Highest First</option>
+                <option value="asce">Price: Low to High</option>
+                <option value="desc">Price: High to Low</option>
               </select>
             </div>
           </div>
 
-          <motion.div key={`${blogCategoryFilter}-${productSortOption}`} variants={staggerContainer} initial="initial" animate="whileInView" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div key={`${productCategoryFilter}-${productSortOption}`} variants={staggerContainer} initial="initial" animate="whileInView" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {
-              products ?
-                products?.map((product) =>
+              filteredProducts ?
+                filteredProducts?.map((product) =>
                   <motion.div layout variants={staggerItem} key={product.id} whileHover={{
                     scale: 1.02,
                     borderColor: "#0284C7",
@@ -218,10 +228,10 @@ export default function Products({ products, productCategories, customerUser, se
                   }} className="bg-white border border-slate-200/80 flex flex-col justify-between p-4 relative rounded-2xl group cursor-pointer transition-all duration-300 shadow">
                     <div>
                       <div className="flex justify-between items-center mb-2 text-[9px] text-slate-500 font-bold">
-                        <span className="uppercase border border-sky-100 px-2.5 py-1 bg-sky-50 text-sky-700 rounded-lg">
+                        <span className="uppercase border border-sky-100 tracking-wider px-2.5 py-1 bg-sky-50 text-sky-700 rounded-lg">
                           {product?.brands[0].name}
                         </span>
-                        <span className="flex pt-1 items-center uppercase gap-1">
+                        <span className="flex pt-1 items-center tracking-wider  uppercase gap-1">
                           {getCategory(product)}
                         </span>
                       </div>
@@ -231,10 +241,27 @@ export default function Products({ products, productCategories, customerUser, se
                         <img src={product?.images[0]?.src} alt={product.images[0]?.alt} className="object-cover w-full h-full absolute inset-0 transition-transform duration-500 group-hover:scale-110" />
 
                         <div className="absolute inset-0 bg-slate-950/15 pointer-events-none" />
+                        {/* <button id={`wishlist-toggle-${product.id}`} onClick={(e) => {
+                          e.stopPropagation();
+                          toggleWishlist(product?.id);
+                        }} className="absolute top-2.5 left-2.5 z-20 p-2 bg-white/90 hover:bg-white backdrop-blur-md rounded-full border border-slate-100 shadow-sm transition-all duration-300 hover:scale-110 cursor-pointer" title={wishlist?.includes(product?.id) ? "Remove from wishlist" : "Save to wishlist"}>
+<img src="" alt="" />
 
-                        <span className="absolute top-2.5 left-2.5 text-xs bg-primary text-white px-2.5 pt-2 pb-1 rounded-md uppercase tracking-wider z-20">
-                          {product?.on_sale && "★ Bestseller"}
-                          {!product?.on_sale && "Sale"}
+
+                          <Heart className={`h-3.5 w-3.5 transition-colors duration-300 ${wishlist?.includes(product.id)
+                            ? "fill-rose-500 text-rose-500"
+                            : "text-slate-500 hover:text-rose-500"}`} />
+                        </button> */}
+                        <div className="absolute top-2.5 left-2.5 z-20 overflow-hidden backdrop-blur-md rounded-full shadow-sm transition-all duration-300 hover:scale-110">
+                          {
+                            BRANDS.map((brand, idx) => (brand.name === product?.brands[0].name) ? <img className="h-10 aspect-square" src={new URL(`../assets/brands/${brand.icon}`, import.meta.url).href} alt={brand.name} /> : <></>)
+                          }
+                        </div>
+
+
+                        <span className="absolute bottom-2.5 left-2.5 text-xs bg-primary text-white px-2.5 pt-2 pb-1 rounded-md uppercase tracking-wider z-20">
+                          {!product?.on_sale && "★ Bestseller"}
+                          {product?.on_sale && "Sale"}
                         </span>
 
                         <button id={`wishlist-toggle-${product.id}`} onClick={(e) => {
@@ -312,16 +339,20 @@ export default function Products({ products, productCategories, customerUser, se
                 </>
             }
           </motion.div>
-          <div className="flex gap-5 mt-5 justify-end ">
-            <button onClick={() => { window.scrollTo(0, 0); setCurrentPage(currentPage - 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm" disabled={currentPage == 1 && true}>
-              <ChevronLeft className="h-5 w-5 font-semibold" />
-              <span>Prev</span>
-            </button>
-            <button onClick={() => { window.scrollTo(0, 0); setCurrentPage(currentPage + 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm">
-              <span>Next</span>
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
+          {
+            productCategoryFilter === "all"
+            &&
+            <div className="flex gap-5 mt-5 justify-end ">
+              <button onClick={() => { window.scrollTo(0, 0); setCurrentPage(currentPage - 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm" disabled={currentPage == 1 && true}>
+                <ChevronLeft className="h-5 w-5 font-semibold" />
+                <span>Prev</span>
+              </button>
+              <button onClick={() => { window.scrollTo(0, 0); setCurrentPage(currentPage + 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm" disabled={filteredProducts.length < 12 && true}>
+                <span>Next</span>
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          }
         </div>
       </section>
     </motion.div>

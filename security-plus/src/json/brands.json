@@ -110,7 +110,7 @@
         "icon": "wd.png"
     },
     {
-        "name": "trueview",
+        "name": "Trueview",
         "category": "CCTV Camera",
         "icon": "trueview.png"
     },
@@ -130,7 +130,7 @@
         "icon": "beetal.png"
     },
     {
-        "name": "Consistent",
+        "name": "Consistant",
         "category": "Storage Devices",
         "icon": "consistent.png"
     },

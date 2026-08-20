@@ -155,7 +155,7 @@ function App() {
     const saved = localStorage.getItem("spe_product_categories");
     if (saved)
       return JSON.parse(saved);
-    return ["CCTV Cameras", "Biometric Access", "NVR Storage", "Networking Backbone", "Power Backup"];
+    return [{ title: "CCTV Cameras", slug: "cctv" }, { title: "Biometric Access", slug: "bio" }, { title: "Network Storage", slug: "net-storage" }, { title: "Cables", slug: "cables" }, { title: "Power Supply", slug: "power-supply" }];
   });
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -168,10 +168,126 @@ function App() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      await axios.get(`https://woston.in/wp-json/wc/store/v1/products?per_page=12&page=${currentPage}`).then(res => setProducts(res.data)).catch(e => console.error("Error :- ", e));
+      try {
+        const res = await axios.get(`https://woston.in/wp-json/wc/store/v1/products?per_page=12&page=${currentPage}`);
+        setProducts(res.data);
+
+        const categoryMap = new Map();
+        products.forEach(product => {
+          if (!Array.isArray(product.categories)) return;
+
+          product.categories.forEach(category => {
+            const categoryId = category.id;
+
+            if (!categoryMap.has(categoryId)) {
+              categoryMap.set(categoryId, {
+                ...category,
+                productCount: 1
+              });
+            } else {
+              categoryMap.get(categoryId).productCount += 1;
+            }
+          });
+        });
+
+        const commonCategories = Array.from(categoryMap.values())
+          .filter(category => category.productCount > 1);
+
+        const uniqueCategories = Array.from(categoryMap.values())
+          .filter(category => category.productCount === 1);
+
+
+        const allCategories = [
+          ...commonCategories,
+          ...uniqueCategories
+        ];
+
+
+        const parentCategoryMap = new Map();
+
+        allCategories.forEach(category => {
+          const categoryName = category.name.toLowerCase();
+          const categorySlug = category.slug?.toLowerCase() || "";
+
+          let parentName;
+          let parentSlug;
+
+          if (
+            /cameras|camera|cctv/.test(categoryName) ||
+            /camera|4g|ip|hd/.test(categorySlug)
+          ) {
+            parentName = "CCTV Camera";
+            parentSlug = "cctv";
+
+          } else if (
+            /video|dvr|nvr|xvr/.test(categoryName) ||
+            /video|dvr|nvr|xvr/.test(categorySlug)
+          ) {
+            parentName = "Video Recorder";
+            parentSlug = "video-recorder";
+
+          } else if (
+            /cable|cables/.test(categoryName) ||
+            /cable|cables/.test(categorySlug)
+          ) {
+            parentName = "Cables";
+            parentSlug = "cables";
+
+          } else if (
+            /ups|smps|adapter|power supply/.test(categoryName) ||
+            /ups|smps|adapter|power/.test(categorySlug)
+          ) {
+            parentName = "Power Supply";
+            parentSlug = "power-supply";
+
+          } else if (
+            /rack|accessories|housing/.test(categoryName) ||
+            /rack|accessories|housing/.test(categorySlug)
+          ) {
+            parentName = "Accessories";
+            parentSlug = "accessories";
+
+          } else if (
+            /switch/.test(categoryName) ||
+            /switch|poe/.test(categorySlug)
+          ) {
+            parentName = "POE Switch";
+            parentSlug = "poe-switch";
+
+          } else if (
+            /keyboard|keyboad|mouse|monitor|router/.test(categoryName) ||
+            /keyboard|keyboad|mouse|monitor|router/.test(categorySlug)
+          ) {
+            parentName = "IT Devices";
+            parentSlug = "it-devices";
+
+          } else {
+            parentName = "Others";
+            parentSlug = "others";
+          }
+
+          if (!parentCategoryMap.has(parentSlug)) {
+            parentCategoryMap.set(parentSlug, {
+              name: parentName,
+              slug: parentSlug,
+              productCount: category.productCount,
+              subCategories: [category]
+            });
+          } else {
+            const existing = parentCategoryMap.get(parentSlug);
+
+            existing.productCount += category.productCount;
+            existing.subCategories.push(category);
+          }
+        });
+        setProductCategories(Array.from(parentCategoryMap.values()))
+      } catch (e) {
+        console.error("Error :- ", e);
+      }
     }
     fetchProducts();
   }, [currentPage]);
+
 
   const [contactData, setContactData] = useState(() => {
     const saved = localStorage.getItem("spe_contact_data");
@@ -487,43 +603,21 @@ function App() {
     return (<AdminPanel onExit={() => setIsAdminMode(false)} supportTickets={supportTickets} setSupportTickets={setSupportTickets} careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} products={products} setProducts={setProducts} productCategories={productCategories} setProductCategories={setProductCategories} contactData={contactData} setContactData={setContactData} logoData={logoData} setLogoData={setLogoData} socialLinks={socialLinks} setSocialLinks={setSocialLinks} reels={reels} setReels={setReels} adminEmails={adminEmails} setAdminEmails={setAdminEmails} adminPasscodeVal={adminPasscodeVal} setAdminPasscodeVal={setAdminPasscodeVal} />);
   }
 
-  // useEffect(() => {
-  //   const authenticateWordpress = async () => {
-  //     // console.log("wordpress ", wordpressCredentials)
-  //     await axios.get(
-  //       "https://woston.in/wp-json/contact-form-7/v1/contact-forms/018810f",
-  //       { headers: { Authorization: `Basic ${wordpressCredentials}` }, }
-  //     ).then(res => console.log(res.data)).catch(e => console.log(e))
-  //   }
-  //   authenticateWordpress()
-  // }, [])
-
-
-  // function SubmitWPForm() {
-  // const [formData, setFormData] = useState({ "your-name": 'test', "your-email": 'test@test.com', "your-subject": "testing data", "your-message": 'this is just testing message' });
-  // const [status, setStatus] = useState('');
-
   useEffect(() => {
     const submitContact = async () => {
-      // const formData = new FormData();
-
-      // formData.append("your-name", "navin");
-      // formData.append("your-email", "navin@navin.com");
-      // formData.append("your-subject", "testing data");
-      // formData.append("your-message", "Dont consider this contact this is just a tesing message");
 
       try {
         // console.log(formData)
-        const response = await axios.post(
-          "https://woston.in/wp-json/contact-form-7/v1/contact-forms/018810f/feedback",
-          { "your-name": 'test', "your-email": 'test@test.com', "your-subject": "testing data", "your-message": 'this is just testing message' }
-        );
+        // const response = await axios.post(
+        //   "https://woston.in/wp-json/contact-form-7/v1/contact-forms/018810f/feedback",
+        //   { "your-name": 'test', "your-email": 'test@test.com', "your-subject": "testing data", "your-message": 'this is just testing message' }
+        // );
 
-        console.log("CF7 Response:", response.data);
+        // console.log("CF7 Response:", response.data);
 
-        if (response.data.status === "mail_sent") {
-          console.log("Contact submitted successfully");
-        }
+        // if (response.data.status === "mail_sent") {
+        //   console.log("Contact submitted successfully");
+        // }
       } catch (error) {
         console.error(
           "CF7 Error:",
@@ -573,7 +667,7 @@ function App() {
           <Route path="/gallary" element={<Gallery setLightboxIndex={setLightboxIndex} galleryItems={GALLERY_ITEMS} />} />
           <Route path="/contact" element={<ContactUs logoData={logoData} setSupportTickets={setSupportTickets} setToastMessage={setToastMessage} />} />
           <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
-          <Route path="/products" element={<Products products={products} productCategories={productCategories} customerUser={customerUser} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
+          <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setProductCategories={setProductCategories} productCategories={productCategories} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
           <Route path="/testimonial" element={<TestimonialsPage testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
           <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
           <Route path="/login" element={<AuthSection isLogin={true} registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} />
