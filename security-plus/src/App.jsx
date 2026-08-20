@@ -212,9 +212,8 @@ function App() {
           let parentSlug;
 
           if (
-            /camera/.test(categoryName) ||
-            /cctv/.test(categoryName) ||
-            /camera/.test(categorySlug)
+            /cameras|camera|cctv/.test(categoryName) ||
+            /camera|4g|ip|hd/.test(categorySlug)
           ) {
             parentName = "CCTV Camera";
             parentSlug = "cctv";
@@ -227,8 +226,8 @@ function App() {
             parentSlug = "video-recorder";
 
           } else if (
-            /cable/.test(categoryName) ||
-            /cable/.test(categorySlug)
+            /cable|cables/.test(categoryName) ||
+            /cable|cables/.test(categorySlug)
           ) {
             parentName = "Cables";
             parentSlug = "cables";
@@ -281,7 +280,6 @@ function App() {
           }
         });
         setProductCategories(Array.from(parentCategoryMap.values()))
-
       } catch (e) {
         console.error("Error :- ", e);
       }
@@ -661,7 +659,7 @@ function App() {
           <Route path="/gallary" element={<Gallery setLightboxIndex={setLightboxIndex} galleryItems={GALLERY_ITEMS} />} />
           <Route path="/contact" element={<ContactUs logoData={logoData} setSupportTickets={setSupportTickets} setToastMessage={setToastMessage} />} />
           <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
-          <Route path="/products" element={<Products products={products} setProductCategories={setProductCategories} productCategories={productCategories} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
+          <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setProductCategories={setProductCategories} productCategories={productCategories} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
           <Route path="/testimonial" element={<TestimonialsPage testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
           <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
           <Route path="/login" element={<AuthSection isLogin={true} registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} />
