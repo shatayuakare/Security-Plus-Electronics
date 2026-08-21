@@ -28,8 +28,6 @@ const staggerItem = {
 };
 
 function ProductGridLoader() {
-
-
   return (
     <div
       role="status"
@@ -244,7 +242,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
 
                         <div className="absolute top-2.5 left-2.5 z-20 overflow-hidden backdrop-blur-md rounded-full shadow-sm transition-all duration-300 hover:scale-110">
                           {
-                            BRANDS.map((brand, idx) => (brand.name === product?.brands[0].name) ? <img className="h-10 aspect-square" src={new URL(`../assets/brands/${brand.icon}`, import.meta.url).href} alt={brand.name} /> : <></>)
+                            BRANDS.map((brand, idx) => (brand.name === product?.brands[0].name) ? <img key={idx} className="h-10 aspect-square" src={new URL(`../assets/brands/${brand.icon}`, import.meta.url).href} alt={brand.name} /> : <span className="hidden" key={idx}>{product?.brands[0].name}</span>)
                           }
                         </div>
 

@@ -54,10 +54,6 @@ const fadeIn = {
   transition: { duration: 0.8, ease: "easeOut" }
 };
 
-
-
-
-
 function App() {
   const location = useLocation();
 
@@ -150,12 +146,7 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  const [productCategories, setProductCategories] = useState(() => {
-    const saved = localStorage.getItem("spe_product_categories");
-    if (saved)
-      return JSON.parse(saved);
-    return [{ title: "CCTV Cameras", slug: "cctv" }, { title: "Biometric Access", slug: "bio" }, { title: "Network Storage", slug: "net-storage" }, { title: "Cables", slug: "cables" }, { title: "Power Supply", slug: "power-supply" }];
-  });
+  const [productCategories, setProductCategories] = useState([{ title: "CCTV Cameras", slug: "cctv" }, { title: "Biometric Access", slug: "bio" }, { title: "Network Storage", slug: "net-storage" }, { title: "Cables", slug: "cables" }, { title: "Power Supply", slug: "power-supply" }]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState(() => {
@@ -286,7 +277,6 @@ function App() {
     }
     fetchProducts();
   }, [currentPage]);
-
 
   const [contactData, setContactData] = useState(() => {
     const saved = localStorage.getItem("spe_contact_data");
@@ -602,31 +592,7 @@ function App() {
     return (<AdminPanel onExit={() => setIsAdminMode(false)} supportTickets={supportTickets} setSupportTickets={setSupportTickets} careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} products={products} setProducts={setProducts} productCategories={productCategories} setProductCategories={setProductCategories} contactData={contactData} setContactData={setContactData} logoData={logoData} setLogoData={setLogoData} socialLinks={socialLinks} setSocialLinks={setSocialLinks} reels={reels} setReels={setReels} adminEmails={adminEmails} setAdminEmails={setAdminEmails} adminPasscodeVal={adminPasscodeVal} setAdminPasscodeVal={setAdminPasscodeVal} />);
   }
 
-  useEffect(() => {
-    const submitContact = async () => {
 
-      try {
-        // console.log(formData)
-        // const response = await axios.post(
-        //   "https://woston.in/wp-json/contact-form-7/v1/contact-forms/018810f/feedback",
-        //   { "your-name": 'test', "your-email": 'test@test.com', "your-subject": "testing data", "your-message": 'this is just testing message' }
-        // );
-
-        // console.log("CF7 Response:", response.data);
-
-        // if (response.data.status === "mail_sent") {
-        //   console.log("Contact submitted successfully");
-        // }
-      } catch (error) {
-        console.error(
-          "CF7 Error:",
-          error.response?.data || error.message
-        );
-      }
-    };
-
-    submitContact()
-  }, [])
 
   return (
     <>

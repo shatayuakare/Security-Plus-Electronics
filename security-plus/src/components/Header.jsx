@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from "motion/react";
 import logo from "../assets/images/logo.png";
 import { getProductImageUrls } from "../components/BlurUpImage";
 import { Link, useLocation } from "react-router-dom"
+import { companytData } from '../utils/Constant';
 
-const companytData = { logo: logo, name: "Security Plus Electronics", subName: "CCTV Mall", }
 
 export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser, wishlist, toggleWishlist, accountDropdownOpen, setAccountDropdownOpen, dropdownSubView, setDropdownSubView, logoData, adminEmails, setAdminLoginOpen, setToastMessage, PRODUCTS_DATA, setSelectedProductForQuickView, mobileMenuOpen, setMobileMenuOpen, isAdminMode, setIsAdminMode, inquiryList, setIsInquiryDrawerOpen, accountRef, mobileHamburgerRef, mobileMenuRef, }) => {
 
@@ -13,14 +13,26 @@ export const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser,
   return (
     <header>
       <nav className="fixed top-0 left-0 w-full bg-[#0a0d16]/95 backdrop-blur-md border-b border-slate-800/80 z-40 px-4 md:px-8 py-3 md:py-4 flex justify-between items-center transition-all shadow-lg shadow-slate-950/20">
-
         <Link to={"/"} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }} className="flex items-center gap-2 md:gap-3 cursor-pointer select-none active:scale-95 hover:opacity-90 transition-all" title="Return to Home">
-          <div className="h-12 aspect-square flex items-center justify-center shrink-0">
-            <img alt="Security Plus Electronics Logo" className="h-full w-full object-cover drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] hover:drop-shadow-white transition-all duration-300" src={companytData.logo} referrerPolicy="no-referrer" />
+          <div className="flex items-center gap-4">
+            <div className="h-12 aspect-square flex items-center justify-center shrink-0">
+              <img alt="Security Plus Electronics Logo" className="h-full w-full object-cover drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] hover:drop-shadow-white transition-all duration-300" src={companytData.logo} referrerPolicy="no-referrer" />
+            </div>
+            <div>
+              <h2 className="text-lg md:text-xl font-extrabold text-white uppercase tracking-tight font-sans">
+                {logoData.companyName}
+              </h2>
+              {logoData.companySuffix && (
+                <div className="flex items-center gap-2">
+                  <span className="h-px w-9 md:w-11 bg-sky-500"></span>
+                  <span className="text-[9px] font-bold text-sky-400 uppercase tracking-[0.2em] font-sans">
+                    {logoData.companySuffix}
+                  </span>
+                  <span className="h-px w-9 md:w-11 bg-sky-500"></span>
+                </div>
+              )}
+            </div>
           </div>
-          <span className="font-sans font-extrabold text-[10px] xs:text-xs md:text-sm tracking-widest text-white uppercase flex items-center gap-1.5 truncate max-w-30 xs:max-w-[160px] sm:max-w-none">
-            <span className="truncate">{companytData.name || "Security Plus Electronics"}</span>
-          </span>
         </Link>
 
         <div className="hidden md:flex items-center gap-5 lg:gap-6 font-sans font-bold text-[11px] tracking-widest uppercase">

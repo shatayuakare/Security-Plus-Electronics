@@ -1,41 +1,42 @@
 import { MapPin, Globe } from 'lucide-react'
 import { Link } from 'react-router-dom';
+// import logo from "../assets/images/logo.png";
+import { companytData } from '../utils/Constant';
 
 const Footer = ({ logoData }) => {
+    // const companytData = { logo: logo, name: "Security Plus Electronics", subName: "CCTV Mall", }
     return (
         <footer className="bg-slate-900 text-slate-300 border-t border-slate-800">
-
-            {/* Main Footer */}
             <div className="max-w-7xl mx-auto px-5 md:px-8 py-12 md:py-14">
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-
-                    {/* =========================================================
-                COMPANY
-            ========================================================= */}
                     <div className="lg:col-span-5">
-
                         <div className="max-w-md">
-
-                            {/* Brand */}
                             <div className="mb-5">
+                                <Link to={"/"} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }} className="flex items-center gap-2 md:gap-3 cursor-pointer select-none active:scale-95 hover:opacity-90 transition-all" title="Return to Home">
+                                    <div className="flex items-center gap-4">
+                                        <div className="h-16 aspect-square flex items-center justify-center shrink-0">
+                                            <img alt="Security Plus Electronics Logo" className="h-full w-full object-cover drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] hover:drop-shadow-white transition-all duration-300" src={companytData.logo} referrerPolicy="no-referrer" />
+                                        </div>
+                                        <div>
+                                            <h2 className="text-2xl md:text-2xl font-extrabold text-white uppercase tracking-tight font-sans">
+                                                {logoData.companyName}
+                                            </h2>
+                                            {logoData.companySuffix && (
+                                                <div className="flex items-center gap-2">
 
-                                <h2 className="text-xl md:text-2xl font-extrabold text-white uppercase tracking-tight font-sans">
-                                    {logoData.companyName}
-                                </h2>
+                                                    <span className="h-px w-14.5 bg-sky-500"></span>
 
-                                {logoData.companySuffix && (
-                                    <div className="flex items-center gap-2 mt-2">
+                                                    <span className="text-[10px] font-bold text-sky-400 uppercase tracking-[0.2em] font-sans">
+                                                        {logoData.companySuffix}
+                                                    </span>
+                                                    <span className="h-px w-14.5 bg-sky-500"></span>
 
-                                        <span className="h-px w-6 bg-sky-500"></span>
-
-                                        <span className="text-[9px] font-bold text-sky-400 uppercase tracking-[0.2em] font-sans">
-                                            {logoData.companySuffix}
-                                        </span>
-
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
-                                )}
-
+                                </Link>
                             </div>
 
 
