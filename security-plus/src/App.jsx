@@ -1,11 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import { wordpressCredentials } from "./main"
+import { SERVER } from "./utils/Constant";
 import { X, Sparkles, Eye, Twitter, Linkedin, Facebook, Share2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import logo from "./assets/images/logo.png";
-import AdminPanel from "./components/AdminPanel";
+import { Route, Routes, useLocation } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import { SEOManager } from "./components/SEOManager";
+import logo from "./assets/images/logo.png";
 
 import BrandCarousel from "./components/BrandCarousel";
 import { Header } from "./components/Header";
@@ -14,32 +17,31 @@ import { VirtualShowroom } from "./components/VirtualShowroom";
 
 // Import pages
 import { ScrollableTestimonials, OurThought, OurBlogs, FAQSection, CorporateContactForm, OurLocation } from "./pages/Home";
-import { Route, Routes, useLocation } from "react-router-dom"
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Careers from "./pages/Careers";
 import Blogs from "./pages/Blogs";
+import Products from "./pages/Products";
 import TermsAndConditions from "./pages/TermAndCondition";
 
 // Import modular section page
 import Hero from "./components/Hero";
-import Products from "./pages/Products";
 import { Testimonials as TestimonialsPage } from "./components/Testimonials";
 import Gallery from "./pages/Gallery";
 import { AuthSection } from "./components/AuthSection";
 import Footer from "./components/Footer";
 import ReelSection from "./components/section/ReelSection";
 
+// iport madels quick view 
+import QuickProductView from "./components/modal/QuickProductView";
+import ShowroomExperience from "./components/modal/ShowroomExperience";
+import QuickBlogVIew from "./components/modal/QuickBlogVIew";
+
 // JSON file to fetch data
 import TESTIMONIALS_DATA from "./json/testimonials.json"
 import PRODUCTS from "./json/wooProducts.json"
 import GALLERY_ITEMS from "./json/gallary.json"
-import QuickProductView from "./components/modal/QuickProductView";
-import ShowroomExperience from "./components/modal/ShowroomExperience";
-import QuickBlogVIew from "./components/modal/QuickBlogVIew";
-import axios from "axios";
-import { wordpressCredentials } from "./main"
-import { SERVER } from "./utils/Constant";
+
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
@@ -47,24 +49,19 @@ const fadeInUp = {
   viewport: { once: true, margin: "-100px" },
   transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
 };
-const fadeIn = {
-  initial: { opacity: 0 },
-  whileInView: { opacity: 1 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.8, ease: "easeOut" }
-};
+// const fadeIn = {
+//   initial: { opacity: 0 },
+//   whileInView: { opacity: 1 },
+//   viewport: { once: true, margin: "-100px" },
+//   transition: { duration: 0.8, ease: "easeOut" }
+// };
 
 function App() {
   const location = useLocation();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const [showroomModalOpen, setShowroomModalOpen] = useState(false);
-
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
-
-  const [activeShowroomHotspot, setActiveShowroomHotspot] = useState(null);
-  const [showroomScanStatus, setShowroomScanStatus] = useState("idle");
 
   const [toastMessage, setToastMessage] = useState(null);
   const [customerUser, setCustomerUser] = useState(() => {
@@ -350,57 +347,7 @@ function App() {
   const [selectedProductForQuickView, setSelectedProductForQuickView] = useState(null);
   const [isInquiryDrawerOpen, setIsInquiryDrawerOpen] = useState(false);
   const [loadedImages, setLoadedImages] = useState({});
-  const [socialLinks, setSocialLinks] = useState(() => {
-    const saved = localStorage.getItem("spe_social_links");
-    if (saved)
-      return JSON.parse(saved);
-    return {
-      twitter: "https://twitter.com/securityPlusCCT",
-      facebook: "https://facebook.com/securitypluselectroncis",
-      linkedin: "https://linkedin.com/securitypluselectronics"
-    };
-  });
-
   const [testimonials, setTestimonials] = useState(TESTIMONIALS_DATA);
-
-  const [lightboxIndex, setLightboxIndex] = useState(null);
-  const [adminEmails, setAdminEmails] = useState(() => {
-    const saved = localStorage.getItem("spe_admin_emails");
-    if (saved)
-      return JSON.parse(saved);
-    return ["info@securityplus.in", "admin@securityplus.in", "developer@securityplus.in"];
-  });
-  const [adminPasscodeVal, setAdminPasscodeVal] = useState(() => {
-    return localStorage.getItem("spe_admin_passcode") || "admin123";
-  });
-  const [isAdminMode, setIsAdminMode] = useState(() => {
-    const wasAdmin = localStorage.getItem("spe_admin_mode") === "true";
-    const savedUser = localStorage.getItem("spe_customer_user");
-    const savedAdminEmails = localStorage.getItem("spe_admin_emails");
-    if (wasAdmin && savedUser) {
-      try {
-        const parsedUser = JSON.parse(savedUser);
-        const emails = savedAdminEmails ? JSON.parse(savedAdminEmails) : ["info@securityplus.in", "admin@securityplus.in"];
-        if (parsedUser && parsedUser.email && emails.map(e => e.toLowerCase()).includes(parsedUser.email.toLowerCase())) {
-          return true;
-        }
-      }
-      catch (e) {
-        console.error(e)
-      }
-    }
-    return false;
-  });
-  useEffect(() => {
-    localStorage.setItem("spe_admin_emails", JSON.stringify(adminEmails));
-  }, [adminEmails]);
-  useEffect(() => {
-    localStorage.setItem("spe_admin_passcode", adminPasscodeVal);
-  }, [adminPasscodeVal]);
-
-  const [adminLoginOpen, setAdminLoginOpen] = useState(false);
-  const [adminPasscode, setAdminPasscode] = useState("");
-  const [adminError, setAdminError] = useState("");
   const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
   const [dropdownSubView, setDropdownSubView] = useState("main");
   const accountRef = useRef(null);
@@ -505,23 +452,13 @@ function App() {
       }
     ];
   });
-
-  const [subscribers, setSubscribers] = useState(() => {
-    const saved = localStorage.getItem("spe_subscribers");
-    if (saved)
-      return JSON.parse(saved);
-    return ["info@securityplus.in", "admin@securityplus.in", "mandal.tech@outlook.com"];
-  });
-
   useEffect(() => {
     localStorage.setItem("spe_support_tickets", JSON.stringify(supportTickets));
   }, [supportTickets]);
   useEffect(() => {
     localStorage.setItem("spe_career_apps", JSON.stringify(careerApplications));
   }, [careerApplications]);
-  useEffect(() => {
-    localStorage.setItem("spe_admin_mode", String(isAdminMode));
-  }, [isAdminMode]);
+
   useEffect(() => {
     localStorage.setItem("spe_product_categories", JSON.stringify(productCategories));
   }, [productCategories]);
@@ -534,26 +471,8 @@ function App() {
   useEffect(() => {
     localStorage.setItem("spe_logo_data", JSON.stringify(logoData));
   }, [logoData]);
-  useEffect(() => {
-    localStorage.setItem("spe_social_links", JSON.stringify(socialLinks));
-  }, [socialLinks]);
-
-  // Global hotkey event listener (Ctrl + Alt + Shift + A)
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.ctrlKey && e.altKey && e.shiftKey && e.key.toLowerCase() === "a") {
-        e.preventDefault();
-        setAdminLoginOpen(true);
-        setAdminError("");
-        setAdminPasscode("");
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
 
   const [selectedBlog, setSelectedBlog] = useState(null);
-
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape") {
@@ -588,15 +507,9 @@ function App() {
   }, [toastMessage])
 
 
-  if (isAdminMode) {
-    return (<AdminPanel onExit={() => setIsAdminMode(false)} supportTickets={supportTickets} setSupportTickets={setSupportTickets} careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} products={products} setProducts={setProducts} productCategories={productCategories} setProductCategories={setProductCategories} contactData={contactData} setContactData={setContactData} logoData={logoData} setLogoData={setLogoData} socialLinks={socialLinks} setSocialLinks={setSocialLinks} reels={reels} setReels={setReels} adminEmails={adminEmails} setAdminEmails={setAdminEmails} adminPasscodeVal={adminPasscodeVal} setAdminPasscodeVal={setAdminPasscodeVal} />);
-  }
-
-
-
   return (
     <>
-      <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} adminEmails={adminEmails} setAdminLoginOpen={setAdminLoginOpen} setToastMessage={setToastMessage} PRODUCTS={PRODUCTS} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} isAdminMode={isAdminMode} setIsAdminMode={setIsAdminMode} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
+      <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} setToastMessage={setToastMessage} PRODUCTS={PRODUCTS} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
 
       <SEOManager />
       <main className={location.pathname === "/" ? "pt-0 bg-[#070913]" : "pt-20 bg-white"}>
@@ -606,7 +519,7 @@ function App() {
 
             <BrandCarousel />
             <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} />
-            <VirtualShowroom loadedImages={loadedImages} setLoadedImages={setLoadedImages} showroomScanStatus={showroomScanStatus} setShowroomScanStatus={setShowroomScanStatus} activeShowroomHotspot={activeShowroomHotspot} setActiveShowroomHotspot={setActiveShowroomHotspot} setToastMessage={setToastMessage} setShowroomModalOpen={setShowroomModalOpen} />
+            {/* <VirtualShowroom loadedImages={loadedImages} setLoadedImages={setLoadedImages} setToastMessage={setToastMessage} setShowroomModalOpen={setShowroomModalOpen} /> */}
             <ReelSection />
 
             <motion.section {...fadeInUp} className="py-24 px-8 relative z-20 border-b border-slate-100 bg-slate-50">
@@ -629,7 +542,7 @@ function App() {
 
           <Route path="/about" Component={AboutUs} />
           <Route path="/termandcondition" Component={TermsAndConditions} />
-          <Route path="/gallary" element={<Gallery setLightboxIndex={setLightboxIndex} galleryItems={GALLERY_ITEMS} />} />
+          <Route path="/gallary" element={<Gallery galleryItems={GALLERY_ITEMS} />} />
           <Route path="/contact" element={<ContactUs logoData={logoData} setSupportTickets={setSupportTickets} setToastMessage={setToastMessage} />} />
           <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
           <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setProductCategories={setProductCategories} productCategories={productCategories} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />

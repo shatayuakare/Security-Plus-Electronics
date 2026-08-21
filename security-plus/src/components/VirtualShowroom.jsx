@@ -7,7 +7,7 @@ const fadeInUp = {
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-100px" }
 };
-export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanStatus, setShowroomScanStatus, activeShowroomHotspot, setActiveShowroomHotspot, setToastMessage, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
+export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanStatus, setShowroomScanStatus, setToastMessage, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
   const triggerGuidedTour = () => {
     setBookingConfirmed(false);
     setBookingForm({ name: "", phone: "", email: "", date: "", time: "", sector: "residential" });
@@ -58,11 +58,10 @@ export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanSta
 
             {/* Hotspot 1: CCTV Camera Dome */}
             <button onClick={() => {
-              setActiveShowroomHotspot("h1");
               setToastMessage("Auditing CCTV Camera Dome on Nagpur Showroom Board #1.");
             }} className="absolute z-30 group/spot flex items-center justify-center cursor-pointer" style={{ top: "35%", left: "28%" }} title="AI PTZ Speed Dome Camera">
               <span className="absolute inline-flex h-8 w-8 rounded-full bg-primary/30 animate-ping"></span>
-              <span className={`relative flex h-6 w-6 items-center justify-center rounded-full border border-sky-400 font-bold text-[10px] text-white shadow transition-all ${activeShowroomHotspot === "h1" ? "bg-primary scale-125" : "bg-primary hover:bg-primary"}`}>
+              <span className={`relative flex h-6 w-6 items-center justify-center rounded-full border border-sky-400 font-bold text-[10px] text-white shadow transition-all ${true === "h1" ? "bg-primary scale-125" : "bg-primary hover:bg-primary"}`}>
                 1
               </span>
               {/* Hotspot Name Overlay on Hover */}
@@ -73,7 +72,6 @@ export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanSta
 
             {/* Hotspot 2: Biometric Facial Gateway */}
             <button onClick={() => {
-              setActiveShowroomHotspot("h2");
               setToastMessage("Auditing Smart Biometric Face Latch at Showroom Entry Lane.");
             }} className="absolute z-30 group/spot flex items-center justify-center cursor-pointer" style={{ top: "58%", left: "45%" }} title="Biometric Facial Gateway">
               <span className="absolute inline-flex h-8 w-8 rounded-full bg-primary/30 animate-ping"></span>

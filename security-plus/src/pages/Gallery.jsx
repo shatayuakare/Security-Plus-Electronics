@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Terminal, ShieldCheck, Video } from "lucide-react";
 
 
-export default function Gallery({ setLightboxIndex, galleryItems }) {
+export default function Gallery({ galleryItems }) {
 
 
   const [galleryFilter, setGalleryFilter] = useState("all");
@@ -40,12 +40,7 @@ export default function Gallery({ setLightboxIndex, galleryItems }) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredGalleryItems.map((item, index) => (
-              <motion.div key={item.id} layout whileHover={{ y: -6 }} onClick={() => {
-                const originalIndex = galleryItems.findIndex(g => g.id === item.id);
-                if (originalIndex !== -1) {
-                  setLightboxIndex(originalIndex);
-                }
-              }} className="bg-white rounded-2xl overflow-hidden shadow border-b-2 group-hover:border-sky-700 border-primary flex flex-col group cursor-pointer">
+              <motion.div key={item.id} layout whileHover={{ y: -6 }} className="bg-white rounded-2xl overflow-hidden shadow border-b-2 group-hover:border-sky-700 border-primary flex flex-col group cursor-pointer">
                 <div className="relative w-full aspect-3/2 overflow-hidden bg-slate-100 flex items-center justify-center">
                   {item.isPlaceholder ? (
                     <div className={`w-full h-full flex items-center justify-center p-8 bg-gradient-to-br ${item.bgColor} relative`}>

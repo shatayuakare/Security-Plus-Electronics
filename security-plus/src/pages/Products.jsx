@@ -95,7 +95,7 @@ function ProductGridLoader() {
 export default function Products({ products, productCategories, setCurrentPage, setInquiryList, setProductCategories, currentPage, wishlist, toggleWishlist, setToastMessage, setSelectedProductForQuickView }) {
   const [filteredProducts, setFilteredProducts] = useState(products)
   const [productCategoryFilter, setProductCategoryFilter] = useState("all");
-  const [productSortOption, setProductSortOption] = useState();
+  const [productSortOption, setProductSortOption] = useState("default");
 
 
   const filterByCategory = (selectedCategorySlug) => {
