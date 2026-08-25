@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "../products.css"
 import { motion } from "motion/react";
 import { ShoppingBag, ExternalLink, Heart, Video, Cpu, LockKeyhole, HardDrive, Router, BatteryCharging, Eye, ChevronRight, ChevronLeft } from "lucide-react";
@@ -92,10 +92,10 @@ function ProductGridLoader() {
 
 
 export default function Products({ products, productCategories, setCurrentPage, setInquiryList, setProductCategories, currentPage, wishlist, toggleWishlist, setToastMessage, setSelectedProductForQuickView }) {
-  const [filteredProducts, setFilteredProducts] = useState(products)
+
+  // const [filteredProducts, setFilteredProducts] = useState(products)
   const [productCategoryFilter, setProductCategoryFilter] = useState("all");
   const [productSortOption, setProductSortOption] = useState("default");
-
 
   const filterByCategory = (selectedCategorySlug) => {
     if (selectedCategorySlug === "all") return;
@@ -107,30 +107,48 @@ export default function Products({ products, productCategories, setCurrentPage, 
     );
   }
 
-  useEffect(() => {
-    let list = productCategoryFilter === "all"
-      ? [...products]
-      : filterByCategory(productCategoryFilter);
+  // useEffect(() => {
+  //   let list = productCategoryFilter === "all"
+  //     ? [...filteredProducts]
+  //     : filterByCategory(productCategoryFilter);
 
-    // Sort only if products or sorting option changes, avoid sorting in place for performance
-    let sortedList = [...list];
+  //   let sortedList = [...list];
+  //   if (!productSortOption || productSortOption === "asce") {
+  //     sortedList = sortedList.sort((a, b) => Number(a.prices?.price || 0) - Number(b.prices?.price || 0));
+  //   } else if (productSortOption === "desc") {
+  //     sortedList = sortedList.sort((a, b) => Number(b.prices?.price || 0) - Number(a.prices?.price || 0));
+  //   }
+  //   list = sortedList;
+
+  //   setFilteredProducts(list);
+  // }, [productSortOption, productCategoryFilter]);
+
+  const filteredProducts = useMemo(() => {
+    let list =
+      productCategoryFilter === "all"
+        ? [...products]
+        : filterByCategory(productCategoryFilter);
+
     if (!productSortOption || productSortOption === "asce") {
-      sortedList = sortedList.sort((a, b) => Number(a.prices?.price || 0) - Number(b.prices?.price || 0));
+      list.sort(
+        (a, b) =>
+          Number(a.prices?.price || 0) -
+          Number(b.prices?.price || 0)
+      );
     } else if (productSortOption === "desc") {
-      sortedList = sortedList.sort((a, b) => Number(b.prices?.price || 0) - Number(a.prices?.price || 0));
+      list.sort(
+        (a, b) =>
+          Number(b.prices?.price || 0) -
+          Number(a.prices?.price || 0)
+      );
     }
-    list = sortedList;
 
-    setFilteredProducts(list);
-  }, [productSortOption, productCategoryFilter]);
-
-  useEffect(() => {
-    setFilteredProducts(products)
-  }, [currentPage])
+    return list;
+  }, [products, productCategoryFilter, productSortOption]);
 
   const getCategory = (product) => {
     for (let elem of product.categories) {
-      if (/camera|cameras|cctv/i.test(elem.name)) {
+      if (/camera|cameras|cctv|4g|ip|hd/i.test(elem.name)) {
         return "CCTV Camera";
       } else if (/video|dvr|nvr|xvr/i.test(elem.name) || /dvr/i.test(elem.name)) {
         return "Video Recorder";
@@ -140,7 +158,11 @@ export default function Products({ products, productCategories, setCurrentPage, 
         return "Accessories";
       } else if (/switch|poe/i.test(elem.name)) {
         return "Switch";
-      } else if (/ups|smps|adapter|power supply|/i.test(elem.name)) {
+      } else if (/rack|accessories|housing|caccessories/i.test(elem.name)) {
+        return "Accessories";
+      } else if (/keyboard|mouse|monitor|router/i.test(elem.name)) {
+        return "IT Devices";
+      } else if (/ups|smps|adapter|power supply/i.test(elem.name)) {
         return "Power Supply";
       } else {
         return "Other"
@@ -173,7 +195,6 @@ export default function Products({ products, productCategories, setCurrentPage, 
               We deal directly with industrial-grade hardware. Browse our active catalogue or connect to our dedicated B2B e-commerce store for wholesale orders and stock telemetry.
             </p>
 
-            {/* External Store Banner */}
             <div className="mt-8 p-6 bg-white border border-slate-200/80 max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-left rounded-2xl shadow-sm">
               <div>
                 <h3 className="text-sm font-bold text-slate-900 uppercase flex items-center gap-2">
@@ -263,15 +284,6 @@ export default function Products({ products, productCategories, setCurrentPage, 
                             : "text-slate-500 hover:text-rose-500"}`} />
                         </button>
 
-                        {/* <div className="absolute bottom-2 left-2 p-1.5 bg-red-500 backdrop-blur-sm rounded-lg z-20 flex items-center justify-center">
-                        {true && <Video className="h-4 w-4 text-sky-400" />}
-                        {product?.images[1] === "ptz" && <Cpu className="h-4 w-4 text-sky-800" />}
-                        {product?.images[2] === "locks" && <LockKeyhole className="h-4 w-4 text-sky-400" />}
-                        {product?.images[0] === "storage" && <HardDrive className="h-4 w-4 text-sky-400" />}
-                        {product?.images[1] === "router" && <Router className="h-4 w-4 text-sky-400" />}
-                        {product?.images[2] === "battery" && <BatteryCharging className="h-4 w-4 text-sky-400" />}
-                      </div> */}
-
                         <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 backdrop-blur-[2px] z-10">
                           <button id={`quick-view-btn-img-${product.id}`} onClick={(e) => {
                             e.stopPropagation();
@@ -329,20 +341,18 @@ export default function Products({ products, productCategories, setCurrentPage, 
                 </>
             }
           </motion.div>
-          {
-            productCategoryFilter === "all"
-            &&
-            <div className="flex gap-5 mt-5 justify-end ">
-              <button onClick={() => { window.scrollTo(0, 0); setCurrentPage(currentPage - 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm" disabled={currentPage == 1 && true}>
-                <ChevronLeft className="h-5 w-5 font-semibold" />
-                <span>Prev</span>
-              </button>
-              <button onClick={() => { window.scrollTo(0, 0); setCurrentPage(currentPage + 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm" disabled={filteredProducts.length < 12 && true}>
-                <span>Next</span>
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
-          }
+
+          <div className="flex gap-5 mt-5 justify-end ">
+            <button onClick={() => { window.scrollTo(0, 720); setCurrentPage(currentPage - 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm" disabled={currentPage == 1 && true}>
+              <ChevronLeft className="h-5 w-5 font-semibold" />
+              <span>Prev</span>
+            </button>
+            <button onClick={() => { window.scrollTo(0, 720); setCurrentPage(currentPage + 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm" disabled={filteredProducts.length < 12 && true}>
+              <span>Next</span>
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+
         </div>
       </section>
     </motion.div>

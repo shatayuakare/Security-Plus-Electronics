@@ -143,7 +143,7 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  const [productCategories, setProductCategories] = useState([{ title: "CCTV Cameras", slug: "cctv" }, { title: "Biometric Access", slug: "bio" }, { title: "Network Storage", slug: "net-storage" }, { title: "Cables", slug: "cables" }, { title: "Power Supply", slug: "power-supply" }]);
+  const [productCategories, setProductCategories] = useState([{}]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState(() => {
@@ -155,10 +155,8 @@ function App() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      try {
-        const res = await axios.get(`https://woston.in/wp-json/wc/store/v1/products?per_page=12&page=${currentPage}`);
+      await axios.get(`https://woston.in/wp-json/wc/store/v1/products?per_page=12&page=${currentPage}`).then(res => {
         setProducts(res.data);
-        console.log("it work ", res.data)
         const categoryMap = new Map();
         products.forEach(product => {
           if (!Array.isArray(product.categories)) return;
@@ -183,12 +181,10 @@ function App() {
         const uniqueCategories = Array.from(categoryMap.values())
           .filter(category => category.productCount === 1);
 
-
         const allCategories = [
           ...commonCategories,
           ...uniqueCategories
         ];
-
 
         const parentCategoryMap = new Map();
 
@@ -205,49 +201,42 @@ function App() {
           ) {
             parentName = "CCTV Camera";
             parentSlug = "cctv";
-
           } else if (
             /video|dvr|nvr|xvr/.test(categoryName) ||
             /video|dvr|nvr|xvr/.test(categorySlug)
           ) {
             parentName = "Video Recorder";
             parentSlug = "video-recorder";
-
           } else if (
             /cable|cables/.test(categoryName) ||
             /cable|cables/.test(categorySlug)
           ) {
             parentName = "Cables";
             parentSlug = "cables";
-
           } else if (
             /ups|smps|adapter|power supply/.test(categoryName) ||
             /ups|smps|adapter|power/.test(categorySlug)
           ) {
             parentName = "Power Supply";
             parentSlug = "power-supply";
-
           } else if (
-            /rack|accessories|housing/.test(categoryName) ||
+            /rack|accessories|housing|caccessories/.test(categoryName) ||
             /rack|accessories|housing/.test(categorySlug)
           ) {
             parentName = "Accessories";
             parentSlug = "accessories";
-
           } else if (
             /switch/.test(categoryName) ||
             /switch|poe/.test(categorySlug)
           ) {
             parentName = "POE Switch";
             parentSlug = "poe-switch";
-
           } else if (
-            /keyboard|keyboad|mouse|monitor|router/.test(categoryName) ||
-            /keyboard|keyboad|mouse|monitor|router/.test(categorySlug)
+            /keyboard|mouse|monitor|router/.test(categoryName) ||
+            /keyboard|mouse|monitor|router/.test(categorySlug)
           ) {
             parentName = "IT Devices";
             parentSlug = "it-devices";
-
           } else {
             parentName = "Others";
             parentSlug = "others";
@@ -268,9 +257,7 @@ function App() {
           }
         });
         setProductCategories(Array.from(parentCategoryMap.values()))
-      } catch (e) {
-        console.error("Error :- ", e);
-      }
+      }).catch(e => console.error(e))
     }
     fetchProducts();
   }, [currentPage]);
