@@ -99,6 +99,28 @@ export function AuthSection({ registeredCustomers, setRegisteredCustomers, setCu
   };
 
 
+
+  useEffect(() => {
+    const registerCustomer = async () => {
+      try {
+        const response = await axios.post(
+          "https://woston.in/wp-json/myapp/v1/register",
+          {
+            name: "John Doe",
+            email: "john@example.com",
+            password: "MyStrongPassword123!"
+          }
+        );
+
+        console.log(response.data);
+
+      } catch (error) {
+        console.error(error.response?.data || error);
+      }
+    };
+    registerCustomer()
+  })
+
   useEffect(() => {
     if (location.pathname === "/login") {
       setIsLoginPage(true)

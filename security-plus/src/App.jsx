@@ -32,7 +32,7 @@ import { AuthSection } from "./components/AuthSection";
 import Footer from "./components/Footer";
 import ReelSection from "./components/section/ReelSection";
 
-// iport madels quick view 
+// iport madels quick view   
 import QuickProductView from "./components/modal/QuickProductView";
 import ShowroomExperience from "./components/modal/ShowroomExperience";
 import QuickBlogVIew from "./components/modal/QuickBlogVIew";
@@ -158,7 +158,7 @@ function App() {
       try {
         const res = await axios.get(`https://woston.in/wp-json/wc/store/v1/products?per_page=12&page=${currentPage}`);
         setProducts(res.data);
-
+        console.log("it work ", res.data)
         const categoryMap = new Map();
         products.forEach(product => {
           if (!Array.isArray(product.categories)) return;
@@ -506,7 +506,18 @@ function App() {
     }, 2000);
   }, [toastMessage])
 
+  // useEffect(async () => {
+  //   const response = await axios.get(
+  //     "https://woston.in/wp-json/wc/v3/customers",
+  //     {
+  //       headers: {
+  //         Authorization: `Basic ${wordpressCredentials}`
+  //       }
+  //     }
+  //   );
 
+  //   console.log(response.data);
+  // }, [])
   return (
     <>
       <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} setToastMessage={setToastMessage} PRODUCTS={PRODUCTS} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />

@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import { ShoppingBag, ExternalLink, Heart, Video, Cpu, LockKeyhole, HardDrive, Router, BatteryCharging, Eye, ChevronRight, ChevronLeft } from "lucide-react";
 import BrandCarousel from "../components/BrandCarousel";
 import { BlurUpImage, getProductImageUrls } from "../components/BlurUpImage";
-import PRODUCTS from "../json/wooProducts.json"
 import BRANDS from "../json/brands.json"
 import parse from "html-react-parser";
 import { Link } from "react-router-dom";
@@ -125,6 +124,9 @@ export default function Products({ products, productCategories, setCurrentPage, 
     setFilteredProducts(list);
   }, [productSortOption, productCategoryFilter]);
 
+  useEffect(() => {
+    setFilteredProducts(products)
+  }, [currentPage])
 
   const getCategory = (product) => {
     for (let elem of product.categories) {
