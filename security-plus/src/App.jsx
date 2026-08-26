@@ -41,7 +41,7 @@ import QuickBlogVIew from "./components/modal/QuickBlogVIew";
 import TESTIMONIALS_DATA from "./json/testimonials.json"
 import PRODUCTS from "./json/wooProducts.json"
 import GALLERY_ITEMS from "./json/gallary.json"
-
+import { useAuth } from "./context/AuthContext";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },

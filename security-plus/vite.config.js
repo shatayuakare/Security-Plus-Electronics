@@ -10,4 +10,13 @@ export default defineConfig({
       "@": "/src",
     },
   },
+  server: {
+    proxy: {
+      '/wp-json': {
+        target: 'https://woston.in',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  }
 })

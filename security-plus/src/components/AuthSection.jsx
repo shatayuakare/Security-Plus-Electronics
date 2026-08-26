@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { motion, testValueType } from "motion/react";
 import { CheckCircle2 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
 
 
 export function AuthSection({ registeredCustomers, setRegisteredCustomers, setCustomerUser, setToastMessage, isLogin }) {
@@ -100,26 +101,53 @@ export function AuthSection({ registeredCustomers, setRegisteredCustomers, setCu
 
 
 
-  useEffect(() => {
-    const registerCustomer = async () => {
-      try {
-        const response = await axios.post(
-          "https://woston.in/wp-json/myapp/v1/register",
-          {
-            name: "John Doe",
-            email: "john@example.com",
-            password: "MyStrongPassword123!"
-          }
-        );
+  // useEffect(() => {
+  //   // Register Function
+  //   const registerCustomer = async (username, email, password) => {
+  //     try {
+  //       const response = await fetch('https://woston.in/wp-json/wp/v2/users/register', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify({
+  //           username: username,
+  //           email: email,
+  //           password: password,
+  //         }),
+  //       });
 
-        console.log(response.data);
+  //       const data = await response.json();
 
-      } catch (error) {
-        console.error(error.response?.data || error);
-      }
-    };
-    registerCustomer()
-  })
+  //       if (response.ok) {
+  //         console.log('User registered successfully:', data);
+  //         return data;
+  //       } else {
+  //         console.error('Registration failed:', data.message);
+  //       }
+  //     } catch (error) {
+  //       console.error('Network error:', error);
+  //     }
+  //   };
+  //   // const registerCustomer = async () => {
+  //   //   try {
+  //   //     const response = await axios.post(
+  //   //       "https://woston.in/wp-json/myapp/v1/register",
+  //   //       {
+  //   //         name: "John Doe",
+  //   //         email: "john@example.com",
+  //   //         password: "MyStrongPassword123!"
+  //   //       }
+  //   //     );
+
+  //   //     console.log(response.data);
+
+  //   //   } catch (error) {
+  //   //     console.error(error.response?.data || error);
+  //   //   }
+  //   // };
+  //   registerCustomer("testuser", "test@test.in", "Test@1234");
+  // })
 
   useEffect(() => {
     if (location.pathname === "/login") {
