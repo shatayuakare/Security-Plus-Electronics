@@ -42,12 +42,19 @@ export const AuthProvider = ({ children }) => {
     // Login handler: Call JWT endpoint, store state & localStorage
     const login = async (username, password) => {
         // await axios.post('https://woston.in/wp-json/jwt-auth/v1/token', { username: "root", password: "root" }).then(res => console.log(res)).catch(e => console.error(e))
-        const res = await axios.post('https://woston.in/wp-json/jwt-auth/v1/token', {
-
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password }),
-        });
-
+        const res = await axios.post(
+            "https://woston.in/wp-json/jwt-auth/v1/token",
+            {
+                username: username,
+                password: password,
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+        console.warn(res)
         const data = await res.json();
 
         console.warn("token", data.token)
@@ -66,7 +73,10 @@ export const AuthProvider = ({ children }) => {
             return { success: false, message: data.message || 'Login failed' };
         }
     };
+
     login("Developer", "Developer@Woston#2026")
+
+
     const logout = () => {
         localStorage.removeItem('jwt_token');
         setToken(null);

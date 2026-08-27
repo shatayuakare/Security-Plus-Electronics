@@ -4,7 +4,6 @@ import { CheckCircle2 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
-
 export function AuthSection({ registeredCustomers, setRegisteredCustomers, setCustomerUser, setToastMessage, isLogin }) {
 
   const location = useLocation();
@@ -45,6 +44,7 @@ export function AuthSection({ registeredCustomers, setRegisteredCustomers, setCu
       setLoginError("Invalid email or password. Please try again.");
     }
   };
+
   const handleForgotPasswordSubmit = (e) => {
     e.preventDefault();
     setForgotPasswordError("");
@@ -62,6 +62,7 @@ export function AuthSection({ registeredCustomers, setRegisteredCustomers, setCu
       setForgotPasswordError("No active customer profile matches this email address. Please verify your address or register.");
     }
   };
+
   const handleSignUpSubmit = (e) => {
     e.preventDefault();
     setSignUpError("");

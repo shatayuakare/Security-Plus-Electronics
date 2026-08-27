@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import axios from 'axios';
-import { AuthProvider } from './context/AuthContext';
+// import { AuthProvider } from './context/AuthContext';
 
 const authenticateWordpress = () => {
     const username = "Developer";
@@ -15,8 +15,8 @@ export const wordpressCredentials = authenticateWordpress();
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
-        <AuthProvider>
-            <App />
-        </AuthProvider>
+        {/* <AuthProvider> */}
+        <App />
+        {/* </AuthProvider> */}
     </BrowserRouter>
 );

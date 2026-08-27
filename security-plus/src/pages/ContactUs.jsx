@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { MessageSquare, ExternalLink, Phone, Building, MapPin, Mail, Clock, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 export default function ContactUs({ logoData, setSupportTickets, setToastMessage }) {
@@ -38,6 +39,49 @@ export default function ContactUs({ logoData, setSupportTickets, setToastMessage
     setContactTicket({ success: true });
     setToastMessage("Support Ticket Compiled and Logged. Engineers dispatching soon!");
   };
+
+  useEffect(() => {
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData();
+
+      // Mandatory WPForms AJAX action and form ID
+      formData.append("action", "wpforms_submit");
+      formData.append("wpforms[id]", "6453"); // Replace 123 with your Form ID
+
+      // Field values format: wpforms[fields][FIELD_ID]
+      formData.append("wpforms[fields][0]", "Testing");              // Name field ID
+      formData.append("wpforms[fields][1]", "test@gmail.com");       // Email field ID
+      formData.append("wpforms[fields][2]", "5529467856");           // Phone field ID
+      formData.append("wpforms[fields][3]", "hello testing message"); // Message field ID
+
+      try {
+        const response = await axios.post(
+          "https://woston.in/wp-admin/admin-ajax.php",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        console.log(response.data);
+
+        if (response.data.success) {
+          alert("Message sent successfully!");
+        } else {
+          alert("Submission failed check field IDs or CORS settings.");
+        }
+      } catch (error) {
+        console.error("WPForms submit error:", error);
+      }
+    };
+    // handleSubmit()
+  }, [])
+
+
   return (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
     <section className="py-16 px-6 md:px-12 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto space-y-12">
