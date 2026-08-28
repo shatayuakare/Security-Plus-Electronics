@@ -265,55 +265,16 @@ function App() {
   const [contactData, setContactData] = useState(() => {
     const saved = localStorage.getItem("spe_contact_data");
     return saved ? JSON.parse(saved) : [];
-    return [
-      {
-        id: Date.now(),
-        name: "Woston",
-        phone: "08048102415",
-        email: "info@securityplus.in",
-        company: "Woston India",
-        department: "sales",
-        message: "Hello this is default message",
-      },
-    ];
   });
 
   const [logoData, setLogoData] = useState(() => {
     const saved = localStorage.getItem("spe_logo_data");
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (parsed.companyName === "SPE" || parsed.companySuffix === "Nagpur") {
-          return {
-            logoUrl: parsed.logoUrl || logo,
-            companyName: "Security Plus",
-            companySuffix: "CCTV Mall"
-          };
-        }
-        return parsed;
-      }
-      catch (e) {
-        console.error("Logo Error", e)
-      }
-    }
-    return {
-      logoUrl: logo,
-      companyName: "Security Plus",
-      companySuffix: "CCTV Mall"
-    };
+    return saved ? JSON.parse(saved) : [];
   });
 
   const [inquiryList, setInquiryList] = useState(() => {
     const saved = localStorage.getItem("spe_inquiry_list");
-    if (saved) {
-      try {
-        return JSON.parse(saved);
-      }
-      catch (e) {
-        return [];
-      }
-    }
-    return [];
+    return saved ? JSON.parse(saved) : [];
   });
 
   useEffect(() => {
@@ -353,32 +314,7 @@ function App() {
 
   const [careerApplications, setCareerApplications] = useState(() => {
     const saved = localStorage.getItem("spe_career_apps");
-    if (saved)
-      return JSON.parse(saved);
-    return [
-      {
-        id: "SPE-APP-77123",
-        name: "Rahul Deshmukh",
-        email: "rahul.desh@gmail.com",
-        phone: "+91 88312 90123",
-        selectedOption: "class_basics",
-        experience: "Engineering student at Nagpur University. Want hands-on field training with CCTV.",
-        resumeUrl: "https://drive.google.com/resume-rdesh",
-        date: "2026-06-29",
-        status: "Approved"
-      },
-      {
-        id: "SPE-APP-43120",
-        name: "Pooja Patil",
-        email: "pooja.patil@outlook.com",
-        phone: "+91 77123 45678",
-        selectedOption: "job_sales",
-        experience: "3 years sales experience at local electronics appliance store. Proficient in Marathi and Hindi.",
-        resumeUrl: "https://drive.google.com/resume-ppatil",
-        date: "2026-06-30",
-        status: "Pending Review"
-      }
-    ];
+    return saved ? JSON.parse(saved) : [];
   });
 
   useEffect(() => {
