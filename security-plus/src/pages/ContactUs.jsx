@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 
-export default function ContactUs({ logoData, setSupportTickets, setToastMessage }) {
+export default function ContactUs({ logoData, setToastMessage, setContactData }) {
   const [contactForm, setContactForm] = useState({
     name: "",
     company: "",
@@ -14,72 +14,59 @@ export default function ContactUs({ logoData, setSupportTickets, setToastMessage
     department: "sales",
     message: ""
   });
-  const [contactTicket, setContactTicket] = useState(null);
-  const handleContactSubmit = (e) => {
+  const [contactTicket, setContactTicket] = useState(false);
+
+
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
-    if (!contactForm.name || !contactForm.email || !contactForm.message) {
+    if (!contactForm.name || !contactForm.email || !contactForm.message || !contactForm.company || !contactForm.department || !contactForm.phone) {
       setToastMessage("Please fill out all required fields.");
       return;
     }
-    const newTicket = {
-      id: `SPE-TKT-${Math.floor(100000 + Math.random() * 900000)}`,
-      name: contactForm.name,
-      company: contactForm.company || "Direct Individual",
-      email: contactForm.email,
-      phone: contactForm.phone || "No Number",
-      department: contactForm.department,
-      message: contactForm.message,
-      date: new Date().toISOString().split("T")[0],
-      status: "Open",
-      assignedTo: "Sandeep Agnihotri",
-      notes: ["Ticket generated on public contact form submission."]
-    };
 
-    setSupportTickets(prev => [newTicket, ...prev]);
-    setContactTicket({ success: true });
-    setToastMessage("Support Ticket Compiled and Logged. Engineers dispatching soon!");
-  };
+    const formData = new FormData();
 
-  useEffect(() => {
-    const handleSubmit = async (e) => {
-      e.preventDefault();
+    formData.append("action", "wpforms_submit");
+    formData.append("wpforms[id]", "12503");
 
-      const formData = new FormData();
+    formData.append("wpforms[fields][1]", contactForm.name);
+    formData.append("wpforms[fields][2]", contactForm.phone);
+    formData.append("wpforms[fields][3]", contactForm.email);
+    formData.append("wpforms[fields][4]", contactForm.company);
+    formData.append("wpforms[fields][5]", contactForm.department);
+    formData.append("wpforms[fields][6]", contactForm.message);
 
-      // Mandatory WPForms AJAX action and form ID
-      formData.append("action", "wpforms_submit");
-      formData.append("wpforms[id]", "6453"); // Replace 123 with your Form ID
-
-      // Field values format: wpforms[fields][FIELD_ID]
-      formData.append("wpforms[fields][0]", "Testing");              // Name field ID
-      formData.append("wpforms[fields][1]", "test@gmail.com");       // Email field ID
-      formData.append("wpforms[fields][2]", "5529467856");           // Phone field ID
-      formData.append("wpforms[fields][3]", "hello testing message"); // Message field ID
-
-      try {
-        const response = await axios.post(
-          "https://woston.in/wp-admin/admin-ajax.php",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-
-        console.log(response.data);
-
-        if (response.data.success) {
-          alert("Message sent successfully!");
-        } else {
-          alert("Submission failed check field IDs or CORS settings.");
+    try {
+      const response = await axios.post(
+        "https://woston.in/wp-admin/admin-ajax.php",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      } catch (error) {
-        console.error("WPForms submit error:", error);
+      );
+
+      if (response.data.success) {
+        setContactData(prev => [...prev, contactForm])
+        setContactTicket(true)
+        setContactForm({
+          name: "",
+          company: "",
+          email: "",
+          phone: "",
+          department: "sales",
+          message: ""
+        });
+        setToastMessage("Message sent Successfully!")
+      } else {
+        setToastMessage("Submission failed check field IDs or CORS settings.")
       }
-    };
-    // handleSubmit()
-  }, [])
+
+    } catch (error) {
+      console.error("WPForms submit error:", error);
+    }
+  };
 
 
   return (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
@@ -216,7 +203,7 @@ export default function ContactUs({ logoData, setSupportTickets, setToastMessage
                   <select value={contactForm.department} onChange={(e) => setContactForm(prev => ({ ...prev, department: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl transition-all font-sans font-semibold">
                     <option value="sales">Showroom Sales &amp; Sizing Quotations</option>
                     <option value="technical">Technical Support &amp; Network Audits</option>
-                    <option value="sla">Emergency Maintenance &amp; Repair</option>
+                    <option value="support">Emergency Maintenance &amp; Repair</option>
                   </select>
                 </div>
 

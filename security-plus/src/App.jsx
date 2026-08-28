@@ -264,30 +264,18 @@ function App() {
 
   const [contactData, setContactData] = useState(() => {
     const saved = localStorage.getItem("spe_contact_data");
-    const defaults = {
-      phone: "WhatsApp: +91 9373456746 | On-Call: +91 7020320794 / +91 9284522248 | Inquiry (IVR): 08048102415",
-      email: "info@securityplus.in",
-      address: "SPE CCTV Mall, West High Court Road, Dharampeth, Nagpur, Maharashtra 440010",
-      officeHours: "Mon - Sat: 10:00 AM - 08:30 PM",
-      mapAddress: "SPE CCTV Mall Nagpur",
-      coordinates: "21.1458° N, 79.0882° E"
-    };
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (!parsed.phone || parsed.phone.includes("94231") || parsed.phone.includes("98230") || parsed.phone.includes("43255")) {
-          parsed.phone = defaults.phone;
-        }
-        if (!parsed.email || parsed.email.includes("shatayu") || parsed.email.includes("akare")) {
-          parsed.email = defaults.email;
-        }
-        return parsed;
-      }
-      catch (e) {
-        return defaults;
-      }
-    }
-    return defaults;
+    return saved ? JSON.parse(saved) : [];
+    return [
+      {
+        id: Date.now(),
+        name: "Woston",
+        phone: "08048102415",
+        email: "info@securityplus.in",
+        company: "Woston India",
+        department: "sales",
+        message: "Hello this is default message",
+      },
+    ];
   });
 
   const [logoData, setLogoData] = useState(() => {
@@ -363,53 +351,6 @@ function App() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-
-  const [supportTickets, setSupportTickets] = useState(() => {
-    const saved = localStorage.getItem("spe_support_tickets");
-    if (saved)
-      return JSON.parse(saved);
-    return [
-      {
-        id: "SPE-TKT-312984",
-        name: "Security Manager",
-        company: "Nagpur Tech Corp",
-        email: "info@securityplus.in",
-        phone: "08048102415",
-        department: "technical",
-        message: "Need assistance setting up magnetic latch relay. Currently 12V output drops during load cycle.",
-        date: "2026-06-30",
-        status: "Open",
-        assignedTo: "Sandeep Agnihotri",
-        notes: ["Ticket generated automatically on submission.", "Sandeep Agnihotri assigned to SLA priority 2."]
-      },
-      {
-        id: "SPE-TKT-581902",
-        name: "Vinay Shinde",
-        company: "Nagpur Smart Warehouse",
-        email: "v.shinde@nagpurwarehouse.com",
-        phone: "+91 99321 00412",
-        department: "billing",
-        message: "Looking to expand showroom camera systems. We need 15 units of Hikvision 4K IP Dome cameras with PoE switches.",
-        date: "2026-06-29",
-        status: "Assigned",
-        assignedTo: "Manoj Kulkarni",
-        notes: ["Quote sent for 15 units + installation services."]
-      },
-      {
-        id: "SPE-TKT-918231",
-        name: "Anjali Sharma",
-        company: "Dharampeth Retail Mall",
-        email: "contact@dharampethmall.co.in",
-        phone: "+91 90211 43210",
-        department: "sales",
-        message: "Scheduled inspection of existing Biometric Gateway readers.",
-        date: "2026-06-28",
-        status: "Resolved",
-        assignedTo: "Prateek Deshpande",
-        notes: ["Gateway firmware updated. Readers validated at < 0.2s speed."]
-      }
-    ];
-  });
   const [careerApplications, setCareerApplications] = useState(() => {
     const saved = localStorage.getItem("spe_career_apps");
     if (saved)
@@ -439,13 +380,10 @@ function App() {
       }
     ];
   });
-  useEffect(() => {
-    localStorage.setItem("spe_support_tickets", JSON.stringify(supportTickets));
-  }, [supportTickets]);
+
   useEffect(() => {
     localStorage.setItem("spe_career_apps", JSON.stringify(careerApplications));
   }, [careerApplications]);
-
   useEffect(() => {
     localStorage.setItem("spe_product_categories", JSON.stringify(productCategories));
   }, [productCategories]);
@@ -493,18 +431,6 @@ function App() {
     }, 2000);
   }, [toastMessage])
 
-  // useEffect(async () => {
-  //   const response = await axios.get(
-  //     "https://woston.in/wp-json/wc/v3/customers",
-  //     {
-  //       headers: {
-  //         Authorization: `Basic ${wordpressCredentials}`
-  //       }
-  //     }
-  //   );
-
-  //   console.log(response.data);
-  // }, [])
   return (
     <>
       <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} setToastMessage={setToastMessage} PRODUCTS={PRODUCTS} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
@@ -541,7 +467,7 @@ function App() {
           <Route path="/about" Component={AboutUs} />
           <Route path="/termandcondition" Component={TermsAndConditions} />
           <Route path="/gallary" element={<Gallery galleryItems={GALLERY_ITEMS} />} />
-          <Route path="/contact" element={<ContactUs logoData={logoData} setSupportTickets={setSupportTickets} setToastMessage={setToastMessage} />} />
+          <Route path="/contact" element={<ContactUs setContactData={setContactData} logoData={logoData} setToastMessage={setToastMessage} />} />
           <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
           <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setProductCategories={setProductCategories} productCategories={productCategories} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
           <Route path="/testimonial" element={<TestimonialsPage testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
