@@ -1,8 +1,9 @@
+import axios from 'axios'
 import { Calendar, Ticket, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import React, { useEffect, useState } from 'react'
 
-const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, bookingConfirmed }) => {
+const ShowroomExperience = ({ setShowroomModalOpen, setShowroomExperience, showroomExperience, setToastMessage, bookingConfirmed }) => {
 
     const formStyle = {
         label: "text-xs font-bold text-black/60 tracking-widest font-sans",
@@ -12,48 +13,79 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
         name: "",
         phone: "",
         email: "",
-        date: "",
-        time: "",
+        date: new Date().toISOString().split("T")[0],
+        time: "12:00",
         sector: "residential"
     });
-
-    const [bookingTicket, setBookingTicket] = useState(null);
-
-
-    // const [showroomBookings, setShowroomBookings] = useState(() => {
-    //     const saved = localStorage.getItem("spe_showroom_bookings");
-    //     if (saved)
-    //         return JSON.parse(saved);
-    //     return 0
-    // });
-    // console.log(showroomBookings)
-    // useEffect(() => {
-    //     localStorage.setItem("spe_showroom_bookings", JSON.stringify(showroomBookings));
-    // }, [showroomBookings]);
-
-    const handleBookShowroom = (e) => {
+    const handleBookShowroom = async (e) => {
         e.preventDefault();
-        if (!bookingForm.name || !bookingForm.phone || !bookingForm.date)
-            return;
-        const randomTicketNo = `SPE-BK-${Math.floor(100000 + Math.random() * 900000)}`;
-        const newBooking = {
-            id: randomTicketNo,
-            name: bookingForm.name,
-            phone: bookingForm.phone,
-            email: bookingForm.email || "No Email Provided",
-            date: bookingForm.date,
-            time: bookingForm.time || "12:00",
-            sector: bookingForm.sector || "residential",
-            status: "Confirmed"
-        };
-        // setShowroomBookings(prev => [newBooking, ...prev]);
-        setBookingTicket({
-            ticketNo: randomTicketNo,
-            ...bookingForm
-        });
 
-        // setBookingConfirmed(true);
+        // setBookingConfirmed(false);
+        setShowroomModalOpen(true);
+
+        if (
+            !bookingForm.name ||
+            !bookingForm.phone ||
+            !bookingForm.email ||
+            !bookingForm.date ||
+            !bookingForm.time ||
+            !bookingForm.sector
+        ) {
+            setToastMessage("Please fill out all required fields.");
+            return;
+        }
+
+        const fields = new URLSearchParams();
+
+        fields.append("name", bookingForm.name);
+        fields.append("phone", bookingForm.phone);
+        fields.append("email", bookingForm.email);
+        fields.append("date", bookingForm.date);
+        fields.append("time", bookingForm.time);
+        fields.append("sector", bookingForm.sector);
+
+        const formData = new FormData();
+
+        formData.append("action", "fluentform_submit");
+        formData.append("form_id", "4");
+        formData.append("data", fields.toString());
+
+        try {
+            const response = await axios.post(
+                "https://woston.in/wp-admin/admin-ajax.php",
+                formData
+            );
+
+            if (response.data?.success) {
+                setToastMessage("Appointment request submitted successfully!");
+
+                setShowroomExperience(bookingForm)
+                // setBookingForm({
+                //     name: "",
+                //     phone: "",
+                //     email: "",
+                //     date: "",
+                //     time: "",
+                //     sector: "residential",
+                // });
+            } else {
+                setToastMessage(
+                    response.data?.data?.message || response.data?.data?.message ||
+                    "Submission failed. Please check the form fields."
+                );
+            }
+        } catch (error) {
+            console.error("Forms submit error:", error);
+            console.log("Status:", error.response?.status);
+            console.log("Response:", error.response?.data);
+
+            setToastMessage(
+                error.response?.data?.data?.message ||
+                "Unable to submit the form."
+            );
+        }
     };
+
     return (
         <div className="product-quick-view fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
 
@@ -65,7 +97,6 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
             >
 
                 <div className="px-5 pt-3 pb-1 border-b border-slate-100 bg-slate-50 flex items-center justify-between">
-
                     <div>
                         <div className="flex items-center gap-2">
                             <span className="uppercase text-[9px] font-bold border border-sky-100  py-1 bg-sky-50 text-sky-700 rounded-lg">
@@ -102,7 +133,7 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
                 </div>
 
 
-                {!bookingConfirmed ? (
+                {showroomExperience ? (
                     <form onSubmit={handleBookShowroom} className="p-3 md:my-2 font-sans">
 
                         <div className="bg-sky-50 border border-primary rounded-lg px-3 py-1">
@@ -302,17 +333,7 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
                                 Verified Pass
                             </div>
 
-                            <div className="pr-28">
 
-                                <span className="text-[8px] text-slate-400 uppercase tracking-wider block font-bold">
-                                    Ticket Identifier
-                                </span>
-
-                                <span className="text-sm text-slate-900 font-extrabold tracking-wide block mt-1">
-                                    {bookingTicket?.ticketNo}
-                                </span>
-
-                            </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-slate-200 mt-4 pt-4">
                                 <div>
@@ -321,7 +342,7 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
                                     </span>
 
                                     <span className="text-xs text-slate-800 font-bold truncate block uppercase mt-1">
-                                        {bookingTicket?.name}
+                                        {showroomExperience?.name}
                                     </span>
                                 </div>
 
@@ -346,7 +367,7 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
                                     </span>
 
                                     <span className="text-xs text-slate-900 font-bold block mt-1">
-                                        {bookingTicket?.date}
+                                        {showroomExperience?.date}
                                     </span>
                                 </div>
 
@@ -357,7 +378,7 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
                                     </span>
 
                                     <span className="text-xs text-slate-900 font-bold block mt-1">
-                                        {bookingTicket?.time}
+                                        {showroomExperience?.time}
                                     </span>
                                 </div>
 

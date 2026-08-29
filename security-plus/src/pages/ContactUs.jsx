@@ -17,34 +17,170 @@ export default function ContactUs({ logoData, setToastMessage, setContactData })
   const [contactTicket, setContactTicket] = useState(false);
 
 
+  // const handleContactSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!contactForm.name || !contactForm.email || !contactForm.message || !contactForm.company || !contactForm.department || !contactForm.phone) {
+  //     setToastMessage("Please fill out all required fields.");
+  //     return;
+  //   }
+
+  //   const formData = new FormData();
+
+  //   formData.append("action", "wpforms_submit");
+  //   formData.append("wpforms[id]", "12503");
+
+  //   formData.append("wpforms[fields][1]", contactForm.name);
+  //   formData.append("wpforms[fields][2]", contactForm.phone);
+  //   formData.append("wpforms[fields][3]", contactForm.email);
+  //   formData.append("wpforms[fields][4]", contactForm.company);
+  //   formData.append("wpforms[fields][5]", contactForm.department);
+  //   formData.append("wpforms[fields][6]", contactForm.message);
+
+  //   try {
+  //     const response = await axios.post(
+  //       "https://woston.in/wp-admin/admin-ajax.php",
+  //       formData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       }
+  //     );
+
+  // if (response.data.success) {
+  //   setContactData(prev => [...prev, contactForm])
+  //   setContactTicket(true)
+  //   setContactForm({
+  //     name: "",
+  //     company: "",
+  //     email: "",
+  //     phone: "",
+  //     department: "sales",
+  //     message: ""
+  //   });
+  //   setToastMessage("Message sent Successfully!")
+  // } else {
+  //   setToastMessage("Submission failed check field IDs or CORS settings.")
+  // }
+
+  //   } catch (error) {
+  //     console.error("WPForms submit error:", error);
+  //   }
+  // };
+
+  // const handleContactSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   // if (
+  //   //   !contactForm.name ||
+  //   //   !contactForm.email ||
+  //   //   !contactForm.message ||
+  //   //   !contactForm.company ||
+  //   //   !contactForm.department ||
+  //   //   !contactForm.phone
+  //   // ) {
+  //   //   setToastMessage("Please fill out all required fields.");
+  //   //   return;
+  //   // }
+
+  //   const formData = new FormData();
+
+  //   formData.append("your-name", "Hii Name");
+  //   formData.append("your-phone", "189165165");
+  //   // formData.append("your-email", "asjdfhsk@ksdjb.dk");
+  //   formData.append("your-subject", "Subject");
+  //   // formData.append("your-department", "sales");
+  //   formData.append("your-message", "thi sis mesg");
+  //   // formData.append("your-name", contactForm.name);
+  //   // formData.append("your-phone", contactForm.phone);
+  //   // formData.append("your-email", contactForm.email);
+  //   // formData.append("your-company", contactForm.company);
+  //   // formData.append("your-department", contactForm.department);
+  //   // formData.append("your-message", contactForm.message);
+
+  //   try {
+  //     const response = await axios.post(
+  //       "https://woston.in/wp-json/contact-form-7/v1/contact-forms/018810f/feedback",
+  //       formData
+  //     );
+  //     // [contact - form - 7 id = "018810f" title = "Contact form"]
+  //     console.log("CF7 response:", response.data);
+
+  //     if (response.data.status === "mail_sent") {
+
+  //       // Add contact to your local contact list
+  //       setContactData((prev) => [
+  //         ...prev,
+  //         {
+  //           id: Date.now(),
+  //           ...contactForm,
+  //         },
+  //       ]);
+
+  //       setContactTicket(true);
+
+  //       setContactForm({
+  //         name: "",
+  //         company: "",
+  //         email: "",
+  //         phone: "",
+  //         department: "sales",
+  //         message: "",
+  //       });
+
+  //       setToastMessage("Message sent Successfully!");
+
+  //     } else {
+  //       setToastMessage(
+  //         response.data.message || "Submission failed."
+  //       );
+  //     }
+
+  //   } catch (error) {
+  //     console.error("CF7 submit error:", error);
+
+  //     setToastMessage(
+  //       error.response?.data?.message ||
+  //       "Unable to submit contact form."
+  //     );
+  //   }
+  // };
+
+
   const handleContactSubmit = async (e) => {
     e.preventDefault();
-    if (!contactForm.name || !contactForm.email || !contactForm.message || !contactForm.company || !contactForm.department || !contactForm.phone) {
+
+    if (
+      !contactForm.name ||
+      !contactForm.email ||
+      !contactForm.message ||
+      !contactForm.company ||
+      !contactForm.department ||
+      !contactForm.phone
+    ) {
       setToastMessage("Please fill out all required fields.");
       return;
     }
 
+    const fields = new URLSearchParams();
+
+    fields.append("name", contactForm.name);
+    fields.append("phone", contactForm.phone);
+    fields.append("email", contactForm.email);
+    fields.append("company", contactForm.company);
+    fields.append("department", contactForm.department);
+    fields.append("message", contactForm.message);
+
     const formData = new FormData();
 
-    formData.append("action", "wpforms_submit");
-    formData.append("wpforms[id]", "12503");
-
-    formData.append("wpforms[fields][1]", contactForm.name);
-    formData.append("wpforms[fields][2]", contactForm.phone);
-    formData.append("wpforms[fields][3]", contactForm.email);
-    formData.append("wpforms[fields][4]", contactForm.company);
-    formData.append("wpforms[fields][5]", contactForm.department);
-    formData.append("wpforms[fields][6]", contactForm.message);
+    formData.append("action", "fluentform_submit");
+    formData.append("form_id", "3");
+    formData.append("data", fields.toString());
 
     try {
       const response = await axios.post(
         "https://woston.in/wp-admin/admin-ajax.php",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        formData
       );
 
       if (response.data.success) {
@@ -58,17 +194,18 @@ export default function ContactUs({ logoData, setToastMessage, setContactData })
           department: "sales",
           message: ""
         });
-        setToastMessage("Message sent Successfully!")
+        setToastMessage(`Hii! ${contactForm.name}! Thank you for your message. We will get in touch with you shortly`)
       } else {
         setToastMessage("Submission failed check field IDs or CORS settings.")
       }
 
     } catch (error) {
-      console.error("WPForms submit error:", error);
+      console.log("ERROR:", error);
+      console.log("STATUS:", error.response?.status);
+      console.log("RESPONSE:", error.response?.data);
+      console.log("HEADERS:", error.response?.headers);
     }
   };
-
-
   return (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
     <section className="py-16 px-6 md:px-12 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto space-y-12">

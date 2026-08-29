@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import img from "../assets/slide/cctv-mall.png"
 
-const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
+const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
 
   const heroStats = [
     {
@@ -68,23 +68,85 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBooki
 
   const triggerShowroomModal = () => {
     setBookingConfirmed(false);
-    // setBookingForm({ name: "", phone: "", email: "", date: "", time: "", sector: "residential" });
+    // setBookingForm({ name: "", phone: "", email: "", date: "", time: "", sector: "residential" } [fluentform id="4"]);
     setShowroomModalOpen(true);
   };
 
 
+  const [showroomExp, SetShowroomExp] = useState(null)
+  const handleshowroomExperienceSubmit = async (e) => {
+    e.preventDefault();
+
+    setBookingConfirmed(false);
+    setShowroomModalOpen(true);
+
+    if (
+      !showroomExp.name ||
+      !showroomExp.phone ||
+      !showroomExp.email ||
+      !showroomExp.date ||
+      !showroomExp.time ||
+      !showroomExp.sector
+    ) {
+      setToastMessage("Please fill out all required fields.");
+      return;
+    }
+
+    const fields = new URLSearchParams();
+
+    fields.append("name", showroomExp.name);
+    fields.append("phone", showroomExp.phone);
+    fields.append("email", showroomExp.email);
+    fields.append("date", showroomExp.date);
+    fields.append("time", showroomExp.time);
+    fields.append("sector", showroomExp.sector);
+
+    const formData = new FormData();
+
+    formData.append("action", "fluentform_submit");
+    formData.append("form_id", "4");
+    formData.append("data", fields.toString());
+
+    try {
+      const response = await axios.post(
+        "https://woston.in/wp-admin/admin-ajax.php",
+        formData
+      );
+
+      console.log("form data ",)
+      console.log("Forms response:", response.data);
+
+      if (response.data?.success) {
+        setToastMessage("Appointment request submitted successfully!");
+        setContactForm({
+          name: "",
+          phone: "",
+          email: "",
+          date: "",
+          time: "",
+          sector: "residential",
+        });
+      } else {
+        console.error("Fluent Forms error:", response.data);
+
+        setToastMessage(
+          response.data?.data?.message ||
+          "Submission failed. Please check the form fields."
+        );
+      }
+    } catch (error) {
+      console.error("Forms submit error:", error);
+      console.log("Status:", error.response?.status);
+      console.log("Response:", error.response?.data);
+
+      setToastMessage(
+        error.response?.data?.data?.message ||
+        "Unable to submit the form."
+      );
+    }
+  };
   return (
     <section className="relative min-h-[92vh] flex flex-col justify-between pt-28 pb-16 overflow-hidden border-b border-slate-900 bg-[#070913]">
-      <div className="absolute inset-0 z-0 select-none overflow-hidden">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-[0.12] object-center scale-105 pointer-events-none" poster={cctvHeroBg}>
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-security-cameras-in-a-control-room-41712-large.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-linear-to-b from-[#070913]/98 via-[#070913]/85 to-[#070913]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(2,132,199,0.1)_0%,transparent_70%)]"></div>
-
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(2,132,199,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(2,132,199,0.01)_1px,transparent_1px)] bg-size-[3rem_3rem]"></div>
-      </div>
-
       <div className="relative z-20 container mx-auto px-6 max-w-7xl flex-1 flex flex-col justify-center">
         <div className="relative min-h-115 md:min-h-105 lg:min-h-110 flex items-center">
           <AnimatePresence mode="wait">
