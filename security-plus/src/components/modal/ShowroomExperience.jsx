@@ -1,8 +1,9 @@
+import axios from 'axios'
 import { Calendar, Ticket, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import React, { useEffect, useState } from 'react'
 
-const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, bookingConfirmed }) => {
+const ShowroomExperience = ({ setShowroomModalOpen, setShowroomExperience, showroomExperience, setToastMessage, bookingConfirmed }) => {
 
     const formStyle = {
         label: "text-xs font-bold text-black/60 tracking-widest font-sans",
@@ -12,114 +13,132 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
         name: "",
         phone: "",
         email: "",
-        date: "",
-        time: "",
+        date: new Date().toISOString().split("T")[0],
+        time: "12:00",
         sector: "residential"
     });
-
-    const [bookingTicket, setBookingTicket] = useState(null);
-
-
-    // const [showroomBookings, setShowroomBookings] = useState(() => {
-    //     const saved = localStorage.getItem("spe_showroom_bookings");
-    //     if (saved)
-    //         return JSON.parse(saved);
-    //     return 0
-    // });
-    // console.log(showroomBookings)
-    // useEffect(() => {
-    //     localStorage.setItem("spe_showroom_bookings", JSON.stringify(showroomBookings));
-    // }, [showroomBookings]);
-
-    const handleBookShowroom = (e) => {
+    const handleBookShowroom = async (e) => {
         e.preventDefault();
-        if (!bookingForm.name || !bookingForm.phone || !bookingForm.date)
+
+        // setBookingConfirmed(false);
+        setShowroomModalOpen(true);
+
+        if (
+            !bookingForm.name ||
+            !bookingForm.phone ||
+            !bookingForm.email ||
+            !bookingForm.date ||
+            !bookingForm.time ||
+            !bookingForm.sector
+        ) {
+            setToastMessage("Please fill out all required fields.");
             return;
-        const randomTicketNo = `SPE-BK-${Math.floor(100000 + Math.random() * 900000)}`;
-        const newBooking = {
-            id: randomTicketNo,
-            name: bookingForm.name,
-            phone: bookingForm.phone,
-            email: bookingForm.email || "No Email Provided",
-            date: bookingForm.date,
-            time: bookingForm.time || "12:00",
-            sector: bookingForm.sector || "residential",
-            status: "Confirmed"
-        };
-        // setShowroomBookings(prev => [newBooking, ...prev]);
-        setBookingTicket({
-            ticketNo: randomTicketNo,
-            ...bookingForm
-        });
+        }
 
-        // setBookingConfirmed(true);
+        const fields = new URLSearchParams();
+
+        fields.append("name", bookingForm.name);
+        fields.append("phone", bookingForm.phone);
+        fields.append("email", bookingForm.email);
+        fields.append("date", bookingForm.date);
+        fields.append("time", bookingForm.time);
+        fields.append("sector", bookingForm.sector);
+
+        const formData = new FormData();
+
+        formData.append("action", "fluentform_submit");
+        formData.append("form_id", "4");
+        formData.append("data", fields.toString());
+
+        try {
+            const response = await axios.post(
+                "https://woston.in/wp-admin/admin-ajax.php",
+                formData
+            );
+
+            if (response.data?.success) {
+                setToastMessage("Appointment request submitted successfully!");
+
+                setShowroomExperience(bookingForm)
+                // setBookingForm({
+                //     name: "",
+                //     phone: "",
+                //     email: "",
+                //     date: "",
+                //     time: "",
+                //     sector: "residential",
+                // });
+            } else {
+                setToastMessage(
+                    response.data?.data?.message || response.data?.data?.message ||
+                    "Submission failed. Please check the form fields."
+                );
+            }
+        } catch (error) {
+            console.error("Forms submit error:", error);
+            console.log("Status:", error.response?.status);
+            console.log("Response:", error.response?.data);
+
+            setToastMessage(
+                error.response?.data?.data?.message ||
+                "Unable to submit the form."
+            );
+        }
     };
+
     return (
-        <div className="product-quick-view fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-[2px] p-4">
             <motion.div
-                initial={{ scale: 0.95, opacity: 0, y: 10 }}
+                initial={{ scale: 0.97, opacity: 0, y: 10 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.95, opacity: 0, y: 10 }}
-                className="bg-white border border-primary w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl relative text-slate-800"
+                exit={{ scale: 0.97, opacity: 0, y: 10 }}
+                className="relative w-full max-w-lg rounded-xl overflow-hidden shadow-xl bg-gradient-to-br from-white via-slate-50 to-neutral-100 border border-neutral-300"
             >
-
-                <div className="px-5 pt-3 pb-1 border-b border-slate-100 bg-slate-50 flex items-center justify-between">
-
+                <div className="px-6 pt-5 pb-3 border-b border-neutral-200 bg-gradient-to-r from-primary/5 via-white to-indigo-50 flex items-center justify-between">
                     <div>
-                        <div className="flex items-center gap-2">
-                            <span className="uppercase text-[9px] font-bold border border-sky-100  py-1 bg-sky-50 text-sky-700 rounded-lg">
+                        <div className="flex items-center gap-2 mb-1">
+                            <span className="uppercase text-[10px] font-semibold border border-primary/20 py-1 px-2 bg-primary/10 text-primary rounded-lg tracking-wide">
                                 Showroom
                             </span>
-
                             {!bookingConfirmed && (
-                                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                                <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">
                                     Private Experience
                                 </span>
                             )}
                         </div>
-
-                        <h3 className="text-lg font-extrabold text-slate-900 uppercase tracking-tight leading-6 m-0">
+                        <h3 className="text-xl font-bold text-primary uppercase leading-tight">
                             {bookingConfirmed
                                 ? "Experience Slot Confirmed"
                                 : "Book Showroom Experience"
                             }
                         </h3>
-
-                        <p className="text-[10px] text-slate-400 uppercase tracking-wider font-mono mt-1">
+                        <p className="text-[11px] text-neutral-400 uppercase tracking-wide font-sans mt-1">
                             Nagpur Headquarters • Security Plus Electronics
                         </p>
                     </div>
-
                     <button
                         onClick={() => setShowroomModalOpen(false)}
-                        className="text-slate-400 hover:text-slate-600 bg-white hover:bg-slate-100 p-1.5 rounded-full transition-colors cursor-pointer border border-slate-100"
+                        className="text-neutral-400 hover:text-red-500 bg-white hover:bg-red-100 p-2 rounded-full transition-colors border border-neutral-100 shadow-sm"
                         title="Close Showroom Booking"
                     >
                         <X className="h-4 w-4" />
                     </button>
-
                 </div>
 
 
-                {!bookingConfirmed ? (
-                    <form onSubmit={handleBookShowroom} className="p-3 md:my-2 font-sans">
-
-                        <div className="bg-sky-50 border border-primary rounded-lg px-3 py-1">
-                            <p className="text-xs leading-relaxed text-slate-600">
-                                Request a private demonstration of advanced security
-                                technologies including 4K IP smart arrays, biometric
-                                turnstiles, thermal fire sensors, and off-grid telemetry
-                                at our Nagpur HQ.
+                {showroomExperience ? (
+                    <form onSubmit={handleBookShowroom} className="p-6 md:py-5 font-sans">
+                        <div className="bg-primary/5 border border-primary/30 rounded-md px-4 py-2 mb-4">
+                            <p className="text-sm font-medium leading-relaxed text-neutral-700">
+                                Schedule your private demo with advanced surveillance, biometric,
+                                and fire safety systems at our Nagpur HQ.
                             </p>
                         </div>
-
-                        <div className="p-2 space-y-4">
-                            <div className="space-y-1.5">
+                        <div className="space-y-5">
+                            <div className="space-y-2">
                                 <label className={formStyle.label}>
-                                    Your Full Name
+                                    Your Full Name <span className="text-primary">*</span>
                                 </label>
-
                                 <input
                                     type="text"
                                     required
@@ -134,14 +153,11 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
                                     className={formStyle.input}
                                 />
                             </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                                <div className="space-y-1.5">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div className="space-y-2">
                                     <label className={formStyle.label}>
-                                        Mobile Number
+                                        Mobile Number <span className="text-primary">*</span>
                                     </label>
-
                                     <input
                                         type="tel"
                                         required
@@ -156,13 +172,10 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
                                         className={formStyle.input}
                                     />
                                 </div>
-
-
-                                <div className="space-y-1.5">
+                                <div className="space-y-2">
                                     <label className={formStyle.label}>
                                         Corporate Email
                                     </label>
-
                                     <input
                                         type="email"
                                         placeholder="e.g. name@company.com"
@@ -176,17 +189,10 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
                                         className={formStyle.input}
                                     />
                                 </div>
-
                             </div>
-
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                                <div className="space-y-1.5">
-                                    <label className={formStyle.label}>
-                                        Preferred Date
-                                    </label>
-
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div className="space-y-2">
+                                    <label className={formStyle.label}>Preferred Date <span className="text-primary">*</span></label>
                                     <input
                                         type="date"
                                         required
@@ -200,13 +206,8 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
                                         className={formStyle.input}
                                     />
                                 </div>
-
-
-                                <div className="space-y-1.5">
-                                    <label className={formStyle.label}>
-                                        Preferred Time Slot
-                                    </label>
-
+                                <div className="space-y-2">
+                                    <label className={formStyle.label}>Preferred Time Slot <span className="text-primary">*</span></label>
                                     <input
                                         type="time"
                                         required
@@ -220,14 +221,9 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
                                         className={formStyle.input}
                                     />
                                 </div>
-
                             </div>
-
-                            <div className="space-y-1.5">
-                                <label className={formStyle.label}>
-                                    Primary Protection Field
-                                </label>
-
+                            <div className="space-y-2">
+                                <label className={formStyle.label}>Primary Protection Field</label>
                                 <select
                                     value={bookingForm.sector}
                                     onChange={(e) =>
@@ -241,145 +237,79 @@ const ShowroomExperience = ({ setShowroomModalOpen, setBookingConfirmed, booking
                                     <option value="residential">
                                         Residential Home CCTV & Automation
                                     </option>
-
                                     <option value="commercial">
                                         Commercial Space Attendance & Security
                                     </option>
-
                                     <option value="healthcare">
                                         Healthcare Wards Monitoring
                                     </option>
-
                                     <option value="banking">
                                         Financial Institution Redundant Vault Grids
                                     </option>
-
                                     <option value="industrial">
                                         Heavy Machinery PPE & Intrusion Systems
                                     </option>
                                 </select>
                             </div>
-
-
-                            <div className="pt-1">
-
+                            <div className="pt-2">
                                 <button
                                     type="submit"
-                                    className="w-full bg-primary hover:bg-primary text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-sky-100 hover:scale-[1.005]"
+                                    className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg text-xs font-bold uppercase tracking-wide transition-all duration-200 flex items-center justify-center gap-2 shadow hover:shadow-lg"
                                 >
                                     <Ticket className="h-4 w-4" />
                                     Book Security Slot
                                 </button>
-
                             </div>
                         </div>
-
                     </form>
-
                 ) : (
-                    <div className="p-5 md:p-6 space-y-5 font-sans">
-
+                    <div className="p-6 space-y-7 font-sans">
                         <div className="text-center">
-
-                            <div className="w-14 h-14 bg-emerald-50 border border-emerald-100 rounded-full flex items-center justify-center mx-auto">
-                                <Ticket className="h-6 w-6 text-emerald-600" />
+                            <div className="w-16 h-16 bg-emerald-100 border border-emerald-300 rounded-full flex items-center justify-center mx-auto shadow-inner">
+                                <Ticket className="h-7 w-7 text-emerald-600" />
                             </div>
-
-                            <h4 className="text-base font-extrabold text-slate-900 uppercase tracking-tight mt-3">
+                            <h4 className="text-lg font-bold text-primary uppercase tracking-tighter mt-3">
                                 Reservation Verified
                             </h4>
-
-                            <p className="text-xs text-slate-500 leading-relaxed max-w-md mx-auto mt-1">
-                                Your showroom visit has been successfully scheduled.
-                                Please present the reservation details below when you arrive.
+                            <p className="text-[13px] text-neutral-500 leading-relaxed max-w-md mx-auto mt-1">
+                                Your showroom visit is scheduled. Please present the reservation details below at our headquarters.
                             </p>
-
                         </div>
-
-                        <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 relative">
-
-                            <div className="absolute top-4 right-4 text-[8px] border border-emerald-200 bg-emerald-50 text-emerald-600 px-2 py-1 rounded-md uppercase tracking-widest font-bold">
+                        <div className="bg-white border border-neutral-200 rounded-lg p-5 relative">
+                            <div className="absolute top-3 right-4 text-[10px] border border-green-300 bg-green-50 text-green-700 px-3 py-1 rounded uppercase tracking-widest font-bold shadow-sm">
                                 Verified Pass
                             </div>
-
-                            <div className="pr-28">
-
-                                <span className="text-[8px] text-slate-400 uppercase tracking-wider block font-bold">
-                                    Ticket Identifier
-                                </span>
-
-                                <span className="text-sm text-slate-900 font-extrabold tracking-wide block mt-1">
-                                    {bookingTicket?.ticketNo}
-                                </span>
-
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-neutral-200 mt-3 pt-4">
+                                <div>
+                                    <span className="text-[9px] text-neutral-400 uppercase tracking-wide block font-semibold">Scheduled Visitor</span>
+                                    <span className="text-base text-neutral-800 font-bold truncate block uppercase mt-1">{showroomExperience?.name}</span>
+                                </div>
+                                <div>
+                                    <span className="text-[9px] text-neutral-400 uppercase tracking-wide block font-semibold">Assigned Advisor</span>
+                                    <span className="text-base text-primary font-bold block uppercase mt-1">SPE Sentinel Node</span>
+                                </div>
                             </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-slate-200 mt-4 pt-4">
+                            <div className="grid grid-cols-2 gap-6 border-t border-neutral-100 mt-5 pt-4">
                                 <div>
-                                    <span className="text-[8px] text-slate-400 uppercase tracking-wider block font-bold">
-                                        Scheduled Visitor
-                                    </span>
-
-                                    <span className="text-xs text-slate-800 font-bold truncate block uppercase mt-1">
-                                        {bookingTicket?.name}
-                                    </span>
+                                    <span className="text-[9px] text-neutral-400 uppercase tracking-wide block font-semibold">Reservation Date</span>
+                                    <span className="text-sm text-neutral-900 font-bold block mt-1">{showroomExperience?.date}</span>
                                 </div>
-
-
                                 <div>
-                                    <span className="text-[8px] text-slate-400 uppercase tracking-wider block font-bold">
-                                        Assigned Advisor
-                                    </span>
-
-                                    <span className="text-xs text-primary font-bold block uppercase mt-1">
-                                        SPE Sentinel Node
-                                    </span>
+                                    <span className="text-[9px] text-neutral-400 uppercase tracking-wide block font-semibold">Reservation Time</span>
+                                    <span className="text-sm text-neutral-900 font-bold block mt-1">{showroomExperience?.time}</span>
                                 </div>
-
                             </div>
-
-                            <div className="grid grid-cols-2 gap-4 border-t border-slate-200 mt-4 pt-4">
-
-                                <div>
-                                    <span className="text-[8px] text-slate-400 uppercase tracking-wider block font-bold">
-                                        Reservation Date
-                                    </span>
-
-                                    <span className="text-xs text-slate-900 font-bold block mt-1">
-                                        {bookingTicket?.date}
-                                    </span>
-                                </div>
-
-
-                                <div>
-                                    <span className="text-[8px] text-slate-400 uppercase tracking-wider block font-bold">
-                                        Reservation Time
-                                    </span>
-
-                                    <span className="text-xs text-slate-900 font-bold block mt-1">
-                                        {bookingTicket?.time}
-                                    </span>
-                                </div>
-
-                            </div>
-
                         </div>
-
-                        <div className="flex justify-end pt-1">
-
+                        <div className="flex justify-end pt-2">
                             <button
                                 onClick={() => setShowroomModalOpen(false)}
-                                className="text-slate-700 hover:text-slate-900 bg-slate-50 hover:bg-slate-100 border border-slate-200 py-2.5 px-5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
+                                className="text-primary hover:text-white bg-transparent hover:bg-primary border border-primary py-2.5 px-6 rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-sm"
                             >
                                 Close & Exit
                             </button>
-
                         </div>
-
                     </div>
-
                 )}
-
             </motion.div>
         </div>
     )

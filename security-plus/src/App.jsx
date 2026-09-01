@@ -280,6 +280,14 @@ function App() {
   useEffect(() => {
     localStorage.setItem("spe_inquiry_list", JSON.stringify(inquiryList));
   }, [inquiryList]);
+
+  const [showroomExperience, setShowroomExperience] = useState(() => {
+    const saved = localStorage.getItem("spe_showroom_experience_list");
+    return saved ? JSON.parse(saved) : [];
+  });
+  useEffect(() => {
+    localStorage.setItem("spe_showroom_experience_list", JSON.stringify(inquiryList));
+  }, [inquiryList]);
   const [selectedProductForQuickView, setSelectedProductForQuickView] = useState(null);
   const [isInquiryDrawerOpen, setIsInquiryDrawerOpen] = useState(false);
   const [loadedImages, setLoadedImages] = useState({});
@@ -332,7 +340,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem("spe_logo_data", JSON.stringify(logoData));
   }, [logoData]);
-
   const [selectedBlog, setSelectedBlog] = useState(null);
   useEffect(() => {
     const handleEscape = (e) => {
@@ -351,7 +358,6 @@ function App() {
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
   }, [selectedBlog, showroomModalOpen, selectedProductForQuickView]);
-
   useEffect(() => {
     if (selectedProductForQuickView) {
       setSelectedProductForQuickView(null)
@@ -375,7 +381,7 @@ function App() {
       <main className={location.pathname === "/" ? "pt-0 bg-[#070913]" : "pt-20 bg-white"}>
         <Routes>
           <Route path="/" element={<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <Hero heroSlideIndex={heroSlideIndex} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} setBookingConfirmed={setBookingConfirmed} />
+            <Hero heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} setBookingConfirmed={setBookingConfirmed} />
 
             <BrandCarousel />
             <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} />
@@ -443,7 +449,7 @@ function App() {
       {/* Showroom Modal */}
       <AnimatePresence >
         {showroomModalOpen &&
-          <ShowroomExperience setShowroomModalOpen={setShowroomModalOpen} />
+          <ShowroomExperience setShowroomExperience={setShowroomExperience} showroomExperience={showroomExperience} setToastMessage={setToastMessage} setShowroomModalOpen={setShowroomModalOpen} />
         }
       </AnimatePresence >
 

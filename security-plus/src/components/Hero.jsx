@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import img from "../assets/slide/cctv-mall.png"
 
-const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
+const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
 
   const heroStats = [
     {
@@ -68,23 +68,12 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setBookingConfirmed, setBooki
 
   const triggerShowroomModal = () => {
     setBookingConfirmed(false);
-    // setBookingForm({ name: "", phone: "", email: "", date: "", time: "", sector: "residential" });
+    // setBookingForm({ name: "", phone: "", email: "", date: "", time: "", sector: "residential" } [fluentform id="4"]);
     setShowroomModalOpen(true);
   };
 
-
   return (
     <section className="relative min-h-[92vh] flex flex-col justify-between pt-28 pb-16 overflow-hidden border-b border-slate-900 bg-[#070913]">
-      <div className="absolute inset-0 z-0 select-none overflow-hidden">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-[0.12] object-center scale-105 pointer-events-none" poster={cctvHeroBg}>
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-security-cameras-in-a-control-room-41712-large.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-linear-to-b from-[#070913]/98 via-[#070913]/85 to-[#070913]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(2,132,199,0.1)_0%,transparent_70%)]"></div>
-
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(2,132,199,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(2,132,199,0.01)_1px,transparent_1px)] bg-size-[3rem_3rem]"></div>
-      </div>
-
       <div className="relative z-20 container mx-auto px-6 max-w-7xl flex-1 flex flex-col justify-center">
         <div className="relative min-h-115 md:min-h-105 lg:min-h-110 flex items-center">
           <AnimatePresence mode="wait">

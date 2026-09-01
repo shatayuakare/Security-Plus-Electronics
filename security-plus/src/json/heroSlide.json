@@ -12,7 +12,7 @@
     },
     {
         "id": 2,
-        "category": "<span class='font-sans font-bold text-emerald-300 tracking-wider uppercase'>IP SURVEILLANCE // ACTIVE INTUITION</span>",
+        "category": "<span class='font-sans font-bold text-emerald-300 tracking-wider uppercase'>IP SURVEILLANCE</span>",
         "title": "Smarter Security<br /><span class='text-emerald-400'>With AI Optics</span>",
         "description": "Next-generation 4K IP cameras featuring active human & vehicle detection, ultra-dark starlight color night vision, and instant remote notifications on any device.",
         "image": "ai-optics.png",
@@ -23,7 +23,7 @@
     },
     {
         "id": 3,
-        "category": "<span class='font-sans font-bold text-[9px] text-indigo-300 tracking-wider uppercase'>BIOMETRICS // ZERO TRUST SHIELD</span>",
+        "category": "<span class='font-sans font-bold text-[9px] text-indigo-300 tracking-wider uppercase'>BIOMETRICS</span>",
         "title": "Touchless Access<br /><span class='text-indigo-400'>Face attendance</span>",
         "description": "Highly secure enterprise access controls with lightning-fast face recognition, biometric time logging, and automated cloud sync for modern workforces.",
         "image": "bioface.png",
@@ -34,7 +34,7 @@
     },
     {
         "id": 4,
-        "category": "<span class='font-sans font-bold text-amber-300 tracking-wider uppercase'>NETWORK INFRA // SECURE CONNECTIVITY</span>",
+        "category": "<span class='font-sans font-bold text-amber-300 tracking-wider uppercase'>NETWORK INFRA</span>",
         "title": "High-Performance<br /><span class='text-amber-400'>Network bridges</span>",
         "description": "Enterprise networking designed for zero-dropout camera feeds. Long-range wireless link bridges up to 10km+, smart PoE switches, and robust outdoor routers.",
         "image": "network-bridge.png",
@@ -45,7 +45,7 @@
     },
     {
         "id": 5,
-        "category": "<span class='font-sans font-bold text-[9px] text-rose-300 tracking-wider uppercase'>VDP & SMART HOME // INTERCONNECTED RESIDENCE</span>",
+        "category": "<span class='font-sans font-bold text-[9px] text-rose-300 tracking-wider uppercase'>VDP & SMART HOME</span>",
         "title": "Smart <br /> Intercoms<br /><span class='text-rose-400'>& Digital Locks</span>",
         "description": "Premium high-definition video door phones coupled with biometric digital smart locks. Identify, communicate, and grant keyless secure access from anywhere in the world.",
         "image": "digital-lock.png",
@@ -56,7 +56,7 @@
     },
     {
         "id": 6,
-        "category": "<span class='font-sans font-bold text-cyan-300 tracking-wider uppercase'>POWER BACKUP // ZERO BLANK-OUT GUARANTEE</span>",
+        "category": "<span class='font-sans font-bold text-cyan-300 tracking-wider uppercase'>POWER BACKUP</span>",
         "title": " Continuous  Power<br /><span class='text-cyan-400'>& Pro Cables</span>",
         "description": "Ensure uninterrupted surveillance feeds even during major electrical failures. Industrial grade heavy duty 3+1 CCTV copper cabling paired with pure sine-wave UPS system configurations.",
         "image": "power-cable.png",
