@@ -204,7 +204,7 @@ export default function Careers({ careerApplications, setCareerApplications, set
                   <p className="text-slate-500 text-[10px] leading-relaxed mt-2 uppercase font-bold">
                     Our team will evaluate your resume/credentials and respond via email within 3 business days.
                   </p>
-                  <button type="button" onClick={() => setContactTicket(null)} className="mt-2 w-full py-2 bg-emerald-600 text-white text-[9px] tracking-widest uppercase font-mono rounded font-bold hover:bg-emerald-700 cursor-pointer">
+                  <button id='submitAnotherFormBtn' aria-label="Submit Another Form Button" type="button" onClick={() => setContactTicket(null)} className="mt-2 w-full py-2 bg-emerald-600 text-white text-[9px] tracking-widest uppercase font-mono rounded font-bold hover:bg-emerald-700 cursor-pointer">
                     SUBMIT ANOTHER FORM
                   </button>
                 </div>) : (<form onSubmit={handleApplicationSubmit} className="space-y-4">
@@ -245,7 +245,7 @@ export default function Careers({ careerApplications, setCareerApplications, set
                     <input type="url" name="candidateResume" placeholder="e.g. https://drive.google.com/resume" className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
                   </div>
 
-                  <button type="submit" className="w-full py-3 bg-primary hover:bg-sky-700 text-white font-sans font-bold text-[10px] tracking-widest uppercase rounded-xl transition-all cursor-pointer shadow-sm text-center">
+                  <button id='submitApplicationBtn' aria-label="Submit Application Button" type="submit" className="w-full py-3 bg-primary hover:bg-sky-700 text-white font-sans font-bold text-[10px] tracking-widest uppercase rounded-xl transition-all cursor-pointer shadow-sm text-center">
                     SUBMIT APPLICATION
                   </button>
                 </form>)}

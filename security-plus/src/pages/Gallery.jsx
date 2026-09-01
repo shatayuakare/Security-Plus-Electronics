@@ -7,7 +7,7 @@ export default function Gallery({ galleryItems }) {
 
 
   const [galleryFilter, setGalleryFilter] = useState("all");
-  const filteredGalleryItems = galleryItems.filter(item => {
+  const filteredGalleryItems = galleryItems?.filter((item) => {
     if (galleryFilter === "all" || !["showroom", "culture", "technical"].includes(galleryFilter)) {
       return true;
     }
@@ -31,7 +31,7 @@ export default function Gallery({ galleryItems }) {
           </div>
 
           <div className="flex flex-wrap justify-center gap-2 border-b border-slate-200 pb-6">
-            {["all", "showroom", "culture", "technical"].map((filter) => (<button key={filter} onClick={() => setGalleryFilter(filter)} className={`px-5 py-2.5 rounded-lg font-sans font-bold text-[10px] tracking-widest uppercase transition-all cursor-pointer ${galleryFilter === filter
+            {["all", "showroom", "culture", "technical"].map((filter) => (<button type='button' id='galleryFilterBtn' aria-label="Gallery Filter Button" key={filter} onClick={() => setGalleryFilter(filter)} className={`px-5 py-2.5 rounded-lg font-sans font-bold text-[10px] tracking-widest uppercase transition-all cursor-pointer ${galleryFilter === filter
               ? "bg-primary text-white border border-primary shadow-sm"
               : "bg-white text-slate-600 border border-slate-200 hover:border-slate-300"}`}>
               {filter === "all" ? "All Photos" : filter === "showroom" ? "Showroom Tour" : filter === "culture" ? "Company Culture" : "Technical Setup"}

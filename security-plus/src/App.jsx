@@ -1,47 +1,47 @@
 import "./index.css";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, lazy } from "react";
 import axios from "axios";
-import { wordpressCredentials } from "./main"
-import { SERVER } from "./utils/Constant";
 import { X, Sparkles, Eye, Twitter, Linkedin, Facebook, Share2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Route, Routes, useLocation } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import { SEOManager } from "./components/SEOManager";
-import logo from "./assets/images/logo.png";
+const logo = lazy(() => import("./assets/images/logo.png"))
 
-import BrandCarousel from "./components/BrandCarousel";
-import { Header } from "./components/Header";
-import { ProductCategories } from "./components/section/ProductCategories";
-import { VirtualShowroom } from "./components/VirtualShowroom";
+const BrandCarousel = lazy(() => import("./components/BrandCarousel"))
+const Header = lazy(() => import("./components/Header"))
+// const VirualShowroom = lazy(() => import("./components/VirtualShowroom"))
+const ProductCategories = lazy(() => import("./components/section/ProductCategories"))
 
 // Import pages
-import { ScrollableTestimonials, OurThought, OurBlogs, FAQSection, CorporateContactForm, OurLocation } from "./pages/Home";
-import AboutUs from "./pages/AboutUs";
-import ContactUs from "./pages/ContactUs";
-import Careers from "./pages/Careers";
-import Blogs from "./pages/Blogs";
-import Products from "./pages/Products";
-import TermsAndConditions from "./pages/TermAndCondition";
+import { ScrollableTestimonials, OurThought, OurBlogs, FAQSection, CorporateContactForm, OurLocation } from "./pages/Home"
+// const ScrollableTestimonials = lazy(() => import("./pages/Home"));
+// const OurBlogs = lazy(() => import("./pages/Home"));
+// const FAQSection = lazy(() => import("./pages/Home"));
+const AboutUs = lazy(() => import("./pages/AboutUs.jsx"));
+const ContactUs = lazy(() => import("./pages/ContactUs.jsx"));
+const Careers = lazy(() => import("./pages/Careers.jsx"));
+const Blogs = lazy(() => import("./pages/Blogs.jsx"));
+const Gallery = lazy(() => import("./pages/Gallery.jsx"));
+const TermsAndConditions = lazy(() => import("./pages/TermAndCondition.jsx"));
+const Products = lazy(() => import("./pages/Products.jsx"));
 
 // Import modular section page
-import Hero from "./components/Hero";
-import { Testimonials as TestimonialsPage } from "./components/Testimonials";
-import Gallery from "./pages/Gallery";
-import { AuthSection } from "./components/AuthSection";
-import Footer from "./components/Footer";
-import ReelSection from "./components/section/ReelSection";
-
-// iport madels quick view   
-import QuickProductView from "./components/modal/QuickProductView";
-import ShowroomExperience from "./components/modal/ShowroomExperience";
-import QuickBlogVIew from "./components/modal/QuickBlogVIew";
+// import Hero from "./components/Hero"; 
+// const AuthSection = lazy(() => import("./components/AuthSection.jsx"));
+const Hero = lazy(() => import("./components/Hero.jsx"));
+const { Testimonials: TestimonialsPage } = lazy(() => import("./components/Testimonials.jsx"));
+const Footer = lazy(() => import("./components/Footer.jsx"));
+const ReelSection = lazy(() => import("./components/section/ReelSection.jsx"));
+const QuickProductView = lazy(() => import("./components/modal/QuickProductView.jsx"));
+const ShowroomExperience = lazy(() => import("./components/modal/ShowroomExperience.jsx"));
+const QuickBlogVIew = lazy(() => import("./components/modal/QuickBlogVIew.jsx"));
 
 // JSON file to fetch data
 import TESTIMONIALS_DATA from "./json/testimonials.json"
 import PRODUCTS from "./json/wooProducts.json"
 import GALLERY_ITEMS from "./json/gallary.json"
-import { useAuth } from "./context/AuthContext";
+// const { useAuth } = lazy(() => import("./context/AuthContext"))
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
@@ -118,10 +118,10 @@ function App() {
   };
 
   const toggleWishlist = (productId) => {
-    if (!customerUser) {
-      setToastMessage("Please log in to add items to your wishlist.");
-      return;
-    }
+    // if (!customerUser) {
+    //   setToastMessage("Please log in to add items to your wishlist.");
+    //   return;
+    // }
     const index = wishlist.indexOf(productId);
     let newWishlist;
     if (index > -1) {
@@ -134,6 +134,7 @@ function App() {
     }
     saveWishlist(newWishlist);
   };
+
 
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
   useEffect(() => {
@@ -259,8 +260,11 @@ function App() {
         setProductCategories(Array.from(parentCategoryMap.values()))
       }).catch(e => console.error(e))
     }
-    fetchProducts();
-  }, [currentPage]);
+    if (location.pathname === "/products") {
+      fetchProducts();
+    }
+  }, [currentPage, location.pathname]);
+
 
   const [contactData, setContactData] = useState(() => {
     const saved = localStorage.getItem("spe_contact_data");
@@ -478,8 +482,8 @@ function App() {
           <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setProductCategories={setProductCategories} productCategories={productCategories} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
           <Route path="/testimonial" element={<TestimonialsPage testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
           <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
-          <Route path="/login" element={<AuthSection isLogin={true} registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} />
-          <Route path="/register" element={<AuthSection isLogin={false} registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} />
+          {/* <Route path="/login" element={<AuthSection isLogin={true} registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} /> */}
+          {/* <Route path="/register" element={<AuthSection isLogin={false} registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} /> */}
         </Routes>
       </main>
 
@@ -497,7 +501,7 @@ function App() {
             <span className="font-mono font-bold text-[9px] tracking-widest text-sky-400 uppercase block">SYSTEM SENTINEL GUARD</span>
             <p className="text-[11px] text-slate-300 leading-normal mt-0.5 wrap-break-wordbreak">{toastMessage}</p>
           </div>
-          <button onClick={() => setToastMessage(null)} className="text-slate-400 hover:text-white shrink-0 cursor-pointer p-0.5">
+          <button id="closeBtn" aria-label="Close Button" onClick={() => setToastMessage(null)} className="text-slate-400 hover:text-white shrink-0 cursor-pointer p-0.5">
             <X className="h-3.5 w-3.5" />
           </button>
         </motion.div>)}

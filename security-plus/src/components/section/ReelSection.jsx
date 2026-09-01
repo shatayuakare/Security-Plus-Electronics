@@ -108,7 +108,7 @@ const ReelCard = ({
                         <Eye className="h-3.5 w-3.5 text-sky-400" />
                         <span>{reel.views} views</span>
                     </div>
-                    <button
+                    <button type='button' id='likeBtn' aria-label="Like Button"
                         className="pointer-events-auto flex items-center gap-1 hover:text-rose-400 transition-colors cursor-pointer"
                         onClick={(e) => {
                             e.stopPropagation();
@@ -121,7 +121,7 @@ const ReelCard = ({
                 </div>
 
                 <div className="flex justify-start items-center pt-2 border-t border-white/10">
-                    <button
+                    <button id='playBtn' aria-label="Play Button"
                         onClick={togglePlay}
                         className="pointer-events-auto w-8 h-8 rounded-full bg-primary hover:bg-primary text-white flex items-center justify-center transition-all cursor-pointer shadow"
                     >
@@ -224,7 +224,7 @@ const ReelSection = ({ fadeInUp }) => {
 
                 <div className="relative group/carousel">
                     {startIndex > 0 && (
-                        <button
+                        <button type='button' id='prevBtn' aria-label="Previous Button"
                             onClick={scrollPrev}
                             className="absolute -left-5 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md hover:bg-slate-50 flex items-center justify-center text-slate-600 cursor-pointer transition-all"
                         >
@@ -233,7 +233,7 @@ const ReelSection = ({ fadeInUp }) => {
                     )}
 
                     {startIndex < maxStartIndex && (
-                        <button
+                        <button type='button' id='nextBtn' aria-label="Next Button"
                             onClick={scrollNext}
                             className="absolute -right-5 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md hover:bg-slate-50 flex items-center justify-center text-slate-600 cursor-pointer transition-all"
                         >

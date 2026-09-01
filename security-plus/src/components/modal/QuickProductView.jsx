@@ -110,14 +110,14 @@ const QuickProductView = ({ selectedProductForQuickView, setSelectedProductForQu
                         </div>
 
                         <div className="flex-1 flex items-center my-3 aspect-square justify-center">
-                            <img src={selectedProductForQuickView?.images[currentImage].src} alt={selectedProductForQuickView.images[currentImage].alt} className="object-cover shadow-lg rounded-xl transition-transform duration-500 aspect-square w-full" />
+                            <img src={selectedProductForQuickView?.images[currentImage].src} alt={selectedProductForQuickView.images[currentImage].alt} className="object-cover shadow-lg rounded-xl transition-transform duration-500 aspect-square w-full" lang="en" loading="lazy" decoding="async" fetchPriority="medium" />
 
                         </div>
 
                         <div className="flex gap-2 overflow-x-scroll select-none">
                             {
                                 selectedProductForQuickView.images?.map((img, idx) => (
-                                    <img key={idx} className={`h-15 aspect-square rounded-lg border cursor-pointer ${currentImage === idx ? "border-primary" : "border-sky-50"}`} onClick={() => setCurrentImage(idx)} src={img?.src} alt={img?.alt} />
+                                    <img key={idx} className={`h-15 aspect-square rounded-lg border cursor-pointer ${currentImage === idx ? "border-primary" : "border-sky-50"}`} onClick={() => setCurrentImage(idx)} src={img?.src} alt={img?.alt} lang="en" loading="lazy" decoding="async" fetchPriority="medium" />
                                 ))
                             }
                         </div>

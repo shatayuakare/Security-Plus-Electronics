@@ -41,10 +41,10 @@ export const ScrollableTestimonials = () => {
         <div className="flex items-center gap-4">
 
           <div className="flex gap-3">
-            <button onClick={prevSlide} className="p-3 border border-slate-200 text-slate-600 hover:text-primary hover:border-primary transition-all rounded-full bg-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Previous Testimonial">
+            <button type='button' id='prevBtn' aria-label="Previous Button" onClick={prevSlide} className="p-3 border border-slate-200 text-slate-600 hover:text-primary hover:border-primary transition-all rounded-full bg-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Previous Testimonial">
               <ArrowLeft className="h-4 w-4" />
             </button>
-            <button onClick={nextSlide} className="p-3 border border-slate-200 text-slate-600 hover:text-primary hover:border-primary transition-all rounded-full bg-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Next Testimonial">
+            <button type='button' id='nextBtn' aria-label="Next Button" onClick={nextSlide} className="p-3 border border-slate-200 text-slate-600 hover:text-primary hover:border-primary transition-all rounded-full bg-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Next Testimonial">
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>
@@ -90,7 +90,7 @@ export const ScrollableTestimonials = () => {
       </div>
 
       <div className="flex justify-center gap-2 mt-8">
-        {TESTIMONIALS_DATA.map((_, idx) => (<button key={idx} onClick={() => setScrollIndex(idx)} className={`h-2 transition-all rounded-full cursor-pointer ${idx === scrollIndex ? "w-6 bg-primary" : "w-2 bg-slate-300"}`} aria-label={`Go to slide ${idx + 1}`} />))}
+        {TESTIMONIALS_DATA.map((_, idx) => (<button type='button' id='testimonialBtn' aria-label="Testimonial Button" key={idx} onClick={() => setScrollIndex(idx)} className={`h-2 transition-all rounded-full cursor-pointer ${idx === scrollIndex ? "w-6 bg-primary" : "w-2 bg-slate-300"}`} aria-label={`Go to slide ${idx + 1}`} />))}
       </div>
     </div>
   </section>);
@@ -214,7 +214,7 @@ export const OurBlogs = ({ setSelectedBlog }) => {
               <div className="text-xs font-bold text-slate-900">{blog.author}</div>
               <div className="text-[10px] text-slate-400">{blog.authorRole}</div>
             </div>
-            <button onClick={() => setSelectedBlog(blog)} className="text-xs btn btn-link font-mono font-bold text-primary hover:text-sky-700 flex items-center gap-1 cursor-pointer">
+            <button type='button' id='readBtn' aria-label="Read Button" onClick={() => setSelectedBlog(blog)} className="text-xs btn btn-link font-mono font-bold text-primary hover:text-sky-700 flex items-center gap-1 cursor-pointer">
               <span>READ</span>
               <ArrowRight className="h-3 w-3" />
             </button>
@@ -313,7 +313,7 @@ export const Careers = () => {
                 {job.desc}
               </p>
 
-              <button onClick={() => {
+              <button type='button' id='applyBtn' aria-label="Apply Button" onClick={() => {
                 setSelectedJob(job.title);
                 document.getElementById("career-application-box")?.scrollIntoView({ behavior: "smooth" });
               }} className="px-4 py-2 bg-primary hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-wider uppercase rounded-lg transition-colors cursor-pointer">
@@ -372,11 +372,11 @@ export const Careers = () => {
                   <textarea rows={3} placeholder="Briefly describe your experience with Hikvision, Dahua, networking, or cameras..." value={careerForm.message} onChange={(e) => setCareerForm({ ...careerForm, message: e.target.value })} className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-primary text-slate-900" />
                 </div>
                 <div className="flex gap-2">
-                  <button type="submit" className="flex-1 py-2.5 bg-primary hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-wider uppercase rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer">
+                  <button type='button' id='submitBtn' aria-label="Submit Button" className="flex-1 py-2.5 bg-primary hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-wider uppercase rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer">
                     <Send className="h-3 w-3" />
                     <span>SUBMIT CREDENTIALS</span>
                   </button>
-                  <button type="button" onClick={() => setSelectedJob(null)} className="px-4 py-2.5 border border-slate-200 hover:bg-slate-100 text-slate-600 font-mono text-[10px] font-bold uppercase rounded-lg cursor-pointer">
+                  <button id='cancelBtn' aria-label="Cancel Button" type='button' id='cancelBtn' aria-label="Cancel Button" onClick={() => setSelectedJob(null)} className="px-4 py-2.5 border border-slate-200 hover:bg-slate-100 text-slate-600 font-mono text-[10px] font-bold uppercase rounded-lg cursor-pointer">
                     CANCEL
                   </button>
                 </div>
@@ -430,7 +430,7 @@ export const FAQSection = () => {
 
       <div className="space-y-4">
         {faqs.map((faq, idx) => (<div key={idx} className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-sky-400 transition-colors duration-200">
-          <button onClick={() => setOpenIndex(openIndex === idx ? null : idx)} className="w-full flex justify-between items-center p-6 text-left font-sans font-semibold text-slate-800 text-sm md:text-base focus:outline-none cursor-pointer">
+          <button type='button' id='faqBtn' aria-label="FAQ Button" onClick={() => setOpenIndex(openIndex === idx ? null : idx)} className="w-full flex justify-between items-center p-6 text-left font-sans font-semibold text-slate-800 text-sm md:text-base focus:outline-none cursor-pointer">
             <span>{faq.q}</span>
             <ChevronDown className={`h-5 w-5 text-slate-400 shrink-0 transition-transform duration-300 ${openIndex === idx ? "rotate-180 text-primary" : ""}`} />
           </button>
@@ -598,7 +598,7 @@ export const CorporateContactForm = () => {
               Project Segment / Sector Scope *
             </label>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-              {["Corporate", "Residential", "Industrial", "Healthcare", "Banking"].map((sec) => (<button key={sec} type="button" onClick={() => setFormData({ ...formData, segment: sec })} className={`py-2 px-3 border text-[10px] font-bold font-mono tracking-wider uppercase transition-all rounded-lg cursor-pointer ${formData.segment === sec ? "border-primary bg-sky-50 text-sky-700 font-bold" : "border-slate-200 bg-white text-slate-600"}`}>
+              {["Corporate", "Residential", "Industrial", "Healthcare", "Banking"].map((sec) => (<button type='button' id='segmentBtn' aria-label="Segment Button" key={sec} type="button" onClick={() => setFormData({ ...formData, segment: sec })} className={`py-2 px-3 border text-[10px] font-bold font-mono tracking-wider uppercase transition-all rounded-lg cursor-pointer ${formData.segment === sec ? "border-primary bg-sky-50 text-sky-700 font-bold" : "border-slate-200 bg-white text-slate-600"}`}>
                 {sec}
               </button>))}
             </div>
@@ -611,7 +611,7 @@ export const CorporateContactForm = () => {
             <textarea required rows={4} placeholder="Tell us about your requirements (e.g. 16 full-color IP bullet cameras, 200m fiber cabling, PTZ tracking on main shipping yard, etc.)..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-primary transition-colors" />
           </div>
 
-          <button type="submit" className="w-full bg-primary hover:bg-sky-700 text-white font-mono font-bold text-xs tracking-widest uppercase py-4 rounded-xl border border-primary transition-all flex items-center justify-center gap-2.5 shadow-md cursor-pointer">
+          <button id='submitBtn' aria-label="Submit Button" type="submit" className="w-full bg-primary hover:bg-sky-700 text-white font-mono font-bold text-xs tracking-widest uppercase py-4 rounded-xl border border-primary transition-all flex items-center justify-center gap-2.5 shadow-md cursor-pointer">
             <Send className="h-4 w-4" />
             <span>SUBMIT CORPORATE INQUIRY</span>
           </button>
@@ -744,12 +744,12 @@ export const OurLocation = ({ contactData }) => {
             </div>
           </div>
 
-          <button onClick={() => {
+          <button type='button' id='bookBtn' aria-label="Book Button" onClick={() => {
             alert("This function is underprocess")
           }} className="w-full mt-8 py-3 bg-primary hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-widest uppercase rounded-xl transition-all cursor-pointer text-center">
             BOOK TECHNICAL APPOINTMENT
           </button>
-          {/* <button onClick={() => {
+          {/* <button type='button' id='bookBtn' aria-label="Book Button" onClick={() => {
             document.getElementById("contact-form-section")?.scrollIntoView({ behavior: "smooth" });
           }} className="w-full mt-8 py-3 bg-primary hover:bg-sky-700 text-white font-mono text-[10px] font-bold tracking-widest uppercase rounded-xl transition-all cursor-pointer text-center">
             BOOK TECHNICAL APPOINTMENT

@@ -7,7 +7,7 @@ const fadeInUp = {
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-100px" }
 };
-export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanStatus, setShowroomScanStatus, setToastMessage, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
+const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanStatus, setShowroomScanStatus, setToastMessage, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
   const triggerGuidedTour = () => {
     setBookingConfirmed(false);
     setBookingForm({ name: "", phone: "", email: "", date: "", time: "", sector: "residential" });
@@ -331,3 +331,5 @@ export const VirtualShowroom = ({ loadedImages, setLoadedImages, showroomScanSta
     </div>
   </section>);
 };
+
+export default VirtualShowroom
