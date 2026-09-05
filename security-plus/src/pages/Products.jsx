@@ -93,7 +93,6 @@ function ProductGridLoader() {
 
 export default function Products({ products, productCategories, setCurrentPage, setInquiryList, setProductCategories, currentPage, wishlist, toggleWishlist, setToastMessage, setSelectedProductForQuickView }) {
 
-  // const [filteredProducts, setFilteredProducts] = useState(products)
   const [productCategoryFilter, setProductCategoryFilter] = useState("all");
   const [productSortOption, setProductSortOption] = useState("default");
 
@@ -106,22 +105,6 @@ export default function Products({ products, productCategories, setCurrentPage, 
       product.categories?.some(cat => validCategoryIds.has(cat.id))
     );
   }
-
-  // useEffect(() => {
-  //   let list = productCategoryFilter === "all"
-  //     ? [...filteredProducts]
-  //     : filterByCategory(productCategoryFilter);
-
-  //   let sortedList = [...list];
-  //   if (!productSortOption || productSortOption === "asce") {
-  //     sortedList = sortedList.sort((a, b) => Number(a.prices?.price || 0) - Number(b.prices?.price || 0));
-  //   } else if (productSortOption === "desc") {
-  //     sortedList = sortedList.sort((a, b) => Number(b.prices?.price || 0) - Number(a.prices?.price || 0));
-  //   }
-  //   list = sortedList;
-
-  //   setFilteredProducts(list);
-  // }, [productSortOption, productCategoryFilter]);
 
   const filteredProducts = useMemo(() => {
     let list =
@@ -175,7 +158,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
     const formatted = new Intl.NumberFormat('en-IN', {
       style: 'currency',
       currency: 'INR',
-      maximumFractionDigits: 0 // Removes paisa (.00)
+      maximumFractionDigits: 0
     }).format(amount);
     return formatted
   }
@@ -218,7 +201,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
 
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4 mb-10 bg-white border border-slate-200/80 p-5 rounded-2xl shadow-sm">
             <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-              {[{ name: "All", slug: "all" }, ...productCategories].map((cat, idx) => (<button key={idx} onClick={() => setProductCategoryFilter(cat.slug)}
+              {[{ name: "All", slug: "all" }, ...productCategories].map((cat, idx) => (<button type='button' id='categoryFilterBtn' aria-label="Category Filter Button" key={idx} onClick={() => setProductCategoryFilter(cat.slug)}
                 className={`text-[10px] uppercase tracking-wider px-4.5 py-2.5 border transition-all rounded-full font-bold cursor-pointer ${productCategoryFilter === cat.slug
                   ? "bg-primary border-primary text-white shadow-sm"
                   : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"}`}>
@@ -259,7 +242,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
 
                       <div className="aspect-square bg-slate-100 border border-slate-100 rounded-xl mb-4 relative group-hover:border-sky-200 transition-colors overflow-hidden flex items-center justify-center">
 
-                        <img src={product?.images[0]?.src} alt={product.images[0]?.alt} className="object-cover w-full h-full absolute inset-0 transition-transform duration-500 group-hover:scale-110" />
+                        <img src={product?.images[0]?.src} alt={product.images[0]?.alt} className="object-cover w-full h-full absolute inset-0 transition-transform duration-500 group-hover:scale-110" lang="en" loading="lazy" decoding="async" fetchPriority="medium" />
 
                         <div className="absolute inset-0 bg-slate-950/15 pointer-events-none" />
 
@@ -275,7 +258,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
                           {product?.on_sale && "Sale"}
                         </span>
 
-                        <button id={`wishlist-toggle-${product.id}`} onClick={(e) => {
+                        <button type='button' id='wishlistToggleBtn' aria-label="Wishlist Toggle Button" id={`wishlist-toggle-${product.id}`} onClick={(e) => {
                           e.stopPropagation();
                           toggleWishlist(product?.id);
                         }} className="absolute top-2.5 right-2.5 z-20 p-2 bg-white/90 hover:bg-white backdrop-blur-md rounded-full border border-slate-100 shadow-sm transition-all duration-300 hover:scale-110 cursor-pointer" title={wishlist?.includes(product?.id) ? "Remove from wishlist" : "Save to wishlist"}>
@@ -285,7 +268,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
                         </button>
 
                         <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 backdrop-blur-[2px] z-10">
-                          <button id={`quick-view-btn-img-${product.id}`} onClick={(e) => {
+                          <button type='button' id='quickViewBtn' aria-label="Quick View Button" id={`quick-view-btn-img-${product.id}`} onClick={(e) => {
                             e.stopPropagation();
                             setSelectedProductForQuickView(product);
                           }} className="bg-white text-slate-900 hover:bg-primary hover:text-white px-4 py-2 text-xs font-bold rounded-lg transition-all shadow-md flex items-center gap-1.5 cursor-pointer transform translate-y-2 group-hover:translate-y-0 duration-300 z-20">
@@ -316,7 +299,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
                         }
                       </span>
                       <div className="flex gap-1.5">
-                        <button id={`quick-view-btn-footer-${product.id}`} onClick={(e) => {
+                        <button type='button' id='quickViewBtn' aria-label="Quick View Button" id={`quick-view-btn-footer-${product.id}`} onClick={(e) => {
                           e.stopPropagation();
                           setSelectedProductForQuickView(product);
                         }} className="bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-100/50 px-3 py-1.5 text-[9px] font-bold uppercase transition-all duration-300 rounded-xl flex items-center gap-1 cursor-pointer">
@@ -343,11 +326,11 @@ export default function Products({ products, productCategories, setCurrentPage, 
           </motion.div>
 
           <div className="flex gap-5 mt-5 justify-end ">
-            <button onClick={() => { window.scrollTo(0, 720); setCurrentPage(currentPage - 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm" disabled={currentPage == 1 && true}>
+            <button type='button' id='prevBtn' aria-label="Previous Button" onClick={() => { window.scrollTo(0, 720); setCurrentPage(currentPage - 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm" disabled={currentPage == 1 && true}>
               <ChevronLeft className="h-5 w-5 font-semibold" />
               <span>Prev</span>
             </button>
-            <button onClick={() => { window.scrollTo(0, 720); setCurrentPage(currentPage + 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm" disabled={filteredProducts.length < 12 && true}>
+            <button type='button' id='nextBtn' aria-label="Next Button" onClick={() => { window.scrollTo(0, 720); setCurrentPage(currentPage + 1) }} className="bg-transparent hover:bg-primary text-primary hover:text-white px-5 py-2 rounded-lg font-semibold text-xs uppercase border cursor-pointer disabled:cursor-default disabled:border-slate-400 disabled:bg-transparent disabled:text-slate-400 border-primary hover:border-primary transition-all duration-300 flex items-center gap-1 shadow-sm" disabled={filteredProducts.length < 12 && true}>
               <span>Next</span>
               <ChevronRight className="h-5 w-5" />
             </button>

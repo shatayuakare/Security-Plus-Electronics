@@ -117,6 +117,8 @@ const ShowroomExperience = ({ setShowroomModalOpen, setShowroomExperience, showr
                         </p>
                     </div>
                     <button
+                        id='closeBtn'
+                        aria-label="Close Button"
                         onClick={() => setShowroomModalOpen(false)}
                         className="text-neutral-400 hover:text-red-500 bg-white hover:bg-red-100 p-2 rounded-full transition-colors border border-neutral-100 shadow-sm"
                         title="Close Showroom Booking"
@@ -253,6 +255,8 @@ const ShowroomExperience = ({ setShowroomModalOpen, setShowroomExperience, showr
                             </div>
                             <div className="pt-2">
                                 <button
+                                    id='bookBtn'
+                                    aria-label="Book Button"
                                     type="submit"
                                     className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg text-xs font-bold uppercase tracking-wide transition-all duration-200 flex items-center justify-center gap-2 shadow hover:shadow-lg"
                                 >
@@ -301,7 +305,8 @@ const ShowroomExperience = ({ setShowroomModalOpen, setShowroomExperience, showr
                             </div>
                         </div>
                         <div className="flex justify-end pt-2">
-                            <button
+                            <button id='closeBtn'
+                                aria-label="Close Button"
                                 onClick={() => setShowroomModalOpen(false)}
                                 className="text-primary hover:text-white bg-transparent hover:bg-primary border border-primary py-2.5 px-6 rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-sm"
                             >

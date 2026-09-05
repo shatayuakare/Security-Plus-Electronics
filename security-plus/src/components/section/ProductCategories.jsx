@@ -28,7 +28,7 @@ const staggerItem = {
 
 
 
-export const ProductCategories = ({ loadedImages, setLoadedImages }) => {
+const ProductCategories = ({ loadedImages, setLoadedImages }) => {
 
   const [blogCategoryFilter, setBlogCategoryFilter] = useState("All");
 
@@ -113,3 +113,5 @@ export const ProductCategories = ({ loadedImages, setLoadedImages }) => {
     </div>
   </section>);
 };
+
+export default ProductCategories

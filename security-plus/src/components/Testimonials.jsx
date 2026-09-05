@@ -67,7 +67,7 @@ export function Testimonials({ testimonials, setTestimonials, setToastMessage })
         </motion.div>
 
         <motion.div {...fadeInUp} className="flex flex-wrap justify-center gap-2 mb-12 max-w-3xl mx-auto">
-          {["all", "residential", "commercial", "banking", "healthcare", "industrial"].map(cat => (<button key={cat} onClick={() => setTestimonialFilter(cat)} className={`text-[10px] px-4 py-2 border uppercase font-bold tracking-wider transition-all duration-300 rounded-full cursor-pointer ${testimonialFilter === cat ? "bg-primary text-white border-primary shadow-sm" : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"}`}>
+          {["all", "residential", "commercial", "banking", "healthcare", "industrial"].map(cat => (<button type='button' id='testimonialFilterBtn' aria-label="Testimonial Filter Button" key={cat} onClick={() => setTestimonialFilter(cat)} className={`text-[10px] px-4 py-2 border uppercase font-bold tracking-wider transition-all duration-300 rounded-full cursor-pointer ${testimonialFilter === cat ? "bg-primary text-white border-primary shadow-sm" : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"}`}>
             {cat}
           </button>))}
         </motion.div>
@@ -120,7 +120,7 @@ export function Testimonials({ testimonials, setTestimonials, setToastMessage })
             <CheckCircle2 className="h-8 w-8 text-emerald-600 mx-auto animate-bounce" />
             <span className="font-bold block uppercase tracking-wider">FEEDBACK COMPILED SUCCESSFULLY</span>
             <p className="text-emerald-600/90 leading-relaxed">Thank you for submitting! Your testimonial has been authorized and mounted instantly on our public reference ledger grid.</p>
-            <button type="button" onClick={() => setFeedbackSuccess(false)} className="mt-2 py-1.5 px-4 bg-emerald-600 text-white text-[9px] tracking-widest uppercase font-mono rounded font-bold hover:bg-emerald-700 cursor-pointer">
+            <button id='submitAnotherFeedbackBtn' aria-label="Submit Another Feedback Button" type="button" onClick={() => setFeedbackSuccess(false)} className="mt-2 py-1.5 px-4 bg-emerald-600 text-white text-[9px] tracking-widest uppercase font-mono rounded font-bold hover:bg-emerald-700 cursor-pointer">
               SUBMIT ANOTHER FEEDBACK
             </button>
           </div>) : (<form onSubmit={handleSubmitFeedback} className="space-y-4">
@@ -170,7 +170,7 @@ export function Testimonials({ testimonials, setTestimonials, setToastMessage })
               <textarea required rows={4} placeholder="Provide descriptive feedback about installation timelines, optics clarity, network stability, and staff service..." value={newFeedback.content} onChange={(e) => setNewFeedback(prev => ({ ...prev, content: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all"></textarea>
             </div>
 
-            <button type="submit" className="w-full bg-primary hover:bg-sky-700 text-white font-bold text-[10px] uppercase tracking-widest py-3.5 border border-primary rounded-xl transition-all cursor-pointer shadow-sm">
+            <button id='submitTestimonialBtn' aria-label="Submit Testimonial Button" type="submit" className="w-full bg-primary hover:bg-sky-700 text-white font-bold text-[10px] uppercase tracking-widest py-3.5 border border-primary rounded-xl transition-all cursor-pointer shadow-sm">
               SUBMIT VERIFIED CLIENT TESTIMONIAL
             </button>
           </form>)}

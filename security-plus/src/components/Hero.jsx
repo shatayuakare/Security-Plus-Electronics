@@ -173,7 +173,8 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBoo
                       )}
 
                       {slide.btnText2 && (
-                        <button
+                        <button id='bookBtn'
+                          aria-label="Book Button"
                           onClick={triggerShowroomModal}
                           className="bg-white/5 hover:bg-white/10 text-white px-8 py-4 font-sans font-bold text-xs tracking-widest uppercase border border-white/10 transition-all duration-300 flex items-center justify-center gap-2 rounded-xl cursor-pointer shadow-sm"
                         >
@@ -200,7 +201,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBoo
                   <div className={`col-span-6 md:col-span-5`}>
                     <div className={`relative w-full float-end max-w-96 aspect-square rounded-3xl bg-slate-900/30 border border-slate-800 flex  flex-col justify-center items-center overflow-hidden`}  >
                       {slide.image ? (
-                        <img src={slide.image !== "" ? new URL(`../assets/slide/${slide.image}`, import.meta.url).href : "https://noviatic.com/wp-content/uploads/2026/04/placeholder-image-2-1.jpg"} alt={"Slide " + idx + "image"} className="w-full h-full object-cover" />
+                        <img src={slide.image !== "" ? new URL(`../assets/slide/${slide.image}`, import.meta.url).href : "https://noviatic.com/wp-content/uploads/2026/04/placeholder-image-2-1.jpg"} alt={"Slide " + idx + "image"} className="w-full h-full object-cover" lang="en" loading="lazy" decoding="async" fetchPriority="medium" />
                       ) : null}
 
                     </div>
@@ -213,7 +214,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBoo
 
         <div className="flex justify-between items-center mt-12 pt-6 border-t border-slate-900/60 max-w-5xl mx-auto w-full">
           <div className="flex gap-2.5">
-            {[0, 1, 2, 3, 4, 5].map((idx) => (<button key={idx} onClick={() => setHeroSlideIndex(idx)} className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${heroSlideIndex === idx
+            {[0, 1, 2, 3, 4, 5].map((idx) => (<button id='heroBtn' aria-label="Hero Button" key={idx} onClick={() => setHeroSlideIndex(idx)} className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${heroSlideIndex === idx
               ? "w-8 bg-primary"
               : "w-2.5 bg-slate-800 hover:bg-slate-700"}`} title={`Go to slide ${idx + 1}`} />))}
           </div>
