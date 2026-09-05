@@ -201,7 +201,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBoo
                   <div className={`col-span-6 md:col-span-5`}>
                     <div className={`relative w-full float-end max-w-96 aspect-square rounded-3xl bg-slate-900/30 border border-slate-800 flex  flex-col justify-center items-center overflow-hidden`}  >
                       {slide.image ? (
-                        <img src={slide.image !== "" ? new URL(`../assets/slide/${slide.image}`, import.meta.url).href : "https://noviatic.com/wp-content/uploads/2026/04/placeholder-image-2-1.jpg"} alt={"Slide " + idx + "image"} className="w-full h-full object-cover" lang="en" loading="lazy" decoding="async" fetchPriority="medium" />
+                        <img src={slide.image !== "" ? new URL(`../assets/slide/${slide.image}`, import.meta.url).href : "https://noviatic.com/wp-content/uploads/2026/04/placeholder-image-2-1.jpg"} alt={"Slide " + idx + "image"} className="w-full h-full object-cover" lang="en" loading="lazy" decoding="async" fetchPriority="high" />
                       ) : null}
 
                     </div>
