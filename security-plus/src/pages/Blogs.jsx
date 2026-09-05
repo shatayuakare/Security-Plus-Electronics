@@ -35,7 +35,7 @@ const Blogs = ({ subscribers, setSubscribers, setToastMessage, setSelectedBlog }
               <div className="space-y-2">
                 <span className="text-[9px] font-bold text-slate-400 uppercase block tracking-wider">SPECIALIST DIRECTORIES</span>
                 <div className="flex flex-col gap-1.5">
-                  {["All", "Optics & Sensors", "Surveillance Networking", "Power Infrastructure"].map(cat => (<button key={cat} onClick={() => setBlogCategoryFilter(cat)} className={`text-left text-xs py-2 px-3.5 border transition-all rounded-xl font-bold cursor-pointer ${blogCategoryFilter === cat ? "border-sky-100 bg-sky-50 text-sky-700" : "border-transparent text-slate-500 hover:text-primary hover:bg-slate-50"}`}>
+                  {["All", "Optics & Sensors", "Surveillance Networking", "Power Infrastructure"].map(cat => (<button type='button' id='categoryFilterBtn' aria-label="Category Filter Button" key={cat} onClick={() => setBlogCategoryFilter(cat)} className={`text-left text-xs py-2 px-3.5 border transition-all rounded-xl font-bold cursor-pointer ${blogCategoryFilter === cat ? "border-sky-100 bg-sky-50 text-sky-700" : "border-transparent text-slate-500 hover:text-primary hover:bg-slate-50"}`}>
                     {cat}
                   </button>))}
                 </div>
@@ -45,7 +45,7 @@ const Blogs = ({ subscribers, setSubscribers, setToastMessage, setSelectedBlog }
                 <span className="text-[9px] font-bold text-primary uppercase block tracking-wider">NEWSLETTER TELEMETRY</span>
                 <p className="text-[10px] text-slate-400 leading-relaxed uppercase font-semibold">Subscribe to get firmware security logs and new compliance alerts.</p>
                 <input type="email" placeholder="your@email.com" value={newsletterEmail} onChange={(e) => setNewsletterEmail(e.target.value)} className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all" />
-                <button onClick={() => {
+                <button id='subscribeBtn' aria-label="Subscribe Button" onClick={() => {
                   if (newsletterEmail && newsletterEmail.includes("@")) {
                     if (!subscribers.includes(newsletterEmail)) {
                       setSubscribers(prev => [...prev, newsletterEmail]);
@@ -97,7 +97,7 @@ const Blogs = ({ subscribers, setSubscribers, setToastMessage, setSelectedBlog }
                       </div>
                     </div>
 
-                    <button onClick={() => setSelectedBlog(post)} className="text-[10px] font-bold tracking-widest uppercase text-primary hover:text-sky-700 flex items-center gap-1 transition-all cursor-pointer">
+                    <button id='readBtn' aria-label="Read Button" onClick={() => setSelectedBlog(post)} className="text-[10px] font-bold tracking-widest uppercase text-primary hover:text-sky-700 flex items-center gap-1 transition-all cursor-pointer">
                       READ ARTICLE <ChevronRight className="h-3.5 w-3.5" />
                     </button>
                   </div>

@@ -110,7 +110,7 @@ function AboutUs() {
               {faqs.map((faq, idx) => {
                 const isOpen = openFaqIndex === idx;
                 return (<div key={idx} className={`border transition-all duration-300 rounded-2xl bg-white ${isOpen ? "border-primary shadow-md shadow-sky-50" : "border-slate-200 hover:border-slate-300"}`}>
-                  <button onClick={() => setOpenFaqIndex(isOpen ? null : idx)} className="w-full text-left p-5 flex items-center justify-between font-bold text-xs text-slate-800 tracking-wide cursor-pointer select-none">
+                  <button type='button' id='faqBtn' aria-label="FAQ Button" onClick={() => setOpenFaqIndex(isOpen ? null : idx)} className="w-full text-left p-5 flex items-center justify-between font-bold text-xs text-slate-800 tracking-wide cursor-pointer select-none">
                     <span className="flex items-center gap-3">
                       <HelpCircle className={`h-4 w-4 shrink-0 transition-colors ${isOpen ? "text-primary" : "text-slate-400"}`} />
                       {faq.question}

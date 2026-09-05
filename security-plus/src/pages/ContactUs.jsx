@@ -305,7 +305,7 @@ export default function ContactUs({ logoData, setToastMessage, setContactData })
                   </p>
                 </div>
 
-                <button onClick={() => setContactTicket(null)} className="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer font-sans">
+                <button id='sendAnotherMessageBtn' aria-label="Send Another Message Button" onClick={() => setContactTicket(null)} className="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer font-sans">
                   Send Another Message
                 </button>
               </div>) : (<form onSubmit={handleContactSubmit} className="space-y-5 mt-6">
@@ -349,7 +349,7 @@ export default function ContactUs({ logoData, setToastMessage, setContactData })
                   <textarea required rows={3} placeholder="Describe your security requirements or systems inquiries in detail..." value={contactForm.message} onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))} className="w-full bg-slate-50 border border-slate-200 px-4 py-3 text-xs text-slate-800 focus:outline-none focus:border-primary focus:bg-white rounded-xl placeholder-slate-400 transition-all font-sans"></textarea>
                 </div>
 
-                <button type="submit" className="w-full bg-primary hover:bg-sky-700 text-white font-bold text-xs uppercase tracking-widest py-4 border border-primary rounded-xl transition-all cursor-pointer shadow-md shadow-sky-50 font-sans">
+                <button id='sendMessageBtn' aria-label="Send Message Button" type="submit" className="w-full bg-primary hover:bg-sky-700 text-white font-bold text-xs uppercase tracking-widest py-4 border border-primary rounded-xl transition-all cursor-pointer shadow-md shadow-sky-50 font-sans">
                   Send Message
                 </button>
               </form>)}

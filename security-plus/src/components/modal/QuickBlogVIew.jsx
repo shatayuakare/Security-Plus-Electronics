@@ -37,6 +37,8 @@ const QuickBlogVIew = ({ setSelectedBlog, selectedBlog, setToastMessage }) => {
                     </div>
 
                     <button
+                        id='closeBtn'
+                        aria-label="Close Button"
                         onClick={() => setSelectedBlog(null)}
                         className="text-slate-400 hover:text-slate-600 bg-white hover:bg-slate-100 p-1.5 rounded-full transition-colors cursor-pointer border border-slate-100 shrink-0"
                         title="Close Article"
@@ -115,6 +117,8 @@ const QuickBlogVIew = ({ setSelectedBlog, selectedBlog, setToastMessage }) => {
 
                                 {/* X */}
                                 <button
+                                    id='shareBtn'
+                                    aria-label="Share Button"
                                     onClick={() => {
                                         const url = encodeURIComponent(window.location.href);
                                         const text = encodeURIComponent(
@@ -133,6 +137,8 @@ const QuickBlogVIew = ({ setSelectedBlog, selectedBlog, setToastMessage }) => {
                                 </button>
 
                                 <button
+                                    id='shareBtn'
+                                    aria-label="Share Button"
                                     onClick={() => {
                                         const url = encodeURIComponent(window.location.href);
 
@@ -148,6 +154,8 @@ const QuickBlogVIew = ({ setSelectedBlog, selectedBlog, setToastMessage }) => {
                                 </button>
 
                                 <button
+                                    id='shareBtn'
+                                    aria-label="Share Button"
                                     onClick={() => {
                                         const url = encodeURIComponent(window.location.href);
 
@@ -163,6 +171,8 @@ const QuickBlogVIew = ({ setSelectedBlog, selectedBlog, setToastMessage }) => {
                                 </button>
 
                                 <button
+                                    id='shareBtn'
+                                    aria-label="Share Button"
                                     onClick={() => {
                                         const url = encodeURIComponent(window.location.href);
                                         const text = encodeURIComponent(
@@ -186,6 +196,8 @@ const QuickBlogVIew = ({ setSelectedBlog, selectedBlog, setToastMessage }) => {
 
 
                         <button
+                            id='copyBtn'
+                            aria-label="Copy Button"
                             onClick={() => {
                                 navigator.clipboard.writeText(
                                     `${window.location.origin}/blog/${selectedBlog.id || "article"}`
@@ -207,6 +219,8 @@ const QuickBlogVIew = ({ setSelectedBlog, selectedBlog, setToastMessage }) => {
                 <div className="p-4 border-t border-slate-100 bg-slate-50 flex flex-col sm:flex-row justify-end gap-2.5 font-sans shrink-0">
 
                     <button
+                        id='closeBtn'
+                        aria-label="Close Button"
                         onClick={() => setSelectedBlog(null)}
                         className="px-5 py-2.5 border border-slate-200 bg-white hover:bg-slate-100 text-slate-600 text-[10px] font-bold tracking-wider uppercase transition-all rounded-xl cursor-pointer"
                     >
@@ -215,6 +229,8 @@ const QuickBlogVIew = ({ setSelectedBlog, selectedBlog, setToastMessage }) => {
 
 
                     <button
+                        id='discussBtn'
+                        aria-label="Discuss Button"
                         onClick={() => setToastMessage("Contact Details not available")}
                         className="bg-primary hover:bg-primary text-white px-5 py-2.5 font-bold text-[10px] tracking-widest uppercase border border-primary transition-all rounded-xl cursor-pointer shadow-md shadow-sky-100"
                     >
