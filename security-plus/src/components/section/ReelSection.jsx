@@ -76,6 +76,7 @@ const ReelCard = ({
                 muted={isMuted}
                 onEnded={() => onVideoEnded(reel.id)}
                 onClick={togglePlay}
+                preload="none"
             />
 
             <div className="absolute top-0 left-0 right-0 p-5 bg-linear-to-b from-black/80 via-black/40 to-transparent z-10 text-white pointer-events-none">
