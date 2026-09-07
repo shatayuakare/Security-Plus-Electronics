@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Route, Routes, useLocation } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import { SEOManager } from "./components/SEOManager";
-const logo = lazy(() => import("./assets/images/logo.png"))
+const logo = lazy(() => import("./assets/images/logo.avif"))
 
 const BrandCarousel = lazy(() => import("./components/BrandCarousel"))
 const Header = lazy(() => import("./components/Header"))

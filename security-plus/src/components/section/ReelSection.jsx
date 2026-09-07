@@ -3,19 +3,19 @@ import { motion } from "motion/react";
 import { Eye, Heart, Volume2, VolumeX, Play, Pause, ChevronLeft, ChevronRight } from 'lucide-react'
 
 import reelsData from "../../assets/reels/reels.json"
-import reel1 from "../../assets/reels/1.mp4"
-import reel2 from "../../assets/reels/2.mp4"
-import reel3 from "../../assets/reels/3.mp4"
-import reel4 from "../../assets/reels/4.mp4"
-import reel5 from "../../assets/reels/5.mp4"
-import reel6 from "../../assets/reels/6.mp4"
+import reel1 from "../../assets/reels/1.webm"
+import reel2 from "../../assets/reels/2.webm"
+import reel3 from "../../assets/reels/3.webm"
+import reel4 from "../../assets/reels/4.webm"
+// import reel5 from "../../assets/reels/5.webm"
+import reel6 from "../../assets/reels/6.webm"
 
 const localVideos = {
     "reel-1": reel1,
     "reel-2": reel2,
     "reel-3": reel3,
     "reel-4": reel4,
-    "reel-5": reel5,
+    // "reel-5": reel5,
     "reel-6": reel6
 };
 
