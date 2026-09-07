@@ -1,7 +1,7 @@
 import React from "react";
 import { Heart, User, Terminal, X, Menu, ClipboardList, ShoppingBag, ArrowLeft, Trash2, Eye } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/logo.avif";
 import { getProductImageUrls } from "../components/BlurUpImage";
 import { Link, useLocation } from "react-router-dom"
 import { companytData } from '../utils/Constant';
@@ -209,7 +209,7 @@ const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser, wishli
 
 
           <Link to={"https://woston.in"} target="_blank" className="hidden md:flex">
-            <img src={new URL(`../assets/images/woston-logo-light.png`, import.meta.url).href} alt="Woston Logo" className="h-12 w-full" />
+            <img src={new URL(`../assets/images/woston-logo-light.avif`, import.meta.url).href} alt="Woston Logo" className="h-12 w-full" />
           </Link>
 
           {/* Mobile hamburger */}

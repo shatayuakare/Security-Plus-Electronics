@@ -1,10 +1,8 @@
 import { Calendar } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import cctvHeroBg from "../assets/images/sky_blue_hero_bg_1782755439624.jpg";
 import heroSlide from "../json/heroSlide.json";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import img from "../assets/slide/cctv-mall.png"
 
 const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
 

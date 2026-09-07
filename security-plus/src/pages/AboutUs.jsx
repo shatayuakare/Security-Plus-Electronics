@@ -58,7 +58,7 @@ function AboutUs() {
 
             <div className="bg-white border border-slate-200 space-y-4 rounded-2xl shadow-sm relative">
 
-              <img className="h-full w-full" src={new URL("../assets/certificate.png", import.meta.url).href} alt="Certificarte" />
+              <img className="h-full w-full" src={new URL("../assets/certificate.avif", import.meta.url).href} alt="Certificarte" />
             </div>
           </div>
 

@@ -2,236 +2,236 @@
     {
         "name": "Hikvision",
         "category": "Video Surveillance",
-        "icon": "hikvision.png"
+        "icon": "hikvision.avif"
     },
     {
         "name": "Dahua Technology",
         "category": "AI CCTV & Thermal",
-        "icon": "dahua.png"
+        "icon": "dahua.avif"
     },
     {
         "name": "CP Plus",
         "category": "Smart Shield Security",
-        "icon": "cpplus.png"
+        "icon": "cpplus.avif"
     },
     {
         "name": "Woston",
         "category": "Elite Enterprise Servers",
-        "icon": "woston.png"
+        "icon": "woston.avif"
     },
     {
         "name": "Honeywell",
         "category": "Commercial Fire & Access",
-        "icon": "honeywell.png"
+        "icon": "honeywell.avif"
     },
     {
         "name": "Lapcare",
         "category": "IT Device and Accessories",
-        "icon": "lapcare.png"
+        "icon": "lapcare.avif"
     },
     {
         "name": "Zebion",
         "category": "IT Device and Accessories",
-        "icon": "zebion.png"
+        "icon": "zebion.avif"
     },
     {
         "name": "LG Corporation",
         "category": "Television & Entertainment",
-        "icon": "lg.png"
+        "icon": "lg.avif"
     },
     {
         "name": "Zebronics",
         "category": "CCTV Accessories & IT Devices",
-        "icon": "zebronics.png"
+        "icon": "zebronics.avif"
     },
     {
         "name": "Cofe",
         "category": "CCTV Cameras",
-        "icon": "cofe.png"
+        "icon": "cofe.avif"
     },
     {
         "name": "Secureye",
         "category": "CCTV Camera and Accessories",
-        "icon": "secureye.png"
+        "icon": "secureye.avif"
     },
     {
         "name": "TP-Link",
         "category": "CCTV Camera and Accessories",
-        "icon": "tplink.png"
+        "icon": "tplink.avif"
     },
     {
         "name": "D-Link",
         "category": "Networking Accessories",
-        "icon": "dlink.png"
+        "icon": "dlink.avif"
     },
     {
         "name": "Microtek",
         "category": "Power Solution",
-        "icon": "microtek.png"
+        "icon": "microtek.avif"
     },
     {
         "name": "Daichi",
         "category": "CCTV Camera, Accessories and Storage",
-        "icon": "daichi.png"
+        "icon": "daichi.avif"
     },
     {
         "name": "Otek",
         "category": "Projector",
-        "icon": "otek.png"
+        "icon": "otek.avif"
     },
     {
         "name": "Dell",
         "category": "Peripheral Devices",
-        "icon": "dell.png"
+        "icon": "dell.avif"
     },
     {
         "name": "HP",
         "category": "Peripheral Devices",
-        "icon": "hp.png"
+        "icon": "hp.avif"
     },
     {
         "name": "Lenovo",
         "category": "Peripheral Devices",
-        "icon": "lenovo.png"
+        "icon": "lenovo.avif"
     },
     {
         "name": "Enter",
         "category": "Computer Accessories",
-        "icon": "enter.png"
+        "icon": "enter.avif"
     },
     {
         "name": "Logitech",
         "category": "Peripheral Devices",
-        "icon": "logitech.png"
+        "icon": "logitech.avif"
     },
     {
         "name": "Western Digital",
         "category": "Storage Devices",
-        "icon": "wd.png"
+        "icon": "wd.avif"
     },
     {
         "name": "Trueview",
         "category": "CCTV Camera",
-        "icon": "trueview.png"
+        "icon": "trueview.avif"
     },
     {
         "name": "TVS Electronics",
         "category": "Computer Accessories",
-        "icon": "tvs.png"
+        "icon": "tvs.avif"
     },
     {
         "name": "MORX Mivantra",
         "category": "Home Security Devices",
-        "icon": "mivantra.png"
+        "icon": "mivantra.avif"
     },
     {
         "name": "Beetal",
         "category": "Tele-Communication",
-        "icon": "beetal.png"
+        "icon": "beetal.avif"
     },
     {
         "name": "Consistant",
         "category": "Storage Devices",
-        "icon": "consistent.png"
+        "icon": "consistent.avif"
     },
     {
         "name": "Aver-tek",
         "category": "Storage Devices",
-        "icon": "avertek.png"
+        "icon": "avertek.avif"
     },
     {
         "name": "Prama",
         "category": "CCTV Camera",
-        "icon": "prama.png"
+        "icon": "prama.avif"
     },
     {
         "name": "Letstrack",
         "category": "GPS Tracking Devices",
-        "icon": "letstrack.png"
+        "icon": "letstrack.avif"
     },
     {
         "name": "Tapo",
         "category": "Smart Home and Wi-Fi",
-        "icon": "tapo.png"
+        "icon": "tapo.avif"
     },
     {
         "name": "Seagate",
         "category": "Storage Devices",
-        "icon": "seagate.png"
+        "icon": "seagate.avif"
     },
     {
         "name": "Toshiba",
         "category": "Storage Devices",
-        "icon": "toshiba.png"
+        "icon": "toshiba.avif"
     },
     {
         "name": "Foxin",
         "category": "Monitors and Accessories",
-        "icon": "foxin.png"
+        "icon": "foxin.avif"
     },
     {
         "name": "Geonix",
         "category": "Storage Devices",
-        "icon": "geonix.png"
+        "icon": "geonix.avif"
     },
     {
         "name": "TVS Electronics",
         "category": "Computer Accessories",
-        "icon": "tvs.png"
+        "icon": "tvs.avif"
     },
     {
         "name": "MORX Mivantra",
         "category": "Home Security Devices",
-        "icon": "mivantra.png"
+        "icon": "mivantra.avif"
     },
     {
         "name": "Beetal",
         "category": "Tele-Communication",
-        "icon": "beetal.png"
+        "icon": "beetal.avif"
     },
     {
         "name": "Consistent",
         "category": "Storage Devices",
-        "icon": "consistent.png"
+        "icon": "consistent.avif"
     },
     {
         "name": "Aver-tek",
         "category": "Storage Devices",
-        "icon": "avertek.png"
+        "icon": "avertek.avif"
     },
     {
         "name": "Prama",
         "category": "CCTV Camera",
-        "icon": "prama.png"
+        "icon": "prama.avif"
     },
     {
         "name": "Letstrack",
         "category": "GPS Tracking Devices",
-        "icon": "letstrack.png"
+        "icon": "letstrack.avif"
     },
     {
         "name": "Tapo",
         "category": "Smart Home and Wi-Fi",
-        "icon": "tapo.png"
+        "icon": "tapo.avif"
     },
     {
         "name": "Seagate",
         "category": "Storage Devices",
-        "icon": "seagate.png"
+        "icon": "seagate.avif"
     },
     {
         "name": "Toshiba",
         "category": "Storage Devices",
-        "icon": "toshiba.png"
+        "icon": "toshiba.avif"
     },
     {
         "name": "Foxin",
         "category": "Monitors and Accessories",
-        "icon": "foxin.png"
+        "icon": "foxin.avif"
     },
     {
         "name": "Geonix",
         "category": "Storage Devices",
-        "icon": "geonix.png"
+        "icon": "geonix.avif"
     }
 ]

@@ -2,7 +2,7 @@
     {
         "id": "gal-1",
         "category": "showroom",
-        "image": "showroom.png",
+        "image": "showroom.avif",
         "title": "Nagpur Flagship Showroom",
         "description": "Central India's premiere retail and enterprise showroom layout, displaying rows of high-performance IP cameras, customized mounting brackets, and recording stacks.",
         "location": "SITABULDI MAIN ROAD, NAGPUR",
@@ -11,7 +11,7 @@
     {
         "id": "gal-2",
         "category": "culture",
-        "image": "meeting.png",
+        "image": "meeting.avif",
         "title": "Collaborative Engineering Workspace",
         "description": "Our team of network technicians and software security specialists collaborating on a major commercial layout blueprint design in Nagpur.",
         "location": "HQ OFFICE, NAGPUR",
@@ -20,7 +20,7 @@
     {
         "id": "gal-3",
         "category": "technical",
-        "image": "training.png",
+        "image": "training.avif",
         "title": "SPE Free Tech Training Academy",
         "description": "Instructor showing freshers and students how to plug and configure CCTV camera arrays during a free weekend technical surveillance masterclass.",
         "location": "TRAINING WING, NAGPUR",
