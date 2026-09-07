@@ -56,7 +56,7 @@ const ProductCategories = ({ loadedImages, setLoadedImages }) => {
           }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="bg-white border border-slate-200 flex flex-col justify-between p-0 relative rounded-2xl group transition-all duration-100 overflow-hidden shadow-sm ">
             <div className="absolute rounded-t-2xl top-0 left-0 right-0 h-6 group-hover:border-t-6 bg-transparent group-hover:border-primary transition-all duration-200 z-30"></div>
 
-            <div className="relative h-64 overflow-hidden border-b border-slate-100">
+            <div className="relative md:h-64 overflow-hidden border-b border-slate-100">
               <div className="absolute inset-0 bg-linear-to-t from-white/0 via-transparent z-10"></div>
 
               <span className="absolute top-4 left-4 z-20 font-sans text-[9px] bg-sky-50 text-sky-700 border border-sky-100 px-2.5 py-1 rounded-lg tracking-wider uppercase font-bold">

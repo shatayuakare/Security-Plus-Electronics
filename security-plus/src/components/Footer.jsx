@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { companytData } from '../utils/Constant';
 
 const Footer = ({ logoData }) => {
-    // const companytData = { logo: logo, name: "Security Plus Electronics", subName: "CCTV Mall", }
+
     return (
         <footer className="bg-slate-900 text-slate-300 border-t border-slate-800">
             <div className="max-w-7xl mx-auto px-5 md:px-8 py-12 md:py-14">
@@ -20,7 +20,7 @@ const Footer = ({ logoData }) => {
                                         </div>
                                         <div>
                                             <h2 className="text-2xl md:text-2xl font-extrabold text-white uppercase tracking-tight font-sans">
-                                                {logoData.companyName}
+                                                {logoData.companyName} || Security Plus
                                             </h2>
                                             {logoData.companySuffix && (
                                                 <div className="flex items-center gap-2">
@@ -28,7 +28,7 @@ const Footer = ({ logoData }) => {
                                                     <span className="h-px w-14.5 bg-sky-500"></span>
 
                                                     <span className="text-[10px] font-bold text-sky-400 uppercase tracking-[0.2em] font-sans">
-                                                        {logoData.companySuffix}
+                                                        {logoData.companySuffix} || CCTV Mall
                                                     </span>
                                                     <span className="h-px w-14.5 bg-sky-500"></span>
 

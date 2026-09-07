@@ -83,9 +83,9 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBoo
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="grid grid-cols-1 lg:grid-cols-12 justify-between gap-12 items-center w-full"
+                  className="md:flex md:flex-row justify-between gap-12 items-center w-full"
                 >
-                  <div className="md:col-span-7 col-span-6 text-left flex flex-col items-start space-y-6">
+                  <div className="md:col-span-7col-span-6 text-left flex flex-col items-start space-y-6">
                     <div
                       className="bg-primary/10 px-4 text-[9px] py-1.5 inline-flex items-center gap-2 border border-primary/20 rounded-full"
                       style={
@@ -196,7 +196,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBoo
                     </div>
                   </div>
 
-                  <div className={`col-span-6 md:col-span-5`}>
+                  <div className={`col-span-6 md:col-span-5 md:flex justify-center hidden`}>
                     <div className={`relative w-full float-end max-w-96 aspect-square rounded-3xl bg-slate-900/30 border border-slate-800 flex  flex-col justify-center items-center overflow-hidden`}  >
                       {slide.image ? (
                         <img src={slide.image !== "" ? new URL(`../assets/slide/${slide.image}`, import.meta.url).href : "https://noviatic.com/wp-content/uploads/2026/04/placeholder-image-2-1.jpg"} alt={"Slide " + idx + "image"} className="w-full h-full object-cover" lang="en" loading="lazy" decoding="async" fetchPriority="medium" />

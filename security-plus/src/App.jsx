@@ -5,7 +5,7 @@ import { X, Sparkles, Eye, Twitter, Linkedin, Facebook, Share2 } from "lucide-re
 import { motion, AnimatePresence } from "motion/react";
 import { Route, Routes, useLocation } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
-import { SEOManager } from "./components/SEOManager";
+// import { SEOManager } from "./components/SEOManager";
 const logo = lazy(() => import("./assets/images/logo.avif"))
 
 const BrandCarousel = lazy(() => import("./components/BrandCarousel"))
@@ -377,11 +377,12 @@ function App() {
     }, 2000);
   }, [toastMessage])
 
+
   return (
     <>
       <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} setToastMessage={setToastMessage} PRODUCTS={PRODUCTS} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
 
-      <SEOManager />
+      {/* <SEOManager /> */}
       <main className={location.pathname === "/" ? "pt-0 bg-[#070913]" : "pt-20 bg-white"}>
         <Routes>
           <Route path="/" element={<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
