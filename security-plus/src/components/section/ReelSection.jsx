@@ -7,7 +7,7 @@ import reel1 from "../../assets/reels/1.webm"
 import reel2 from "../../assets/reels/2.webm"
 import reel3 from "../../assets/reels/3.webm"
 import reel4 from "../../assets/reels/4.webm"
-// import reel5 from "../../assets/reels/5.webm"
+import reel5 from "../../assets/reels/5.webm"
 import reel6 from "../../assets/reels/6.webm"
 
 const localVideos = {
@@ -15,7 +15,7 @@ const localVideos = {
     "reel-2": reel2,
     "reel-3": reel3,
     "reel-4": reel4,
-    // "reel-5": reel5,
+    "reel-5": reel5,
     "reel-6": reel6
 };
 
