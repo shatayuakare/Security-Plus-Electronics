@@ -4,11 +4,14 @@
 User-agent: *
 Allow: /
 
-# Block private or unnecessary routes if they exist
+# Block non-public or unnecessary pages
 Disallow: /admin/
 Disallow: /api/
 Disallow: /login/
 Disallow: /register/
+
+# Block query/search parameter URLs if such routes exist
+Disallow: /*?*
 
 # Sitemap
 Sitemap: https://cctvmall.netlify.app/sitemap.xml

@@ -15,7 +15,7 @@ const Header = ({ activeTab, setActiveTab, wishlist, toggleWishlist, accountDrop
         <Link to={"/"} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }} className="flex items-center gap-2 md:gap-3 cursor-pointer select-none active:scale-95 hover:opacity-90 transition-all focus:boder-0 focus:outline-0" >
           <div className="flex items-center gap-4">
             <div className="h-12 aspect-square flex items-center justify-center shrink-0">
-              <img alt="Security Plus Electronics Logo" className="h-full w-full object-cover drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] hover:drop-shadow-white transition-all duration-300" src={companytData.logo} referrerPolicy="no-referrer" loading="lazy" fetchPriority="high" />
+              <img alt="Security Plus Electronics Logo" className="h-full w-full object-cover drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] hover:drop-shadow-white transition-all duration-300" src={companytData.logo} referrerPolicy="no-referrer" fetchPriority="high" />
             </div>
             <div>
               <h2 className="text-lg md:text-xl focus:boder-0 focus:outline-0 font-extrabold text-white uppercase tracking-tight font-sans">
@@ -64,7 +64,7 @@ const Header = ({ activeTab, setActiveTab, wishlist, toggleWishlist, accountDrop
           </button>
 
           <Link to={"https://woston.in"} target="_blank" className="hidden md:flex">
-            <img src={new URL(`../assets/images/woston-logo-light.avif`, import.meta.url).href} alt="Woston Logo" className="h-12 w-full" />
+            <img src={new URL(`../assets/images/woston-logo-light.avif`, import.meta.url).href} alt="Woston Logo" className="h-12 w-full" loading="eager" />
           </Link>
 
           {/* Mobile hamburger */}
