@@ -7,29 +7,29 @@ import { Link, useLocation } from "react-router-dom"
 import { companytData } from '../utils/Constant';
 
 
-const Header = ({ activeTab, setActiveTab, customerUser, setCustomerUser, wishlist, toggleWishlist, accountDropdownOpen, setAccountDropdownOpen, dropdownSubView, setDropdownSubView, logoData, adminEmails, setAdminLoginOpen, setToastMessage, PRODUCTS_DATA, setSelectedProductForQuickView, mobileMenuOpen, setMobileMenuOpen, isAdminMode, setIsAdminMode, inquiryList, setIsInquiryDrawerOpen, accountRef, mobileHamburgerRef, mobileMenuRef, }) => {
+const Header = ({ activeTab, setActiveTab, wishlist, toggleWishlist, accountDropdownOpen, setAccountDropdownOpen, dropdownSubView, setDropdownSubView, logoData, mobileMenuOpen, setMobileMenuOpen, inquiryList, setIsInquiryDrawerOpen, mobileHamburgerRef, mobileMenuRef, }) => {
 
   return (
     <header>
       <nav className="fixed top-0 left-0 w-full bg-[#0a0d16]/95 backdrop-blur-md border-b border-slate-800/80 z-40 px-4 md:px-8 py-3 md:py-4 flex justify-between items-center transition-all shadow-lg shadow-slate-950/20">
-        <Link to={"/"} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }} className="flex items-center gap-2 md:gap-3 cursor-pointer select-none active:scale-95 hover:opacity-90 transition-all focus:boder-0 focus:outline-0" title="Return to Home">
+        <Link to={"/"} onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); }} className="flex items-center gap-2 md:gap-3 cursor-pointer select-none active:scale-95 hover:opacity-90 transition-all focus:boder-0 focus:outline-0" >
           <div className="flex items-center gap-4">
             <div className="h-12 aspect-square flex items-center justify-center shrink-0">
               <img alt="Security Plus Electronics Logo" className="h-full w-full object-cover drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] hover:drop-shadow-white transition-all duration-300" src={companytData.logo} referrerPolicy="no-referrer" loading="lazy" fetchPriority="high" />
             </div>
             <div>
               <h2 className="text-lg md:text-xl focus:boder-0 focus:outline-0 font-extrabold text-white uppercase tracking-tight font-sans">
-                {logoData.companyName}
+                {logoData.companyName} Security Plus
               </h2>
-              {logoData.companySuffix && (
-                <div className="flex items-center gap-2">
-                  <span className="h-px w-9 md:w-11 bg-sky-500"></span>
-                  <span className="text-[9px] font-bold text-sky-400 uppercase tracking-[0.2em] font-sans">
-                    {logoData.companySuffix}
-                  </span>
-                  <span className="h-px w-9 md:w-11 bg-sky-500"></span>
-                </div>
-              )}
+
+              <div className="flex items-center gap-2">
+                <span className="h-px w-9 md:w-11 bg-sky-500"></span>
+                <span className="text-[9px] font-bold text-sky-400 uppercase tracking-[0.2em] font-sans">
+                  {logoData.companySuffix} CCTV Mall
+                </span>
+                <span className="h-px w-9 md:w-11 bg-sky-500"></span>
+              </div>
+
             </div>
           </div>
         </Link>

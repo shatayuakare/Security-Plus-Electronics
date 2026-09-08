@@ -1,20 +1,17 @@
 import "./index.css";
-import React, { useState, useEffect, useRef, lazy } from "react";
+import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 import axios from "axios";
-import { X, Sparkles, Eye, Twitter, Linkedin, Facebook, Share2 } from "lucide-react";
+import { X, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Route, Routes, useLocation } from "react-router-dom"
-import { ToastContainer } from "react-toastify"
 // import { SEOManager } from "./components/SEOManager";
 const logo = lazy(() => import("./assets/images/logo.avif"))
 
 const BrandCarousel = lazy(() => import("./components/BrandCarousel"))
-const Header = lazy(() => import("./components/Header"))
 // const VirualShowroom = lazy(() => import("./components/VirtualShowroom"))
 const ProductCategories = lazy(() => import("./components/section/ProductCategories"))
 
 // Import pages
-import { ScrollableTestimonials, OurThought, OurBlogs, FAQSection, CorporateContactForm, OurLocation } from "./pages/Home"
 // const ScrollableTestimonials = lazy(() => import("./pages/Home"));
 // const OurBlogs = lazy(() => import("./pages/Home"));
 // const FAQSection = lazy(() => import("./pages/Home"));
@@ -29,32 +26,38 @@ const Products = lazy(() => import("./pages/Products.jsx"));
 // Import modular section page
 // import Hero from "./components/Hero"; 
 // const AuthSection = lazy(() => import("./components/AuthSection.jsx"));
-const Hero = lazy(() => import("./components/Hero.jsx"));
-const { Testimonials: TestimonialsPage } = lazy(() => import("./components/Testimonials.jsx"));
+import Header from "./components/Header";
+import Hero from "./components/Hero.jsx";
+const Testimonials = lazy(() => import("./components/Testimonials.jsx"));
 const Footer = lazy(() => import("./components/Footer.jsx"));
 const ReelSection = lazy(() => import("./components/section/ReelSection.jsx"));
 const QuickProductView = lazy(() => import("./components/modal/QuickProductView.jsx"));
 const ShowroomExperience = lazy(() => import("./components/modal/ShowroomExperience.jsx"));
 const QuickBlogVIew = lazy(() => import("./components/modal/QuickBlogVIew.jsx"));
+const ScrollableTestimonials = lazy(() => import("./components/section/ScrollableTestimonials.jsx"));
+const OurThrought = lazy(() => import("./components/section/OurThought.jsx"));
+const FAQSection = lazy(() => import("./components/section/FAQSection.jsx"));
+const OurBlogs = lazy(() => import("./components/section/OurBlogs.jsx"));
+const OurLocation = lazy(() => import("./components/section/OurLocation.jsx"));
 
 // JSON file to fetch data
 import TESTIMONIALS_DATA from "./json/testimonials.json"
-import PRODUCTS from "./json/wooProducts.json"
 import GALLERY_ITEMS from "./json/gallary.json"
-// const { useAuth } = lazy(() => import("./context/AuthContext"))
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 50 },
+  initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+  viewport: { once: true },
+  transition: {
+    duration: 0.4
+  }
 };
-// const fadeIn = {
-//   initial: { opacity: 0 },
-//   whileInView: { opacity: 1 },
-//   viewport: { once: true, margin: "-100px" },
-//   transition: { duration: 0.8, ease: "easeOut" }
-// };
+const fadeIn = {
+  initial: { opacity: 0 },
+  whileInView: { opacity: 1 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.8, ease: "easeOut" }
+};
 
 function App() {
   const location = useLocation();
@@ -64,10 +67,7 @@ function App() {
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
   const [toastMessage, setToastMessage] = useState(null);
-  const [customerUser, setCustomerUser] = useState(() => {
-    const saved = localStorage.getItem("spe_customer_user");
-    return saved ? JSON.parse(saved) : null;
-  });
+
   const [registeredCustomers, setRegisteredCustomers] = useState(() => {
     const saved = localStorage.getItem("spe_registered_customers");
     if (saved)
@@ -77,14 +77,6 @@ function App() {
     ];
   });
 
-  useEffect(() => {
-    if (customerUser) {
-      localStorage.setItem("spe_customer_user", JSON.stringify(customerUser));
-    }
-    else {
-      localStorage.removeItem("spe_customer_user");
-    }
-  }, [customerUser]);
 
   useEffect(() => {
     localStorage.setItem("spe_registered_customers", JSON.stringify(registeredCustomers));
@@ -100,28 +92,11 @@ function App() {
     return [];
   });
 
-  useEffect(() => {
-    if (customerUser && customerUser.email) {
-      const saved = localStorage.getItem(`spe_wishlist_${customerUser.email}`);
-      setWishlist(saved ? JSON.parse(saved) : []);
-    }
-    else {
-      setWishlist([]);
-    }
-  }, [customerUser]);
 
-  const saveWishlist = (newWishlist) => {
-    setWishlist(newWishlist);
-    if (customerUser && customerUser.email) {
-      localStorage.setItem(`spe_wishlist_${customerUser.email}`, JSON.stringify(newWishlist));
-    }
-  };
+
+
 
   const toggleWishlist = (productId) => {
-    // if (!customerUser) {
-    //   setToastMessage("Please log in to add items to your wishlist.");
-    //   return;
-    // }
     const index = wishlist.indexOf(productId);
     let newWishlist;
     if (index > -1) {
@@ -151,121 +126,44 @@ function App() {
     const saved = localStorage.getItem("spe_products_catalog");
     if (saved)
       return JSON.parse(saved);
-    return PRODUCTS.map(p => ({ ...p }));
   });
 
+
   useEffect(() => {
+    if (location.pathname !== "/products") return;
+
+    const controller = new AbortController();
+
     const fetchProducts = async () => {
-      await axios.get(`https://woston.in/wp-json/wc/store/v1/products?per_page=12&page=${currentPage}`).then(res => {
-        setProducts(res.data);
-        const categoryMap = new Map();
-        products.forEach(product => {
-          if (!Array.isArray(product.categories)) return;
-
-          product.categories.forEach(category => {
-            const categoryId = category.id;
-
-            if (!categoryMap.has(categoryId)) {
-              categoryMap.set(categoryId, {
-                ...category,
-                productCount: 1
-              });
-            } else {
-              categoryMap.get(categoryId).productCount += 1;
-            }
-          });
-        });
-
-        const commonCategories = Array.from(categoryMap.values())
-          .filter(category => category.productCount > 1);
-
-        const uniqueCategories = Array.from(categoryMap.values())
-          .filter(category => category.productCount === 1);
-
-        const allCategories = [
-          ...commonCategories,
-          ...uniqueCategories
-        ];
-
-        const parentCategoryMap = new Map();
-
-        allCategories.forEach(category => {
-          const categoryName = category.name.toLowerCase();
-          const categorySlug = category.slug?.toLowerCase() || "";
-
-          let parentName;
-          let parentSlug;
-
-          if (
-            /cameras|camera|cctv/.test(categoryName) ||
-            /camera|4g|ip|hd/.test(categorySlug)
-          ) {
-            parentName = "CCTV Camera";
-            parentSlug = "cctv";
-          } else if (
-            /video|dvr|nvr|xvr/.test(categoryName) ||
-            /video|dvr|nvr|xvr/.test(categorySlug)
-          ) {
-            parentName = "Video Recorder";
-            parentSlug = "video-recorder";
-          } else if (
-            /cable|cables/.test(categoryName) ||
-            /cable|cables/.test(categorySlug)
-          ) {
-            parentName = "Cables";
-            parentSlug = "cables";
-          } else if (
-            /ups|smps|adapter|power supply/.test(categoryName) ||
-            /ups|smps|adapter|power/.test(categorySlug)
-          ) {
-            parentName = "Power Supply";
-            parentSlug = "power-supply";
-          } else if (
-            /rack|accessories|housing|caccessories/.test(categoryName) ||
-            /rack|accessories|housing/.test(categorySlug)
-          ) {
-            parentName = "Accessories";
-            parentSlug = "accessories";
-          } else if (
-            /switch/.test(categoryName) ||
-            /switch|poe/.test(categorySlug)
-          ) {
-            parentName = "POE Switch";
-            parentSlug = "poe-switch";
-          } else if (
-            /keyboard|mouse|monitor|router/.test(categoryName) ||
-            /keyboard|mouse|monitor|router/.test(categorySlug)
-          ) {
-            parentName = "IT Devices";
-            parentSlug = "it-devices";
-          } else {
-            parentName = "Others";
-            parentSlug = "others";
+      try {
+        const response = await axios.get(
+          "https://woston.in/wp-json/wc/store/v1/products",
+          {
+            params: {
+              per_page: 12,
+              page: currentPage,
+            },
+            signal: controller.signal,
+            timeout: 10000,
           }
+        );
 
-          if (!parentCategoryMap.has(parentSlug)) {
-            parentCategoryMap.set(parentSlug, {
-              name: parentName,
-              slug: parentSlug,
-              productCount: category.productCount,
-              subCategories: [category]
-            });
-          } else {
-            const existing = parentCategoryMap.get(parentSlug);
+        const freshProducts = response.data;
 
-            existing.productCount += category.productCount;
-            existing.subCategories.push(category);
-          }
-        });
-        setProductCategories(Array.from(parentCategoryMap.values()))
-      }).catch(e => console.error(e))
-    }
-    if (location.pathname === "/products") {
-      fetchProducts();
-    }
+        setProducts(freshProducts);
+
+        // Process categories here
+      } catch (error) {
+        if (error.code === "ERR_CANCELED") return;
+
+        console.error(error);
+      }
+    };
+
+    fetchProducts();
+
+    return () => controller.abort();
   }, [currentPage, location.pathname]);
-
-
   const [contactData, setContactData] = useState(() => {
     const saved = localStorage.getItem("spe_contact_data");
     return saved ? JSON.parse(saved) : [];
@@ -336,7 +234,16 @@ function App() {
     localStorage.setItem("spe_product_categories", JSON.stringify(productCategories));
   }, [productCategories]);
   useEffect(() => {
-    localStorage.setItem("spe_products_catalog", JSON.stringify(products));
+    if (!products?.length) return;
+
+    const timer = setTimeout(() => {
+      localStorage.setItem(
+        "spe_products_catalog",
+        JSON.stringify(products)
+      );
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, [products]);
   useEffect(() => {
     localStorage.setItem("spe_contact_data", JSON.stringify(contactData));
@@ -362,6 +269,7 @@ function App() {
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
   }, [selectedBlog, showroomModalOpen, selectedProductForQuickView]);
+
   useEffect(() => {
     if (selectedProductForQuickView) {
       setSelectedProductForQuickView(null)
@@ -372,93 +280,124 @@ function App() {
     if (showroomModalOpen) {
       setShowroomModalOpen(false)
     }
-    setTimeout(() => {
-      setToastMessage(null)
+    if (!toastMessage) return;
+
+    const timer = setTimeout(() => {
+      setToastMessage(null);
     }, 2000);
+
+    return () => clearTimeout(timer);
   }, [toastMessage])
 
 
   return (
     <>
-      <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} setToastMessage={setToastMessage} PRODUCTS={PRODUCTS} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
+      <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
 
       {/* <SEOManager /> */}
       <main className={location.pathname === "/" ? "pt-0 bg-[#070913]" : "pt-20 bg-white"}>
-        <Routes>
-          <Route path="/" element={<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <Hero heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} setBookingConfirmed={setBookingConfirmed} />
+        <Suspense
+          fallback={
+            <div className="min-h-screen flex items-center justify-center">
+              <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<motion.div {...fadeIn} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+              <Hero heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} setBookingConfirmed={setBookingConfirmed} />
 
-            <BrandCarousel />
-            <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} />
-            {/* <VirtualShowroom loadedImages={loadedImages} setLoadedImages={setLoadedImages} setToastMessage={setToastMessage} setShowroomModalOpen={setShowroomModalOpen} /> */}
-            <ReelSection />
+              <Suspense fallback={<div className="min-h-[200px]" />}>
+                <BrandCarousel />
+              </Suspense>
 
-            <motion.section {...fadeInUp} className="py-24 px-8 relative z-20 border-b border-slate-100 bg-slate-50">
-              <div className="max-w-4xl mx-auto text-center">
-                <span className="font-sans font-bold text-[10px] text-primary tracking-widest uppercase block mb-3">OUR VISION &amp; SLA VALUES</span>
-                <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 uppercase">Our Vision &amp; Mission</h2>
-                <div className="h-0.5 w-20 bg-primary mx-auto mb-8"></div>
-                <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
-                  Deliver innovative, reliable, and complete security solutions with exceptional customer support. We custom-engineer systems that protect Nagpur's leading commercial, financial, and industrial properties with absolute technological integrity.
-                </p>
-              </div>
-            </motion.section>
+              <Suspense fallback={<div className="min-h-[80vh]" />}>
+                <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} />
+              </Suspense>
+              {/* <VirtualShowroom loadedImages={loadedImages} setLoadedImages={setLoadedImages} setToastMessage={setToastMessage} setShowroomModalOpen={setShowroomModalOpen} /> */}
+              <Suspense fallback={<div className="min-h-[50vh]" />}>
+                <ReelSection />
+              </Suspense>
+              <motion.section {...fadeInUp} className="py-24 px-8 relative z-20 border-b border-slate-100 bg-slate-50">
+                <div className="max-w-4xl mx-auto text-center">
+                  <span className="font-sans font-bold text-[10px] text-primary tracking-widest uppercase block mb-3">OUR VISION &amp; SLA VALUES</span>
+                  <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 uppercase">Our Vision &amp; Mission</h2>
+                  <div className="h-0.5 w-20 bg-primary mx-auto mb-8"></div>
+                  <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
+                    Deliver innovative, reliable, and complete security solutions with exceptional customer support. We custom-engineer systems that protect Nagpur's leading commercial, financial, and industrial properties with absolute technological integrity.
+                  </p>
+                </div>
+              </motion.section>
 
-            <ScrollableTestimonials />
-            {/* <OurThought /> */}
-            <OurBlogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />
-            {/* <OurLocation contactData={contactData} /> */}
-            <FAQSection />
-          </motion.div>} />
+              <Suspense fallback={<div className="min-h-[50vh]" />}>
+                <ScrollableTestimonials />
+              </Suspense>
 
-          <Route path="/about" Component={AboutUs} />
-          <Route path="/termandcondition" Component={TermsAndConditions} />
-          <Route path="/gallary" element={<Gallery galleryItems={GALLERY_ITEMS} />} />
-          <Route path="/contact" element={<ContactUs setContactData={setContactData} logoData={logoData} setToastMessage={setToastMessage} />} />
-          <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
-          <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setProductCategories={setProductCategories} productCategories={productCategories} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
-          <Route path="/testimonial" element={<TestimonialsPage testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
-          <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
-          {/* <Route path="/login" element={<AuthSection isLogin={true} registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} /> */}
-          {/* <Route path="/register" element={<AuthSection isLogin={false} registeredCustomers={registeredCustomers} setRegisteredCustomers={setRegisteredCustomers} setCustomerUser={setCustomerUser} setToastMessage={setToastMessage} />} /> */}
-        </Routes>
+              <Suspense fallback={<div className="min-h-[50vh]" />}>
+                <OurBlogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />
+              </Suspense>
+              <Suspense fallback={<div className="min-h-[50vh]" />}>
+                <OurLocation contactData={contactData} />
+              </Suspense>
+              <Suspense fallback={<div className="min-h-[50vh]" />}>
+                <FAQSection />
+              </Suspense>
+              {/* <OurThought /> */}
+            </motion.div>} />
+
+            <Route path="/about" Component={AboutUs} />
+            <Route path="/termandcondition" Component={TermsAndConditions} />
+            <Route path="/gallary" element={<Gallery galleryItems={GALLERY_ITEMS} />} />
+            <Route path="/contact" element={<ContactUs setContactData={setContactData} logoData={logoData} setToastMessage={setToastMessage} />} />
+            <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
+            <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setProductCategories={setProductCategories} productCategories={productCategories} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
+            <Route path="/testimonial" element={<Testimonials testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
+            <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
+          </Routes>
+        </Suspense>
       </main>
+      <Suspense fallback={<div className="min-h-[100vh]" />}>
+        <AnimatePresence>
+          {selectedProductForQuickView &&
+            <QuickProductView selectedProductForQuickView={selectedProductForQuickView} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} setInquiryList={setInquiryList} inquiryList={inquiryList} />
+          }
+        </AnimatePresence>
+        {/* Toast View */}
+      </Suspense>
+      <Suspense fallback={<div className="min-h-[100vh]" />}>
+        <AnimatePresence>
+          {toastMessage && (<motion.div {...fadeInUp} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:right-auto z-50 w-auto md:w-120 bg-slate-900/95 backdrop-blur-md text-white p-3.5 rounded-xl border border-slate-800 flex items-start gap-3 shadow-2xl">
+            <Sparkles className="h-4 w-4 text-primary shrink-0 mt-0.5 animate-pulse" />
+            <div className="flex-1 min-w-0">
+              <span className="font-mono font-bold text-[9px] tracking-widest text-sky-400 uppercase block">SYSTEM SENTINEL GUARD</span>
+              <p className="text-[11px] text-slate-300 leading-normal mt-0.5 wrap-break-wordbreak">{toastMessage}</p>
+            </div>
+            <button id="closeBtn" aria-label="Close Button" onClick={() => setToastMessage(null)} className="text-slate-400 hover:text-white shrink-0 cursor-pointer p-0.5">
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </motion.div>)}
+        </AnimatePresence>
+        {/* quick view Blog modal */}
+      </Suspense>
+      <Suspense fallback={<div className="min-h-[100vh]" />}>
+        <AnimatePresence>
+          {selectedBlog &&
+            <QuickBlogVIew setSelectedBlog={setSelectedBlog} selectedBlog={selectedBlog} setToastMessage={setToastMessage} />
+          }
+        </AnimatePresence>
+        {/* Showroom Modal */}
+      </Suspense>
+      <Suspense fallback={<div className="min-h-[100vh]" />}>
+        <AnimatePresence >
+          {showroomModalOpen &&
+            <ShowroomExperience setShowroomExperience={setShowroomExperience} showroomExperience={showroomExperience} setToastMessage={setToastMessage} setShowroomModalOpen={setShowroomModalOpen} />
+          }
+        </AnimatePresence >
+      </Suspense>
 
-      <AnimatePresence>
-        {selectedProductForQuickView &&
-          <QuickProductView selectedProductForQuickView={selectedProductForQuickView} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} setInquiryList={setInquiryList} inquiryList={inquiryList} />
-        }
-      </AnimatePresence>
-
-      {/* Toast View */}
-      <AnimatePresence>
-        {toastMessage && (<motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:right-auto z-50 w-auto md:w-120 bg-slate-900/95 backdrop-blur-md text-white p-3.5 rounded-xl border border-slate-800 flex items-start gap-3 shadow-2xl">
-          <Sparkles className="h-4 w-4 text-primary shrink-0 mt-0.5 animate-pulse" />
-          <div className="flex-1 min-w-0">
-            <span className="font-mono font-bold text-[9px] tracking-widest text-sky-400 uppercase block">SYSTEM SENTINEL GUARD</span>
-            <p className="text-[11px] text-slate-300 leading-normal mt-0.5 wrap-break-wordbreak">{toastMessage}</p>
-          </div>
-          <button id="closeBtn" aria-label="Close Button" onClick={() => setToastMessage(null)} className="text-slate-400 hover:text-white shrink-0 cursor-pointer p-0.5">
-            <X className="h-3.5 w-3.5" />
-          </button>
-        </motion.div>)}
-      </AnimatePresence>
-
-      {/* quick view Blog modal */}
-      <AnimatePresence>
-        {selectedBlog &&
-          <QuickBlogVIew setSelectedBlog={setSelectedBlog} selectedBlog={selectedBlog} setToastMessage={setToastMessage} />
-        }
-      </AnimatePresence>
-
-      {/* Showroom Modal */}
-      <AnimatePresence >
-        {showroomModalOpen &&
-          <ShowroomExperience setShowroomExperience={setShowroomExperience} showroomExperience={showroomExperience} setToastMessage={setToastMessage} setShowroomModalOpen={setShowroomModalOpen} />
-        }
-      </AnimatePresence >
-
-      <Footer logoData={logoData} />
+      <Suspense fallback={<div className="min-h-[300px]" />}>
+        <Footer logoData={logoData} />
+      </Suspense>
     </>
   )
 }

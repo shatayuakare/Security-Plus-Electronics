@@ -16,9 +16,7 @@ const BrandCarousel = () => {
             Premium Brands We Integrate & Maintain
           </h3>
         </div>
-        <span className="hidden uppercase sm:inline-block text-[10px] text-slate-400 font-mono">
-          We Have 40+ Brands
-        </span>
+
       </div>
 
       <div className="relative w-full overflow-hidden flex items-center py-2 bg-slate-50/50">

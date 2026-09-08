@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { MessageSquare, CheckCircle2 } from "lucide-react";
+
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-100px" },
   transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
 };
+
 const staggerContainer = {
   initial: {},
   whileInView: {
@@ -16,12 +18,14 @@ const staggerContainer = {
   },
   viewport: { once: true, margin: "-100px" }
 };
+
 const staggerItem = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
 };
-export function Testimonials({ testimonials, setTestimonials, setToastMessage }) {
+
+export default function Testimonials({ testimonials, setTestimonials, setToastMessage }) {
   const [testimonialFilter, setTestimonialFilter] = useState("all");
   const [feedbackSuccess, setFeedbackSuccess] = useState(false);
   const [newFeedback, setNewFeedback] = useState({

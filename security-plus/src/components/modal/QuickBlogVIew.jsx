@@ -1,7 +1,6 @@
 import React from 'react'
 import { motion } from 'motion/react';
 import { Facebook, Link, Linkedin, Share2, Twitter, X } from 'lucide-react';
-import { toast } from 'react-toastify';
 
 const QuickBlogVIew = ({ setSelectedBlog, selectedBlog, setToastMessage }) => {
     return (
