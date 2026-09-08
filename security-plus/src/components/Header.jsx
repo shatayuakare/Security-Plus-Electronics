@@ -19,13 +19,13 @@ const Header = ({ activeTab, setActiveTab, wishlist, toggleWishlist, accountDrop
             </div>
             <div>
               <h2 className="text-lg md:text-xl focus:boder-0 focus:outline-0 font-extrabold text-white uppercase tracking-tight font-sans">
-                {logoData.companyName} Security Plus
+                Security Plus
               </h2>
 
               <div className="flex items-center gap-2">
                 <span className="h-px w-9 md:w-11 bg-sky-500"></span>
                 <span className="text-[9px] font-bold text-sky-400 uppercase tracking-[0.2em] font-sans">
-                  {logoData.companySuffix} CCTV Mall
+                  CCTV Mall
                 </span>
                 <span className="h-px w-9 md:w-11 bg-sky-500"></span>
               </div>

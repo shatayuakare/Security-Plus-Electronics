@@ -20,20 +20,19 @@ const Footer = ({ logoData }) => {
                                         </div>
                                         <div>
                                             <h2 className="text-2xl md:text-2xl font-extrabold text-white uppercase tracking-tight font-sans">
-                                                {logoData.companyName} || Security Plus
+                                                Security Plus
                                             </h2>
-                                            {logoData.companySuffix && (
-                                                <div className="flex items-center gap-2">
+                                            <div className="flex items-center gap-2">
 
-                                                    <span className="h-px w-14.5 bg-sky-500"></span>
+                                                <span className="h-px w-14.5 bg-sky-500"></span>
 
-                                                    <span className="text-[10px] font-bold text-sky-400 uppercase tracking-[0.2em] font-sans">
-                                                        {logoData.companySuffix} || CCTV Mall
-                                                    </span>
-                                                    <span className="h-px w-14.5 bg-sky-500"></span>
+                                                <span className="text-[10px] font-bold text-sky-400 uppercase tracking-[0.2em] font-sans">
+                                                    CCTV Mall
+                                                </span>
+                                                <span className="h-px w-14.5 bg-sky-500"></span>
 
-                                                </div>
-                                            )}
+                                            </div>
+
                                         </div>
                                     </div>
                                 </Link>
