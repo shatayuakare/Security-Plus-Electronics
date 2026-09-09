@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 import axios from "axios";
 import { X, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { Route, Routes, useLocation } from "react-router-dom"
+import { Navigate, Route, Routes, useLocation } from "react-router-dom"
 // import { SEOManager } from "./components/SEOManager";
 const logo = lazy(() => import("./assets/images/logo.avif"))
 
@@ -43,6 +43,7 @@ const OurLocation = lazy(() => import("./components/section/OurLocation.jsx"));
 // JSON file to fetch data
 import TESTIMONIALS_DATA from "./json/testimonials.json"
 import GALLERY_ITEMS from "./json/gallary.json"
+import NotFound from "./pages/NotFound.jsx";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -344,7 +345,6 @@ function App() {
               </Suspense>
               {/* <OurThought /> */}
             </motion.div>} />
-
             <Route path="/about" Component={AboutUs} />
             <Route path="/termandcondition" Component={TermsAndConditions} />
             <Route path="/gallary" element={<Gallery galleryItems={GALLERY_ITEMS} />} />
@@ -353,6 +353,7 @@ function App() {
             <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setProductCategories={setProductCategories} productCategories={productCategories} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
             <Route path="/testimonial" element={<Testimonials testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
             <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
+            <Route path="/*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
       </main>
