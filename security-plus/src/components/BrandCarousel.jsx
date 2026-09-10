@@ -21,7 +21,7 @@ const BrandCard = memo(({ brand }) => {
           height="40"
           loading="lazy"
           decoding="async"
-          fetchPriority="low"
+          fetchPriority="medium"
         />
       </div>
 
@@ -62,9 +62,7 @@ const BrandCarousel = () => {
 
       <div className="relative w-full overflow-hidden flex items-center py-2 bg-slate-50/50">
         <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-linear-to-r from-white to-transparent z-10 pointer-events-none" />
-
         <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-linear-to-l from-white to-transparent z-10 pointer-events-none" />
-
         <div className="animate-marquee animate-marquee-hover-pause flex items-center gap-6">
           {scrollingBrands.map((brand, index) => (
             <BrandCard

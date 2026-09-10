@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Award, Landmark, ShieldAlert } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const OurThought = () => {

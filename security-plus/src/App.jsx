@@ -1,10 +1,10 @@
 import "./index.css";
 import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 import axios from "axios";
-import { X, Sparkles } from "lucide-react";
+import { X, Sparkles, Image } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom"
-// import { SEOManager } from "./components/SEOManager";
+import { SEOManager } from "./components/SEOManager";
 const logo = lazy(() => import("./assets/images/logo.avif"))
 
 const BrandCarousel = lazy(() => import("./components/BrandCarousel"))
@@ -12,9 +12,6 @@ const BrandCarousel = lazy(() => import("./components/BrandCarousel"))
 const ProductCategories = lazy(() => import("./components/section/ProductCategories"))
 
 // Import pages
-// const ScrollableTestimonials = lazy(() => import("./pages/Home"));
-// const OurBlogs = lazy(() => import("./pages/Home"));
-// const FAQSection = lazy(() => import("./pages/Home"));
 const AboutUs = lazy(() => import("./pages/AboutUs.jsx"));
 const ContactUs = lazy(() => import("./pages/ContactUs.jsx"));
 const Careers = lazy(() => import("./pages/Careers.jsx"));
@@ -24,8 +21,6 @@ const TermsAndConditions = lazy(() => import("./pages/TermAndCondition.jsx"));
 const Products = lazy(() => import("./pages/Products.jsx"));
 
 // Import modular section page
-// import Hero from "./components/Hero"; 
-// const AuthSection = lazy(() => import("./components/AuthSection.jsx"));
 import Header from "./components/Header";
 import Hero from "./components/Hero.jsx";
 const Testimonials = lazy(() => import("./components/Testimonials.jsx"));
@@ -35,7 +30,7 @@ const QuickProductView = lazy(() => import("./components/modal/QuickProductView.
 const ShowroomExperience = lazy(() => import("./components/modal/ShowroomExperience.jsx"));
 const QuickBlogVIew = lazy(() => import("./components/modal/QuickBlogVIew.jsx"));
 const ScrollableTestimonials = lazy(() => import("./components/section/ScrollableTestimonials.jsx"));
-const OurThrought = lazy(() => import("./components/section/OurThought.jsx"));
+const OurThought = lazy(() => import("./components/section/OurThought.jsx"));
 const FAQSection = lazy(() => import("./components/section/FAQSection.jsx"));
 const OurBlogs = lazy(() => import("./components/section/OurBlogs.jsx"));
 const OurLocation = lazy(() => import("./components/section/OurLocation.jsx"));
@@ -330,21 +325,24 @@ function App() {
                 </div>
               </motion.section>
 
+
               <Suspense fallback={<div className="min-h-[50vh]" />}>
                 <ScrollableTestimonials />
               </Suspense>
 
               <Suspense fallback={<div className="min-h-[50vh]" />}>
-                <OurBlogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />
+                <OurThought />
               </Suspense>
+
               <Suspense fallback={<div className="min-h-[50vh]" />}>
                 <OurLocation contactData={contactData} />
               </Suspense>
+
               <Suspense fallback={<div className="min-h-[50vh]" />}>
                 <FAQSection />
               </Suspense>
-              {/* <OurThought /> */}
             </motion.div>} />
+
             <Route path="/about" Component={AboutUs} />
             <Route path="/termandcondition" Component={TermsAndConditions} />
             <Route path="/gallary" element={<Gallery galleryItems={GALLERY_ITEMS} />} />

@@ -2,7 +2,6 @@ import React from "react";
 import { Heart, User, Terminal, X, Menu, ClipboardList, ShoppingBag, ArrowLeft, Trash2, Eye } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import logo from "../assets/images/logo.avif";
-import { getProductImageUrls } from "../components/BlurUpImage";
 import { Link, useLocation } from "react-router-dom"
 import { companytData } from '../utils/Constant';
 
