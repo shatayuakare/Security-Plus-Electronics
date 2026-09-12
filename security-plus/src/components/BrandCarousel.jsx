@@ -21,7 +21,7 @@ const BrandCard = memo(({ brand }) => {
           height="40"
           loading="lazy"
           decoding="async"
-          fetchPriority="medium"
+          fetchPriority="high"
         />
       </div>
 
