@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { MessageSquare, ExternalLink, Phone, Building, MapPin, Mail, Clock, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import SEO from "../components/SEO";
 
 
 export default function ContactUs({ setToastMessage, setContactData }) {
@@ -76,6 +77,12 @@ export default function ContactUs({ setToastMessage, setContactData }) {
     }
   };
   return (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+
+    <SEO
+      title="Contact CCTV Mall | Customer Support & Sales Enquiries"
+      description="Have questions about our security systems? Get in touch with the CCTV Mall support team for expert guidance, quotes, and assistance."
+      path={`/${window.location.pathname}`}
+    />
     <section className="py-16 px-6 md:px-12 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto space-y-12">
         <div className="text-center max-w-2xl mx-auto space-y-3">

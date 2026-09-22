@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 
 // const SITE_URL = "https://cctvmall.netlify.app";
-const SITE_URL = "http://localhost:5173";
+const SITE_URL = window.location.origin;
 
 export default function SEO({
     title,
@@ -12,7 +12,7 @@ export default function SEO({
 
     return (
         <Helmet>
-            <title>{title}</title>
+            <title>{title} | CCTV Mall Nagpur</title>
 
             <meta
                 name="description"

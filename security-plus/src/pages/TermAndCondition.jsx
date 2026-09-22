@@ -13,6 +13,7 @@ import {
     Building2,
     ChevronRight,
 } from "lucide-react";
+import SEO from "../components/SEO";
 
 const sections = [
     {
@@ -62,6 +63,11 @@ const sections = [
 const TermsAndConditions = () => {
     return (
         <div className="bg-slate-50 min-h-screen">
+            <SEO
+                title="Terms and Conditions | Official Policy"
+                description="Read the official terms and conditions for using the CCTV Mall website, purchasing security products, warranties, and service agreements."
+                path={`/${window.location.pathname}`}
+            />
             {/* Hero */}
             <section className="bg-gradient-to-r from-sky-800 via-primary to-sky-950 text-white">
                 <div className="max-w-7xl mx-auto px-6 py-20">

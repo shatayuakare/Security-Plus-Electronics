@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { Terminal, ShieldCheck, Video } from "lucide-react";
+import SEO from "../components/SEO";
 
 
 export default function Gallery({ galleryItems }) {
@@ -16,6 +17,11 @@ export default function Gallery({ galleryItems }) {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+      <SEO
+        title="Security Project Gallery & Installations"
+        description="Browse our gallery to see real-world CCTV camera installations, project setups, and high-definition security camera footage in action."
+        path={`/${window.location.pathname}`}
+      />
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-7xl mx-auto space-y-12 font-sans">
           <div className="text-center max-w-3xl mx-auto">

@@ -16,10 +16,6 @@ const CorporateContactForm = () => {
         phone: "",
         email: ""
     });
-    const [touched, setTouched] = useState({
-        phone: false,
-        email: false
-    });
     const validateEmail = (emailStr) => {
         if (!emailStr)
             return "Email address is required";
@@ -38,30 +34,10 @@ const CorporateContactForm = () => {
         }
         return "";
     };
-    const handlePhoneChange = (val) => {
-        setFormData((prev) => ({ ...prev, phone: val }));
-        if (touched.phone) {
-            setErrors((prev) => ({ ...prev, phone: validatePhone(val) }));
-        }
-    };
-    const handleEmailChange = (val) => {
-        setFormData((prev) => ({ ...prev, email: val }));
-        if (touched.email) {
-            setErrors((prev) => ({ ...prev, email: validateEmail(val) }));
-        }
-    };
-    const handlePhoneBlur = () => {
-        setTouched((prev) => ({ ...prev, phone: true }));
-        setErrors((prev) => ({ ...prev, phone: validatePhone(formData.phone) }));
-    };
-    const handleEmailBlur = () => {
-        setTouched((prev) => ({ ...prev, email: true }));
-        setErrors((prev) => ({ ...prev, email: validateEmail(formData.email) }));
-    };
+
+
     const handleInquirySubmit = (e) => {
         e.preventDefault();
-        // Mark both as touched
-        setTouched({ phone: true, email: true });
         const phoneErr = validatePhone(formData.phone);
         const emailErr = validateEmail(formData.email);
         if (phoneErr || emailErr) {
@@ -73,7 +49,6 @@ const CorporateContactForm = () => {
             setSubmitted(false);
             setFormData({ name: "", org: "", phone: "", email: "", segment: "Corporate", message: "" });
             setErrors({ phone: "", email: "" });
-            setTouched({ phone: false, email: false });
         }, 4500);
     };
     return (<section className="py-24 px-6 md:px-12 bg-white border-b border-slate-100" id="contact-form-section">
@@ -124,11 +99,11 @@ const CorporateContactForm = () => {
                                 <label className="text-[10px] font-bold text-slate-600 uppercase tracking-wider block">
                                     Mobile Number *
                                 </label>
-                                {touched.phone && errors.phone ? (<span className="text-[9px] text-red-500 font-bold font-sans">{errors.phone}</span>) : touched.phone && !errors.phone ? (<span className="text-[9px] text-emerald-600 font-bold font-sans">✓ Verified Format</span>) : null}
+                                {errors.phone ? (<span className="text-[9px] text-red-500 font-bold font-sans">{errors.phone}</span>) : !errors.phone ? (<span className="text-[9px] text-emerald-600 font-bold font-sans">✓ Verified Format</span>) : null}
                             </div>
-                            <input type="tel" required placeholder="+91 XXXXX XXXXX" value={formData.phone} onChange={(e) => handlePhoneChange(e.target.value)} onBlur={handlePhoneBlur} className={`w-full bg-white border px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none transition-colors ${touched.phone && errors.phone
+                            <input type="tel" required placeholder="+91 XXXXX XXXXX" value={formData.phone} onChange={(e) => handlePhoneChange(e.target.value)} className={`w-full bg-white border px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none transition-colors ${errors.phone
                                 ? "border-red-500 focus:border-red-500 bg-red-50/20"
-                                : touched.phone && !errors.phone
+                                : !errors.phone
                                     ? "border-emerald-500 focus:border-emerald-500 bg-emerald-50/10"
                                     : "border-slate-200 focus:border-primary"}`} />
                         </div>
@@ -137,11 +112,11 @@ const CorporateContactForm = () => {
                                 <label className="text-[10px] font-bold text-slate-600 uppercase tracking-wider block">
                                     Email Address *
                                 </label>
-                                {touched.email && errors.email ? (<span className="text-[9px] text-red-500 font-bold font-sans">{errors.email}</span>) : touched.email && !errors.email ? (<span className="text-[9px] text-emerald-600 font-bold font-sans">✓ Verified Format</span>) : null}
+                                {errors.email ? (<span className="text-[9px] text-red-500 font-bold font-sans">{errors.email}</span>) : !errors.email ? (<span className="text-[9px] text-emerald-600 font-bold font-sans">✓ Verified Format</span>) : null}
                             </div>
-                            <input type="email" required placeholder="name@company.com" value={formData.email} onChange={(e) => handleEmailChange(e.target.value)} onBlur={handleEmailBlur} className={`w-full bg-white border px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none transition-colors ${touched.email && errors.email
+                            <input type="email" required placeholder="name@company.com" value={formData.email} onChange={(e) => handleEmailChange(e.target.value)} className={`w-full bg-white border px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none transition-colors ${errors.email
                                 ? "border-red-500 focus:border-red-500 bg-red-50/20"
-                                : touched.email && !errors.email
+                                : !errors.email
                                     ? "border-emerald-500 focus:border-emerald-500 bg-emerald-50/10"
                                     : "border-slate-200 focus:border-primary"}`} />
                         </div>
@@ -152,7 +127,7 @@ const CorporateContactForm = () => {
                             Project Segment / Sector Scope *
                         </label>
                         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                            {["Corporate", "Residential", "Industrial", "Healthcare", "Banking"].map((sec) => (<button type='button' id='segmentBtn' aria-label="Segment Button" key={sec} type="button" onClick={() => setFormData({ ...formData, segment: sec })} className={`py-2 px-3 border text-[10px] font-bold font-mono tracking-wider uppercase transition-all rounded-lg cursor-pointer ${formData.segment === sec ? "border-primary bg-sky-50 text-sky-700 font-bold" : "border-slate-200 bg-white text-slate-600"}`}>
+                            {["Corporate", "Residential", "Industrial", "Healthcare", "Banking"].map((sec) => (<button id='segmentBtn' aria-label="Segment Button" key={sec} type="button" onClick={() => setFormData({ ...formData, segment: sec })} className={`py-2 px-3 border text-[10px] font-bold font-mono tracking-wider uppercase transition-all rounded-lg cursor-pointer ${formData.segment === sec ? "border-primary bg-sky-50 text-sky-700 font-bold" : "border-slate-200 bg-white text-slate-600"}`}>
                                 {sec}
                             </button>))}
                         </div>

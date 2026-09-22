@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Sparkles, Briefcase, Terminal, CheckCircle2 } from "lucide-react";
+import SEO from "../components/SEO";
 
 export default function Careers({ setCareerApplications, setToastMessage }) {
   const [contactTicket, setContactTicket] = useState(null);
@@ -37,6 +38,11 @@ export default function Careers({ setCareerApplications, setToastMessage }) {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+      <SEO
+        title="Careers at CCTV Mall | Join Our Security Tech Team"
+        description="Build your career with CCTV Mall. Explore open job opportunities in surveillance technology, sales, technical support, and operations."
+        path={`/${window.location.pathname}`}
+      />
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-7xl mx-auto space-y-12">
 
