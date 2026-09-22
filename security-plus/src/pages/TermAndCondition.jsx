@@ -62,11 +62,11 @@ const sections = [
 
 const TermsAndConditions = () => {
     return (
-        <div className="bg-slate-50 min-h-screen">
+        <section aria-label="Term and Condition" className="bg-slate-50 min-h-screen">
             <SEO
                 title="Terms and Conditions | Official Policy"
                 description="Read the official terms and conditions for using the CCTV Mall website, purchasing security products, warranties, and service agreements."
-                path={`/${window.location.pathname}`}
+                path={`${window.location.pathname}`}
             />
             {/* Hero */}
             <section className="bg-gradient-to-r from-sky-800 via-primary to-sky-950 text-white">
@@ -235,7 +235,7 @@ const TermsAndConditions = () => {
                 </div>
 
             </div>
-        </div>
+        </section>
     );
 };
 

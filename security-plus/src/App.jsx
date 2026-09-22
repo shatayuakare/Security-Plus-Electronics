@@ -212,6 +212,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem("spe_product_categories", JSON.stringify(productCategories));
   }, [productCategories]);
+
   useEffect(() => {
     if (!products?.length) return;
 
@@ -224,12 +225,15 @@ function App() {
 
     return () => clearTimeout(timer);
   }, [products]);
+
   useEffect(() => {
     localStorage.setItem("spe_contact_data", JSON.stringify(contactData));
   }, [contactData]);
+
   useEffect(() => {
     localStorage.setItem("spe_logo_data", JSON.stringify(logoData));
   }, [logoData]);
+
   const [selectedBlog, setSelectedBlog] = useState(null);
   useEffect(() => {
     const handleEscape = (e) => {
@@ -317,7 +321,7 @@ function App() {
               </Suspense>
 
               <Suspense fallback={<div className="min-h-[50vh]" />}>
-                <OurLocation contactData={contactData} />
+                <OurLocation contactData={contactData} setToastMessage={setToastMessage} />
               </Suspense>
 
               <Suspense fallback={<div className="min-h-[50vh]" />}>

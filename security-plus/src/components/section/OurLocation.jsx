@@ -3,7 +3,7 @@ import { lazy } from "react";
 import { Link } from "react-router-dom";
 const CorporateContactForm = lazy(() => import("./CorporateContactForm"));
 
-const OurLocation = ({ contactData }) => {
+const OurLocation = ({ contactData, setToastMessage }) => {
     // const displayPhone = contactData?.phone || "08048102415";
     const displayEmail = contactData?.email || "info@securityplus.in";
     const displayAddress = contactData?.address || "Sitabuldi, Nagpur, Maharashtra 440012";
@@ -141,7 +141,7 @@ const OurLocation = ({ contactData }) => {
                 </div>
             </div>
         </div>
-        <CorporateContactForm />
+        <CorporateContactForm setToastMessage={setToastMessage} />
     </section>);
 };
 

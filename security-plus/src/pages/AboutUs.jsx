@@ -38,12 +38,12 @@ function AboutUs() {
 
 
   return (
-    <motion.div {...fadeInUp} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+    <motion.div {...fadeInUp} aria-label="About us" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
 
       <SEO
         title="About CCTV Mall | Leading Security System Supplier"
         description="Learn more about CCTV Mall, your trusted provider of high-quality surveillance equipment, competitive wholesale pricing, and expert support."
-        path={`/${window.location.pathname}`}
+        path={`${window.location.pathname}`}
       />
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-6xl mx-auto space-y-16">

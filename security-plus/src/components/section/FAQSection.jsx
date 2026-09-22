@@ -27,7 +27,7 @@ const FAQSection = () => {
         }
     ];
 
-    return (<section className="py-24 px-6 md:px-12 bg-slate-50 border-b border-slate-100">
+    return (<section aria-labelledby="faq-title" className="py-24 px-6 md:px-12 bg-slate-50 border-b border-slate-100">
         <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
                 <span className="font-mono text-xs font-bold text-primary uppercase tracking-widest block mb-2">
@@ -43,16 +43,17 @@ const FAQSection = () => {
 
             <div className="space-y-4">
                 {faqs.map((faq, idx) => (<div key={idx} className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-sky-400 transition-colors duration-200">
-                    <button type='button' id='faqBtn' aria-label="FAQ Button" onClick={() => setOpenIndex(openIndex === idx ? null : idx)} className="w-full flex justify-between items-center p-6 text-left font-sans font-semibold text-slate-800 text-sm md:text-base focus:outline-none cursor-pointer">
-                        <span>{faq.q}</span>
-                        <ChevronDown className={`h-5 w-5 text-slate-400 shrink-0 transition-transform duration-300 ${openIndex === idx ? "rotate-180 text-primary" : ""}`} />
-                    </button>
-
+                    <h2>
+                        <button type='button' id='faqBtn' aria-label="FAQ Button" onClick={() => setOpenIndex(openIndex === idx ? null : idx)} className="w-full flex justify-between items-center p-6 text-left font-sans font-semibold text-slate-800 text-sm md:text-base focus:outline-none cursor-pointer">
+                            <span>{faq.q}</span>
+                            <ChevronDown className={`h-5 w-5 text-slate-400 shrink-0 transition-transform duration-300 ${openIndex === idx ? "rotate-180 text-primary" : ""}`} />
+                        </button>
+                    </h2>
                     <AnimatePresence initial={false}>
                         {openIndex === idx && (<motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28, ease: "easeInOut" }} className="overflow-hidden">
-                            <div className="px-6 pb-6 pt-1 text-xs md:text-sm text-slate-500 leading-relaxed border-t border-slate-100 font-sans bg-slate-50/40">
+                            <p className="px-6 pb-6 pt-1 text-xs md:text-sm text-slate-500 leading-relaxed border-t border-slate-100 font-sans bg-slate-50/40">
                                 {faq.a}
-                            </div>
+                            </p>
                         </motion.div>)}
                     </AnimatePresence>
                 </div>))}

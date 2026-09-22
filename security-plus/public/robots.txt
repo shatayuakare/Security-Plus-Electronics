@@ -1,10 +1,39 @@
-# CCTV Mall / Security Plus Electronics
+# CCTV Mall - Security Plus Electronics
 # https://cctvmall.netlify.app/
 
 User-agent: *
 Allow: /
 
-# Keep administrative endpoints out of crawler indexes.
+# OpenAI
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: OAI-AdsBot
+Allow: /
+
+# OpenAI legacy/general crawler
+User-agent: GPTBot
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Google AI systems
+User-agent: Google-Extended
+Allow: /
+
+# Public AI-readable resources
+Allow: /llms.txt
+Allow: /llms-small.txt
+Allow: /llms-full.txt
+Allow: /.well-known/ai.txt
+
+# Private/admin paths
 Disallow: /admin/
 Disallow: /wp-admin/
 Disallow: /wp-login.php

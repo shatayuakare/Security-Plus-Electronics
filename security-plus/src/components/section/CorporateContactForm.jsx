@@ -1,10 +1,11 @@
+import axios from "axios";
 import { CheckCircle2, Send } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
 
-const CorporateContactForm = () => {
+const CorporateContactForm = ({ setToastMessage }) => {
     const [submitted, setSubmitted] = useState(false);
-    const [formData, setFormData] = useState({
+    const [quationEnquiryForm, setQuationEnquiryForm] = useState({
         name: "",
         org: "",
         phone: "",
@@ -36,20 +37,63 @@ const CorporateContactForm = () => {
     };
 
 
-    const handleInquirySubmit = (e) => {
+    const handleInquirySubmit = async (e) => {
         e.preventDefault();
-        const phoneErr = validatePhone(formData.phone);
-        const emailErr = validateEmail(formData.email);
+        const phoneErr = validatePhone(quationEnquiryForm.phone);
+        const emailErr = validateEmail(quationEnquiryForm.email);
         if (phoneErr || emailErr) {
             setErrors({ phone: phoneErr, email: emailErr });
             return;
         }
+        const fields = new URLSearchParams();
+
+        fields.append("full_name", quationEnquiryForm.name);
+        fields.append("phone", quationEnquiryForm.phone);
+        fields.append("email", quationEnquiryForm.email);
+        fields.append("company", quationEnquiryForm.org);
+        fields.append("project", quationEnquiryForm.segment);
+        fields.append("description", quationEnquiryForm.message);
+
+        const formData = new FormData();
+
+        formData.append("action", "fluentform_submit");
+        formData.append("form_id", "5");
+        formData.append("data", fields.toString());
+
+        try {
+            const response = await axios.post(
+                "https://woston.in/wp-admin/admin-ajax.php",
+                formData
+            );
+
+            if (response.data.success) {
+                // this is to store multiple quationa enquiries
+                // setQuationEnquiryForm(prev => [...prev, quationEnquiryForm])
+                setQuationEnquiryForm({
+                    name: "",
+                    org: "",
+                    phone: "",
+                    email: "",
+                    segment: "Corporate",
+                    message: ""
+                });
+                setToastMessage(`Hii! ${quationEnquiryForm.name}! Thank you for your message. We will get in touch with you shortly`)
+            } else {
+                setToastMessage("Submission failed check field IDs or CORS settings.")
+            }
+
+        } catch (error) {
+            console.log("ERROR:", error);
+            console.log("STATUS:", error.response?.status);
+            console.log("RESPONSE:", error.response?.data);
+            console.log("HEADERS:", error.response?.headers);
+        }
         setSubmitted(true);
         setTimeout(() => {
             setSubmitted(false);
-            setFormData({ name: "", org: "", phone: "", email: "", segment: "Corporate", message: "" });
+            setQuationEnquiryForm({ name: "", org: "", phone: "", email: "", segment: "Corporate", message: "" });
             setErrors({ phone: "", email: "" });
-        }, 4500);
+        }, 1500);
     };
     return (<section className="py-24 px-6 md:px-12 bg-white border-b border-slate-100" id="contact-form-section">
         <div className="max-w-4xl mx-auto">
@@ -72,7 +116,7 @@ const CorporateContactForm = () => {
                     </div>
                     <h3 className="text-xl font-bold text-slate-900 font-sans">Corporate Inquiry Logged</h3>
                     <p className="text-slate-500 text-sm mt-2 max-w-md mx-auto leading-relaxed">
-                        Thank you, <span className="text-primary font-semibold">{formData.name}</span>. An SPE Senior Network & surveillance engineer has been assigned. We will reach out via <span className="text-slate-950 font-medium">{formData.email}</span> within 4 business hours.
+                        Thank you, <span className="text-primary font-semibold">{quationEnquiryForm.name}</span>. An SPE Senior Network & surveillance engineer has been assigned. We will reach out via <span className="text-slate-950 font-medium">{quationEnquiryForm.email}</span> within 4 business hours.
                     </p>
                     <span className="text-[10px] font-mono text-slate-400 uppercase mt-4 block">
                         TICKET ID: SPE-{Math.floor(100000 + Math.random() * 900000)}
@@ -83,13 +127,13 @@ const CorporateContactForm = () => {
                             <label className="text-[10px] font-bold text-slate-600 uppercase tracking-wider block mb-2">
                                 Your Full Name *
                             </label>
-                            <input type="text" required placeholder="Enter your name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-primary transition-colors" />
+                            <input type="text" required placeholder="Enter your name" value={quationEnquiryForm.name} onChange={(e) => setQuationEnquiryForm({ ...quationEnquiryForm, name: e.target.value })} className="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-primary transition-colors" />
                         </div>
                         <div>
                             <label className="text-[10px] font-bold text-slate-600 uppercase tracking-wider block mb-2">
                                 Company / Organization
                             </label>
-                            <input type="text" placeholder="Enter company name" value={formData.org} onChange={(e) => setFormData({ ...formData, org: e.target.value })} className="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-primary transition-colors" />
+                            <input type="text" placeholder="Enter company name" value={quationEnquiryForm.org} onChange={(e) => setQuationEnquiryForm({ ...quationEnquiryForm, org: e.target.value })} className="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-primary transition-colors" />
                         </div>
                     </div>
 
@@ -101,7 +145,7 @@ const CorporateContactForm = () => {
                                 </label>
                                 {errors.phone ? (<span className="text-[9px] text-red-500 font-bold font-sans">{errors.phone}</span>) : !errors.phone ? (<span className="text-[9px] text-emerald-600 font-bold font-sans">✓ Verified Format</span>) : null}
                             </div>
-                            <input type="tel" required placeholder="+91 XXXXX XXXXX" value={formData.phone} onChange={(e) => handlePhoneChange(e.target.value)} className={`w-full bg-white border px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none transition-colors ${errors.phone
+                            <input type="tel" required placeholder="+91 XXXXX XXXXX" value={quationEnquiryForm.phone} onChange={(e) => setQuationEnquiryForm({ ...quationEnquiryForm, phone: e.target.value })} className={`w-full bg-white border px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none transition-colors ${errors.phone
                                 ? "border-red-500 focus:border-red-500 bg-red-50/20"
                                 : !errors.phone
                                     ? "border-emerald-500 focus:border-emerald-500 bg-emerald-50/10"
@@ -114,7 +158,7 @@ const CorporateContactForm = () => {
                                 </label>
                                 {errors.email ? (<span className="text-[9px] text-red-500 font-bold font-sans">{errors.email}</span>) : !errors.email ? (<span className="text-[9px] text-emerald-600 font-bold font-sans">✓ Verified Format</span>) : null}
                             </div>
-                            <input type="email" required placeholder="name@company.com" value={formData.email} onChange={(e) => handleEmailChange(e.target.value)} className={`w-full bg-white border px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none transition-colors ${errors.email
+                            <input type="email" required placeholder="name@company.com" value={quationEnquiryForm.email} onChange={(e) => setQuationEnquiryForm({ ...quationEnquiryForm, email: e.target.value })} className={`w-full bg-white border px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none transition-colors ${errors.email
                                 ? "border-red-500 focus:border-red-500 bg-red-50/20"
                                 : !errors.email
                                     ? "border-emerald-500 focus:border-emerald-500 bg-emerald-50/10"
@@ -127,7 +171,7 @@ const CorporateContactForm = () => {
                             Project Segment / Sector Scope *
                         </label>
                         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                            {["Corporate", "Residential", "Industrial", "Healthcare", "Banking"].map((sec) => (<button id='segmentBtn' aria-label="Segment Button" key={sec} type="button" onClick={() => setFormData({ ...formData, segment: sec })} className={`py-2 px-3 border text-[10px] font-bold font-mono tracking-wider uppercase transition-all rounded-lg cursor-pointer ${formData.segment === sec ? "border-primary bg-sky-50 text-sky-700 font-bold" : "border-slate-200 bg-white text-slate-600"}`}>
+                            {["Corporate", "Residential", "Industrial", "Healthcare", "Banking"].map((sec) => (<button id='segmentBtn' aria-label="Segment Button" key={sec} type="button" onClick={() => setQuationEnquiryForm({ ...quationEnquiryForm, segment: sec })} className={`py-2 px-3 border text-[10px] font-bold font-mono tracking-wider uppercase transition-all rounded-lg cursor-pointer ${quationEnquiryForm.segment === sec ? "border-primary bg-sky-50 text-sky-700 font-bold" : "border-slate-200 bg-white text-slate-600"}`}>
                                 {sec}
                             </button>))}
                         </div>
@@ -137,7 +181,7 @@ const CorporateContactForm = () => {
                         <label className="text-[10px] font-bold text-slate-600 uppercase tracking-wider block mb-2">
                             Describe Security Requirements (Camera count, Storage duration, etc.) *
                         </label>
-                        <textarea required rows={4} placeholder="Tell us about your requirements (e.g. 16 full-color IP bullet cameras, 200m fiber cabling, PTZ tracking on main shipping yard, etc.)..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-primary transition-colors" />
+                        <textarea required rows={4} placeholder="Tell us about your requirements (e.g. 16 full-color IP bullet cameras, 200m fiber cabling, PTZ tracking on main shipping yard, etc.)..." value={quationEnquiryForm.message} onChange={(e) => setQuationEnquiryForm({ ...quationEnquiryForm, message: e.target.value })} className="w-full bg-white border border-slate-200 px-4 py-3 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-primary transition-colors" />
                     </div>
 
                     <button id='submitBtn' aria-label="Submit Button" type="submit" className="w-full bg-primary hover:bg-sky-700 text-white font-mono font-bold text-xs tracking-widest uppercase py-4 rounded-xl border border-primary transition-all flex items-center justify-center gap-2.5 shadow-md cursor-pointer">

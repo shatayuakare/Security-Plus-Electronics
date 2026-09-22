@@ -76,12 +76,12 @@ export default function ContactUs({ setToastMessage, setContactData }) {
       console.log("HEADERS:", error.response?.headers);
     }
   };
-  return (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+  return (<motion.div aria-label="Contact Us" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
 
     <SEO
       title="Contact CCTV Mall | Customer Support & Sales Enquiries"
       description="Have questions about our security systems? Get in touch with the CCTV Mall support team for expert guidance, quotes, and assistance."
-      path={`/${window.location.pathname}`}
+      path={`${window.location.pathname}`}
     />
     <section className="py-16 px-6 md:px-12 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto space-y-12">
@@ -137,8 +137,8 @@ export default function ContactUs({ setToastMessage, setContactData }) {
                 <span className="text-[9px] font-bold text-orange-600 uppercase tracking-wider block">SHOWROOM & SALES HOTLINE</span>
                 <h4 className="text-base font-extrabold text-slate-950 font-sans">Inquiry Channel (IVR)</h4>
                 <p className="text-xs text-slate-500 font-sans">Call to request custom pricing quotes, bulk orders, or arrange corporate visits.</p>
-                <Link to="tel:08048102415" className="inline-block font-mono text-sm font-bold text-orange-600 hover:text-orange-700 hover:underline mt-1">
-                  08048102415
+                <Link to="tel:9373456746" className="inline-block font-mono text-sm font-bold text-orange-600 hover:text-orange-700 hover:underline mt-1">
+                  +91 9373456746
                 </Link>
               </div>
             </div>

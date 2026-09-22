@@ -153,7 +153,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
       <SEO
         title="CCTV Cameras & Security Equipment"
         description="Explore our complete range of CCTV security cameras, accessories, and recorders. Find high-definition surveillance systems at unbeatable prices."
-        path={`/${window.location.pathname}`}
+        path={`${window.location.pathname}`}
       />
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-7xl mx-auto text-sans">
@@ -211,7 +211,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
             </div>
           </div>
 
-          <motion.div key={`${productCategoryFilter}-${productSortOption}`} variants={staggerContainer} initial="initial" animate="whileInView" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div key={`${productCategoryFilter}-${productSortOption}`} variants={staggerContainer} initial="initial" animate="whileInView" aria-label="Products" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {
               filteredProducts ?
                 filteredProducts?.map((product) =>
@@ -222,12 +222,12 @@ export default function Products({ products, productCategories, setCurrentPage, 
                   }} className="bg-white border border-slate-200/80 flex flex-col justify-between p-4 relative rounded-2xl group cursor-pointer transition-all duration-300 shadow">
                     <div>
                       <div className="flex justify-between items-center mb-2 text-[9px] text-slate-500 font-bold">
-                        <h3 className="uppercase border border-sky-100 tracking-wider px-2.5 py-1 bg-sky-50 text-sky-700 rounded-lg">
+                        <h2 className="uppercase border border-sky-100 tracking-wider px-2.5 py-1 bg-sky-50 text-sky-700 rounded-lg">
                           {product?.brands[0].name}
-                        </h3>
-                        <h2 className="flex pt-1 items-center tracking-wider  uppercase gap-1">
-                          {getCategory(product)}
                         </h2>
+                        <h3 className="flex pt-1 items-center tracking-wider  uppercase gap-1">
+                          {getCategory(product)}
+                        </h3>
                       </div>
 
                       <div className="aspect-square bg-slate-100 border border-slate-100 rounded-xl mb-4 relative group-hover:border-sky-200 transition-colors overflow-hidden flex items-center justify-center">

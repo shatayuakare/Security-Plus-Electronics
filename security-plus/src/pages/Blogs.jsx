@@ -12,11 +12,11 @@ const Blogs = ({ subscribers, setSubscribers, setToastMessage, setSelectedBlog }
   const [newsletterEmail, setNewsletterEmail] = useState("");
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+    <motion.div aria-label="Our Blogs" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
       <SEO
         title="CCTV & Security Tips, News & Guides"
         description="Stay updated with the latest security system trends, CCTV buying guides, installation tips, and technology news from CCTV Mall experts."
-        path={`/${window.location.pathname}`}
+        path={`${window.location.pathname}`}
       />
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-7xl mx-auto font-sans">
