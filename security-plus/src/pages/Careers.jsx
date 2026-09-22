@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import { Sparkles, Briefcase, Terminal, CheckCircle2 } from "lucide-react";
 
-export default function Careers({ careerApplications, setCareerApplications, setToastMessage }) {
+export default function Careers({ setCareerApplications, setToastMessage }) {
   const [contactTicket, setContactTicket] = useState(null);
 
   const handleApplicationSubmit = (e) => {

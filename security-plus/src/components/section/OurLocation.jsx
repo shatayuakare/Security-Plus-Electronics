@@ -10,6 +10,8 @@ const OurLocation = ({ contactData }) => {
     const displayHours = contactData?.officeHours || "Monday — Saturday: 10:00 AM — 8:30 PM\nSunday: Closed (Available for emergency SLA supports)";
     const mapAddress = contactData?.mapAddress || "SECURITY PLUS ELECTRONICS (CCTV MALL) NAGPUR";
     const mapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2593.55808883996!2d79.08766245280425!3d21.14463636083844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c11c7803d3b5%3A0xa9e24cf23ec1d907!2sSECURITY%20PLUS%20ELECTRONICS%20(CCTV%20MALL)!5e0!3m2!1sen!2sin!4v1785138807628!5m2!1sen!2sin";
+
+
     return (<section className="py-24 px-6 md:px-12 bg-slate-50 relative border-b border-slate-100">
         <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">

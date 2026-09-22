@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import { MessageSquare, ExternalLink, Phone, Building, MapPin, Mail, Clock, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 
-export default function ContactUs({ logoData, setToastMessage, setContactData }) {
+export default function ContactUs({ setToastMessage, setContactData }) {
   const [contactForm, setContactForm] = useState({
     name: "",
     company: "",
@@ -15,137 +15,6 @@ export default function ContactUs({ logoData, setToastMessage, setContactData })
     message: ""
   });
   const [contactTicket, setContactTicket] = useState(false);
-
-
-  // const handleContactSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (!contactForm.name || !contactForm.email || !contactForm.message || !contactForm.company || !contactForm.department || !contactForm.phone) {
-  //     setToastMessage("Please fill out all required fields.");
-  //     return;
-  //   }
-
-  //   const formData = new FormData();
-
-  //   formData.append("action", "wpforms_submit");
-  //   formData.append("wpforms[id]", "12503");
-
-  //   formData.append("wpforms[fields][1]", contactForm.name);
-  //   formData.append("wpforms[fields][2]", contactForm.phone);
-  //   formData.append("wpforms[fields][3]", contactForm.email);
-  //   formData.append("wpforms[fields][4]", contactForm.company);
-  //   formData.append("wpforms[fields][5]", contactForm.department);
-  //   formData.append("wpforms[fields][6]", contactForm.message);
-
-  //   try {
-  //     const response = await axios.post(
-  //       "https://woston.in/wp-admin/admin-ajax.php",
-  //       formData,
-  //       {
-  //         headers: {
-  //           "Content-Type": "multipart/form-data",
-  //         },
-  //       }
-  //     );
-
-  // if (response.data.success) {
-  //   setContactData(prev => [...prev, contactForm])
-  //   setContactTicket(true)
-  //   setContactForm({
-  //     name: "",
-  //     company: "",
-  //     email: "",
-  //     phone: "",
-  //     department: "sales",
-  //     message: ""
-  //   });
-  //   setToastMessage("Message sent Successfully!")
-  // } else {
-  //   setToastMessage("Submission failed check field IDs or CORS settings.")
-  // }
-
-  //   } catch (error) {
-  //     console.error("WPForms submit error:", error);
-  //   }
-  // };
-
-  // const handleContactSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   // if (
-  //   //   !contactForm.name ||
-  //   //   !contactForm.email ||
-  //   //   !contactForm.message ||
-  //   //   !contactForm.company ||
-  //   //   !contactForm.department ||
-  //   //   !contactForm.phone
-  //   // ) {
-  //   //   setToastMessage("Please fill out all required fields.");
-  //   //   return;
-  //   // }
-
-  //   const formData = new FormData();
-
-  //   formData.append("your-name", "Hii Name");
-  //   formData.append("your-phone", "189165165");
-  //   // formData.append("your-email", "asjdfhsk@ksdjb.dk");
-  //   formData.append("your-subject", "Subject");
-  //   // formData.append("your-department", "sales");
-  //   formData.append("your-message", "thi sis mesg");
-  //   // formData.append("your-name", contactForm.name);
-  //   // formData.append("your-phone", contactForm.phone);
-  //   // formData.append("your-email", contactForm.email);
-  //   // formData.append("your-company", contactForm.company);
-  //   // formData.append("your-department", contactForm.department);
-  //   // formData.append("your-message", contactForm.message);
-
-  //   try {
-  //     const response = await axios.post(
-  //       "https://woston.in/wp-json/contact-form-7/v1/contact-forms/018810f/feedback",
-  //       formData
-  //     );
-  //     // [contact - form - 7 id = "018810f" title = "Contact form"]
-  //     console.log("CF7 response:", response.data);
-
-  //     if (response.data.status === "mail_sent") {
-
-  //       // Add contact to your local contact list
-  //       setContactData((prev) => [
-  //         ...prev,
-  //         {
-  //           id: Date.now(),
-  //           ...contactForm,
-  //         },
-  //       ]);
-
-  //       setContactTicket(true);
-
-  //       setContactForm({
-  //         name: "",
-  //         company: "",
-  //         email: "",
-  //         phone: "",
-  //         department: "sales",
-  //         message: "",
-  //       });
-
-  //       setToastMessage("Message sent Successfully!");
-
-  //     } else {
-  //       setToastMessage(
-  //         response.data.message || "Submission failed."
-  //       );
-  //     }
-
-  //   } catch (error) {
-  //     console.error("CF7 submit error:", error);
-
-  //     setToastMessage(
-  //       error.response?.data?.message ||
-  //       "Unable to submit contact form."
-  //     );
-  //   }
-  // };
-
 
   const handleContactSubmit = async (e) => {
     e.preventDefault();

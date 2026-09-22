@@ -1,22 +1,13 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from "react-helmet-async"
 import App from './App';
 import './index.css';
-import axios from 'axios';
-// import { AuthProvider } from './context/AuthContext';
-
-// const authenticateWordpress = () => {
-//     const username = "Developer";
-//     const appPassword = "LLfM PNoU 1JP0 mTz1 Yu6U JrWx";
-//     return (btoa(`${username}:${appPassword}`));
-// }
-
-// export const wordpressCredentials = authenticateWordpress();
 
 createRoot(document.getElementById('root')).render(
-    <BrowserRouter>
-        {/* <AuthProvider> */}
-        <App />
-        {/* </AuthProvider> */}
-    </BrowserRouter>
+    <HelmetProvider>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </HelmetProvider>
 );

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export const SEOManager = ({ activeTab }) => {
 
-    const url = "https://securityplus.in";
+    const url = "https://cctvmall.netlify.app";
 
     useEffect(() => {
         let title = "Security Plus Electronics - Central India's Biggest CCTV & Automation Mall";

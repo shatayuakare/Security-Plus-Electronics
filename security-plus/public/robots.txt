@@ -1,17 +1,12 @@
-# Security Plus Electronics / CCTV Mall
-# https://cctvmall.netlify.app
+# CCTV Mall / Security Plus Electronics
+# https://cctvmall.netlify.app/
 
 User-agent: *
 Allow: /
 
-# Block non-public or unnecessary pages
+# Keep administrative endpoints out of crawler indexes.
 Disallow: /admin/
-Disallow: /api/
-Disallow: /login/
-Disallow: /register/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
 
-# Block query/search parameter URLs if such routes exist
-Disallow: /*?*
-
-# Sitemap
 Sitemap: https://cctvmall.netlify.app/sitemap.xml

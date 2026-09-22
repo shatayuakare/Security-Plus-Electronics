@@ -4,7 +4,7 @@ import heroSlide from "../json/heroSlide.json";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBookingConfirmed, setBookingForm, setShowroomModalOpen, }) => {
+const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomModalOpen, }) => {
 
   const heroStats = [
     {
@@ -30,7 +30,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBoo
     },
   ];
 
-  function useCountUp(target, duration = 1200) {
+  function useCountUp(target, duration = 1400) {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
@@ -65,7 +65,6 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBoo
   }
 
   const triggerShowroomModal = () => {
-    setBookingConfirmed(false);
     // setBookingForm({ name: "", phone: "", email: "", date: "", time: "", sector: "residential" } [fluentform id="4"]);
     setShowroomModalOpen(true);
   };
@@ -86,7 +85,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBoo
     <section className="relative min-h-[92vh] flex flex-col justify-between pt-28 pb-16 overflow-hidden border-b border-slate-900 bg-[#070913]">
       <div className="relative z-20 container mx-auto px-6 max-w-7xl flex-1 flex flex-col justify-center">
         <div className="relative min-h-115 md:min-h-105 lg:min-h-110 flex items-center">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="popLayout">
             {heroSlide.map((slide, idx) =>
               heroSlideIndex === idx && (
                 <motion.div
@@ -210,10 +209,6 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomExperience, setBoo
 
                   <div className={`col-span-6 md:col-span-5 md:flex justify-center hidden`}>
                     <div className={`relative float-end w-96 h-96 rounded-3xl bg-slate-900/30 border border-slate-800 flex  flex-col justify-center items-center overflow-hidden`}  >
-                      {/* {slide.image ? (
-                        <img src={slide.image !== "" ? new URL(`../assets/slide/${slide.image}`, import.meta.url).href : "https://noviatic.com/wp-content/uploads/2026/04/placeholder-image-2-1.jpg"} alt={"Slide " + idx + "image"} className="w-full h-full object-cover" lang="en" decoding="async" fetchPriority="high" loading="eager" />
-                      ) : null} */}
-
                       {slide.image ? (
                         <img
                           src={

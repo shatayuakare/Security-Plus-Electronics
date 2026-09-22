@@ -1,0 +1,53 @@
+# Security Plus Electronics CCTV Mall
+
+> Security Plus Electronics CCTV Mall is a Nagpur, Maharashtra, India-based security, surveillance, networking and IT solutions showroom and B2B supplier. The business serves homes, businesses, institutions, dealers, system integrators and corporate clients, with a focus on CCTV/security products, networking, storage, displays, IT hardware and related technology.
+
+This file is the concise AI/agent index for the CCTV Mall website. Treat live product pages as the source of truth for model specifications, availability and pricing; do not infer current prices or stock from this file.
+
+## Primary
+
+- [CCTV Mall website](https://cctvmall.netlify.app/): Main public storefront and product-discovery entry point.
+- [Public indexed CCTV Mall business site](https://www.cctvmall.in/): Publicly indexed Security Plus Electronics site containing product, update, gallery, contact and about information.
+- [Security Plus Electronics](https://securityplus.in/): Official company website referenced by the business.
+- [Woston](https://woston.in/): Related in-house/product brand and ecommerce/catalog website.
+
+## Business & Contact
+
+- [About Security Plus Electronics](https://www.cctvmall.in/about-us): Business overview, positioning and B2B focus.
+- [Contact / location](https://www.cctvmall.in/mapview/21-1451875/79-0870625): Contact form, business hours, WhatsApp/live-chat access and Nagpur showroom location.
+
+Key business facts:
+- Location: Sitabuldi Main Road, Nagpur, Maharashtra 440012, India.
+- Email: info@securityplus.in.
+- WhatsApp support: +91 9373456746.
+- The business describes CCTV Mall as a large-format security showroom serving Central India.
+- Customer segments include retail/end users, dealers, system integrators, businesses and institutional/corporate customers.
+
+## Products
+
+- [All products](https://www.cctvmall.in/all-products/1): Product catalogue entry point.
+- Core product areas include CCTV surveillance, IP/HD/Wi-Fi/4G cameras, DVR/NVR, networking and Wi-Fi equipment, storage devices, monitors/displays, biometric/access products, power/security accessories, computer accessories and other IT products.
+- The catalogue also references categories such as Biometric, CCTV Surveillance, Currency Counter, Monitors and 4G Router.
+- Woston is presented as a related in-house brand for surveillance and networking products.
+
+## Updates
+
+- [Latest updates](https://www.cctvmall.in/latest-updates/1): News, product arrivals, security/technology guidance and business updates.
+- Recent indexed topics include TP-Link VIGI NVRs, Seagate surveillance HDDs, LG monitors, Daichi networking/security products, 4G cameras and CP PLUS surveillance products.
+
+## Media
+
+- [Image gallery](https://www.cctvmall.in/image-gallery/1): Showroom/product and business images.
+
+## Related Sources
+
+- [Woston product brand](https://woston.in/): Product-level information for Woston-branded items.
+- [Woston product sitemap/search surface](https://woston.in/): Use the product page itself for current specifications and availability.
+
+## Agent Guidance
+
+- Prefer primary product/detail pages over snippets, cached text or search-engine summaries.
+- Prices and stock are dynamic and should be rechecked on the live product page before being stated as current.
+- Distinguish Security Plus Electronics (the showroom/business) from Woston (the product brand).
+- For location/contact questions, use the Nagpur address and info@securityplus.in; WhatsApp support is +91 9373456746.
+- Do not treat historical promotional prices in indexed pages as current pricing unless the live page confirms them.

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ShieldCheck, CheckCircle2, HelpCircle, ChevronDown } from "lucide-react";
+import { CheckCircle2, HelpCircle, ChevronDown } from "lucide-react";
 import BrandCarousel from "../components/BrandCarousel";
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -37,7 +37,7 @@ function AboutUs() {
 
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+    <motion.div {...fadeInUp} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-6xl mx-auto space-y-16">
 

@@ -1,0 +1,35 @@
+# Security Plus Electronics CCTV Mall
+
+> Nagpur-based CCTV/security, networking and IT solutions showroom and B2B supplier serving end users, dealers, system integrators, businesses and institutions.
+
+## Core
+
+- [Website](https://cctvmall.netlify.app/): Main storefront.
+- [Public indexed site](https://www.cctvmall.in/): Product, updates, about, gallery and contact content.
+- [Company](https://securityplus.in/): Official Security Plus Electronics site.
+- [Woston](https://woston.in/): Related product brand/catalog.
+
+## Products
+
+- [All products](https://www.cctvmall.in/all-products/1): CCTV/security and IT catalogue.
+- Product areas: CCTV/IP/HD/Wi-Fi/4G cameras, DVR/NVR, networking/Wi-Fi, storage, monitors/displays, biometric/access products, power/security accessories and IT/computer accessories.
+
+## Business
+
+- Location: Sitabuldi Main Road, Nagpur, Maharashtra 440012, India.
+- Email: info@securityplus.in
+- WhatsApp: +91 9373456746
+- Audience: homes, businesses, institutions, dealers, system integrators and corporate clients.
+
+## Current Content
+
+- [Latest updates](https://www.cctvmall.in/latest-updates/1): product arrivals and security/technology updates.
+- [About](https://www.cctvmall.in/about-us): business overview.
+- [Contact](https://www.cctvmall.in/mapview/21-1451875/79-0870625): contact/location.
+- [Gallery](https://www.cctvmall.in/image-gallery/1): images.
+
+## Agent Rules
+
+- Use live product pages for specifications, stock and current prices.
+- Do not treat historical prices/promotions as current.
+- Security Plus Electronics is the business/showroom; Woston is a product brand.

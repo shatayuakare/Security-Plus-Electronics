@@ -1,0 +1,18 @@
+# ai.txt - AI Policy Declaration
+Spec-Version: 1.0
+Site-Name: Security Plus Electronics CCTV Mall
+Site-URL: https://cctvmall.netlify.app/
+Generated-At: 2026-09-22T13:43:00+05:30
+Description: Security Plus Electronics CCTV Mall is a Nagpur-based security, surveillance, networking and IT solutions showroom and B2B supplier.
+Contact: info@securityplus.in
+
+# Content-use defaults
+# Training is denied unless the site owner later publishes a more specific training permission.
+Training: deny
+Scraping: allow
+Indexing: allow
+Caching: allow
+
+# Source attribution is preferred when AI systems quote or materially rely on site content.
+Attribution: recommended
+AI-Disclosure: recommended

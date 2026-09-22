@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import { ChevronRight } from "lucide-react";
 // import { BLOGS_DATA } from "../data";

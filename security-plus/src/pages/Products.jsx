@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import "../products.css"
 import { motion } from "motion/react";
-import { ShoppingBag, ExternalLink, Heart, Video, Cpu, LockKeyhole, HardDrive, Router, BatteryCharging, Eye, ChevronRight, ChevronLeft } from "lucide-react";
+import { ShoppingBag, ExternalLink, Heart, Eye, ChevronRight, ChevronLeft } from "lucide-react";
 import BrandCarousel from "../components/BrandCarousel";
 import BRANDS from "../json/brands.json"
 import parse from "html-react-parser";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import SEO from "../components/SEO";
 
 const staggerContainer = {
   initial: {},
@@ -32,6 +32,11 @@ function ProductGridLoader() {
       aria-label="Loading product"
       className="bg-white border border-slate-200/80 flex flex-col justify-between p-4 relative rounded-2xl shadow animate-pulse"
     >
+      <SEO
+        title="Latest Product | CCTV Mall"
+        description="Shop CCTV surveillance systems, security products, networking products, IT devices and accessories from CCTV Mall."
+        path="/products"
+      />
       <div>
         <div className="flex justify-between items-center mb-2">
           <div className="h-6 w-20 bg-slate-200 rounded-lg" />
@@ -74,7 +79,7 @@ function ProductGridLoader() {
 }
 
 
-export default function Products({ products, productCategories, setCurrentPage, setInquiryList, setProductCategories, currentPage, wishlist, toggleWishlist, setToastMessage, setSelectedProductForQuickView }) {
+export default function Products({ products, productCategories, setCurrentPage, currentPage, wishlist, toggleWishlist, setSelectedProductForQuickView }) {
 
   const [productCategoryFilter, setProductCategoryFilter] = useState("all");
   const [productSortOption, setProductSortOption] = useState("default");
@@ -241,7 +246,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
                           {product?.on_sale && "Sale"}
                         </span>
 
-                        <button type='button' id='wishlistToggleBtn' aria-label="Wishlist Toggle Button" id={`wishlist-toggle-${product.id}`} onClick={(e) => {
+                        <button type='button' aria-label="Wishlist Toggle Button" id={`wishlist-toggle-${product.id}`} onClick={(e) => {
                           e.stopPropagation();
                           toggleWishlist(product?.id);
                         }} className="absolute top-2.5 right-2.5 z-20 p-2 bg-white/90 hover:bg-white backdrop-blur-md rounded-full border border-slate-100 shadow-sm transition-all duration-300 hover:scale-110 cursor-pointer" title={wishlist?.includes(product?.id) ? "Remove from wishlist" : "Save to wishlist"}>
@@ -251,7 +256,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
                         </button>
 
                         <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 backdrop-blur-[2px] z-10">
-                          <button type='button' id='quickViewBtn' aria-label="Quick View Button" id={`quick-view-btn-img-${product.id}`} onClick={(e) => {
+                          <button type='button' aria-label="Quick View Button" id={`quick-view-btn-img-${product.id}`} onClick={(e) => {
                             e.stopPropagation();
                             setSelectedProductForQuickView(product);
                           }} className="bg-white text-slate-900 hover:bg-primary hover:text-white px-4 py-2 text-xs font-bold rounded-lg transition-all shadow-md flex items-center gap-1.5 cursor-pointer transform translate-y-2 group-hover:translate-y-0 duration-300 z-20">
@@ -282,7 +287,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
                         }
                       </span>
                       <div className="flex gap-1.5">
-                        <button type='button' id='quickViewBtn' aria-label="Quick View Button" id={`quick-view-btn-footer-${product.id}`} onClick={(e) => {
+                        <button type='button' aria-label="Quick View Button" id={`quick-view-btn-footer-${product.id}`} onClick={(e) => {
                           e.stopPropagation();
                           setSelectedProductForQuickView(product);
                         }} className="bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-100/50 px-3 py-1.5 text-[9px] font-bold uppercase transition-all duration-300 rounded-xl flex items-center gap-1 cursor-pointer">

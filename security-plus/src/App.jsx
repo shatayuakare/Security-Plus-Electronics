@@ -1,11 +1,10 @@
 import "./index.css";
-import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import axios from "axios";
-import { X, Sparkles, Image } from "lucide-react";
+import { X, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom"
 import { SEOManager } from "./components/SEOManager";
-const logo = lazy(() => import("./assets/images/logo.avif"))
 
 const BrandCarousel = lazy(() => import("./components/BrandCarousel"))
 // const VirualShowroom = lazy(() => import("./components/VirtualShowroom"))
@@ -32,14 +31,12 @@ const QuickBlogVIew = lazy(() => import("./components/modal/QuickBlogVIew.jsx"))
 const ScrollableTestimonials = lazy(() => import("./components/section/ScrollableTestimonials.jsx"));
 const OurThought = lazy(() => import("./components/section/OurThought.jsx"));
 const FAQSection = lazy(() => import("./components/section/FAQSection.jsx"));
-const OurBlogs = lazy(() => import("./components/section/OurBlogs.jsx"));
+// const OurBlogs = lazy(() => import("./components/section/OurBlogs.jsx"));
 const OurLocation = lazy(() => import("./components/section/OurLocation.jsx"));
 
 // JSON file to fetch data
 import TESTIMONIALS_DATA from "./json/testimonials.json"
 import GALLERY_ITEMS from "./json/gallary.json"
-import NotFound from "./pages/NotFound.jsx";
-
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
@@ -60,23 +57,10 @@ function App() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showroomModalOpen, setShowroomModalOpen] = useState(false);
-  const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
   const [toastMessage, setToastMessage] = useState(null);
 
-  const [registeredCustomers, setRegisteredCustomers] = useState(() => {
-    const saved = localStorage.getItem("spe_registered_customers");
-    if (saved)
-      return JSON.parse(saved);
-    return [
-      { name: "Security Manager", email: "info@securityplus.in", phone: "08048102415", password: "customer123" }
-    ];
-  });
 
-
-  useEffect(() => {
-    localStorage.setItem("spe_registered_customers", JSON.stringify(registeredCustomers));
-  }, [registeredCustomers]);
 
   const [wishlist, setWishlist] = useState(() => {
     const savedUser = localStorage.getItem("spe_customer_user");
@@ -187,7 +171,6 @@ function App() {
     localStorage.setItem("spe_showroom_experience_list", JSON.stringify(inquiryList));
   }, [inquiryList]);
   const [selectedProductForQuickView, setSelectedProductForQuickView] = useState(null);
-  const [isInquiryDrawerOpen, setIsInquiryDrawerOpen] = useState(false);
   const [loadedImages, setLoadedImages] = useState({});
   const [testimonials, setTestimonials] = useState(TESTIMONIALS_DATA);
   const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
@@ -288,9 +271,9 @@ function App() {
 
   return (
     <>
-      <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} inquiryList={inquiryList} setIsInquiryDrawerOpen={setIsInquiryDrawerOpen} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
+      <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} logoData={logoData} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} inquiryList={inquiryList} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
 
-      {/* <SEOManager /> */}
+      <SEOManager />
       <main className={location.pathname === "/" ? "pt-0 bg-[#070913]" : "pt-20 bg-white"}>
         <Suspense
           fallback={
@@ -301,7 +284,7 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<motion.div {...fadeIn} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-              <Hero heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} setBookingConfirmed={setBookingConfirmed} />
+              <Hero heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} />
 
               <Suspense fallback={<div className="min-h-[200px]" />}>
                 <BrandCarousel />
@@ -324,7 +307,6 @@ function App() {
                   </p>
                 </div>
               </motion.section>
-
 
               <Suspense fallback={<div className="min-h-[50vh]" />}>
                 <ScrollableTestimonials />

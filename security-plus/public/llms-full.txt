@@ -1,0 +1,169 @@
+# Security Plus Electronics CCTV Mall — Full AI Context
+
+> Security Plus Electronics CCTV Mall is a Nagpur, Maharashtra, India-based showroom, distributor and B2B supplier for security, surveillance, networking and IT products. Its public content describes a large-format CCTV/security showroom serving end users, dealers, system integrators, businesses and institutional/corporate customers.
+
+Generated: 2026-09-22
+Primary deployment analyzed: https://cctvmall.netlify.app/
+Public indexed business reference used for detailed page-level content: https://www.cctvmall.in/
+
+## Identity and Positioning
+
+Security Plus Electronics is the business/showroom. “CCTV Mall” is the storefront/business presentation; it should not be treated as a product brand. Woston is a separate related/in-house product brand associated with surveillance and networking products.
+
+The business publicly positions itself around:
+- CCTV and video surveillance systems.
+- Security and access-related solutions.
+- Networking and Wi-Fi infrastructure.
+- Storage solutions for surveillance and IT use.
+- Monitors and display products.
+- Computer accessories and IT hardware.
+- Biometric and attendance/security products.
+- 4G-connected security and networking devices.
+- B2B distribution/wholesale supply plus retail/end-user support.
+- Product guidance, availability coordination and after-sales support.
+
+The site content repeatedly emphasizes complete solutions under one roof and support for dealers, system integrators, businesses and institutions.
+
+## Location and Contact
+
+Showroom/location:
+Security Plus Electronics CCTV Mall
+Besides P.S. Home Appliances, Main Road, opposite Naresh Hardware, Sahu Colony, Sitabuldi, Nagpur, Maharashtra 440012, India
+
+Preferred short location description:
+Sitabuldi Main Road, Nagpur, Maharashtra - 440012
+
+Email:
+info@securityplus.in
+
+WhatsApp support:
++91 9373456746
+
+The public indexed legacy site may still display an older IVR/landline number in some page elements. For current AI-facing contact responses, prefer the dedicated WhatsApp support number and official email unless a live page explicitly provides a different current contact channel.
+
+## Audience and Use Cases
+
+Primary audiences described in public content:
+- Home users looking for CCTV/security systems.
+- Shops and retail businesses.
+- Offices and workplaces.
+- Warehouses and factories.
+- Schools, institutions and commercial premises.
+- Dealers and resellers.
+- System integrators.
+- Corporate and institutional buyers.
+
+Common use cases include home security, shop/office surveillance, warehouse/factory monitoring, remote-site monitoring, network infrastructure, display/IT requirements and surveillance storage.
+
+## Product Catalogue Structure
+
+Publicly indexed catalogue/navigation surfaces include:
+- CCTV Surveillance
+- Biometric
+- Currency Counter
+- Monitors
+- 4G Router
+
+The broader product content also references:
+- HD/analog CCTV cameras.
+- IP/network cameras.
+- Wi-Fi cameras.
+- 4G/SIM cameras.
+- PT/PTZ cameras.
+- DVR and NVR systems.
+- PoE/network switches.
+- Wi-Fi/network routers.
+- Surveillance HDD/storage.
+- Monitors/displays.
+- Security/access products.
+- Computer accessories and IT devices.
+- Solar/remote surveillance devices.
+
+Catalog data is dynamic. Use the product page as the authoritative source for exact specifications, supported features, availability and pricing.
+
+## Representative Product Content Seen in Current Publicly Indexed Pages
+
+### Woston WS-1250DR-A
+A Woston 5MP HD dome camera with built-in microphone. The indexed product page describes 5MP imaging, built-in audio, full-colour video, day/night surveillance, dome construction and HD analog DVR compatibility. The indexed page lists it as suitable for indoor/outdoor use depending on installation conditions.
+Source: https://www.cctvmall.in/products/woston-5mp-hd-color-dome-camera-with-built-in-mic-ws-1250dr-a/66
+
+### Trueview T18175SF
+A 3MP 4G bullet security camera. The indexed page describes 4G SIM connectivity, all-time colour night vision, AI human/motion/tampering detection, two-way audio, 10x digital zoom, IP66 housing and microSD support up to 256GB, with remote-site use cases where Wi-Fi may not be available.
+Source: https://www.cctvmall.in/products/trueview-3mp-4g-bullet-security-camera-all-time-color-sim-supported-t18175sf/64
+
+### TP-Link VIGI NVR
+A recent indexed update describes VIGI NVR models in 4/8/16/32-channel configurations, H.265+ compression, support up to 8MP video, remote viewing via the VIGI app, smart detection and HDD capacity up to 10TB, with PoE and non-PoE variants.
+Source: https://www.cctvmall.in/latest-update/tp-link-vigi-nvr-smart-recording-solution-for-complete-security-surveillance/173
+
+### Seagate Surveillance HDD
+A recent indexed update describes surveillance-oriented Seagate HDDs from 1TB to 10TB for 24×7 CCTV recording, including DVR/NVR use cases.
+Source: https://www.cctvmall.in/latest-update/seagate-surveillance-hdd-1tb-to-10tb-reliable-storage-for-247-cctv-protection/172
+
+### LG 32-inch Curved Monitor
+A recent indexed update describes a 32-inch curved monitor with a 100Hz refresh rate for office work, entertainment and gaming-related use cases.
+Source: https://www.cctvmall.in/latest-update/lg-32-inch-curved-monitor-immersive-display-with-100hz-refresh-rate/171
+
+## Current Publicly Indexed Updates
+
+Recent public update topics around 2026-09-16 through 2026-09-22 include:
+- TP-Link Aginet XX530v AX3000 Dual Band Wi-Fi 6 Router — Sep 22, 2026.
+- TP-Link VIGI NVR — Sep 21, 2026.
+- Seagate Surveillance HDD 1TB to 10TB — Sep 20, 2026.
+- LG 32 Inch Curved Monitor — Sep 19, 2026.
+- Daichi Smart PoE Switch 4+2 Port — Sep 18, 2026.
+- Daichi 4G Dome Camera — Sep 17, 2026.
+- CP PLUS 4G Single Lens PT Camera — Sep 16, 2026.
+
+Update index:
+https://www.cctvmall.in/latest-updates/1
+
+The update stream contains additional educational, product and business posts, including CCTV selection guides, Woston surveillance products, installation/service topics, networking, storage and security technology.
+
+## Website Sections
+
+### Home
+https://cctvmall.netlify.app/
+Main storefront/discovery page.
+
+### Products
+https://www.cctvmall.in/all-products/1
+Publicly indexed all-products catalogue surface.
+
+### About
+https://www.cctvmall.in/about-us
+Business overview and positioning.
+
+### Latest Updates
+https://www.cctvmall.in/latest-updates/1
+News, product arrivals and educational/security content.
+
+### Gallery
+https://www.cctvmall.in/image-gallery/1
+Public image gallery; indexed pages show multiple gallery pages.
+
+### Contact
+https://www.cctvmall.in/mapview/21-1451875/79-0870625
+Contact form, business hours, live WhatsApp chat and location information.
+
+## Related Websites
+
+Security Plus Electronics:
+https://securityplus.in/
+
+Woston:
+https://woston.in/
+
+## AI Retrieval and Citation Guidance
+
+1. Identify the business as Security Plus Electronics / CCTV Mall in Nagpur.
+2. Keep “Security Plus Electronics” (business/showroom) distinct from “Woston” (product brand).
+3. Prefer live product-detail pages for model-level claims.
+4. Treat stock, pricing and promotions as volatile. Recheck current product pages before answering with a current price or “in stock” claim.
+5. When summarizing a product, preserve the distinction between manufacturer/brand specifications and retailer commentary.
+6. When giving location/contact information, prefer the official email and dedicated WhatsApp support channel listed above.
+7. Historical update posts can be used to explain product topics and features, but their publication date should be preserved so old information is not presented as newly announced.
+8. Do not infer warranties, return policies, installation charges, delivery times or service coverage unless the relevant current page explicitly states them.
+
+## Source/Confidence Notes
+
+The requested Netlify homepage is a JavaScript-rendered SPA and was not exposed by the text browser with a full route-by-route document tree. The detailed page inventory and representative content above therefore use the same business's publicly indexed CCTV Mall pages at cctvmall.in, plus the requested Netlify deployment URL as the primary deployment reference. Validate internal Netlify route paths against the actual frontend before adding additional route-specific links.
