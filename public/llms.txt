@@ -6,15 +6,15 @@ This file is the concise AI/agent index for the CCTV Mall website. Treat live pr
 
 ## Primary
 
-- https://cctvmall.netlify.app/: Main public storefront and product-discovery entry point.
-- https://www.cctvmall.in: Publicly indexed Security Plus Electronics site containing product, update, gallery, contact and about information.
-- https://securityplus.in/: Official company website referenced by the business.
-- https://woston.in/: Related in-house/product brand and ecommerce/catalog website.
+- [CCTV Mall website](https://cctvmall.netlify.app/): Main public storefront and product-discovery entry point.
+- [Public indexed CCTV Mall business site](https://www.cctvmall.in/): Publicly indexed Security Plus Electronics site containing product, update, gallery, contact and about information.
+- [Security Plus Electronics](https://securityplus.in/): Official company website referenced by the business.
+- [Woston](https://woston.in/): Related in-house/product brand and ecommerce/catalog website.
 
 ## Business & Contact
 
-- https://www.cctvmall.netlify.app/about: Business overview, positioning and B2B focus.
-- https://www.cctvmall.netlify.app/contact: Contact form, business hours, WhatsApp/live-chat access and Nagpur showroom location.
+- [About Security Plus Electronics](https://www.cctvmall.in/about-us): Business overview, positioning and B2B focus.
+- [Contact / location](https://www.cctvmall.in/mapview/21-1451875/79-0870625): Contact form, business hours, WhatsApp/live-chat access and Nagpur showroom location.
 
 Key business facts:
 - Location: Sitabuldi Main Road, Nagpur, Maharashtra 440012, India.
@@ -25,24 +25,24 @@ Key business facts:
 
 ## Products
 
-- https://www.cctvmall.netlify.app/products): Product catalogue entry point.
+- [All products](https://www.cctvmall.in/all-products/1): Product catalogue entry point.
 - Core product areas include CCTV surveillance, IP/HD/Wi-Fi/4G cameras, DVR/NVR, networking and Wi-Fi equipment, storage devices, monitors/displays, biometric/access products, power/security accessories, computer accessories and other IT products.
 - The catalogue also references categories such as Biometric, CCTV Surveillance, Currency Counter, Monitors and 4G Router.
 - Woston is presented as a related in-house brand for surveillance and networking products.
 
 ## Updates
 
-- https://www.cctvmall.netlify.app/blogs: News, product arrivals, security/technology guidance and business updates.
+- [Latest updates](https://www.cctvmall.in/latest-updates/1): News, product arrivals, security/technology guidance and business updates.
 - Recent indexed topics include TP-Link VIGI NVRs, Seagate surveillance HDDs, LG monitors, Daichi networking/security products, 4G cameras and CP PLUS surveillance products.
 
 ## Media
 
-- https://www.cctvmall.netlify.app/gallary: Showroom/product and business images.
+- [Image gallery](https://www.cctvmall.in/image-gallery/1): Showroom/product and business images.
 
 ## Related Sources
 
-- https://woston.in/: Product-level information for Woston-branded items.
-- https://woston.in/: Use the product page itself for current specifications and availability.
+- [Woston product brand](https://woston.in/): Product-level information for Woston-branded items.
+- [Woston product sitemap/search surface](https://woston.in/): Use the product page itself for current specifications and availability.
 
 ## Agent Guidance
 
@@ -51,3 +51,9 @@ Key business facts:
 - Distinguish Security Plus Electronics (the showroom/business) from Woston (the product brand).
 - For location/contact questions, use the Nagpur address and info@securityplus.in; WhatsApp support is +91 9373456746.
 - Do not treat historical promotional prices in indexed pages as current pricing unless the live page confirms them.
+
+## Technical Discovery
+
+- [robots.txt](https://cctvmall.netlify.app/robots.txt): Crawler directives and canonical sitemap location.
+- [XML sitemap](https://cctvmall.netlify.app/sitemap.xml): Canonical URL discovery feed for search engines and agents.
+- [AI usage policy](https://cctvmall.netlify.app/.well-known/ai.txt): Machine-readable AI/agent access policy.

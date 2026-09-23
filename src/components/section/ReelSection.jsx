@@ -77,15 +77,17 @@ const ReelCard = ({
                 onEnded={() => onVideoEnded(reel.id)}
                 onClick={togglePlay}
                 preload="none"
-            />
+            >
+                <track kind="captions" src={localVideos[reel.id] || reel.videoUrl} srcLang="en" label={localVideos[reel.title] || reel.title} default />
+            </video>
 
             <div className="absolute top-0 left-0 right-0 p-5 bg-linear-to-b from-black/80 via-black/40 to-transparent z-10 text-white pointer-events-none">
                 <span className="font-sans text-[9px] bg-primary/20 text-sky-300 border border-primary/30 px-2 py-0.5 rounded-md tracking-wider uppercase font-bold">
                     {reel.category}
                 </span>
-                <h4 className="font-sans font-bold text-sm tracking-tight mt-2.5 drop-shadow">
+                <h3 className="font-sans font-bold text-sm tracking-tight mt-2.5 drop-shadow">
                     {reel.title}
-                </h4>
+                </h3>
             </div>
 
             <div onClick={togglePlay} className="absolute inset-0 flex items-center justify-center z-10 cursor-pointer bg-black/10 group-hover:bg-black/20 transition-all duration-300">

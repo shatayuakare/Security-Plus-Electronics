@@ -36,12 +36,11 @@ const ScrollableTestimonials = () => {
                 </div>
 
                 <div className="flex items-center gap-4">
-
                     <div className="flex gap-3">
-                        <button type='button' id='prevBtn' aria-label="Previous Button" onClick={prevSlide} className="p-3 border border-slate-200 text-slate-600 hover:text-primary hover:border-primary transition-all rounded-full bg-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Previous Testimonial">
+                        <button type='button' id='prevBtn' onClick={prevSlide} className="p-3 border border-slate-200 text-slate-600 hover:text-primary hover:border-primary transition-all rounded-full bg-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Previous Testimonial">
                             <ArrowLeft className="h-4 w-4" />
                         </button>
-                        <button type='button' id='nextBtn' aria-label="Next Button" onClick={nextSlide} className="p-3 border border-slate-200 text-slate-600 hover:text-primary hover:border-primary transition-all rounded-full bg-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Next Testimonial">
+                        <button type='button' id='nextBtn' onClick={nextSlide} className="p-3 border border-slate-200 text-slate-600 hover:text-primary hover:border-primary transition-all rounded-full bg-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Next Testimonial">
                             <ArrowRight className="h-4 w-4" />
                         </button>
                     </div>
@@ -61,9 +60,9 @@ const ScrollableTestimonials = () => {
                                 </p>
                             </div>
                             <div>
-                                <h4 className="font-sans font-bold text-slate-900 text-base">
+                                <h3 className="font-sans font-bold text-slate-900 text-base">
                                     {TESTIMONIALS_DATA[scrollIndex].clientName}
-                                </h4>
+                                </h3>
                                 <p className="text-xs text-slate-500">
                                     {TESTIMONIALS_DATA[scrollIndex].designation} &mdash; <span className="text-primary font-semibold">{TESTIMONIALS_DATA[scrollIndex].organization}</span>
                                 </p>
@@ -86,8 +85,8 @@ const ScrollableTestimonials = () => {
                 </AnimatePresence>
             </div>
 
-            <div className="flex justify-center gap-2 mt-8">
-                {TESTIMONIALS_DATA.map((_, idx) => (<button type='button' id='testimonialBtn' aria-label="Testimonial Button" key={idx} onClick={() => setScrollIndex(idx)} className={`h-2 transition-all rounded-full cursor-pointer ${idx === scrollIndex ? "w-6 bg-primary" : "w-2 bg-slate-300"}`} aria-label={`Go to slide ${idx + 1}`} />))}
+            <div className="flex justify-center mt-6">
+                {TESTIMONIALS_DATA.map((_, idx) => (<div className="touch-wrapper" key={idx}><button type='button' id='testimonialBtn' key={idx} onClick={() => setScrollIndex(idx)} className={`h-2 transition-all rounded-full cursor-pointer ${idx === scrollIndex ? "w-6 bg-primary" : "w-2 bg-slate-300"}`} aria-label={`Go to slide ${idx + 1}`} /> </div>))}
             </div>
         </div>
     </section>);

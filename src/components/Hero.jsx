@@ -243,9 +243,6 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomModalOpen, }) => {
                 title={`Go to slide ${idx + 1}`}
               />
             </div>))}
-            {/* {[0, 1, 2, 3, 4, 5].map((idx) => (<button id='heroBtn' aria-label="Hero Button" key={idx} onClick={() => setHeroSlideIndex(idx)} className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${heroSlideIndex === idx
-              ? "w-8 bg-primary"
-              : "w-2.5 bg-slate-800 hover:bg-slate-700"}`} title={`Go to slide ${idx + 1}`} />))} */}
           </div>
         </div>
 

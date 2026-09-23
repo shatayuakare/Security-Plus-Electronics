@@ -26,13 +26,13 @@ const BrandCard = memo(({ brand }) => {
       </div>
 
       <div className="flex flex-col text-left">
-        <span className="font-sans font-bold text-sm text-slate-800 tracking-wide group-hover:text-primary transition-colors duration-200">
+        <h3 className="font-sans font-bold text-sm text-slate-800 tracking-wide group-hover:text-primary transition-colors duration-200">
           {brand.name}
-        </span>
+        </h3>
 
-        <span className="font-mono text-xs text-slate-400 tracking-tight">
+        <h3 className="font-mono text-xs text-slate-400 tracking-tight">
           {brand.category}
-        </span>
+        </h3>
       </div>
     </div>
   );
@@ -50,13 +50,13 @@ const BrandCarousel = () => {
     <section className="w-full py-10 bg-white border-y border-slate-100 overflow-hidden relative z-20">
       <div className="max-w-7xl mx-auto px-6 mb-4 flex justify-between items-end">
         <div>
-          <span className="font-sans font-extrabold text-[9px] text-primary tracking-widest uppercase block mb-1">
+          <span className="font-sans font-extrabold text-[9px] text-primary-hover tracking-widest uppercase block mb-1">
             CERTIFIED ELITE PARTNERS
           </span>
 
-          <h3 className="font-sans text-xs md:text-sm font-bold text-slate-800 uppercase tracking-wider">
+          <h2 className="font-sans text-xs md:text-sm font-bold text-slate-800 uppercase tracking-wider">
             Premium Brands We Integrate & Maintain
-          </h3>
+          </h2>
         </div>
       </div>
 
