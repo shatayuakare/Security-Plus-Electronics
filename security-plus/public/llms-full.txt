@@ -126,11 +126,11 @@ https://cctvmall.netlify.app/
 Main storefront/discovery page.
 
 ### Products
-https://www.cctvmall.in/all-products/1
+https://cctvmall.netlify.app/products
 Publicly indexed all-products catalogue surface.
 
 ### About
-https://www.cctvmall.in/about-us
+https://cctvmall.netlify.app/about
 Business overview and positioning.
 
 ### Latest Updates
@@ -138,11 +138,11 @@ https://www.cctvmall.in/latest-updates/1
 News, product arrivals and educational/security content.
 
 ### Gallery
-https://www.cctvmall.in/image-gallery/1
+https://cctvmall.netlify.app/gallary
 Public image gallery; indexed pages show multiple gallery pages.
 
 ### Contact
-https://www.cctvmall.in/mapview/21-1451875/79-0870625
+https://cctvmall.netlify.app/contact
 Contact form, business hours, live WhatsApp chat and location information.
 
 ## Related Websites

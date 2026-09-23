@@ -75,7 +75,7 @@ function ProductGridLoader() {
 }
 
 
-export default function Products({ products, productCategories, setCurrentPage, currentPage, wishlist, toggleWishlist, setSelectedProductForQuickView }) {
+export default function Products({ products, productCategories, setCurrentPage, setWishlist, currentPage, wishlist, toggleWishlist, setSelectedProductForQuickView }) {
 
   const [productCategoryFilter, setProductCategoryFilter] = useState("all");
   const [productSortOption, setProductSortOption] = useState("default");

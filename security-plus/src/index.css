@@ -104,6 +104,14 @@ img {
   border-style: solid !important;
 }
 
+.touch-wrapper {
+  display: inline-block;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
 @media print {
 
   #root,

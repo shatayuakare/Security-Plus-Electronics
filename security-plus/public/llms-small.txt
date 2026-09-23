@@ -4,14 +4,14 @@
 
 ## Core
 
-- [Website](https://cctvmall.netlify.app/): Main storefront.
-- [Public indexed site](https://www.cctvmall.in/): Product, updates, about, gallery and contact content.
-- [Company](https://securityplus.in/): Official Security Plus Electronics site.
-- [Woston](https://woston.in/): Related product brand/catalog.
+- https://cctvmall.netlify.app/: Main storefront.
+- https://www.cctvmall.in/: Product, updates, about, gallery and contact content.
+- https://securityplus.in/: Official Security Plus Electronics site.
+- https://woston.in/: Related product brand/catalog.
 
 ## Products
 
-- [All products](https://www.cctvmall.in/all-products/1): CCTV/security and IT catalogue.
+- https://https://cctvmall.netlify.app/products: CCTV/security and IT catalogue.
 - Product areas: CCTV/IP/HD/Wi-Fi/4G cameras, DVR/NVR, networking/Wi-Fi, storage, monitors/displays, biometric/access products, power/security accessories and IT/computer accessories.
 
 ## Business

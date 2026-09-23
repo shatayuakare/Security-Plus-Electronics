@@ -154,7 +154,6 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomModalOpen, }) => {
                       />
                     </div>
 
-
                     <h1 className="font-sans text-[3rem] md:text-[5rem] font-extrabold tracking-tight text-white leading-tight uppercase"
                       dangerouslySetInnerHTML={{ __html: slide.title }} />
 
@@ -231,11 +230,22 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomModalOpen, }) => {
           </AnimatePresence>
         </div>
 
-        <div className="flex justify-between items-center mt-12 pt-6 border-t border-slate-900/60 max-w-5xl mx-auto w-full">
-          <div className="flex gap-2.5">
-            {[0, 1, 2, 3, 4, 5].map((idx) => (<button id='heroBtn' aria-label="Hero Button" key={idx} onClick={() => setHeroSlideIndex(idx)} className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${heroSlideIndex === idx
+        <div className="w-fit mt-6 pt-2 border-t border-slate-800/60">
+          <div className="flex justify-between items-center ">
+            {[0, 1, 2, 3, 4, 5].map((idx) => (<div className="touch-wrapper" key={idx}>
+              <button
+                id='heroBtn'
+                aria-label={`Go to slide ${idx + 1}`}
+                onClick={() => setHeroSlideIndex(idx)}
+                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${heroSlideIndex === idx
+                  ? "w-8 bg-primary"
+                  : "w-2.5 bg-slate-800 hover:bg-slate-700"}`}
+                title={`Go to slide ${idx + 1}`}
+              />
+            </div>))}
+            {/* {[0, 1, 2, 3, 4, 5].map((idx) => (<button id='heroBtn' aria-label="Hero Button" key={idx} onClick={() => setHeroSlideIndex(idx)} className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${heroSlideIndex === idx
               ? "w-8 bg-primary"
-              : "w-2.5 bg-slate-800 hover:bg-slate-700"}`} title={`Go to slide ${idx + 1}`} />))}
+              : "w-2.5 bg-slate-800 hover:bg-slate-700"}`} title={`Go to slide ${idx + 1}`} />))} */}
           </div>
         </div>
 

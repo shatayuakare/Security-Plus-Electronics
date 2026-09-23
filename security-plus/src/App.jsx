@@ -60,20 +60,10 @@ function App() {
 
   const [toastMessage, setToastMessage] = useState(null);
 
-
-
   const [wishlist, setWishlist] = useState(() => {
-    const savedUser = localStorage.getItem("spe_customer_user");
-    const user = savedUser ? JSON.parse(savedUser) : null;
-    if (user && user.email) {
-      const saved = localStorage.getItem(`spe_wishlist_${user.email}`);
-      return saved ? JSON.parse(saved) : [];
-    }
-    return [];
+    const saved = localStorage.getItem("spe_customer_wishlist");
+    return saved ? JSON.parse(saved) : [];
   });
-
-
-
 
 
   const toggleWishlist = (productId) => {
@@ -82,14 +72,16 @@ function App() {
     if (index > -1) {
       newWishlist = wishlist.filter(id => id !== productId);
       setToastMessage("Product removed from your wishlist.");
-    }
-    else {
+    } else {
       newWishlist = [...wishlist, productId];
       setToastMessage("Product added to your wishlist!");
     }
-    saveWishlist(newWishlist);
+    // localStorage.setItem("spe_customer_wishlist")
+    setWishlist(newWishlist);
   };
-
+  useEffect(() => {
+    localStorage.setItem("spe_customer_wishlist", JSON.stringify(wishlist));
+  }, [wishlist]);
 
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
   useEffect(() => {
@@ -131,8 +123,6 @@ function App() {
         const freshProducts = response.data;
 
         setProducts(freshProducts);
-
-        // Process categories here
       } catch (error) {
         if (error.code === "ERR_CANCELED") return;
 
