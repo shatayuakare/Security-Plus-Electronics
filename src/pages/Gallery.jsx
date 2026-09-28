@@ -45,7 +45,7 @@ export default function Gallery({ galleryItems }) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredGalleryItems.map((item, index) => (
+            {filteredGalleryItems.map(item => (
               <motion.div key={item.id} layout whileHover={{ y: -6 }} className="bg-white rounded-2xl overflow-hidden shadow border-b-2 group-hover:border-sky-700 border-primary flex flex-col group cursor-pointer">
                 <div className="relative w-full aspect-3/2 overflow-hidden bg-slate-100 flex items-center justify-center">
                   {item.isPlaceholder ? (
@@ -55,7 +55,7 @@ export default function Gallery({ galleryItems }) {
                       {item.iconName === "ShieldCheck" && <ShieldCheck className="h-16 w-16 text-indigo-500/30 animate-pulse" />}
                       {item.iconName === "Video" && <Video className="h-16 w-16 text-emerald-500/30 animate-pulse" />}
                     </div>) : (
-                    <img src={new URL(`../assets/gallary/${item.image}`, import.meta.url).href} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+                    <img src={new URL(`../assets/gallery/${item.image}`, import.meta.url).href} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                   )}
                   <span className="absolute top-4 left-4 text-[8px] font-bold bg-slate-900/90 text-white border border-slate-800 px-2.5 py-1 uppercase tracking-wider rounded-md">
                     {item.category}
@@ -66,10 +66,6 @@ export default function Gallery({ galleryItems }) {
                     <h3 className="text-sm font-bold text-slate-900 uppercase group-hover:text-primary transition-colors font-sans">{item.title}</h3>
                     <p className="text-xs text-slate-500 mt-1 font-sans">{item.desc}</p>
                   </div>
-                  {/* <div className="pt-3 border-t border-slate-100 flex justify-between items-center text-[9px] font-bold uppercase text-slate-400">
-                    <span>Verified Log</span>
-                    <span className="text-primary">{item.id}</span>
-                  </div> */}
                 </div>
               </motion.div>
             ))}

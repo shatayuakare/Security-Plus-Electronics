@@ -4,7 +4,7 @@
 
 Generated: 2026-09-22
 Primary deployment analyzed: https://cctvmall.netlify.app/
-Public indexed business reference used for detailed page-level content: https://www.cctvmall.in/
+Public indexed business reference used for detailed page-level content: https://cctvmall.netlify.app/
 
 ## Identity and Positioning
 
@@ -85,23 +85,23 @@ Catalog data is dynamic. Use the product page as the authoritative source for ex
 
 ### Woston WS-1250DR-A
 A Woston 5MP HD dome camera with built-in microphone. The indexed product page describes 5MP imaging, built-in audio, full-colour video, day/night surveillance, dome construction and HD analog DVR compatibility. The indexed page lists it as suitable for indoor/outdoor use depending on installation conditions.
-Source: https://www.cctvmall.in/products/woston-5mp-hd-color-dome-camera-with-built-in-mic-ws-1250dr-a/66
+Source: https://woston.in/products/woston-5mp-hd-color-dome-camera-with-built-in-mic-ws-1250dr-a/66
 
 ### Trueview T18175SF
 A 3MP 4G bullet security camera. The indexed page describes 4G SIM connectivity, all-time colour night vision, AI human/motion/tampering detection, two-way audio, 10x digital zoom, IP66 housing and microSD support up to 256GB, with remote-site use cases where Wi-Fi may not be available.
-Source: https://www.cctvmall.in/products/trueview-3mp-4g-bullet-security-camera-all-time-color-sim-supported-t18175sf/64
+Source: https://woston.in/products/trueview-3mp-4g-bullet-security-camera-all-time-color-sim-supported-t18175sf/64
 
 ### TP-Link VIGI NVR
 A recent indexed update describes VIGI NVR models in 4/8/16/32-channel configurations, H.265+ compression, support up to 8MP video, remote viewing via the VIGI app, smart detection and HDD capacity up to 10TB, with PoE and non-PoE variants.
-Source: https://www.cctvmall.in/latest-update/tp-link-vigi-nvr-smart-recording-solution-for-complete-security-surveillance/173
+Source: https://woston.in/latest-update/tp-link-vigi-nvr-smart-recording-solution-for-complete-security-surveillance/173
 
 ### Seagate Surveillance HDD
 A recent indexed update describes surveillance-oriented Seagate HDDs from 1TB to 10TB for 24×7 CCTV recording, including DVR/NVR use cases.
-Source: https://www.cctvmall.in/latest-update/seagate-surveillance-hdd-1tb-to-10tb-reliable-storage-for-247-cctv-protection/172
+Source: https://woston.in/latest-update/seagate-surveillance-hdd-1tb-to-10tb-reliable-storage-for-247-cctv-protection/172
 
 ### LG 32-inch Curved Monitor
 A recent indexed update describes a 32-inch curved monitor with a 100Hz refresh rate for office work, entertainment and gaming-related use cases.
-Source: https://www.cctvmall.in/latest-update/lg-32-inch-curved-monitor-immersive-display-with-100hz-refresh-rate/171
+Source: https://woston.in/latest-update/lg-32-inch-curved-monitor-immersive-display-with-100hz-refresh-rate/171
 
 ## Current Publicly Indexed Updates
 
@@ -115,7 +115,7 @@ Recent public update topics around 2026-09-16 through 2026-09-22 include:
 - CP PLUS 4G Single Lens PT Camera — Sep 16, 2026.
 
 Update index:
-https://www.cctvmall.in/latest-updates/1
+https://woston.in/blogs
 
 The update stream contains additional educational, product and business posts, including CCTV selection guides, Woston surveillance products, installation/service topics, networking, storage and security technology.
 
@@ -133,12 +133,12 @@ Publicly indexed all-products catalogue surface.
 https://cctvmall.netlify.app/about
 Business overview and positioning.
 
-### Latest Updates
-https://www.cctvmall.in/latest-updates/1
+### Latest Updates/ Blogs
+https://cctvmall.netlify.app/blogs
 News, product arrivals and educational/security content.
 
 ### Gallery
-https://cctvmall.netlify.app/gallary
+https://cctvmall.netlify.app/gallery
 Public image gallery; indexed pages show multiple gallery pages.
 
 ### Contact

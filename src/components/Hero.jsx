@@ -77,7 +77,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomModalOpen, }) => {
     }
 
     return new URL(
-      `../assets/slide/${image}`,
+      `../assets/slides/${image}`,
       import.meta.url
     ).href;
   };

@@ -1,9 +1,7 @@
-import { MapPin, Globe } from 'lucide-react'
 import { Link } from 'react-router-dom';
-// import logo from "../assets/images/logo.png";
 import { companytData } from '../utils/Constant';
 
-const Footer = ({ logoData }) => {
+const Footer = () => {
 
     return (
         <footer className="bg-slate-900 text-slate-300 border-t border-slate-800">
@@ -55,7 +53,7 @@ const Footer = ({ logoData }) => {
                                 </div>
 
                                 <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest font-sans">
-                                    {logoData.companySuffix?.toUpperCase()}, MAHARASHTRA, INDIA
+                                    Beside of Anand Bekari, Opposite of Naresh Hardware, Sitabuldi Main Road, Nagpur, MAHARASHTRA, INDIA
                                 </span>
 
                             </div>
@@ -258,9 +256,7 @@ const Footer = ({ logoData }) => {
                                 }
 
                             } else {
-
                                 setSecretClickCount(1);
-
                             }
 
                             setSecretLastClick(now);
@@ -268,14 +264,7 @@ const Footer = ({ logoData }) => {
                         }}
                         className="text-center md:text-left text-[9px] text-slate-500 hover:text-slate-300 transition-colors cursor-pointer select-none font-sans"
                     >
-                        © 2026{" "}
-                        {(
-                            logoData.companyName &&
-                                logoData.companySuffix
-                                ? `${logoData.companyName} ${logoData.companySuffix}`
-                                : "SECURITY PLUS ELECTRONICS"
-                        )?.toUpperCase()}
-                        . ALL RIGHTS RESERVED.
+                        © 2026{" "} Security Plus Electronics | CCTV Mall. ALL RIGHTS RESERVED.
                     </p>
 
 
