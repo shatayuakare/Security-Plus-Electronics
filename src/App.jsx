@@ -7,7 +7,6 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom"
 import { SEOManager } from "./components/SEOManager";
 
 const BrandCarousel = lazy(() => import("./components/BrandCarousel"))
-// const VirualShowroom = lazy(() => import("./components/VirtualShowroom"))
 const ProductCategories = lazy(() => import("./components/section/ProductCategories"))
 
 // Import pages
@@ -28,7 +27,6 @@ const ReelSection = lazy(() => import("./components/section/ReelSection.jsx"));
 const QuickProductView = lazy(() => import("./components/modal/QuickProductView.jsx"));
 const ShowroomExperience = lazy(() => import("./components/modal/ShowroomExperience.jsx"));
 const QuickBlogVIew = lazy(() => import("./components/modal/QuickBlogVIew.jsx"));
-const ScrollableTestimonials = lazy(() => import("./components/section/ScrollableTestimonials.jsx"));
 const OurThought = lazy(() => import("./components/section/OurThought.jsx"));
 const FAQSection = lazy(() => import("./components/section/FAQSection.jsx"));
 // const OurBlogs = lazy(() => import("./components/section/OurBlogs.jsx"));
@@ -612,7 +610,6 @@ function App() {
               <Suspense fallback={<div className="min-h-[80vh]" />}>
                 <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} />
               </Suspense>
-              {/* <VirtualShowroom loadedImages={loadedImages} setLoadedImages={setLoadedImages} setToastMessage={setToastMessage} setShowroomModalOpen={setShowroomModalOpen} /> */}
               <Suspense fallback={<div className="min-h-[50vh]" />}>
                 <ReelSection />
               </Suspense>
@@ -626,17 +623,17 @@ function App() {
                   </p>
                 </div>
               </motion.section>
-
+              {/* 
               <Suspense fallback={<div className="min-h-[50vh]" />}>
                 <ScrollableTestimonials />
-              </Suspense>
+              </Suspense> */}
 
               <Suspense fallback={<div className="min-h-[50vh]" />}>
                 <OurThought />
               </Suspense>
 
               <Suspense fallback={<div className="min-h-[50vh]" />}>
-                <OurLocation contactData={contactData} setToastMessage={setToastMessage} />
+                <OurLocation contactData={contactData} setShowroomModalOpen={setShowroomModalOpen} setToastMessage={setToastMessage} />
               </Suspense>
 
               <Suspense fallback={<div className="min-h-[50vh]" />}>

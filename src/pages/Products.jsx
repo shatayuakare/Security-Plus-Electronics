@@ -6,7 +6,6 @@ import BrandCarousel from "../components/BrandCarousel";
 import BRANDS from "../json/brands.json"
 import parse from "html-react-parser";
 import { Link } from "react-router-dom";
-import SEO from "../components/SEO";
 
 const staggerContainer = {
   initial: {},
@@ -75,7 +74,7 @@ function ProductGridLoader() {
 }
 
 
-export default function Products({ products, productCategories, setCurrentPage, setWishlist, currentPage, wishlist, toggleWishlist, setSelectedProductForQuickView }) {
+export default function Products({ products, productCategories, setCurrentPage, currentPage, wishlist, toggleWishlist, setSelectedProductForQuickView }) {
 
   const [productCategoryFilter, setProductCategoryFilter] = useState("all");
   const [productSortOption, setProductSortOption] = useState("default");
@@ -149,12 +148,6 @@ export default function Products({ products, productCategories, setCurrentPage, 
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-
-      <SEO
-        title="CCTV Cameras & Security Equipment"
-        description="Explore our complete range of CCTV security cameras, accessories, and recorders. Find high-definition surveillance systems at unbeatable prices."
-        path={`${window.location.pathname}`}
-      />
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-7xl mx-auto text-sans">
           <div className="text-center mb-12">
@@ -223,7 +216,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
                     <div>
                       <div className="flex justify-between items-center mb-2 text-[9px] text-slate-500 font-bold">
                         <h2 className="uppercase border border-sky-100 tracking-wider px-2.5 py-1 bg-sky-50 text-sky-700 rounded-lg">
-                          {product?.brands[0].name}
+                          {product?.brands[0] ? product?.brands[0]?.name : "Unknown Brand"}
                         </h2>
                         <h3 className="flex pt-1 items-center tracking-wider  uppercase gap-1">
                           {getCategory(product)}
@@ -238,7 +231,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
 
                         <div className="absolute top-2.5 left-2.5 z-20 overflow-hidden backdrop-blur-md rounded-full shadow-sm transition-all duration-300 hover:scale-110">
                           {
-                            BRANDS.map((brand, idx) => (brand.name === product?.brands[0].name) ? <img key={idx} className="h-10 aspect-square" src={new URL(`../assets/brands/${brand.icon}`, import.meta.url).href} alt={brand.name} /> : <span className="hidden" key={idx}>{product?.brands[0].name}</span>)
+                            BRANDS.map((brand, idx) => (brand.name === product?.brands[0].name) ? <img key={idx} className="h-10 aspect-square" src={new URL(`../assets/brands/${brand.icon}`, import.meta.url).href} alt={brand.name} /> : <span className="hidden" key={idx}>{product?.brands[0]?.name}</span>)
                           }
                         </div>
 
@@ -268,7 +261,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
                         </div>
 
                         <div className="absolute bottom-2 right-2 text-[8px] font-bold bg-white text-primary  backdrop-blur-sm px-2 py-1 uppercase rounded z-20">
-                          {product?.sku ? product.sku : product.brands[0].name}
+                          {product?.sku ? product.sku : product?.brands[0]?.name || "Unknown Brand"}
                         </div>
                       </div>
 
@@ -325,7 +318,6 @@ export default function Products({ products, productCategories, setCurrentPage, 
               <ChevronRight className="h-5 w-5" />
             </button>
           </div>
-
         </div>
       </section>
     </motion.div>

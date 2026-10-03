@@ -30,7 +30,6 @@ const staggerItem = {
 
 const ProductCategories = ({ loadedImages, setLoadedImages }) => {
 
-  const [blogCategoryFilter, setBlogCategoryFilter] = useState("All");
 
   return (<section className="py-24 px-8 relative z-20 border-b border-slate-100 bg-white">
     <div className="max-w-7xl mx-auto">
@@ -99,7 +98,6 @@ const ProductCategories = ({ loadedImages, setLoadedImages }) => {
               </div>
 
               <Link to={"/products"} onClick={() => {
-                setBlogCategoryFilter(category.filterValue);
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }} className="w-full py-3 bg-slate-50 hover:bg-primary text-primary hover:text-[#ffffff] border border-slate-200 hover:border-primary text-xs font-bold tracking-wider uppercase transition-all duration-300 rounded-xl cursor-pointer shadow flex items-center justify-center gap-2 hover:gap-6">
                 <span>EXPLORE PRODUCTS</span>

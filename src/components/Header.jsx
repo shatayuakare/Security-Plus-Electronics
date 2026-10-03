@@ -7,6 +7,8 @@ import { companytData } from '../utils/Constant';
 
 const Header = ({ wishlist, setAccountDropdownOpen, setDropdownSubView, mobileMenuOpen, setMobileMenuOpen, mobileHamburgerRef, mobileMenuRef, }) => {
 
+  // console.log(wishlist)
+
   return (
     <header>
       <nav className="fixed top-0 left-0 w-full bg-[#0a0d16]/95 backdrop-blur-md border-b border-slate-800/80 z-40 px-4 md:px-8 py-3 md:py-4 flex justify-between items-center transition-all shadow-lg shadow-slate-950/20">
@@ -27,7 +29,6 @@ const Header = ({ wishlist, setAccountDropdownOpen, setDropdownSubView, mobileMe
                 </span>
                 <span className="h-px w-9 md:w-11 bg-sky-500"></span>
               </div>
-
             </div>
           </div>
         </Link>

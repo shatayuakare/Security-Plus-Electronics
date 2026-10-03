@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { companytData } from '../utils/Constant';
+import { MapPin } from 'lucide-react';
 
 const Footer = () => {
 
     return (
         <footer className="bg-slate-900 text-slate-300 border-t border-slate-800">
             <div className="max-w-7xl mx-auto px-5 md:px-8 py-12 md:py-14">
-
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
                     <div className="lg:col-span-5">
                         <div className="max-w-md">
@@ -48,11 +48,12 @@ const Footer = () => {
                             {/* Location */}
                             <div className="flex items-center gap-2 mt-6">
 
-                                <div className="w-7 h-7 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                                <div className="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center">
+                                    <MapPin className="rounded-full text-sky-400" />
+                                    {/* <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span> */}
                                 </div>
 
-                                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest font-sans">
+                                <span className="text-[9px] font-semibold text-slate-400 tracking-widest font-sans">
                                     Beside of Anand Bekari, Opposite of Naresh Hardware, Sitabuldi Main Road, Nagpur, MAHARASHTRA, INDIA
                                 </span>
 
@@ -62,8 +63,8 @@ const Footer = () => {
 
                     </div>
 
-
-                    {/* =========================================================
+                    {/* 
+                    =========================================================
                 NAVIGATION
             ========================================================= */}
                     <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
@@ -77,34 +78,53 @@ const Footer = () => {
 
                             <div className="flex flex-col gap-3">
 
-                                <a
-                                    href="#ecosystem"
+                                <Link to={"/products"} onClick={() => {
+                                    window.scrollTo({
+                                        top: 0,
+                                        behavior: "smooth"
+                                    });
+                                }}
                                     className="group flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors font-sans"
                                 >
                                     <span className="w-0 group-hover:w-2 h-px bg-sky-400 transition-all duration-200"></span>
                                     Surveillance Systems
-                                </a>
-
-                                <a
-                                    href="#ecosystem"
+                                </Link>
+                                <Link to={"/products"} onClick={() => {
+                                    window.scrollTo({
+                                        top: 0,
+                                        behavior: "smooth"
+                                    });
+                                }}
+                                    className="group flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors font-sans"
+                                >
+                                    <span className="w-0 group-hover:w-2 h-px bg-sky-400 transition-all duration-200"></span>
+                                    Home/ Office Automation
+                                </Link>
+                                <Link to={"/products"} onClick={() => {
+                                    window.scrollTo({
+                                        top: 0,
+                                        behavior: "smooth"
+                                    });
+                                }}
+                                    className="group flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors font-sans"
+                                >
+                                    <span className="w-0 group-hover:w-2 h-px bg-sky-400 transition-all duration-200"></span>
+                                    Access Control Systems
+                                </Link>
+                                <Link to={"/products"} onClick={() => {
+                                    window.scrollTo({
+                                        top: 0,
+                                        behavior: "smooth"
+                                    });
+                                }}
                                     className="group flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors font-sans"
                                 >
                                     <span className="w-0 group-hover:w-2 h-px bg-sky-400 transition-all duration-200"></span>
                                     Biometric Locking
-                                </a>
-
-                                <a
-                                    href="#ecosystem"
-                                    className="group flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors font-sans"
-                                >
-                                    <span className="w-0 group-hover:w-2 h-px bg-sky-400 transition-all duration-200"></span>
-                                    Backup Grids
-                                </a>
-
+                                </Link>
                             </div>
 
                         </div>
-
 
                         {/* Company */}
                         <div>
@@ -130,7 +150,7 @@ const Footer = () => {
                                 </Link>
 
                                 <Link
-                                    to="gallary"
+                                    to="gallery"
                                     onClick={() => {
                                         window.scrollTo({
                                             top: 0,
@@ -226,43 +246,7 @@ const Footer = () => {
 
                     {/* Copyright */}
                     <p
-                        onClick={() => {
-
-                            const now = Date.now();
-
-                            const isAuthAdmin =
-                                customerUser &&
-                                adminEmails
-                                    .map(e => e.toLowerCase())
-                                    .includes(customerUser.email.toLowerCase());
-
-                            if (!isAuthAdmin) {
-                                return;
-                            }
-
-                            if (now - secretLastClick < 2500) {
-
-                                const newCount = secretClickCount + 1;
-
-                                setSecretClickCount(newCount);
-
-                                if (newCount >= 2) {
-
-                                    setAdminLoginOpen(true);
-                                    setAdminError("");
-                                    setAdminPasscode("");
-                                    setSecretClickCount(0);
-
-                                }
-
-                            } else {
-                                setSecretClickCount(1);
-                            }
-
-                            setSecretLastClick(now);
-
-                        }}
-                        className="text-center md:text-left text-[9px] text-slate-500 hover:text-slate-300 transition-colors cursor-pointer select-none font-sans"
+                        className="text-center md:text-left text-[9px] text-slate-500 hover:text-slate-300 transition-colors select-none font-sans"
                     >
                         © 2026{" "} Security Plus Electronics | CCTV Mall. ALL RIGHTS RESERVED.
                     </p>

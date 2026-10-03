@@ -154,7 +154,7 @@ const Hero = ({ heroSlideIndex, setHeroSlideIndex, setShowroomModalOpen, }) => {
                       />
                     </div>
 
-                    <h1 className="font-sans text-[3rem] md:text-[5rem] font-extrabold tracking-tight text-white leading-tight uppercase"
+                    <h2 className="font-sans text-[3rem] md:text-[5rem] font-extrabold tracking-tight text-white leading-tight uppercase"
                       dangerouslySetInnerHTML={{ __html: slide.title }} />
 
                     <p className="text-sm md:text-base w-full text-slate-300 max-w-2xl leading-relaxed font-sans">

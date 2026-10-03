@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { CheckCircle2, HelpCircle, ChevronDown } from "lucide-react";
 import BrandCarousel from "../components/BrandCarousel";
-import SEO from "../components/SEO";
+
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
@@ -16,7 +16,7 @@ function AboutUs() {
   const faqs = [
     {
       question: "What is your typical security system installation process?",
-      answer: "Our deployment process is rigorous and systematic:\n\n1. **Onsite Vulnerability Audit:** We map out all structural blind spots, calculate necessary cable routing paths, and identify direct solar glare zones.\n2. **Engineering Schematic & Power Budgets:** We compile active power budgets for all PoE devices and size appropriate battery banks or redundant online UPS units.\n3. **Precision Infrastructure Wiring & Deployment:** We route high-grade Cat6 or fiber-optic lines inside thick, impact-resistant PVC conduits.\n4. **Handover & Fine-Tuning Calibration:** We adjust camera lenses, frame the exact fields of view, configure secure custom subnets to shield against outside intrusions, and calibrate motion-detection loops."
+      answer: "Our deployment process is rigorous and systematic:\n\n1. Onsite Vulnerability Audit: We map out all structural blind spots, calculate necessary cable routing paths, and identify direct solar glare zones.\n2. **Engineering Schematic & Power Budgets: We compile active power budgets for all PoE devices and size appropriate battery banks or redundant online UPS units.\n3. Precision Infrastructure Wiring & Deployment:** We route high-grade Cat6 or fiber-optic lines inside thick, impact-resistant PVC conduits.\n4. Handover & Fine-Tuning Calibration:** We adjust camera lenses, frame the exact fields of view, configure secure custom subnets to shield against outside intrusions, and calibrate motion-detection loops."
     },
     {
       question: "What are your equipment warranty terms and support SLA policies?",
@@ -24,7 +24,7 @@ function AboutUs() {
     },
     {
       question: "Which regions and suburbs do you service around Nagpur?",
-      answer: "Our primary rapid-response service grid covers the entire **Nagpur Metropolitan Region**, including major commercial, residential, and industrial nodes:\n\n- **Nagpur Suburbs:** Dharampeth, Sadar, Wardhaman Nagar, Manish Nagar, Besa, Ramdaspeth, and Laxmi Nagar.\n- **Industrial Zones:** Hingna MIDC, Butibori Industrial Estate, and MIHAN Special Economic Zone.\n- **Outlying Districts:** We regularly execute enterprise deployments and structured support frameworks in nearby cities like Wardha, Chandrapur, Amravati, Bhandara, and Gondia."
+      answer: "Our primary rapid-response service grid covers the entire **Nagpur Metropolitan Region**, including major commercial, residential, and industrial nodes:\n\n- Nagpur Suburbs: Sitabuldi,  Wardhaman Nagar, Manish Nagar, Besa, Ramdaspeth, and Laxmi Nagar.\n- **Industrial Zones:** Hingna MIDC, Butibori Industrial Estate, and MIHAN Special Economic Zone.\n- **Outlying Districts:** We regularly execute enterprise deployments and structured support frameworks in nearby cities like Wardha, Chandrapur, Amravati, Bhandara, and Gondia."
     },
     {
       question: "Can you integrate our existing analog cameras with a new IP system?",
@@ -39,12 +39,6 @@ function AboutUs() {
 
   return (
     <motion.div {...fadeInUp} aria-label="About us" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-
-      <SEO
-        title="About CCTV Mall | Leading Security System Supplier"
-        description="Learn more about CCTV Mall, your trusted provider of high-quality surveillance equipment, competitive wholesale pricing, and expert support."
-        path={`${window.location.pathname}`}
-      />
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-6xl mx-auto space-y-16">
 
