@@ -1,5 +1,4 @@
-
-import { Heart, X, Menu } from "lucide-react";
+import { Heart, X, Menu, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router-dom"
 import { companytData } from '../utils/Constant';
