@@ -1,5 +1,5 @@
 # CCTV Mall - Security Plus Electronics
-# https://cctvmall.netlify.app/
+# https://securityplus.in/
 
 User-agent: *
 Allow: /
@@ -38,4 +38,4 @@ Disallow: /admin/
 Disallow: /wp-admin/
 Disallow: /wp-login.php
 
-Sitemap: https://cctvmall.netlify.app/sitemap.xml
+Sitemap: https://securityplus.in/sitemap.xml

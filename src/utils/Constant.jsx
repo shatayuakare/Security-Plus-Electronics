@@ -4,7 +4,7 @@ export const companytData = {
     logo: logo,
     name: "Security Plus Electronics",
     subName: "CCTV Mall",
-    url: "https://cctvmall.netlify.app",
+    url: "https://securityplus.in",
     supportEmail: ["info@securityplus.in", "admin@securityplus.in"],
     supportPhone: ["9373456746", "9011964620"],
     address: {

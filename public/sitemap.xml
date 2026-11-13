@@ -3,59 +3,59 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://cctvmall.netlify.app/</loc>
+    <loc>https://securityplus.in/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Main Business Pages -->
   <url>
-    <loc>https://cctvmall.netlify.app/products</loc>
+    <loc>https://securityplus.in/products</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://cctvmall.netlify.app/about</loc>
+    <loc>https://securityplus.in/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://cctvmall.netlify.app/contact</loc>
+    <loc>https://securityplus.in/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Content Pages -->
   <url>
-    <loc>https://cctvmall.netlify.app/blogs</loc>
+    <loc>https://securityplus.in/blogs</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://cctvmall.netlify.app/gallary</loc>
+    <loc>https://securityplus.in/gallary</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cctvmall.netlify.app/testimonial</loc>
+    <loc>https://securityplus.in/testimonial</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Company Pages -->
   <url>
-    <loc>https://cctvmall.netlify.app/career</loc>
+    <loc>https://securityplus.in/career</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <!-- Legal Page -->
   <url>
-    <loc>https://cctvmall.netlify.app/termandcondition</loc>
+    <loc>https://securityplus.in/termandcondition</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
