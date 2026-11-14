@@ -17,7 +17,6 @@ const staggerContainer = {
   viewport: { once: true, margin: "-100px" }
 };
 
-
 const staggerItem = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
@@ -79,6 +78,8 @@ export default function Products({ products, productCategories, setCurrentPage, 
   const [productCategoryFilter, setProductCategoryFilter] = useState("all");
   const [productSortOption, setProductSortOption] = useState("default");
 
+  console.log(products)
+
   const filterByCategory = (selectedCategorySlug) => {
     if (selectedCategorySlug === "all") return;
     const targetCategory = productCategories.find(cat => cat.slug === selectedCategorySlug);
@@ -113,7 +114,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
   }, [products, productCategoryFilter, productSortOption]);
 
   const getCategory = (product) => {
-    for (let elem of product.categories) {
+    for (let elem of product?.categories || []) {
       if (/camera|cameras|cctv|4g|ip|hd/i.test(elem.name)) {
         return "CCTV Camera";
       } else if (/video|dvr|nvr|xvr/i.test(elem.name) || /dvr/i.test(elem.name)) {
@@ -134,7 +135,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
         return "Other"
       }
     }
-    return product.categories[0]?.name || "Other"
+    return product?.categories?.[0]?.name || "Other"
   }
 
   const formatPrice = (amount) => {
@@ -216,7 +217,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
                     <div>
                       <div className="flex justify-between items-center mb-2 text-[9px] text-slate-500 font-bold">
                         <h2 className="uppercase border border-sky-100 tracking-wider px-2.5 py-1 bg-sky-50 text-sky-700 rounded-lg">
-                          {product?.brands[0] ? product?.brands[0]?.name : "Unknown Brand"}
+                          {product?.brands?.length > 0 ? product?.brands[0]?.name : "Unknown Brand"}
                         </h2>
                         <h3 className="flex pt-1 items-center tracking-wider  uppercase gap-1">
                           {getCategory(product)}
@@ -225,7 +226,7 @@ export default function Products({ products, productCategories, setCurrentPage, 
 
                       <div className="aspect-square bg-slate-100 border border-slate-100 rounded-xl mb-4 relative group-hover:border-sky-200 transition-colors overflow-hidden flex items-center justify-center">
 
-                        <img src={product?.images[0]?.src} alt={product.images[0]?.alt} className="object-cover w-full h-full absolute inset-0 transition-transform duration-500 group-hover:scale-110" lang="en" loading="lazy" decoding="async" fetchPriority="medium" />
+                        <img src={product?.images[0]?.src} alt={product?.images[0]?.alt} className="object-cover w-full h-full absolute inset-0 transition-transform duration-500 group-hover:scale-110" lang="en" loading="lazy" decoding="async" fetchPriority="medium" />
 
                         <div className="absolute inset-0 bg-slate-950/15 pointer-events-none" />
 
