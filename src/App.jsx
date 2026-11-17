@@ -90,7 +90,7 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  const [productCategories, setProductCategories] = useState([{}]);
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState(() => {
@@ -528,9 +528,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem("spe_career_apps", JSON.stringify(careerApplications));
   }, [careerApplications]);
-  useEffect(() => {
-    localStorage.setItem("spe_product_categories", JSON.stringify(productCategories));
-  }, [productCategories]);
+
   useEffect(() => {
     if (!products?.length) return;
 
@@ -650,7 +648,7 @@ function App() {
             <Route path="/gallery" element={<Gallery galleryItems={GALLERY_ITEMS} />} />
             <Route path="/contact" element={<ContactUs setContactData={setContactData} setToastMessage={setToastMessage} />} />
             <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
-            <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setProductCategories={setProductCategories} productCategories={productCategories} wishlist={wishlist} toggleWishlist={toggleWishlist} setToastMessage={setToastMessage} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
+            <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
             <Route path="/testimonial" element={<Testimonials testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
             <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
             <Route path="/*" element={<Navigate to="/" replace />} />

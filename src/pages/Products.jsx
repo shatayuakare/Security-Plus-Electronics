@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "../products.css"
 import { motion } from "motion/react";
 import { ShoppingBag, ExternalLink, Heart, Eye, ChevronRight, ChevronLeft } from "lucide-react";
@@ -73,12 +73,13 @@ function ProductGridLoader() {
 }
 
 
-export default function Products({ products, productCategories, setCurrentPage, currentPage, wishlist, toggleWishlist, setSelectedProductForQuickView }) {
+export default function Products({ products, setCurrentPage, currentPage, wishlist, toggleWishlist, setSelectedProductForQuickView }) {
 
   const [productCategoryFilter, setProductCategoryFilter] = useState("all");
   const [productSortOption, setProductSortOption] = useState("default");
 
-  console.log(products)
+  // const [productCategories, setProductCategories] = useState([{ name: "All", slug: "all" }, { name: "cctv", slug: "cctv" }]);
+
 
   const filterByCategory = (selectedCategorySlug) => {
     if (selectedCategorySlug === "all") return;
@@ -89,30 +90,6 @@ export default function Products({ products, productCategories, setCurrentPage, 
       product.categories?.some(cat => validCategoryIds.has(cat.id))
     );
   }
-
-  const filteredProducts = useMemo(() => {
-    let list =
-      productCategoryFilter === "all"
-        ? [...products]
-        : filterByCategory(productCategoryFilter);
-
-    if (!productSortOption || productSortOption === "asce") {
-      list.sort(
-        (a, b) =>
-          Number(a.prices?.price || 0) -
-          Number(b.prices?.price || 0)
-      );
-    } else if (productSortOption === "desc") {
-      list.sort(
-        (a, b) =>
-          Number(b.prices?.price || 0) -
-          Number(a.prices?.price || 0)
-      );
-    }
-
-    return list;
-  }, [products, productCategoryFilter, productSortOption]);
-
   const getCategory = (product) => {
     for (let elem of product?.categories || []) {
       if (/camera|cameras|cctv|4g|ip|hd/i.test(elem.name)) {
@@ -137,6 +114,41 @@ export default function Products({ products, productCategories, setCurrentPage, 
     }
     return product?.categories?.[0]?.name || "Other"
   }
+
+  const productCategories = useMemo(() => {
+    if (!Array.isArray(products) || products.length === 0) {
+      return [];
+    }
+
+    return [
+      ...new Set(
+        products.map((product) => getCategory(product))
+      )].map((elem) => [{ name: elem, slug: elem }])
+  }, [products]);
+  console.log(productCategories)
+  const filteredProducts = useMemo(() => {
+    let list =
+      productCategoryFilter === "all"
+        ? [...(products || [])]
+        : filterByCategory(productCategoryFilter);
+
+    if (!productSortOption || productSortOption === "asce") {
+      list.sort(
+        (a, b) =>
+          Number(a.prices?.price || 0) -
+          Number(b.prices?.price || 0)
+      );
+    } else if (productSortOption === "desc") {
+      list.sort(
+        (a, b) =>
+          Number(b.prices?.price || 0) -
+          Number(a.prices?.price || 0)
+      );
+    }
+
+    return list;
+  }, [products, productCategoryFilter, productSortOption]);
+
 
   const formatPrice = (amount) => {
     const formatted = new Intl.NumberFormat('en-IN', {

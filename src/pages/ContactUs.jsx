@@ -123,19 +123,19 @@ export default function ContactUs({ setToastMessage, setContactData }) {
               </div>
             </div>
 
-            <div className="bg-white p-6 border border-slate-200 rounded-2xl shadow-sm flex items-start gap-4 transition-all hover:border-orange-300">
+            {/* <div className="bg-white p-6 border border-slate-200 rounded-2xl shadow-sm flex items-start gap-4 transition-all hover:border-orange-300">
               <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center shrink-0">
                 <Building className="h-5 w-5" />
               </div>
               <div className="space-y-1.5">
                 <span className="text-[9px] font-bold text-orange-600 uppercase tracking-wider block">SHOWROOM & SALES HOTLINE</span>
-                <h4 className="text-base font-extrabold text-slate-950 font-sans">Inquiry Channel (IVR)</h4>
+                <h4 className="text-base font-extrabold text-slate-950 font-sans">Inquiry Channe</h4>
                 <p className="text-xs text-slate-500 font-sans">Call to request custom pricing quotes, bulk orders, or arrange corporate visits.</p>
                 <Link to="tel:9373456746" className="inline-block font-mono text-sm font-bold text-orange-600 hover:text-orange-700 hover:underline mt-1">
                   +91 9373456746
                 </Link>
               </div>
-            </div>
+            </div> */}
 
             <div className="bg-white p-6 border border-slate-200 rounded-2xl shadow-sm space-y-3.5 flex-1 flex flex-col justify-between">
               <div className="space-y-3">
