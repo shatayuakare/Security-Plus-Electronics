@@ -605,7 +605,7 @@ function App() {
               <Hero2 heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} />
               {/* <Hero heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} /> */}
 
-              <Suspense fallback={<div className="min-h-[200px]" />}>
+              <Suspense fallback={<div className="min-h-50" />}>
                 <BrandCarousel />
               </Suspense>
 
@@ -615,7 +615,7 @@ function App() {
               <Suspense fallback={<div className="min-h-[50vh]" />}>
                 <ReelSection />
               </Suspense>
-              <motion.section {...fadeInUp} className="py-24 px-8 relative z-20 border-b border-slate-100 bg-slate-50">
+              {/* <motion.section {...fadeInUp} className="py-24 px-8 relative z-20 border-b border-slate-100 bg-slate-50">
                 <div className="max-w-4xl mx-auto text-center">
                   <span className="font-sans font-bold text-[10px] text-primary tracking-widest uppercase block mb-3">OUR VISION &amp; SLA VALUES</span>
                   <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 uppercase">Our Vision &amp; Mission</h2>
@@ -624,7 +624,7 @@ function App() {
                     Deliver innovative, reliable, and complete security solutions with exceptional customer support. We custom-engineer systems that protect Nagpur's leading commercial, financial, and industrial properties with absolute technological integrity.
                   </p>
                 </div>
-              </motion.section>
+              </motion.section> */}
               {/* 
               <Suspense fallback={<div className="min-h-[50vh]" />}>
                 <ScrollableTestimonials />
@@ -655,7 +655,7 @@ function App() {
           </Routes>
         </Suspense>
       </main>
-      <Suspense fallback={<div className="min-h-[100vh]" />}>
+      <Suspense fallback={<div className="min-h-screen" />}>
         <AnimatePresence>
           {selectedProductForQuickView &&
             <QuickProductView selectedProductForQuickView={selectedProductForQuickView} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} setInquiryList={setInquiryList} inquiryList={inquiryList} />
@@ -663,7 +663,7 @@ function App() {
         </AnimatePresence>
         {/* Toast View */}
       </Suspense>
-      <Suspense fallback={<div className="min-h-[100vh]" />}>
+      <Suspense fallback={<div className="min-h-screen" />}>
         <AnimatePresence>
           {toastMessage && (<motion.div {...fadeInUp} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:right-auto z-50 w-auto md:w-120 bg-slate-900/95 backdrop-blur-md text-white p-3.5 rounded-xl border border-slate-800 flex items-start gap-3 shadow-2xl">
             <Sparkles className="h-4 w-4 text-primary shrink-0 mt-0.5 animate-pulse" />
@@ -678,7 +678,7 @@ function App() {
         </AnimatePresence>
         {/* quick view Blog modal */}
       </Suspense>
-      <Suspense fallback={<div className="min-h-[100vh]" />}>
+      <Suspense fallback={<div className="min-h-screen" />}>
         <AnimatePresence>
           {selectedBlog &&
             <QuickBlogVIew setSelectedBlog={setSelectedBlog} selectedBlog={selectedBlog} setToastMessage={setToastMessage} />
@@ -686,7 +686,7 @@ function App() {
         </AnimatePresence>
         {/* Showroom Modal */}
       </Suspense>
-      <Suspense fallback={<div className="min-h-[100vh]" />}>
+      <Suspense fallback={<div className="min-h-screen" />}>
         <AnimatePresence >
           {showroomModalOpen &&
             <ShowroomExperience setShowroomExperience={setShowroomExperience} showroomExperience={showroomExperience} setToastMessage={setToastMessage} setShowroomModalOpen={setShowroomModalOpen} />
@@ -694,7 +694,7 @@ function App() {
         </AnimatePresence >
       </Suspense>
 
-      <Suspense fallback={<div className="min-h-[300px]" />}>
+      <Suspense fallback={<div className="min-h-75" />}>
         <Footer />
       </Suspense>
     </>

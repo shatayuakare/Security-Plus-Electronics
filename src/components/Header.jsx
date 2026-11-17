@@ -2,6 +2,7 @@ import { Heart, X, Menu, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router-dom"
 import { companytData } from '../utils/Constant';
+import { useEffect } from "react";
 
 
 const Header = ({ wishlist, setAccountDropdownOpen, setDropdownSubView, mobileMenuOpen, setMobileMenuOpen, mobileHamburgerRef, mobileMenuRef, }) => {
