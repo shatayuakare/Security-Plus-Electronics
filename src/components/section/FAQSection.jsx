@@ -1,6 +1,7 @@
 import { ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
+import SectionHeading from "../SectionHeading";
 
 const FAQSection = () => {
     const [openIndex, setOpenIndex] = useState(null);
@@ -29,17 +30,7 @@ const FAQSection = () => {
 
     return (<section aria-labelledby="faq-title" className="py-24 px-6 md:px-12 bg-slate-50 border-b border-slate-100">
         <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-                <span className="font-mono text-xs font-bold text-primary uppercase tracking-widest block mb-2">
-                    CLEAR ANSWERS TO CORE SECURITY PARADIGMS
-                </span>
-                <h2 className="text-3xl md:text-4xl font-sans font-bold text-slate-900 tracking-tight">
-                    Frequently Asked Questions
-                </h2>
-                <p className="text-slate-500 mt-2 text-sm">
-                    Everything you need to know about corporate and residential surveillance in Nagpur.
-                </p>
-            </div>
+            <SectionHeading tagline={"CLEAR ANSWERS TO CORE SECURITY PARADIGMS"} title={"Frequently Asked Questions"} description={"Everything you need to know about corporate and residential surveillance in Nagpur."} />
 
             <div className="space-y-4">
                 {faqs.map((faq, idx) => (<div key={idx} className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-sky-400 transition-colors duration-200">

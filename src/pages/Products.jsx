@@ -23,6 +23,7 @@ import BRANDS from "../json/brands.json";
 import parse from "html-react-parser";
 
 import { Link } from "react-router-dom";
+import PageHeading from "../components/PageHeading";
 
 const PRODUCT_API =
   "https://woston.in/wp-json/wc/store/v1/products";
@@ -427,26 +428,8 @@ export default function Products({
 
           {/* HEADER */}
 
-          <div className="text-center mb-12">
-
-            <span className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-sky-600 mb-4">
-              <span className="w-5 h-px bg-sky-500" />
-              Woston Security Hardware Catalog
-              <span className="w-5 h-px bg-sky-500" />
-            </span>
-
-            <h1 className="text-3xl md:text-5xl font-sans font-extrabold text-slate-900 tracking-tight uppercase">
-              Professional Surveillance &amp; Infrastructure
-            </h1>
-
-            <p className="text-sm text-slate-500 max-w-2xl mx-auto mt-4 leading-relaxed">
-              We deal directly with industrial-grade hardware.
-              Browse our active catalogue or connect to our
-              dedicated B2B e-commerce store for wholesale orders
-              and stock telemetry.
-            </p>
-
-            {/* WOSTON STORE */}
+          <div className="text-center">
+            <PageHeading tagline={"Woston Security Hardware Catalog"} title={"Professional Surveillance & Infrastructure"} description={"We deal directly with industrial-grade hardware. Browse our active catalogue or connect to our dedicated B2B e-commerce store for wholesale orders and stock telemetry."} />
 
             <div className="mt-8 p-6 bg-white border border-slate-200/80 max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-left rounded-2xl shadow-sm">
 
@@ -474,12 +457,11 @@ export default function Products({
               </Link>
 
             </div>
-
           </div>
 
           {/* BRAND CAROUSEL */}
 
-          <div className="mb-12">
+          <div className="my-12">
             <BrandCarousel />
           </div>
 

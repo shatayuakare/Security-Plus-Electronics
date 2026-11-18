@@ -12,6 +12,7 @@ import {
   X,
 } from "lucide-react";
 import axios from "axios";
+import PageHeading from "../components/PageHeading";
 
 const WORDPRESS_API =
   "https://woston.in/?rest_route=%2Fwp%2Fv2%2Fposts";
@@ -268,34 +269,12 @@ const Blogs = ({
 
           {/* HEADER */}
 
-          <div className="text-center mb-12">
+          <PageHeading tagline={"KNOWLEDGE CENTER"} title={"Insights & Guides"} description={"Explore technical knowledge, surveillancet echnologies, networking solutions and expert guides from the world of security and IT."} />
 
-            <span className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-sky-600 mb-4">
-              <span className="w-5 h-px bg-sky-500" />
-              KNOWLEDGE CENTER
-              <span className="w-5 h-px bg-sky-500" />
-            </span>
-
-            <h1
-              className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight uppercase"
-              style={{ color: PRIMARY_COLOR }}
-            >
-              Insights & Guides
-            </h1>
-
-            <p className="text-sm md:text-base text-slate-500 mt-4 max-w-2xl mx-auto leading-relaxed">
-              Explore technical knowledge, surveillance
-              technologies, networking solutions and expert
-              guides from the world of security and IT.
-            </p>
-
-            <div className="mt-6 flex justify-center items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-slate-400">
-              <BookOpen size={13} />
-              {blogs.length} Published Articles
-            </div>
-
-          </div>
-
+          {/* <div className="mt-6 flex justify-center items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-slate-400">
+            <BookOpen size={13} />
+            {blogs.length} Published Articles
+          </div> */}
           {/* MAIN LAYOUT */}
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

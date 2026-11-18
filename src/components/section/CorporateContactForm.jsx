@@ -2,6 +2,7 @@ import axios from "axios";
 import { CheckCircle2, Send } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
+import SectionHeading from "../SectionHeading";
 
 const CorporateContactForm = ({ setToastMessage }) => {
     const [submitted, setSubmitted] = useState(false);
@@ -97,17 +98,7 @@ const CorporateContactForm = ({ setToastMessage }) => {
     };
     return (<section className="py-24 px-6 md:px-12 bg-white border-b border-slate-100" id="contact-form-section">
         <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-                <span className="font-sans text-xs font-bold text-primary uppercase tracking-widest block mb-2">
-                    Corporate Consultation Desk
-                </span>
-                <h2 className="text-3xl md:text-5xl font-sans font-bold text-slate-900 tracking-tight">
-                    Initiate System Integration
-                </h2>
-                <p className="text-slate-500 mt-2 text-sm max-w-xl mx-auto">
-                    Ready to secure your premises? Submit your technical specifications, and our design consultants will draft a tailored blueprint.
-                </p>
-            </div>
+            <SectionHeading tagline={"Corporate Consultation Desk"} title={"Initiate System Integration"} description={"Ready to secure your premises? Submit your technical specifications, and our design consultants will draft a tailored blueprint."} />
 
             <div className="bg-slate-50 border border-slate-200 p-8 md:p-12 rounded-3xl shadow-sm">
                 {submitted ? (<motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-center py-12">

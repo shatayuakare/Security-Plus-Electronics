@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { Terminal, ShieldCheck, Video } from "lucide-react";
+import PageHeading from "../components/PageHeading";
 
 export default function Gallery({ galleryItems }) {
   const [galleryFilter, setGalleryFilter] = useState("all");
@@ -16,17 +17,7 @@ export default function Gallery({ galleryItems }) {
 
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-7xl mx-auto space-y-12 font-sans">
-          <div className="text-center max-w-3xl mx-auto">
-            <span className="font-sans font-extrabold text-[10px] text-primary tracking-widest uppercase block mb-3">
-              SPE PUBLIC LEDGER
-            </span>
-            <h2 className="font-sans text-3xl md:text-5xl font-extrabold text-slate-900 uppercase tracking-tight mb-4">
-              Our Showroom &amp; Culture
-            </h2>
-            <p className="text-slate-500 text-sm leading-relaxed">
-              A visual catalog of Central India's largest security showroom, our active corporate workspaces, specialized training academies, and real-world infrastructure deployments.
-            </p>
-          </div>
+          <PageHeading tagline={"PUBLIC LEDGER"} title={"Our Showroom & Culture"} description={"A visual catalog of Central India's largest security showroom, our active corporate workspaces, specialized training academies, and real-world infrastructure deployments."} />
 
           <div className="flex flex-wrap justify-center gap-2 border-b border-slate-200 pb-6">
             {["all", "showroom", "culture", "technical"].map((filter) => (<button type='button' id='galleryFilterBtn' aria-label="Gallery Filter Button" key={filter} onClick={() => setGalleryFilter(filter)} className={`px-5 py-2.5 rounded-lg font-sans font-bold text-[10px] tracking-widest uppercase transition-all cursor-pointer ${galleryFilter === filter

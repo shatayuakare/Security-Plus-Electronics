@@ -9,6 +9,7 @@ import reel3 from "../../assets/reels/3.webm"
 import reel4 from "../../assets/reels/4.webm"
 import reel5 from "../../assets/reels/5.webm"
 import reel6 from "../../assets/reels/6.webm"
+import SectionHeading from '../SectionHeading';
 
 const localVideos = {
     "reel-1": reel1,
@@ -213,17 +214,9 @@ const ReelSection = ({ fadeInUp }) => {
     return (
         <section className="py-24 px-8 relative z-20 border-b border-slate-100 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto relative">
-                <motion.div {...fadeInUp} className="text-center mb-16">
-                    <span className="font-sans font-extrabold text-[10px] text-primary tracking-widest uppercase block mb-3">
-                        EXPLORE SURVEILLANCE IN ACTION
-                    </span>
-                    <h2 className="font-sans text-3xl md:text-5xl font-extrabold text-slate-900 uppercase tracking-tight mb-4">
-                        Live Demo Reels
-                    </h2>
-                    <p className="text-slate-500 text-sm max-w-2xl mx-auto leading-relaxed">
-                        Watch our latest hardware installations, intelligent AI tracking, and enterprise security configurations in action.
-                    </p>
-                </motion.div>
+
+
+                <SectionHeading tagline={"EXPLORE SURVEILLANCE IN ACTION"} title={"Live Demo Reels"} description={"Watch our latest hardware installations, intelligent AI tracking, and enterprise security configurations in action."} />
 
                 <div className="relative group/carousel">
                     {startIndex > 0 && (

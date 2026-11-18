@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, Star } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import TESTIMONIALS_DATA from "../../json/testimonials.json";
+import SectionHeading from "../SectionHeading";
 
 const ScrollableTestimonials = () => {
     const [scrollIndex, setScrollIndex] = useState(0);
@@ -23,7 +24,7 @@ const ScrollableTestimonials = () => {
     return (<section className="py-24 px-6 md:px-12 bg-white relative overflow-hidden border-b border-slate-100">
         <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
-                <div>
+                {/* <div>
                     <span className="font-mono text-xs font-bold text-primary uppercase tracking-widest block mb-2">
                         CLIENT ADVOCACY & TRUST
                     </span>
@@ -33,7 +34,9 @@ const ScrollableTestimonials = () => {
                     <p className="text-slate-500 mt-2 text-sm max-w-xl font-sans">
                         See how Security Plus Electronics (SPE) implements zero-downtime protection for Central India's leading organizations.
                     </p>
-                </div>
+                </div> */}
+
+                <SectionHeading tagline={"CLIENT ADVOCACY & TRUST"} title={"Enterprise Success Stories"} description={"See how we implements zero-downtime protection for Central India's leading organizations."} />
 
                 <div className="flex items-center gap-4">
                     <div className="flex gap-3">

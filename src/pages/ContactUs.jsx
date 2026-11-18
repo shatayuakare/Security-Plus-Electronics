@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { MessageSquare, ExternalLink, Phone, Building, MapPin, Mail, Clock, CheckCircle2 } from "lucide-react";
+import { MessageSquare, ExternalLink, Phone, MapPin, Mail, Clock, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import PageHeading from "../components/PageHeading";
 
 
 export default function ContactUs({ setToastMessage, setContactData }) {
@@ -79,14 +80,8 @@ export default function ContactUs({ setToastMessage, setContactData }) {
 
     <section className="py-16 px-6 md:px-12 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto space-y-12">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <h2 className="font-sans text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Contact Our Nagpur Team
-          </h2>
-          <p className="text-slate-500 text-sm md:text-base leading-relaxed font-sans">
-            We are here to answer your questions and help you design the ultimate security structure for your premises. Get in touch with our team today.
-          </p>
-        </div>
+        <PageHeading tagline={"Connect With US"} title={"Contact Our Nagpur Team"} description={"We are here to answer your questions and help you design the ultimate security structure for your premises. Get in touch with our team today."} />
+
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-6xl mx-auto" id="spe-contact-panels-grid">
           <div className="lg:col-span-5 space-y-4 flex flex-col justify-between">
@@ -149,6 +144,10 @@ export default function ContactUs({ setToastMessage, setContactData }) {
                 <div className="flex items-center gap-2 text-xs text-slate-500">
                   <Mail className="h-3.5 w-3.5 text-slate-400" />
                   <Link to={"mailto:info@securityplus.in"} className="hover:underline hover:text-primary font-mono">info@securityplus.in</Link>
+
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-500">
+                  <Mail className="h-3.5 w-3.5 text-slate-400" />
                   <Link to={"mailto:admin@securityplus.in"} className="hover:underline hover:text-primary font-mono">admin@securityplus.in</Link>
                 </div>
               </div>

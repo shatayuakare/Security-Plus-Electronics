@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import PRODUCT_CATEGORIES from "../../json/productCategories.json"
 import { useState } from "react";
+import SectionHeading from "../SectionHeading";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 50 },
@@ -33,17 +34,8 @@ const ProductCategories = ({ loadedImages, setLoadedImages }) => {
 
   return (<section className="py-24 px-8 relative z-20 border-b border-slate-100 bg-white">
     <div className="max-w-7xl mx-auto">
-      <motion.div {...fadeInUp} className="text-center mb-16">
-        <span className="font-sans font-extrabold text-[10px] text-primary tracking-widest uppercase block mb-3">
-          HARDWARE CATALOG
-        </span>
-        <h2 className="font-sans text-3xl md:text-5xl font-extrabold text-slate-900 uppercase tracking-tight mb-4">
-          Product Categories
-        </h2>
-        <p className="text-slate-500 text-sm max-w-2xl mx-auto leading-relaxed">
-          Explore Central India's most comprehensive inventory of security hardware. From F1.0 starlight optics to Layer 2 isolated backbones, we secure high-risk infrastructure.
-        </p>
-      </motion.div>
+
+      <SectionHeading tagline={"HARDWARE CATALOG"} title={"Product Categories"} description={"Explore Central India's most comprehensive inventory of security hardware. From F1.0 starlight optics to Layer 2 isolated backbones, we secure high-risk infrastructure."} />
 
       <motion.div variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true, margin: "-100px" }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {PRODUCT_CATEGORIES.map((category) => (

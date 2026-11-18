@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { MessageSquare, CheckCircle2 } from "lucide-react";
+import PageHeading from "./PageHeading";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -62,13 +63,15 @@ export default function Testimonials({ testimonials, setTestimonials, setToastMe
     <section className="py-16 px-8 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto font-sans">
 
-        <motion.div {...fadeInUp} className="text-center mb-12">
+        {/* <motion.div {...fadeInUp} className="text-center mb-12">
           <span className="font-sans font-bold text-[10px] text-primary tracking-widest uppercase block mb-3">[ REFERENCE GRID // CLIENT VOICE ]</span>
           <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-slate-900 uppercase">Nagpur Trust Testimonials</h2>
           <p className="text-slate-500 mt-3 text-sm max-w-2xl mx-auto leading-relaxed">
             See how Security Plus Electronics secures Nagpur's top metro grids, jewelers, medical centers, and luxury residential estates.
           </p>
-        </motion.div>
+        </motion.div> */}
+
+        <PageHeading tagline={"CLIENT VOICE"} title={"Nagpur Trust Testimonials"} description={"See how Security Plus Electronics secures Nagpur's top metro grids, jewelers, medical centers, and luxury residential estates."} />
 
         <motion.div {...fadeInUp} className="flex flex-wrap justify-center gap-2 mb-12 max-w-3xl mx-auto">
           {["all", "residential", "commercial", "banking", "healthcare", "industrial"].map(cat => (<button type='button' id='testimonialFilterBtn' aria-label="Testimonial Filter Button" key={cat} onClick={() => setTestimonialFilter(cat)} className={`text-[10px] px-4 py-2 border uppercase font-bold tracking-wider transition-all duration-300 rounded-full cursor-pointer ${testimonialFilter === cat ? "bg-primary text-white border-primary shadow-sm" : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"}`}>

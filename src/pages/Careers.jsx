@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Sparkles, Briefcase, Terminal, CheckCircle2 } from "lucide-react";
+import PageHeading from "../components/PageHeading";
 
 export default function Careers({ setCareerApplications, setToastMessage }) {
   const [contactTicket, setContactTicket] = useState(null);
@@ -40,19 +41,7 @@ export default function Careers({ setCareerApplications, setToastMessage }) {
 
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
         <div className="max-w-7xl mx-auto space-y-12">
-
-          <div className="text-center max-w-3xl mx-auto">
-            <span className="font-sans font-extrabold text-[10px] text-primary tracking-widest uppercase block mb-3">
-              CAREERS & TECHNOLOGY ACADEMY
-            </span>
-            <h2 className="font-sans text-3xl md:text-5xl font-extrabold text-slate-900 uppercase tracking-tight mb-4">
-              Careers &amp; Training
-            </h2>
-            <p className="text-slate-500 text-sm leading-relaxed">
-              Join Central India's leading security systems integrator. We recruit experienced professionals, and provide fully funded, 100% free technical classes to train freshers, students, and active employees.
-            </p>
-          </div>
-
+          <PageHeading tagline={"CAREERS & TECHNOLOGY ACADEMY"} title={"Careers & Training"} description={"Join Central India's leading security systems integrator. We recruit experienced professionals, and provide fully funded, 100% free technical classes to train freshers, students, and active employees."} />
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" id="spe-careers-grid">
 
             <div className="lg:col-span-8 space-y-12">

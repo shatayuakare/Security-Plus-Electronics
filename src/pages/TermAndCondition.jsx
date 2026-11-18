@@ -13,6 +13,7 @@ import {
     Building2,
     ChevronRight,
 } from "lucide-react";
+import PageHeading from "../components/PageHeading";
 
 const sections = [
     {
@@ -62,34 +63,11 @@ const sections = [
 const TermsAndConditions = () => {
     return (
         <section aria-label="Term and Condition" className="bg-slate-50 min-h-screen">
-            {/* Hero */}
-            <section className="bg-gradient-to-r from-sky-800 via-primary to-sky-950 text-white">
-                <div className="max-w-7xl mx-auto px-6 py-20">
-                    <div className="flex items-center gap-4 mb-6">
-                        <div className="p-4 bg-white/10 rounded-xl backdrop-blur">
-                            <FileText size={40} />
-                        </div>
-
-                        <div>
-                            <h1 className="text-4xl md:text-5xl font-bold">
-                                Terms & Conditions
-                            </h1>
-
-                            <p className="mt-3 text-red-100">
-                                Security Plus Electronics (CCTV Mall)
-                            </p>
-                        </div>
-                    </div>
-
-                    <p className="max-w-3xl text-red-100 leading-8">
-                        By accessing our website, purchasing products, or using our
-                        services, you agree to comply with the following Terms &
-                        Conditions. Please read them carefully before placing an order.
-                    </p>
-                </div>
-            </section>
 
             <div className="max-w-7xl mx-auto px-6 py-16">
+
+                <PageHeading tagline={"Our Policy"} title={"Terms & Conditions"} description={"By accessing our website, purchasing products, or using our services, you agree to comply with the following Terms & Conditions. Please read them carefully before placing an order."} />
+
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-12">
                     <div className="flex items-center gap-3 mb-5">
                         <Building2 className="text-primary" size={30} />

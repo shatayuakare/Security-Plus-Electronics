@@ -2,6 +2,7 @@ import { Clock, Mail, MapPin, MessageSquare, Phone } from "lucide-react";
 import { lazy } from "react";
 import { Link } from "react-router-dom";
 import { companytData } from "../../utils/Constant";
+import SectionHeading from "../SectionHeading";
 const CorporateContactForm = lazy(() => import("./CorporateContactForm"));
 
 const OurLocation = ({ contactData, setToastMessage, setShowroomModalOpen }) => {
@@ -12,17 +13,8 @@ const OurLocation = ({ contactData, setToastMessage, setShowroomModalOpen }) => 
 
     return (<section className="py-24 px-6 md:px-12 bg-slate-50 relative border-b border-slate-100">
         <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-                <span className="font-sans text-xs font-bold text-primary uppercase tracking-widest block mb-2">
-                    Visit Our Flagship Experience Mall
-                </span>
-                <h2 className="text-3xl md:text-5xl font-sans font-bold text-slate-900 tracking-tight">
-                    Our Experience Center
-                </h2>
-                <p className="text-slate-500 mt-2 text-sm max-w-xl mx-auto">
-                    Come visit SPE CCTV Mall in Dharampeth, Nagpur. Get live hands-on staging of 4K starlight sensors and biometric vaults.
-                </p>
-            </div>
+
+            <SectionHeading tagline={"Visit Our Flagship Experience Mall"} title={"Our Experience Center"} description={"Come visit SPE CCTV Mall in Dharampeth, Nagpur. Get live hands-on staging of 4K starlight sensors and biometric vaults."} />
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
                 <div className="lg:col-span-2 h-[450px] border border-slate-200 rounded-3xl overflow-hidden shadow-sm bg-white relative">

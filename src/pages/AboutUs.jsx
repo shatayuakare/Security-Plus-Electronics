@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { CheckCircle2, HelpCircle, ChevronDown } from "lucide-react";
 import BrandCarousel from "../components/BrandCarousel";
+import SectionHeading from "../components/SectionHeading";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -44,7 +45,12 @@ function AboutUs() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" id="spe-about-story-grid">
             <div className="space-y-6">
-              <span className="font-sans text-[10px] text-primary tracking-widest uppercase block font-semibold">BRAND STORY </span>
+              <span className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-sky-600 mb-4">
+                <span className="w-5 h-px bg-sky-500" />
+                BRAND STORY
+                <span className="w-5 h-px bg-sky-500" />
+              </span>
+              {/* <span className="font-sans text-[10px] text-primary tracking-widest uppercase block font-semibold">BRAND STORY </span> */}
               <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-slate-900 uppercase">Nagpur's Landmark Security Mall</h2>
               <div className="h-0.5 w-24 bg-primary"></div>
               <p className="text-xs text-primary font-bold uppercase leading-relaxed">THE CORE SECURITY SOURCE</p>
@@ -95,18 +101,7 @@ function AboutUs() {
 
           {/* Collapsible FAQ Section */}
           <div className="space-y-8 pt-8 border-t border-slate-200" id="spe-about-faq-sec">
-            <div className="text-center">
-              <span className="font-sans font-bold text-[10px] text-primary tracking-widest uppercase block mb-3">
-                Service Operation
-              </span>
-              <h3 className="font-sans text-xl md:text-2xl font-extrabold text-slate-900 uppercase">
-                Deployment &amp; Support FAQs
-              </h3>
-              <p className="text-xs text-slate-500 max-w-xl mx-auto mt-2  font-bold tracking-wider">
-                Addressing common engineering queries about our physical installation processes, SLA warranties, and Nagpur fleet coverage.
-              </p>
-            </div>
-
+            <SectionHeading tagline={"Service Operation"} title={"Deployment & Support FAQs"} description={"Addressing common engineering queries about our physical installation processes, SLA warranties, and Nagpur fleet coverage."} />
             <div className="max-w-4xl mx-auto space-y-4">
               {faqs.map((faq, idx) => {
                 const isOpen = openFaqIndex === idx;
