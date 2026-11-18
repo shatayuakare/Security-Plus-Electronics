@@ -117,8 +117,8 @@ export default function ContactUs({ setToastMessage, setContactData }) {
                 <h4 className="text-base font-extrabold text-slate-950 font-sans">Direct Calling Lines</h4>
                 <p className="text-xs text-slate-500 font-sans">Speak directly with our support desk or schedule technician dispatches.</p>
                 <div className="space-y-1 pt-1 font-mono text-sm font-bold text-slate-800">
-                  <Link to="{tel:+917020320794}" className="block hover:text-primary transition-colors">+91 7020320794</Link>
-                  <Link to="{tel:+919284522248}" className="block hover:text-primary transition-colors">+91 9284522248</Link>
+                  <Link to="{tel:+918446530836}" className="block hover:text-primary transition-colors">+91 8446530836</Link>
+                  <Link to="{tel:+917264892247}" className="block hover:text-primary transition-colors">+91 7264892247</Link>
                 </div>
               </div>
             </div>
@@ -149,6 +149,7 @@ export default function ContactUs({ setToastMessage, setContactData }) {
                 <div className="flex items-center gap-2 text-xs text-slate-500">
                   <Mail className="h-3.5 w-3.5 text-slate-400" />
                   <Link to={"mailto:info@securityplus.in"} className="hover:underline hover:text-primary font-mono">info@securityplus.in</Link>
+                  <Link to={"mailto:admin@securityplus.in"} className="hover:underline hover:text-primary font-mono">admin@securityplus.in</Link>
                 </div>
               </div>
 
