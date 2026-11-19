@@ -10,7 +10,8 @@ const BrandCarousel = lazy(() => import("./components/BrandCarousel"))
 const ProductCategories = lazy(() => import("./components/section/ProductCategories"))
 
 // Import pages
-const AboutUs = lazy(() => import("./pages/AboutUs.jsx"));
+// const AboutUs = lazy(() => import("./pages/AboutUs.jsx"));
+import AboutUs from "./pages/AboutUs"
 const ContactUs = lazy(() => import("./pages/ContactUs.jsx"));
 const Careers = lazy(() => import("./pages/Careers.jsx"));
 const Blogs = lazy(() => import("./pages/Blogs.jsx"));
@@ -592,30 +593,30 @@ function App() {
 
       <SEOManager />
       <main className={location.pathname === "/" ? "pt-0 bg-[#070913]" : "pt-20 bg-white"}>
-        <Suspense
+        {/* <Suspense
           fallback={
-            <div className="min-h-screen flex items-center justify-center">
+            <div className="min-h-screen flex items-center justify-center bg-black">
               <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
             </div>
           }
-        >
-          <Routes>
-            <Route path="/" element={<motion.div {...fadeIn} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+        > */}
+        <Routes>
+          <Route path="/" element={<motion.div {...fadeIn} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
 
-              <Hero2 heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} />
-              {/* <Hero heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} /> */}
+            <Hero2 heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} />
+            {/* <Hero heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} /> */}
 
-              <Suspense fallback={<div className="min-h-50" />}>
-                <BrandCarousel />
-              </Suspense>
+            <Suspense fallback={<div className="min-h-50" />}>
+              <BrandCarousel />
+            </Suspense>
 
-              <Suspense fallback={<div className="min-h-[80vh]" />}>
-                <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} />
-              </Suspense>
-              <Suspense fallback={<div className="min-h-[50vh]" />}>
-                <ReelSection />
-              </Suspense>
-              {/* <motion.section {...fadeInUp} className="py-24 px-8 relative z-20 border-b border-slate-100 bg-slate-50">
+            <Suspense fallback={<div className="min-h-[80vh]" />}>
+              <ProductCategories loadedImages={loadedImages} setLoadedImages={setLoadedImages} />
+            </Suspense>
+            <Suspense fallback={<div className="min-h-[50vh]" />}>
+              <ReelSection />
+            </Suspense>
+            {/* <motion.section {...fadeInUp} className="py-24 px-8 relative z-20 border-b border-slate-100 bg-slate-50">
                 <div className="max-w-4xl mx-auto text-center">
                   <span className="font-sans font-bold text-[10px] text-primary tracking-widest uppercase block mb-3">OUR VISION &amp; SLA VALUES</span>
                   <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 uppercase">Our Vision &amp; Mission</h2>
@@ -625,35 +626,35 @@ function App() {
                   </p>
                 </div>
               </motion.section> */}
-              {/* 
+            {/* 
               <Suspense fallback={<div className="min-h-[50vh]" />}>
                 <ScrollableTestimonials />
               </Suspense> */}
 
-              <Suspense fallback={<div className="min-h-[50vh]" />}>
-                <OurThought />
-              </Suspense>
+            <Suspense fallback={<div className="min-h-[50vh]" />}>
+              <OurThought />
+            </Suspense>
 
-              <Suspense fallback={<div className="min-h-[50vh]" />}>
-                <OurLocation contactData={contactData} setShowroomModalOpen={setShowroomModalOpen} setToastMessage={setToastMessage} />
-              </Suspense>
+            <Suspense fallback={<div className="min-h-[50vh]" />}>
+              <OurLocation contactData={contactData} setShowroomModalOpen={setShowroomModalOpen} setToastMessage={setToastMessage} />
+            </Suspense>
 
-              <Suspense fallback={<div className="min-h-[50vh]" />}>
-                <FAQSection />
-              </Suspense>
-            </motion.div>} />
+            <Suspense fallback={<div className="min-h-[50vh]" />}>
+              <FAQSection />
+            </Suspense>
+          </motion.div>} />
 
-            <Route path="/about" Component={AboutUs} />
-            <Route path="/termandcondition" Component={TermsAndConditions} />
-            <Route path="/gallery" element={<Gallery galleryItems={GALLERY_ITEMS} />} />
-            <Route path="/contact" element={<ContactUs setContactData={setContactData} setToastMessage={setToastMessage} />} />
-            <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
-            <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
-            <Route path="/testimonial" element={<Testimonials testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
-            <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
-            <Route path="/*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </Suspense>
+          <Route path="/about" Component={AboutUs} />
+          <Route path="/termandcondition" Component={TermsAndConditions} />
+          <Route path="/gallery" element={<Gallery galleryItems={GALLERY_ITEMS} />} />
+          <Route path="/contact" element={<ContactUs setContactData={setContactData} setToastMessage={setToastMessage} />} />
+          <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
+          <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
+          <Route path="/testimonial" element={<Testimonials testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
+          <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
+          <Route path="/*" element={<Navigate to="/" replace />} />
+        </Routes>
+        {/* </Suspense> */}
       </main>
       <Suspense fallback={<div className="min-h-screen" />}>
         <AnimatePresence>
@@ -663,7 +664,7 @@ function App() {
         </AnimatePresence>
         {/* Toast View */}
       </Suspense>
-      <Suspense fallback={<div className="min-h-screen" />}>
+      <Suspense fallback={<div className="min-h-screen bg-black" />}>
         <AnimatePresence>
           {toastMessage && (<motion.div {...fadeInUp} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="fixed bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:right-auto z-50 w-auto md:w-120 bg-slate-900/95 backdrop-blur-md text-white p-3.5 rounded-xl border border-slate-800 flex items-start gap-3 shadow-2xl">
             <Sparkles className="h-4 w-4 text-primary shrink-0 mt-0.5 animate-pulse" />
