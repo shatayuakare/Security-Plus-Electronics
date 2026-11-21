@@ -16,12 +16,9 @@ import {
   X,
   LoaderCircle,
 } from "lucide-react";
-
 import BrandCarousel from "../components/BrandCarousel";
-import BRANDS from "../json/brands.json";
-
+// import BRANDS from "../json/brands.json";
 import parse from "html-react-parser";
-
 import { Link } from "react-router-dom";
 import PageHeading from "../components/PageHeading";
 
@@ -167,6 +164,50 @@ export default function Products({
   toggleWishlist,
   setSelectedProductForQuickView,
 }) {
+
+  const [brands, setBrands] = useState([{
+    "id": 1982,
+    "name": "ARTIS",
+    "slug": "artis",
+    "description": "",
+    "parent": 0,
+    "count": 5,
+    "image": {
+      "id": 9855,
+      "src": "https://woston.in/wp-content/uploads/2026/06/artis-logo.avif",
+      "thumbnail": "https://woston.in/wp-content/uploads/2026/06/artis-logo.avif",
+      "srcset": "",
+      "sizes": "(max-width: 240px) 100vw, 240px",
+      "thumbnail_srcset": "",
+      "thumbnail_sizes": "(max-width: 240px) 100vw, 240px",
+      "name": "artis logo",
+      "alt": "Artis Logo"
+    },
+    "review_count": 0,
+    "permalink": "https://woston.in/brands/artis/"
+  },
+  {
+    "id": 2048,
+    "name": "Beetel",
+    "slug": "beetel",
+    "description": "",
+    "parent": 0,
+    "count": 1,
+    "image": {
+      "id": 10772,
+      "src": "https://woston.in/wp-content/uploads/2026/06/Beetel-logo.jpg",
+      "thumbnail": "https://woston.in/wp-content/uploads/2026/06/Beetel-logo.jpg",
+      "srcset": "https://woston.in/wp-content/uploads/2026/06/Beetel-logo.jpg 200w, https://woston.in/wp-content/uploads/2026/06/Beetel-logo-150x150.jpg 150w, https://woston.in/wp-content/uploads/2026/06/Beetel-logo-100x100.jpg 100w, https://woston.in/wp-content/uploads/2026/06/Beetel-logo-50x50.jpg 50w",
+      "sizes": "(max-width: 200px) 100vw, 200px",
+      "thumbnail_srcset": "https://woston.in/wp-content/uploads/2026/06/Beetel-logo.jpg 200w, https://woston.in/wp-content/uploads/2026/06/Beetel-logo-150x150.jpg 150w, https://woston.in/wp-content/uploads/2026/06/Beetel-logo-100x100.jpg 100w, https://woston.in/wp-content/uploads/2026/06/Beetel-logo-50x50.jpg 50w",
+      "thumbnail_sizes": "(max-width: 200px) 100vw, 200px",
+      "name": "Beetel logo",
+      "alt": "Beetel logo"
+    },
+    "review_count": 0,
+    "permalink": "https://woston.in/brands/beetel/"
+  }]);
+
   const [productCategoryFilter, setProductCategoryFilter] =
     useState("all");
 
@@ -176,17 +217,11 @@ export default function Products({
   // SERVER SEARCH STATES
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-
   const [productSearch, setProductSearch] = useState("");
-
   const [searchResults, setSearchResults] = useState([]);
-
   const [searchLoading, setSearchLoading] = useState(false);
-
   const [searchError, setSearchError] = useState("");
-
   const [searchPage, setSearchPage] = useState(1);
-
   const [searchHasNext, setSearchHasNext] = useState(false);
 
   // SEARCH IS ACTIVE ONLY AFTER TWO CHARACTERS
@@ -195,6 +230,14 @@ export default function Products({
     isSearchOpen && productSearch.trim().length >= 2;
 
   // SERVER-SIDE PRODUCT SEARCH
+
+  const fetchBrands = async () => {
+    await axios(`${PRODUCT_API}/brands`).then(res => setBrands(res.data)).catch(e => console.error(e))
+  }
+
+  useEffect(() => {
+    fetchBrands();
+  }, [])
 
   useEffect(() => {
     const searchTerm = productSearch.trim();
@@ -760,23 +803,17 @@ export default function Products({
                         />
 
                         <div className="absolute inset-0 bg-slate-950/15 pointer-events-none" />
-
                         {/* BRAND LOGO */}
 
                         <div className="absolute top-2.5 left-2.5 z-20 overflow-hidden backdrop-blur-md rounded-full shadow-sm transition-all duration-300 hover:scale-110">
 
-                          {BRANDS.map((brand, idx) =>
+                          {brands.map((brand) =>
                             brand.name === product?.brands?.[0]?.name ? (
                               <img
-                                key={idx}
                                 className="h-10 aspect-square"
-                                src={
-                                  new URL(
-                                    `../assets/brands/${brand.icon}`,
-                                    import.meta.url
-                                  ).href
-                                }
-                                alt={brand.name}
+                                key={brand?.id}
+                                src={brand?.image?.src}
+                                alt={brand?.image?.alt}
                               />
                             ) : null
                           )}

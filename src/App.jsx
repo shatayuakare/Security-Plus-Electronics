@@ -10,8 +10,7 @@ const BrandCarousel = lazy(() => import("./components/BrandCarousel"))
 const ProductCategories = lazy(() => import("./components/section/ProductCategories"))
 
 // Import pages
-// const AboutUs = lazy(() => import("./pages/AboutUs.jsx"));
-import AboutUs from "./pages/AboutUs"
+const AboutUs = lazy(() => import("./pages/AboutUs.jsx"));
 const ContactUs = lazy(() => import("./pages/ContactUs.jsx"));
 const Careers = lazy(() => import("./pages/Careers.jsx"));
 const Blogs = lazy(() => import("./pages/Blogs.jsx"));
@@ -23,7 +22,6 @@ const Hero2 = lazy(() => import("./pages/Hero2.jsx"));
 // Import modular section page
 import Header from "./components/Header";
 import Hero from "./components/Hero.jsx";
-const Testimonials = lazy(() => import("./components/Testimonials.jsx"));
 const Footer = lazy(() => import("./components/Footer.jsx"));
 const ReelSection = lazy(() => import("./components/section/ReelSection.jsx"));
 const QuickProductView = lazy(() => import("./components/modal/QuickProductView.jsx"));
@@ -35,7 +33,6 @@ const FAQSection = lazy(() => import("./components/section/FAQSection.jsx"));
 const OurLocation = lazy(() => import("./components/section/OurLocation.jsx"));
 
 // JSON file to fetch data
-import TESTIMONIALS_DATA from "./json/testimonials.json"
 import GALLERY_ITEMS from "./json/gallary.json"
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -492,7 +489,6 @@ function App() {
 
   const [selectedProductForQuickView, setSelectedProductForQuickView] = useState(null);
   const [loadedImages, setLoadedImages] = useState({});
-  const [testimonials, setTestimonials] = useState(TESTIMONIALS_DATA);
   const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
   const [dropdownSubView, setDropdownSubView] = useState("main");
   const accountRef = useRef(null);
@@ -626,10 +622,7 @@ function App() {
                   </p>
                 </div>
               </motion.section> */}
-            {/* 
-              <Suspense fallback={<div className="min-h-[50vh]" />}>
-                <ScrollableTestimonials />
-              </Suspense> */}
+
 
             <Suspense fallback={<div className="min-h-[50vh]" />}>
               <OurThought />
@@ -650,7 +643,7 @@ function App() {
           <Route path="/contact" element={<ContactUs setContactData={setContactData} setToastMessage={setToastMessage} />} />
           <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
           <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
-          <Route path="/testimonial" element={<Testimonials testimonials={testimonials} setTestimonials={setTestimonials} setToastMessage={setToastMessage} />} />
+
           <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
           <Route path="/*" element={<Navigate to="/" replace />} />
         </Routes>
