@@ -1,5 +1,9 @@
 import logo from "../assets/images/logo.avif";
 
+export const PRODUCT_API = "https://woston.in/wp-json/wc/store/v1/products";
+
+export const BRAND_API = "https://woston.in/wp-json/wc/store/v1/products/brands";
+
 export const companytData = {
     logo: logo,
     name: "Security Plus Electronics",

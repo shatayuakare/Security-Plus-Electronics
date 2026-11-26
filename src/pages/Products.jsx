@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
+import { PRODUCT_API, BRAND_API } from "../utils/Constant"
 import "../products.css";
+
 
 import { motion } from "motion/react";
 
@@ -19,11 +21,8 @@ import {
 import BrandCarousel from "../components/BrandCarousel";
 // import BRANDS from "../json/brands.json";
 import parse from "html-react-parser";
-import { Link } from "react-router-dom";
 import PageHeading from "../components/PageHeading";
 
-const PRODUCT_API =
-  "https://woston.in/wp-json/wc/store/v1/products";
 
 const staggerContainer = {
   initial: {},
@@ -232,7 +231,7 @@ export default function Products({
   // SERVER-SIDE PRODUCT SEARCH
 
   const fetchBrands = async () => {
-    await axios(`${PRODUCT_API}/brands`).then(res => setBrands(res.data)).catch(e => console.error(e))
+    await axios(`${BRAND_API}`).then(res => setBrands(res.data)).catch(e => console.error(e))
   }
 
   useEffect(() => {

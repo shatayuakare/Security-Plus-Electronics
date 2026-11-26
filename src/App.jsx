@@ -21,7 +21,7 @@ const Hero2 = lazy(() => import("./pages/Hero2.jsx"));
 
 // Import modular section page
 import Header from "./components/Header";
-import Hero from "./components/Hero.jsx";
+// import Hero from "./components/Hero.jsx";
 const Footer = lazy(() => import("./components/Footer.jsx"));
 const ReelSection = lazy(() => import("./components/section/ReelSection.jsx"));
 const QuickProductView = lazy(() => import("./components/modal/QuickProductView.jsx"));
@@ -34,6 +34,7 @@ const OurLocation = lazy(() => import("./components/section/OurLocation.jsx"));
 
 // JSON file to fetch data
 import GALLERY_ITEMS from "./json/gallary.json"
+import { PRODUCT_API } from "./utils/Constant.jsx";
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
@@ -439,7 +440,7 @@ function App() {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://woston.in/wp-json/wc/store/v1/products",
+          `${PRODUCT_API}`,
           {
             params: {
               per_page: 12,
@@ -589,13 +590,7 @@ function App() {
 
       <SEOManager />
       <main className={location.pathname === "/" ? "pt-0 bg-[#070913]" : "pt-20 bg-white"}>
-        {/* <Suspense
-          fallback={
-            <div className="min-h-screen flex items-center justify-center bg-black">
-              <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-            </div>
-          }
-        > */}
+
         <Routes>
           <Route path="/" element={<motion.div {...fadeIn} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
 
@@ -612,18 +607,6 @@ function App() {
             <Suspense fallback={<div className="min-h-[50vh]" />}>
               <ReelSection />
             </Suspense>
-            {/* <motion.section {...fadeInUp} className="py-24 px-8 relative z-20 border-b border-slate-100 bg-slate-50">
-                <div className="max-w-4xl mx-auto text-center">
-                  <span className="font-sans font-bold text-[10px] text-primary tracking-widest uppercase block mb-3">OUR VISION &amp; SLA VALUES</span>
-                  <h2 className="font-sans text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 uppercase">Our Vision &amp; Mission</h2>
-                  <div className="h-0.5 w-20 bg-primary mx-auto mb-8"></div>
-                  <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
-                    Deliver innovative, reliable, and complete security solutions with exceptional customer support. We custom-engineer systems that protect Nagpur's leading commercial, financial, and industrial properties with absolute technological integrity.
-                  </p>
-                </div>
-              </motion.section> */}
-
-
             <Suspense fallback={<div className="min-h-[50vh]" />}>
               <OurThought />
             </Suspense>
@@ -637,17 +620,16 @@ function App() {
             </Suspense>
           </motion.div>} />
 
-          <Route path="/about" Component={AboutUs} />
-          <Route path="/termandcondition" Component={TermsAndConditions} />
-          <Route path="/gallery" element={<Gallery galleryItems={GALLERY_ITEMS} />} />
-          <Route path="/contact" element={<ContactUs setContactData={setContactData} setToastMessage={setToastMessage} />} />
-          <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
           <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
-
           <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
+          <Route path="/about" Component={AboutUs} />
+          <Route path="/contact" element={<ContactUs setContactData={setContactData} setToastMessage={setToastMessage} />} />
+          <Route path="/gallery" element={<Gallery galleryItems={GALLERY_ITEMS} />} />
+          <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
+
+          <Route path="/termandcondition" Component={TermsAndConditions} />
           <Route path="/*" element={<Navigate to="/" replace />} />
         </Routes>
-        {/* </Suspense> */}
       </main>
       <Suspense fallback={<div className="min-h-screen" />}>
         <AnimatePresence>
