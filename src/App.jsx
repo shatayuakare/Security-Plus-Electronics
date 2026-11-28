@@ -17,11 +17,11 @@ const Blogs = lazy(() => import("./pages/Blogs.jsx"));
 const Gallery = lazy(() => import("./pages/Gallery.jsx"));
 const TermsAndConditions = lazy(() => import("./pages/TermAndCondition.jsx"));
 const Products = lazy(() => import("./pages/Products.jsx"));
-const Hero2 = lazy(() => import("./pages/Hero2.jsx"));
+// const Hero2 = lazy(() => import("./pages/Hero2.jsx"));
 
 // Import modular section page
 import Header from "./components/Header";
-// import Hero from "./components/Hero.jsx";
+import Hero from "./components/Hero.jsx";
 const Footer = lazy(() => import("./components/Footer.jsx"));
 const ReelSection = lazy(() => import("./components/section/ReelSection.jsx"));
 const QuickProductView = lazy(() => import("./components/modal/QuickProductView.jsx"));
@@ -90,8 +90,6 @@ function App() {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
-
-
 
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState(() => {
@@ -433,7 +431,6 @@ function App() {
       }]
   });
 
-
   useEffect(() => {
     if (location.pathname !== "/products") return;
 
@@ -585,9 +582,6 @@ function App() {
     return () => clearTimeout(timer);
   }, [toastMessage])
 
-
-
-
   return (
     <>
       <Header wishlist={wishlist} products={products} toggleWishlist={toggleWishlist} wishlistDropdownOpen={wishlistDropdownOpen} setWishlistDropdownOpen={setWishlistDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} inquiryList={inquiryList} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
@@ -597,10 +591,9 @@ function App() {
 
         <Routes>
           <Route path="/" element={<motion.div {...fadeIn} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+            {/* <Hero2 heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} /> */}
 
-            <Hero2 heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} />
-
-            {/* <Hero heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} /> */}
+            <Hero heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} />
 
             <Suspense fallback={<div className="min-h-50" />}>
               <BrandCarousel />
@@ -615,11 +608,9 @@ function App() {
             <Suspense fallback={<div className="min-h-[50vh]" />}>
               <OurThought />
             </Suspense>
-
             <Suspense fallback={<div className="min-h-[50vh]" />}>
               <OurLocation contactData={contactData} setShowroomModalOpen={setShowroomModalOpen} setToastMessage={setToastMessage} />
             </Suspense>
-
             <Suspense fallback={<div className="min-h-[50vh]" />}>
               <FAQSection />
             </Suspense>
@@ -627,11 +618,10 @@ function App() {
 
           <Route path="/products" element={<Products products={products} toggleWishlist={toggleWishlist} setInquiryList={setInquiryList} setCurrentPage={setCurrentPage} wishlist={wishlist} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
           <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
-          <Route path="/about" Component={AboutUs} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<ContactUs setContactData={setContactData} setToastMessage={setToastMessage} />} />
           <Route path="/gallery" element={<Gallery galleryItems={GALLERY_ITEMS} />} />
           <Route path="/career" element={<Careers careerApplications={careerApplications} setCareerApplications={setCareerApplications} setToastMessage={setToastMessage} />} />
-
           <Route path="/termandcondition" Component={TermsAndConditions} />
           <Route path="/*" element={<Navigate to="/" replace />} />
         </Routes>

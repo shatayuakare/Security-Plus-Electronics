@@ -5,7 +5,10 @@
 ## Core
 
 - https://securityplus.in/: Main storefront.
-- https://securityplus.in/: Product, updates, about, gallery and contact content.
+- https://securityplus.in/product: Product
+- https://securityplus.in/blogs: updates and blogs/ articles
+- https://securityplus.in/about: about,
+- https://securityplus.in/gallary: gallery and contact content.
 - https://securityplus.in/: Official Security Plus Electronics site.
 - https://woston.in/: Related product brand/catalog.
 
@@ -18,6 +21,7 @@
 
 - Location: Sitabuldi Main Road, Nagpur, Maharashtra 440012, India.
 - Email: info@securityplus.in
+- Cantact Number: +91 9373456746
 - WhatsApp: +91 9373456746
 - Audience: homes, businesses, institutions, dealers, system integrators and corporate clients.
 

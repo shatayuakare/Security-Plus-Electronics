@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import axios from "axios";
 import PageHeading from "../components/PageHeading";
+import logo from "../assets/images/logo.avif";
+
 
 const WORDPRESS_API =
   "https://woston.in/?rest_route=%2Fwp%2Fv2%2Fposts";
@@ -421,7 +423,6 @@ const Blogs = ({
             <main className="lg:col-span-9 space-y-5">
 
               {/* RESULTS HEADER */}
-
               <div className="flex flex-wrap justify-between items-center gap-3 pb-2">
 
                 <div>
@@ -628,12 +629,10 @@ const Blogs = ({
                         <div className="mt-auto pt-4 border-t border-slate-100 flex flex-wrap justify-between items-center gap-4">
 
                           {/* AUTHOR */}
-
                           <div className="flex items-center gap-2.5 min-w-0">
-
                             {post.authorAvatar ? (
                               <img
-                                src={post.authorAvatar}
+                                src={logo || post.authorAvatar}
                                 alt={post.author}
                                 className="w-8 h-8 rounded-full object-cover shrink-0"
                               />
@@ -644,11 +643,11 @@ const Blogs = ({
                             )}
 
                             <div className="min-w-0">
-                              <span className="text-[11px] text-slate-800 font-bold block truncate">
+                              <span className="text-[12px] text-slate-800 font-bold block truncate">
                                 {post.author}
                               </span>
 
-                              <span className="text-[8px] text-slate-400 uppercase tracking-wide block truncate">
+                              <span className="text-[9px] text-slate-400 uppercase tracking-wide block truncate">
                                 {post.authorRole}
                               </span>
                             </div>
@@ -667,23 +666,14 @@ const Blogs = ({
                             Read Article
                             <ChevronRight size={14} />
                           </button>
-
                         </div>
-
                       </div>
-
                     </div>
-
                   </motion.article>
-
                 ))}
-
             </main>
-
           </div>
-
         </div>
-
       </section>
     </motion.div>
   );
