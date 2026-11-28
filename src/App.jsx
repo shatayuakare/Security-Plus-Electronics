@@ -74,6 +74,8 @@ function App() {
       newWishlist = [...wishlist, productId];
       setToastMessage("Product added to your wishlist!");
     }
+
+
     // localStorage.setItem("spe_customer_wishlist")
     setWishlist(newWishlist);
   };
@@ -490,22 +492,22 @@ function App() {
 
   const [selectedProductForQuickView, setSelectedProductForQuickView] = useState(null);
   const [loadedImages, setLoadedImages] = useState({});
-  const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
+  const [wishlistDropdownOpen, setWishlistDropdownOpen] = useState(false);
   const [dropdownSubView, setDropdownSubView] = useState("main");
   const accountRef = useRef(null);
   const mobileMenuRef = useRef(null);
   const mobileHamburgerRef = useRef(null);
 
   useEffect(() => {
-    if (!accountDropdownOpen) {
+    if (!wishlistDropdownOpen) {
       setDropdownSubView("main");
     }
-  }, [accountDropdownOpen]);
+  }, [wishlistDropdownOpen]);
 
   useEffect(() => {
     function handleClickOutside(event) {
       if (accountRef.current && !accountRef.current.contains(event.target)) {
-        setAccountDropdownOpen(false);
+        setWishlistDropdownOpen(false);
       }
       if (mobileMenuRef.current &&
         !mobileMenuRef.current.contains(event.target) &&
@@ -584,9 +586,11 @@ function App() {
   }, [toastMessage])
 
 
+
+
   return (
     <>
-      <Header wishlist={wishlist} toggleWishlist={toggleWishlist} accountDropdownOpen={accountDropdownOpen} setAccountDropdownOpen={setAccountDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} inquiryList={inquiryList} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
+      <Header wishlist={wishlist} products={products} toggleWishlist={toggleWishlist} wishlistDropdownOpen={wishlistDropdownOpen} setWishlistDropdownOpen={setWishlistDropdownOpen} dropdownSubView={dropdownSubView} setDropdownSubView={setDropdownSubView} setToastMessage={setToastMessage} setSelectedProductForQuickView={setSelectedProductForQuickView} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} inquiryList={inquiryList} accountRef={accountRef} mobileHamburgerRef={mobileHamburgerRef} mobileMenuRef={mobileMenuRef} />
 
       <SEOManager />
       <main className={location.pathname === "/" ? "pt-0 bg-[#070913]" : "pt-20 bg-white"}>
@@ -595,6 +599,7 @@ function App() {
           <Route path="/" element={<motion.div {...fadeIn} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
 
             <Hero2 heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} />
+
             {/* <Hero heroSlideIndex={heroSlideIndex} setShowroomExperience={setShowroomExperience} setHeroSlideIndex={setHeroSlideIndex} setShowroomModalOpen={setShowroomModalOpen} /> */}
 
             <Suspense fallback={<div className="min-h-50" />}>
@@ -620,7 +625,7 @@ function App() {
             </Suspense>
           </motion.div>} />
 
-          <Route path="/products" element={<Products products={products} setInquiryList={setInquiryList} setCurrentPage={setCurrentPage} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
+          <Route path="/products" element={<Products products={products} toggleWishlist={toggleWishlist} setInquiryList={setInquiryList} setCurrentPage={setCurrentPage} wishlist={wishlist} currentPage={currentPage} setSelectedProductForQuickView={setSelectedProductForQuickView} />} />
           <Route path="/blogs" element={<Blogs setToastMessage={setToastMessage} setSelectedBlog={setSelectedBlog} />} />
           <Route path="/about" Component={AboutUs} />
           <Route path="/contact" element={<ContactUs setContactData={setContactData} setToastMessage={setToastMessage} />} />
@@ -669,6 +674,7 @@ function App() {
           }
         </AnimatePresence >
       </Suspense>
+
 
       <Suspense fallback={<div className="min-h-75" />}>
         <Footer />

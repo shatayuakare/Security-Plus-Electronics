@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { PRODUCT_API, BRAND_API } from "../utils/Constant"
 import "../products.css";
 
-
 import { motion } from "motion/react";
 
 import {
@@ -163,7 +162,6 @@ export default function Products({
   toggleWishlist,
   setSelectedProductForQuickView,
 }) {
-
   const [brands, setBrands] = useState([{
     "id": 1982,
     "name": "ARTIS",
@@ -318,7 +316,6 @@ export default function Products({
   };
 
   // CLOSE SEARCH AND RESTORE NORMAL PRODUCTS
-
   const closeProductSearch = () => {
     setIsSearchOpen(false);
     setProductSearch("");
@@ -458,6 +455,7 @@ export default function Products({
     ? !searchHasNext || searchLoading
     : filteredProducts.length < 12;
 
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -465,7 +463,6 @@ export default function Products({
       transition={{ duration: 0.5 }}
     >
       <section className="py-16 px-8 bg-slate-50 min-h-screen">
-
         <div className="max-w-7xl mx-auto text-sans">
 
           {/* HEADER */}
@@ -601,7 +598,6 @@ export default function Products({
               {/* CATEGORY BUTTONS */}
 
               <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-
                 {[
                   { name: "All", slug: "all" },
                   ...productCategories,
@@ -706,7 +702,6 @@ export default function Products({
           )}
 
           {/* SEARCH RESULTS HEADER */}
-
           {isSearchActive && !searchError && !searchLoading && (
             <div className="flex flex-wrap justify-between items-center gap-2 mb-5">
 
@@ -831,12 +826,12 @@ export default function Products({
                         <button
                           type="button"
                           aria-label="Wishlist Toggle Button"
-                          id={`wishlist-toggle-${product.id}`}
+                          id={`wishlist-toggle-${product?.id}`}
                           onClick={(e) => {
                             e.stopPropagation();
                             toggleWishlist(product?.id);
                           }}
-                          className="absolute top-2.5 right-2.5 z-20 p-2 bg-white/90 hover:bg-white backdrop-blur-md rounded-full border border-slate-100 shadow-sm transition-all duration-300 hover:scale-110 cursor-pointer"
+                          className="absolute top-2.5 right-2.5 z-20 p-1 bg-white/90 hover:bg-white backdrop-blur-md rounded-full border border-slate-100 shadow-sm transition-all duration-300 hover:scale-110 cursor-pointer"
                           title={
                             wishlist?.includes(product?.id)
                               ? "Remove from wishlist"
@@ -844,7 +839,7 @@ export default function Products({
                           }
                         >
                           <Heart
-                            className={`h-3.5 w-3.5 transition-colors duration-300 ${wishlist?.includes(product.id)
+                            className={`h-6 w-6 transition-colors duration-300 ${wishlist?.includes(product.id)
                               ? "fill-rose-500 text-rose-500"
                               : "text-slate-500 hover:text-rose-500"
                               }`}
